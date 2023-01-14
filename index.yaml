@@ -108,4 +108,39 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/traefik-20.8.0-1/traefik-20.8.0-1.tgz
     version: 20.8.0-1
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 20.8.0"
+        - "✨ add support for default entrypoints"
+        - "✨ add support for OpenTelemetry and Traefik v3"
+    apiVersion: v2
+    appVersion: v2.9.6
+    created: "2023-01-14T17:53:20.413292138Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 95cb239cdae9b6678af881e0421d68232ac9422d5bea25b83ac9df9662ca40ff
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    - networking
+    maintainers:
+    - email: emile@vauge.com
+      name: emilevauge
+    - email: daniel.tomcej@gmail.com
+      name: dtomcej
+    - email: ldez@traefik.io
+      name: ldez
+    - email: michel.loiseleur@traefik.io
+      name: mloiseleur
+    - email: charlie.haley@traefik.io
+      name: charlie-haley
+    name: traefik
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/traefik-1.0.0/traefik-1.0.0.tgz
+    version: 1.0.0
 generated: "2023-01-14T17:13:23.595333095Z"
