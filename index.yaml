@@ -18,6 +18,37 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-agent-operator-0.2.3-1/grafana-agent-operator-0.2.3-1.tgz
     version: 0.2.3-1
+  loki:
+  - apiVersion: v2
+    appVersion: 2.7.0
+    created: "2023-01-14T17:47:34.077540828Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 4.0.12-1
+    - alias: grafana-agent-operator
+      condition: monitoring.selfMonitoring.grafanaAgent.installOperator
+      name: grafana-agent-operator
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 0.2.3-1
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: a9b8026c25a7b9784777c6c6088b42c11148f3b701f4bd176188ab53190b544b
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: trevorwhitney
+    - name: jeschkies
+    name: loki
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/loki-3.10.0-1/loki-3.10.0-1.tgz
+    version: 3.10.0-1
   minio:
   - apiVersion: v1
     appVersion: RELEASE.2022-08-13T21-54-44Z
