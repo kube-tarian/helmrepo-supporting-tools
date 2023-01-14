@@ -1,3 +1,6 @@
+annotations:
+  artifacthub.io/changes: |
+    - "✨ update chart to version 3.10.0"
 apiVersion: v2
 appVersion: 2.7.0
 dependencies:
@@ -5,12 +8,12 @@ dependencies:
   condition: minio.enabled
   name: minio
   repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
-  version: 4.0.12-1
+  version: 1.0.0
 - alias: grafana-agent-operator
   condition: monitoring.selfMonitoring.grafanaAgent.installOperator
   name: grafana-agent-operator
   repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
-  version: 0.2.3-1
+  version: 1.0.0
 description: Helm chart for Grafana Loki in simple, scalable mode
 home: https://grafana.github.io/helm-charts
 icon: https://grafana.com/docs/loki/latest/logo_and_name.png
@@ -23,4 +26,4 @@ sources:
 - https://grafana.com/oss/loki/
 - https://grafana.com/docs/loki/latest/
 type: application
-version: 3.10.0-1
+version: 1.0.0
