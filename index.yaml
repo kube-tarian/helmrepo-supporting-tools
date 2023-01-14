@@ -1,5 +1,46 @@
 apiVersion: v1
 entries:
+  crossplane:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 1.10.1"
+    apiVersion: v1
+    appVersion: 1.10.1
+    created: "2023-01-14T18:50:06.711445448Z"
+    description: Crossplane is an open source Kubernetes add-on that enables platform teams to assemble infrastructure from multiple vendors, and expose higher level self-service APIs for application teams to consume.
+    digest: ac19bf6d0d31cb835b8ca306af6bd9cca214a405be27d376f4d50cd574d1a200
+    home: https://crossplane.io
+    icon: https://crossplane.io/images/favicon_192x192.png
+    keywords:
+    - cloud
+    - infrastructure
+    - services
+    - application
+    - database
+    - cache
+    - bucket
+    - infra
+    - app
+    - ops
+    - gcp
+    - azure
+    - aws
+    - alibaba
+    - cloudsql
+    - rds
+    - s3
+    - azuredatabase
+    - asparadb
+    - gke
+    - aks
+    - eks
+    maintainers:
+    - email: info@crossplane.io
+      name: Crossplane Maintainers
+    name: crossplane
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/crossplane-1.0.0/crossplane-1.0.0.tgz
+    version: 1.0.0
   grafana-agent-operator:
   - annotations:
       artifacthub.io/changes: |
