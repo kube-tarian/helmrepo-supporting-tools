@@ -1,6 +1,26 @@
 apiVersion: v1
 entries:
   grafana-agent-operator:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.2.3"
+    apiVersion: v2
+    appVersion: 0.25.1
+    created: "2023-01-14T18:05:06.944808076Z"
+    description: A Helm chart for Grafana Agent Operator
+    digest: 3ba152c733cdecc6ab2343e036ef937d57ee159c76208705cf22d797a07eccd1
+    home: https://grafana.com/docs/agent/latest/
+    icon: https://raw.githubusercontent.com/grafana/agent/v0.25.1/docs/assets/logo_and_name.png
+    maintainers:
+    - email: grafana-agent-team@googlegroups.com
+      name: Grafana Agent Team
+    name: grafana-agent-operator
+    sources:
+    - https://github.com/grafana/agent/tree/v0.25.1/pkg/operator
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-agent-operator-1.0.0/grafana-agent-operator-1.0.0.tgz
+    version: 1.0.0
   - apiVersion: v2
     appVersion: 0.25.1
     created: "2023-01-14T17:41:00.892204606Z"
@@ -72,6 +92,31 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/minio-4.0.12-1/minio-4.0.12-1.tgz
     version: 4.0.12-1
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 4.0.12"
+    apiVersion: v1
+    appVersion: RELEASE.2022-08-13T21-54-44Z
+    created: "2023-01-14T18:05:07.108733516Z"
+    description: Multi-Cloud Object Storage
+    digest: 2ac88c6634756bb42c22206426d9be85a6c374e15b3c4a7c73389e2e505b011c
+    home: https://min.io
+    icon: https://min.io/resources/img/logo/MINIO_wordmark.png
+    keywords:
+    - minio
+    - storage
+    - object-storage
+    - s3
+    - cluster
+    maintainers:
+    - email: dev@minio.io
+      name: MinIO, Inc
+    name: minio
+    sources:
+    - https://github.com/minio/minio
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/minio-1.0.0/minio-1.0.0.tgz
+    version: 1.0.0
   traefik:
   - annotations:
       artifacthub.io/changes: |
