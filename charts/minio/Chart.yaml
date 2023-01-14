@@ -15,4 +15,4 @@ maintainers:
 name: minio
 sources:
 - https://github.com/minio/minio
-version: 4.0.12
+version: 4.0.12-1

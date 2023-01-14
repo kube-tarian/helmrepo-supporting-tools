@@ -10,4 +10,4 @@ name: grafana-agent-operator
 sources:
 - https://github.com/grafana/agent/tree/v0.25.1/pkg/operator
 type: application
-version: 0.2.3
+version: 0.2.3-1
