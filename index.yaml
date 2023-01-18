@@ -191,6 +191,34 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/minio-1.0.0/minio-1.0.0.tgz
     version: 1.0.0
+  redis-ha:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 4.22.4"
+    apiVersion: v2
+    appVersion: 7.0.4
+    created: "2023-01-18T04:49:30.762955407Z"
+    description: This Helm chart provides a highly available Redis implementation with a master/slave configuration and uses Sentinel sidecars for failover management
+    digest: f43ec225d06eb3e7d22e26eca422320525af74beb26eacc291c03edf40ea757b
+    home: http://redis.io/
+    icon: https://upload.wikimedia.org/wikipedia/en/thumb/6/6b/Redis_Logo.svg/1200px-Redis_Logo.svg.png
+    keywords:
+    - redis
+    - keyvalue
+    - database
+    maintainers:
+    - email: salimsalaues@gmail.com
+      name: ssalaues
+    - email: aaron.layfield@gmail.com
+      name: dandydeveloper
+    name: redis-ha
+    sources:
+    - https://redis.io/download
+    - https://github.com/DandyDeveloper/charts/blob/master/charts/redis-ha
+    - https://github.com/oliver006/redis_exporter
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/redis-ha-1.0.0/redis-ha-1.0.0.tgz
+    version: 1.0.0
   traefik:
   - annotations:
       artifacthub.io/changes: |
