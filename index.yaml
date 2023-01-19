@@ -1,5 +1,36 @@
 apiVersion: v1
 entries:
+  argo-cd:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 5.17.1"
+    apiVersion: v2
+    appVersion: v2.5.6
+    created: "2023-01-19T05:58:17.099873143Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery tool for Kubernetes.
+    digest: ef34d31461b95f4426f4d8132fa07e9466a55fe5a9f61181c55509636ea6c11d
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/argo-cd-1.0.0/argo-cd-1.0.0.tgz
+    version: 1.0.0
   crossplane:
   - annotations:
       artifacthub.io/changes: |
