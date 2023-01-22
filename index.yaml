@@ -261,6 +261,47 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/redis-ha-1.0.0/redis-ha-1.0.0.tgz
     version: 1.0.0
+  temporal:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.19.1"
+    apiVersion: v2
+    appVersion: 1.19.1
+    created: "2023-01-22T14:44:35.960782368Z"
+    dependencies:
+    - condition: cassandra.enabled
+      name: cassandra
+      repository: https://charts.helm.sh/incubator
+      version: 0.14.3
+    - condition: prometheus.enabled
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 15.1.3
+    - condition: elasticsearch.enabled
+      name: elasticsearch
+      repository: https://helm.elastic.co
+      version: 7.17.3
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 5.0.10
+    description: Temporal is a distributed, scalable, durable, and highly available orchestration engine to execute asynchronous long-running business logic in a scalable and resilient way.
+    digest: d019d4eba2b67acde36ef28b0ca49191520d93e85403cc9555c9faaadfe2b8c9
+    home: https://temporal.io/
+    keywords:
+    - temporal
+    - workflow
+    - orchestration
+    maintainers:
+    - name: Temporal Technologies Inc.
+      url: https://temporal.io/
+    name: temporal
+    sources:
+    - https://github.com/temporalio/temporal
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/temporal-0.1.0/temporal-0.1.0.tgz
+    version: 0.1.0
   traefik:
   - annotations:
       artifacthub.io/changes: |
