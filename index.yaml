@@ -222,6 +222,17 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/minio-1.0.0/minio-1.0.0.tgz
     version: 1.0.0
+  pre-install:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-01-22T07:12:56.824232911Z"
+    description: A Helm chart for Kubernetes
+    digest: cdf07c7320dadb6f2ea7032d0a218fdf9232edc1b7f7067a442acae24aaac0b1
+    name: pre-install
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/pre-install-0.1.0/pre-install-0.1.0.tgz
+    version: 0.1.0
   redis-ha:
   - annotations:
       artifacthub.io/changes: |
