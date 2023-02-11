@@ -1,0 +1,22 @@
+apiVersion: v2
+appVersion: 3.2.0
+dependencies:
+- condition: openebsLocalpv.enabled
+  name: localpv-provisioner
+  repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+  version: 1.0.0
+description: Helm chart for OpenEBS Jiva Operator. Jiva provides highly available replication block volumes to Kubernetes stateful workloads using the local storage available on the Kubernetes nodes.
+home: http://www.openebs.io/
+icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/openebs/icon/color/openebs-icon-color.png
+keywords:
+- cloud-native-storage
+- block-storage
+- iSCSI
+- storage
+- jiva
+- jiva-operator
+name: openebs-jiva
+sources:
+- https://github.com/openebs/jiva-operator
+type: application
+version: 1.0.0
