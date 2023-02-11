@@ -1,0 +1,6 @@
+dependencies:
+- name: localpv-provisioner
+  repository: https://openebs.github.io/dynamic-localpv-provisioner
+  version: 3.2.0
+digest: sha256:ddf3f90c7567a72bbb5537e38d3e6f9ff95b4156ba19a4dd3a75e6c9986ca19a
+generated: "2022-04-19T17:09:56.866545796Z"
