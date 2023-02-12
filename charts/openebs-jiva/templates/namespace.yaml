@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: {{ template "jiva.fullname" . }}
   labels:
-    pod-security.kubernetes.io/enforce: privilrged
+    pod-security.kubernetes.io/enforce: privileged
