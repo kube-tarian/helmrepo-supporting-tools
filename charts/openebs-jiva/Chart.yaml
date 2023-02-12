@@ -19,4 +19,4 @@ name: openebs-jiva
 sources:
 - https://github.com/openebs/jiva-operator
 type: application
-version: 1.0.3
+version: 1.0.4
