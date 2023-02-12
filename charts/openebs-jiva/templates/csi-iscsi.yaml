@@ -7,6 +7,15 @@ metadata:
 data:
   iscsiadm: |
     #!/bin/sh
-    iscsid_pid=$(pgrep iscsid)
+    if [ -x /host/sbin/iscsiadm ]; then
+      chroot /host /sbin/iscsiadm "$@"
+    elif [ -x /host/usr/local/sbin/iscsiadm ]; then
+      chroot /host /usr/local/sbin/iscsiadm "$@"
+    elif [ -x /host/bin/iscsiadm ]; then
+      chroot /host /bin/iscsiadm "$@"
+    elif [ -x /host/usr/local/bin/iscsiadm ]; then
+      chroot /host /usr/local/bin/iscsiadm "$@"
+    else
+      chroot /host iscsiadm "$@"
+    fi
 
-    nsenter --mount="/proc/${iscsid_pid}/ns/mnt" --net="/proc/${iscsid_pid}/ns/net" -- /usr/local/sbin/iscsiadm "$@"    
