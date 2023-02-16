@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/managed-by: pulumi
+  name: {{ template "jiva.fullname" . }}-csi-iscsiadm
+data:
+  iscsiadm: |
+    #!/bin/sh
+    if [ -x /host/sbin/iscsiadm ]; then
+      chroot /host /sbin/iscsiadm "$@"
+    elif [ -x /host/usr/local/sbin/iscsiadm ]; then
+      chroot /host /usr/local/sbin/iscsiadm "$@"
+    elif [ -x /host/bin/iscsiadm ]; then
+      chroot /host /bin/iscsiadm "$@"
+    elif [ -x /host/usr/local/bin/iscsiadm ]; then
+      chroot /host /usr/local/bin/iscsiadm "$@"
+    else
+      chroot /host iscsiadm "$@"
+    fi
+
