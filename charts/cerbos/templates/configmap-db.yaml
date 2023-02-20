@@ -1,0 +1,15 @@
+{{- if .Values.configmap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "cerbos.fullname" . }}-db
+  labels:
+    {{- include "cerbos.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": before-hook-creation
+data:
+  cerbos-schema.sql: |-
+    {{ .Files.Get "cerbos-schema.sql" | nindent 4 }}
+{{- end }}    
