@@ -36,3 +36,31 @@ CREATE TABLE IF NOT EXISTS policy_revision (
 CREATE TABLE IF NOT EXISTS attr_schema_defs (
   id VARCHAR(255) PRIMARY KEY,
   definition JSON);
+
+DROP TRIGGER IF EXISTS policy_on_insert;
+
+CREATE TRIGGER policy_on_insert AFTER INSERT ON policy
+FOR EACH ROW
+INSERT INTO policy_revision(action, id, kind, name, version, scope, description, disabled, definition)
+VALUES('INSERT', NEW.id, NEW.kind, NEW.name, NEW.version, NEW.scope, NEW.description, NEW.disabled, NEW.definition);
+
+DROP TRIGGER IF EXISTS policy_on_update;
+
+CREATE TRIGGER policy_on_update AFTER UPDATE ON policy
+FOR EACH ROW
+INSERT INTO policy_revision(action, id, kind, name, version, scope, description, disabled, definition)
+VALUES('UPDATE', NEW.id, NEW.kind, NEW.name, NEW.version, NEW.scope, NEW.description, NEW.disabled, NEW.definition);
+
+DROP TRIGGER IF EXISTS policy_on_delete;
+
+CREATE TRIGGER policy_on_delete AFTER DELETE ON policy
+FOR EACH ROW
+INSERT INTO policy_revision(action, id, kind, name, version, scope, description, disabled, definition)
+VALUES('DELETE', OLD.id, OLD.kind, OLD.name, OLD.version, OLD.scope, OLD.description, OLD.disabled, OLD.definition);
+
+CREATE USER IF NOT EXISTS cerbos_user IDENTIFIED WITH mysql_native_password BY 'changeme';
+GRANT SELECT,INSERT,UPDATE,DELETE ON cerbos.policy TO cerbos_user;
+GRANT SELECT,INSERT,UPDATE,DELETE ON cerbos.attr_schema_defs TO cerbos_user;
+GRANT SELECT,INSERT,UPDATE,DELETE ON cerbos.policy_dependency TO cerbos_user;
+GRANT SELECT,INSERT,UPDATE,DELETE ON cerbos.policy_ancestor TO cerbos_user;
+GRANT SELECT,INSERT ON cerbos.policy_revision TO cerbos_user;
