@@ -1,0 +1,7 @@
+cerbos:
+  config:
+    storage:
+      driver: "mysql"
+      mysql:
+        dsn: "user:cerbos@tcp(cerbos-vtgate-974e702c:3306)/cerbos"
+
