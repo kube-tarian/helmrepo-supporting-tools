@@ -1,0 +1,36 @@
+{{- if .Values.job.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "cerbos.fullname" . }}-job
+  labels:
+    {{- include "cerbos.labels" . | nindent 4 }}
+  annotations:
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "2"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    metadata:
+      name: {{ include "cerbos.fullname" . }}
+      labels:
+        {{- include "cerbos.labels" . | nindent 8 }}
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: pre-install-job
+        image: "mysql"
+        volumeMounts:
+          - name: {{ include "cerbos.fullname" . }}-config
+            mountPath: /config
+        command: ["/bin/sh"]
+        args:
+        - -c
+        - mysql -h {{ .Values.configdb.mysql.server }} --user={{ .Values.configdb.mysql.userName }} --password={{ .Values.configdb.mysql.password }} --database={{ .Values.configdb.mysql.database }} < "/config/cerbos-schema.sql"
+      volumes:
+      - name: {{ include "cerbos.fullname" . }}-config
+        configMap:
+          name: {{ include "cerbos.fullname" . }}-db
+{{- end }}
