@@ -28,7 +28,7 @@ spec:
         command: ["/bin/sh"]
         args:
         - -c
-        - mysql -h {{ .Values.cerbos.vitess.server }} --user={{ .Values.cerbos.vitess.userName }} --password={{ .Values.cerbos.vitess.password }} --database={{ .Values.cerbos.vitess.database }} < "/config/cerbos-schema.sql"
+        - mysql -h {{ .Values.configdb.mysql.server }} --user={{ .Values.configdb.mysql.userName }} --password={{ .Values.configdb.mysql.password }} --database={{ .Values.configdb.mysql.database }} < "/config/cerbos-schema.sql"
       volumes:
       - name: {{ include "cerbos.fullname" . }}-config
         configMap:

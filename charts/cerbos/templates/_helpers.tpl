@@ -113,11 +113,22 @@ Create the name of the service account to use
 Default configuration if none is provided
 */}}
 {{- define "cerbos.defaultConfig" -}}
+{{- if .Values.cerbos.config.storage.driver }}
 storage:
   driver: "disk"
   disk:
     directory: /work
     watchForChanges: false
+  driver: mysql
+  mysql:
+    dsn : {{ .Values.configdb.mysql.userName }}:{{ .Values.configdb.mysql.password }}@tcp({{ .Values.configdb.mysql.server }}:3306)/{{ .Values.configdb.mysql.database }}
+{{- else }}  
+storage:
+  driver: "disk"
+  disk:
+    directory: /work
+    watchForChanges: false
+{{- end }}
 {{- end }}
 
 
