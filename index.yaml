@@ -57,6 +57,37 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/cerbos-1.0.0/cerbos-1.0.0.tgz
     version: 1.0.0
+  cert-manager:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 1.9.1"
+      artifacthub.io/prerelease: "false"
+      artifacthub.io/signKey: |
+        fingerprint: 1020CF3C033D4F35BAE1C19E1226061C665DF13E
+        url: https://cert-manager.io/public-keys/cert-manager-keyring-2021-09-20-1020CF3C033D4F35BAE1C19E1226061C665DF13E.gpg
+    apiVersion: v1
+    appVersion: v1.9.1
+    created: "2023-04-21T14:53:15.636686778Z"
+    description: A Helm chart for cert-manager
+    digest: 41edb91e9ab7a063eedb2b35f95feac1d5861f55506b16a67be6dbb03f0b5c26
+    home: https://github.com/cert-manager/cert-manager
+    icon: https://raw.githubusercontent.com/cert-manager/cert-manager/d53c0b9270f8cd90d908460d69502694e1838f5f/logo/logo-small.png
+    keywords:
+    - cert-manager
+    - kube-lego
+    - letsencrypt
+    - tls
+    kubeVersion: '>= 1.19.0-0'
+    maintainers:
+    - email: cert-manager-maintainers@googlegroups.com
+      name: cert-manager-maintainers
+      url: https://cert-manager.io
+    name: cert-manager
+    sources:
+    - https://github.com/cert-manager/cert-manager
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/cert-manager-1.0.0/cert-manager-1.0.0.tgz
+    version: 1.0.0
   crossplane:
   - annotations:
       artifacthub.io/changes: |
