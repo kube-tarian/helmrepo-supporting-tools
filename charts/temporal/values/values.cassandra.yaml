@@ -1,21 +1,17 @@
 server:
   config:
     logLevel: "debug,info"
-
     numHistoryShards: 512
-
     persistence:
       default:
         driver: "cassandra"
-
         cassandra:
-          hosts: ["cassandra.default.svc.cluster.local"]
+          hosts: ["temporal-temporal-service.k8ssandra-operator.svc.cluster.local"]
           port: 9042
           keyspace: temporal
-          user: "user"
-          password: "password"
-          existingSecret: ""
-          replicationFactor: 1
+          user: "temporal-superuser"
+          existingSecret: "temporal-superuser"
+          replicationFactor: 3
           consistency:
             default:
               consistency: "local_quorum"
@@ -25,13 +21,12 @@ server:
         driver: "cassandra"
 
         cassandra:
-          hosts: ["cassandra.default.svc.cluster.local"]
+          hosts: ["temporal-temporal-service.k8ssandra-operator.svc.cluster.local"]
           port: 9042
           keyspace: temporal_visibility
-          user: "user"
-          password: "password"
-          existingSecret: ""
-          replicationFactor: 1
+          user: "temporal-superuser"
+          existingSecret: "temporal-superuser"
+          replicationFactor: 3
           consistency:
             default:
               consistency: "local_quorum"
@@ -46,8 +41,10 @@ mysql:
 postgresql:
   enabled: false
 
+
+## set to true when the chart is set up for the first time, then set to false
 schema:
   setup:
-    enabled: false
+    enabled: true
   update:
-    enabled: false
+    enabled: true
