@@ -31,10 +31,6 @@ spec:
         {{- with $.Values.admintools.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
-      {{- with $.Values.admintools.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
     spec:
       {{ include "temporal.serviceAccount" . }}
       containers:

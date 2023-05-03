@@ -21,7 +21,7 @@ server:
   sidecarContainers:
   image:
     repository: temporalio/server
-    tag: 1.19.1
+    tag: 1.17.5
     pullPolicy: IfNotPresent
 
   # Global default settings (can be overridden per service)
@@ -34,7 +34,7 @@ server:
     # Enable Prometheus ServiceMonitor
     # Use this if you installed the Prometheus Operator (https://github.com/coreos/prometheus-operator).
     serviceMonitor:
-      enabled: false
+      enabled: true
       interval: 30s
       # Set additional lables to all the ServiceMonitor resources
       additionalLabels: {}
@@ -64,22 +64,23 @@ server:
   podAnnotations: {}
   podLabels: {}
   resources:
-    {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   nodeSelector: {}
   tolerations: []
   affinity: {}
   additionalVolumes: []
   additionalVolumeMounts: []
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 5
+    targetCPUUtilizationPercentage: 50
+    targetMemoryUtilizationPercentage: 50
 
   config:
     logLevel: "debug,info"
@@ -158,7 +159,7 @@ server:
           #   tx_isolation: 'READ-COMMITTED'
 
   frontend:
-    # replicaCount: 1
+    replicaCount: 2
     service:
       annotations: {} # Evaluated as template
       type: ClusterIP
@@ -166,79 +167,127 @@ server:
     metrics:
       annotations:
         enabled: true
-      serviceMonitor: {}
-      # enabled: false
+      serviceMonitor:
+        enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
     podLabels: {}
-    resources: {}
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
     nodeSelector: {}
     tolerations: []
     affinity: {}
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+      targetCPUUtilizationPercentage: 50
+      targetMemoryUtilizationPercentage: 50
 
   history:
-    # replicaCount: 1
+    replicaCount: 2
     service:
       # type: ClusterIP
       port: 7234
     metrics:
       annotations:
         enabled: true
-      serviceMonitor: {}
-      # enabled: false
+      serviceMonitor: 
+        enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
     podLabels: {}
-    resources: {}
+    resources:
+      limits:
+        cpu: 200m
+        memory: 256Mi
+      requests:
+        cpu: 200m
+        memory: 256Mi
     nodeSelector: {}
     tolerations: []
     affinity: {}
+    autoscaling:
+      enabled: true
+      minReplicas: 1
+      maxReplicas: 5
+      targetCPUUtilizationPercentage: 50
+      targetMemoryUtilizationPercentage: 50
 
   matching:
-    # replicaCount: 1
+    replicaCount: 2
     service:
       # type: ClusterIP
       port: 7235
     metrics:
       annotations:
         enabled: false
-      serviceMonitor: {}
-      # enabled: false
+      serviceMonitor:
+        enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
     podLabels: {}
-    resources: {}
     nodeSelector: {}
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
     tolerations: []
     affinity: {}
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 5
+      targetCPUUtilizationPercentage: 50
+      targetMemoryUtilizationPercentage: 50
 
   worker:
-    # replicaCount: 1
+    replicaCount: 3
     service:
       # type: ClusterIP
       port: 7239
     metrics:
       annotations:
         enabled: true
-      serviceMonitor: {}
-      # enabled: false
+      serviceMonitor:
+        enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
     podLabels: {}
-    resources: {}
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
     nodeSelector: {}
     tolerations: []
     affinity: {}
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 5
+      targetCPUUtilizationPercentage: 50
+      targetMemoryUtilizationPercentage: 50
 
 admintools:
   enabled: true
   image:
     repository: temporalio/admin-tools
-    tag: 1.19.1
+    tag: 1.17.5
     pullPolicy: IfNotPresent
 
   service:
@@ -246,7 +295,6 @@ admintools:
     port: 22
     annotations: {}
   podLabels: {}
-  podAnnotations: {}
   nodeSelector: {}
   tolerations: []
   affinity: {}
@@ -266,7 +314,7 @@ web:
 
   image:
     repository: temporalio/ui
-    tag: 2.9.0
+    tag: latest
     pullPolicy: IfNotPresent
 
   service:
@@ -279,7 +327,6 @@ web:
 
   ingress:
     enabled: false
-    # className:
     annotations: {}
     # kubernetes.io/ingress.class: traefik
     # ingress.kubernetes.io/ssl-redirect: "false"
@@ -296,22 +343,15 @@ web:
   podAnnotations: {}
   podLabels: {}
 
-  resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
   nodeSelector: {}
-
   tolerations: []
-
   affinity: {}
 
 schema:
@@ -327,7 +367,7 @@ elasticsearch:
   replicas: 3
   persistence:
     enabled: false
-  imageTag: 7.17.3
+  imageTag: 7.16.2
   host: elasticsearch-master-headless
   scheme: http
   port: 9200
@@ -400,7 +440,7 @@ grafana:
          datasource: TemporalMetrics
 
 cassandra:
-  enabled: true
+  enabled: false
   persistence:
     enabled: false
   image:
@@ -408,7 +448,7 @@ cassandra:
     tag: 3.11.3
     pullPolicy: IfNotPresent
   config:
-    cluster_size: 1
+    cluster_size: 3
     ports:
       cql: 9042
     num_tokens: 4
