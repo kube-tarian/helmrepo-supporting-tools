@@ -1,0 +1,24 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: cert-dev
+spec:
+{{- with .Values.hosts }}
+  dnsNames:
+  {{- toYaml . | nindent 8 }}
+{{- end }}
+  duration: 2160h0m0s
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: letsencrypt-prod-cluster
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 2048
+  renewBefore: 360h0m0s
+  secretName: cert-dev
+  usages:
+  - server auth
+  - client auth
+
