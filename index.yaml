@@ -765,6 +765,19 @@ entries:
         - "✨ update chart to version 0.1.0"
     apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-05-07T14:24:30.302785076Z"
+    description: A Helm chart for vault resources
+    digest: cef9fed68a4f88dccdb9e6bf544cd04edc1815c0803354210959c6cc539ad910
+    name: vault-post
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/vault-post-1.0.2/vault-post-1.0.2.tgz
+    version: 1.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.1.0"
+    apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-05-03T18:24:04.315422046Z"
     description: A Helm chart for vault resources
     digest: a5a13ed51ba9d3c1d59a0c384073a8d2ae9087cb7da9fb134e68e12c50a9d21e
