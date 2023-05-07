@@ -90,7 +90,7 @@ spec:
   # Support for distributing the generated CA certificate Secret to other namespaces.
   # Define a list of namespaces or use ["*"] for all namespaces.
   caNamespaces:
-    - "vswh"
+    - "{{ .Release.Namespace }}"
     
   # Support for adding hostnames and IPs to the generated CA certificate.
   # tlsAdditionalHosts:
@@ -107,7 +107,7 @@ spec:
       # This is true by default
       storeRootToken: true
     kubernetes:
-      secretNamespace: default
+      secretNamespace: {{ .Release.Namespace }}
 
   # A YAML representation of a final vault config file.
   # See https://www.vaultproject.io/docs/configuration/ for more information.
