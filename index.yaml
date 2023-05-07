@@ -511,6 +511,16 @@ entries:
   pre-install:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-05-07T07:34:28.614559494Z"
+    description: A Helm chart for Kubernetes
+    digest: 5ceed533c382ea1f8483c5ca2da3e89c6f335de7a39b84a9abcdbaa2471a5944
+    name: pre-install
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/pre-install-1.0.1/pre-install-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-05-04T19:56:12.119032417Z"
     description: A Helm chart for Kubernetes
     digest: d6096f75df7b56ea67a061e214c4311222fb498c07b73f734f2267f92a3a18ed
