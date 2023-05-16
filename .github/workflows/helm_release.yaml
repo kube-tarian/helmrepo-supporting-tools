@@ -26,6 +26,7 @@ jobs:
           helm repo add prometheus https://prometheus-community.github.io/helm-charts
           helm repo add elasticsearch https://helm.elastic.co
           helm repo add grafana https://grafana.github.io/helm-charts
+          helm repo add k8ssandra-operator https://helm.k8ssandra.io/stable
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.1.0
