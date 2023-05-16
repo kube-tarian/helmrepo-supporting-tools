@@ -181,6 +181,24 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-dashboards-0.1.0/grafana-dashboards-0.1.0.tgz
     version: 0.1.0
+  k8ssandra:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.1.1"
+    apiVersion: v2
+    appVersion: 1.2.1
+    created: "2023-05-16T10:56:03.547263559Z"
+    dependencies:
+    - name: k8ssandra-operator
+      repository: https://helm.k8ssandra.io/stable
+      version: 0.38.2
+    description: A Helm chart for Cassandra DB
+    digest: 0918e30cda27d9f1e4792fc476c2539372dcb52503905edeadadc4059fa8df20
+    name: k8ssandra
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/k8ssandra-1.0.0/k8ssandra-1.0.0.tgz
+    version: 1.0.0
   localpv-provisioner:
   - apiVersion: v2
     appVersion: 3.2.0
