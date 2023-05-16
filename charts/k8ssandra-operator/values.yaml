@@ -1,0 +1,27 @@
+global:
+  clusterScoped: false
+commonLabels: {}
+replicaCount: 1
+controlPlane: true
+image:
+  registry: docker.io
+  repository: k8ssandra/k8ssandra-operator
+  pullPolicy: IfNotPresent
+  tag: v1.2.1
+  registryOverride:
+securityContext:
+  runAsNonRoot: true
+  runAsGroup: 65534
+  runAsUser: 65534
+cleaner:
+  image:
+    registry: docker.io
+    repository: k8ssandra/k8ssandra-tools
+    tag: latest
+    pullPolicy: IfNotPresent
+client:
+  image:
+    registry: docker.io
+    repository: k8ssandra/k8ssandra-tools
+    tag: latest
+    pullPolicy: IfNotPresent

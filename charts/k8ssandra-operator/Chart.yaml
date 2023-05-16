@@ -1,0 +1,14 @@
+annotations:
+  artifacthub.io/changes: |
+    - "✨ update chart to version 0.1.1"
+apiVersion: v2
+name: k8ssandra
+description: A Helm chart for Cassandra DB
+type: application
+version: 1.0.0
+appVersion: "1.2.1"
+
+dependencies:
+  - name: k8ssandra-operator
+    version: 0.38.2
+    repository: https://helm.k8ssandra.io/stable
