@@ -96,13 +96,12 @@ server:
         driver: "cassandra"
 
         cassandra:
-          hosts: []
-          # port: 9042
+          hosts: ["temporal-temporal-service"]
+          port: 9042
           keyspace: "temporal"
-          user: "user"
-          password: "password"
-          existingSecret: ""
-          replicationFactor: 1
+          user: "temporal-superuser"
+          existingSecret: "temporal-superuser"
+          replicationFactor: 3
           consistency:
             default:
               consistency: "local_quorum"
@@ -129,16 +128,16 @@ server:
         driver: "cassandra"
 
         cassandra:
-          hosts: []
-          # port: 9042
+          hosts: ["temporal-temporal-service"]
+          port: 9042
           keyspace: "temporal_visibility"
-          user: "user"
-          password: "password"
+          user: "temporal-superuser"
+          existingSecret: "temporal-superuser"
           existingSecret: ""
           # datacenter: "us-east-1a"
           # maxQPS: 1000
           # maxConns: 2
-          replicationFactor: 1
+          replicationFactor: 3
           consistency:
             default:
               consistency: "local_quorum"
