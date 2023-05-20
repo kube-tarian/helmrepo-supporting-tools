@@ -133,7 +133,6 @@ server:
           keyspace: "temporal_visibility"
           user: "temporal-superuser"
           existingSecret: "temporal-superuser"
-          existingSecret: ""
           # datacenter: "us-east-1a"
           # maxQPS: 1000
           # maxConns: 2
