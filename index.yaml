@@ -202,6 +202,16 @@ entries:
   k8ssandra-cluster:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-05-20T08:01:19.668587489Z"
+    description: A Helm chart for k8ssandra-cluster
+    digest: 3a3806a63a1db80c368173d1183bce354f82ea5ad195c87be1448655b6ddf052
+    name: k8ssandra-cluster
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/k8ssandra-cluster-0.1.1/k8ssandra-cluster-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-05-16T20:53:21.844428404Z"
     description: A Helm chart for Kubernetes
     digest: 705ceb19bd6298519cb5a4a12c7d27c2a345f51ec2c67905bff5b350adc7a84c
