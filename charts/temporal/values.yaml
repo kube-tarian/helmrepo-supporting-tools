@@ -34,7 +34,7 @@ server:
     # Enable Prometheus ServiceMonitor
     # Use this if you installed the Prometheus Operator (https://github.com/coreos/prometheus-operator).
     serviceMonitor:
-      enabled: false
+      enabled: true
       interval: 30s
       # Set additional lables to all the ServiceMonitor resources
       additionalLabels: {}
@@ -166,7 +166,7 @@ server:
       annotations:
         enabled: true
       serviceMonitor:
-        enabled: false
+        enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
@@ -197,7 +197,7 @@ server:
       annotations:
         enabled: true
       serviceMonitor: 
-        enabled: false
+        enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
@@ -228,7 +228,7 @@ server:
       annotations:
         enabled: false
       serviceMonitor:
-        enabled: false
+        enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
@@ -259,7 +259,7 @@ server:
       annotations:
         enabled: true
       serviceMonitor:
-        enabled: false
+        enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
