@@ -1,29 +1,63 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "grafana-dashboards.fullname" . }}-kubviz
+  name: {{ include "grafana-dashboards.fullname" . }}-kubedatas
   annotations:
-    meta.helm.sh/release-name: loki
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/instance: loki
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/name: grafana
-    app.kubernetes.io/version: 8.3.5
-    grafana_dashboard: "2"
-    helm.sh/chart: grafana-6.43.5
+    grafana_dashboard: "1"
 data:
-  kubviz.json: |-
+  kubedatas.json: |-
     {
+      "__inputs": [
+        {
+          "name": "DS_ALTINITY_PLUGIN FOR CLICKHOUSE",
+          "label": "Altinity plugin for ClickHouse",
+          "description": "",
+          "type": "datasource",
+          "pluginId": "vertamedia-clickhouse-datasource",
+          "pluginName": "Altinity plugin for ClickHouse"
+        }
+      ],
+      "__elements": {},
+      "__requires": [
+        {
+          "type": "grafana",
+          "id": "grafana",
+          "name": "Grafana",
+          "version": "9.3.2"
+        },
+        {
+          "type": "panel",
+          "id": "stat",
+          "name": "Stat",
+          "version": ""
+        },
+        {
+          "type": "panel",
+          "id": "table",
+          "name": "Table",
+          "version": ""
+        },
+        {
+          "type": "datasource",
+          "id": "vertamedia-clickhouse-datasource",
+          "name": "Altinity plugin for ClickHouse",
+          "version": "2.5.3"
+        }
+      ],
       "annotations": {
         "list": [
           {
             "builtIn": 1,
-            "datasource": "-- Grafana --",
+            "datasource": {
+              "type": "datasource",
+              "uid": "grafana"
+            },
             "enable": true,
-            "hide": true,
+            "hide": false,
             "iconColor": "rgba(0, 211, 255, 1)",
-            "name": "Annotations & Alerts",
+            "name": "Events and Alerts",
             "target": {
               "limit": 100,
               "matchAny": false,
@@ -37,227 +71,16 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 2,
-      "iteration": 1683039078452,
+      "id": null,
       "links": [],
       "liveNow": false,
       "panels": [
         {
           "datasource": {
-            "type": "vertamedia-clickhouse-datasource"
+            "type": "vertamedia-clickhouse-datasource",
+            "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
           },
-          "description": "This panel shows all the resources in the cluster",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "fixedColor": "red",
-                "mode": "thresholds"
-              },
-              "custom": {
-                "align": "center",
-                "displayMode": "color-text"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 9,
-            "w": 24,
-            "x": 0,
-            "y": 0
-          },
-          "id": 12,
-          "options": {
-            "footer": {
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
-            "showHeader": true
-          },
-          "pluginVersion": "8.4.6",
-          "targets": [
-            {
-              "datasource": {
-                "type": "vertamedia-clickhouse-datasource"
-              },
-              "dateTimeType": "DATETIME",
-              "extrapolate": true,
-              "format": "table",
-              "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
-              "intervalFactor": 1,
-              "query": "select * from default.getall_resources\n",
-              "rawQuery": "select * from default.getall_resources",
-              "refId": "A",
-              "round": "0s",
-              "skip_comments": true
-            }
-          ],
-          "title": "kubernetes_resources",
-          "transparent": true,
-          "type": "table"
-        },
-        {
-          "datasource": {
-            "type": "vertamedia-clickhouse-datasource"
-          },
-          "description": "This panel displays all out-of-date images running in a Kubernetes cluster.",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "align": "center",
-                "displayMode": "color-text"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 8,
-            "w": 24,
-            "x": 0,
-            "y": 9
-          },
-          "id": 10,
-          "options": {
-            "footer": {
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
-            "showHeader": true
-          },
-          "pluginVersion": "8.4.6",
-          "targets": [
-            {
-              "datasource": {
-                "type": "vertamedia-clickhouse-datasource"
-              },
-              "dateTimeType": "DATETIME",
-              "extrapolate": true,
-              "format": "table",
-              "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
-              "intervalFactor": 1,
-              "query": "select * from default.outdated_images\n",
-              "rawQuery": "select * from default.outdated_images",
-              "refId": "A",
-              "round": "0s",
-              "skip_comments": true
-            }
-          ],
-          "title": "outdated_images",
-          "transparent": true,
-          "type": "table"
-        },
-        {
-          "datasource": {
-            "type": "vertamedia-clickhouse-datasource"
-          },
-          "description": "This panel shows all the deprecated and deleted APIs in the cluster",
-          "fieldConfig": {
-            "defaults": {
-              "color": {
-                "mode": "thresholds"
-              },
-              "custom": {
-                "align": "center",
-                "displayMode": "color-text"
-              },
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "gridPos": {
-            "h": 10,
-            "w": 24,
-            "x": 0,
-            "y": 17
-          },
-          "id": 8,
-          "options": {
-            "footer": {
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
-            "showHeader": true
-          },
-          "pluginVersion": "8.4.6",
-          "targets": [
-            {
-              "datasource": {
-                "type": "vertamedia-clickhouse-datasource"
-              },
-              "dateTimeType": "DATETIME",
-              "extrapolate": true,
-              "format": "table",
-              "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
-              "intervalFactor": 1,
-              "query": "select * from default.deprecatedAPIs_and_deletedAPIs\n",
-              "rawQuery": "select * from default.deprecatedAPIs_and_deletedAPIs",
-              "refId": "A",
-              "round": "0s",
-              "skip_comments": true
-            }
-          ],
-          "title": "deprecated_and_deletedAPIs",
-          "transparent": true,
-          "type": "table"
-        },
-        {
-          "datasource": {
-            "type": "vertamedia-clickhouse-datasource"
-          },
-          "description": "This stats panel shows the pod creation events.",
+          "description": "This panel displays the number of pod creation events in the selected namespace.",
           "fieldConfig": {
             "defaults": {
               "color": {
@@ -286,7 +109,7 @@ data:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 27
+            "y": 0
           },
           "id": 6,
           "options": {
@@ -306,12 +129,13 @@ data:
             },
             "textMode": "auto"
           },
-          "pluginVersion": "8.4.6",
+          "pluginVersion": "9.3.2",
           "targets": [
             {
               "database": "default",
               "datasource": {
-                "type": "vertamedia-clickhouse-datasource"
+                "type": "vertamedia-clickhouse-datasource",
+                "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
               },
               "dateColDataType": "",
               "dateLoading": false,
@@ -330,20 +154,22 @@ data:
               "tableLoading": false
             }
           ],
-          "title": "number of pod creation events in Namespace: $namespace",
+          "title": "Number of Pod Creation Events in Namespace: $namespace",
           "type": "stat"
         },
         {
           "datasource": {
-            "type": "vertamedia-clickhouse-datasource"
+            "type": "vertamedia-clickhouse-datasource",
+            "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
           },
-          "description": "This table panal shows all the kubernetes datas.\nif its not showing the data check the time range and refresh.it will take some time to load the data. wait for sometime before clicking refresh another time.",
+          "description": "This table panel shows all the Kubernetes data. If it's not displaying the data please check the time range and refresh. It may take some time to load the data so please wait before clicking refresh again",
           "fieldConfig": {
             "defaults": {
               "custom": {
                 "align": "center",
                 "displayMode": "color-text",
-                "filterable": true
+                "filterable": true,
+                "inspect": false
               },
               "mappings": [],
               "thresholds": {
@@ -379,7 +205,7 @@ data:
             "h": 15,
             "w": 24,
             "x": 0,
-            "y": 34
+            "y": 7
           },
           "id": 2,
           "interval": "10s",
@@ -394,12 +220,13 @@ data:
             "showHeader": true,
             "sortBy": []
           },
-          "pluginVersion": "8.4.6",
+          "pluginVersion": "9.3.2",
           "targets": [
             {
               "database": "default",
               "datasource": {
-                "type": "vertamedia-clickhouse-datasource"
+                "type": "vertamedia-clickhouse-datasource",
+                "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
               },
               "dateColDataType": "",
               "dateLoading": false,
@@ -419,25 +246,22 @@ data:
               "tableLoading": false
             }
           ],
-          "title": "kubernetes",
+          "title": "Kubernetes",
           "transparent": true,
           "type": "table"
         }
       ],
       "refresh": "",
-      "schemaVersion": 35,
+      "schemaVersion": 37,
       "style": "dark",
       "tags": [],
       "templating": {
         "list": [
           {
-            "current": {
-              "selected": false,
-              "text": "All",
-              "value": "$__all"
-            },
+            "current": {},
             "datasource": {
-              "type": "vertamedia-clickhouse-datasource"
+              "type": "vertamedia-clickhouse-datasource",
+              "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
             },
             "definition": "SELECT namespace FROM default.events",
             "hide": 0,
@@ -453,13 +277,10 @@ data:
             "type": "query"
           },
           {
-            "current": {
-              "selected": false,
-              "text": "All",
-              "value": "$__all"
-            },
+            "current": {},
             "datasource": {
-              "type": "vertamedia-clickhouse-datasource"
+              "type": "vertamedia-clickhouse-datasource",
+              "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
             },
             "definition": "SELECT reason FROM default.events",
             "hide": 0,
@@ -475,13 +296,10 @@ data:
             "type": "query"
           },
           {
-            "current": {
-              "selected": false,
-              "text": "All",
-              "value": "$__all"
-            },
+            "current": {},
             "datasource": {
-              "type": "vertamedia-clickhouse-datasource"
+              "type": "vertamedia-clickhouse-datasource",
+              "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
             },
             "definition": "SELECT kind FROM default.events",
             "hide": 0,
@@ -506,7 +324,7 @@ data:
         "hidden": false
       },
       "timezone": "",
-      "title": "kubedatas",
+      "title": "Kubernetes Data",
       "uid": "WnmZG5Jnz",
       "version": 1,
       "weekStart": ""
