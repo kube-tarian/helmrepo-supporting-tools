@@ -58,7 +58,7 @@ ingress:
 
 slack:
   enabled: true
-  webhook: "https://hooks.slack.com/services/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"
+  webhook: "https://hooks.slack.com/services"
   channel: "#capten-cluster-alert"
 
 resources: {}
