@@ -41,7 +41,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "vertamedia-clickhouse-datasource"
+            "uid": "{{ .Values.datasource.type }}"
           },
           "description": "This panel displays the number of pod creation events in the selected namespace.",
           "fieldConfig": {
@@ -98,7 +98,7 @@ data:
               "database": "default",
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "vertamedia-clickhouse-datasource"
+                "uid": "{{ .Values.datasource.type }}"
               },
               "dateColDataType": "",
               "dateLoading": false,
@@ -123,7 +123,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "vertamedia-clickhouse-datasource"
+            "uid": "{{ .Values.datasource.type }}"
           },
           "description": "This table panel shows all the Kubernetes data. If it's not displaying the data please check the time range and refresh. It may take some time to load the data so please wait before clicking refresh again",
           "fieldConfig": {
@@ -189,7 +189,7 @@ data:
               "database": "default",
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "vertamedia-clickhouse-datasource"
+                "uid": "{{ .Values.datasource.type }}"
               },
               "dateColDataType": "",
               "dateLoading": false,
@@ -224,7 +224,7 @@ data:
             "current": {},
             "datasource": {
               "type": "vertamedia-clickhouse-datasource",
-              "uid": "vertamedia-clickhouse-datasource"
+              "uid": "{{ .Values.datasource.type }}"
             },
             "definition": "SELECT namespace FROM default.events",
             "hide": 0,
@@ -243,7 +243,7 @@ data:
             "current": {},
             "datasource": {
               "type": "vertamedia-clickhouse-datasource",
-              "uid": "vertamedia-clickhouse-datasource"
+              "uid": "{{ .Values.datasource.type }}"
             },
             "definition": "SELECT reason FROM default.events",
             "hide": 0,
@@ -262,7 +262,7 @@ data:
             "current": {},
             "datasource": {
               "type": "vertamedia-clickhouse-datasource",
-              "uid": "vertamedia-clickhouse-datasource"
+              "uid": "{{ .Values.datasource.type }}"
             },
             "definition": "SELECT kind FROM default.events",
             "hide": 0,
