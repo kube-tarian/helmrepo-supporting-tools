@@ -5,41 +5,10 @@ metadata:
   annotations:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
   labels:
-    grafana_dashboard: "2"
+    grafana_dashboard: "1"
 data:
   plugin.json: |-
     {
-      "__inputs": [
-        {
-          "name": "DS_ALTINITY_PLUGIN FOR CLICKHOUSE",
-          "label": "Altinity plugin for ClickHouse",
-          "description": "",
-          "type": "datasource",
-          "pluginId": "vertamedia-clickhouse-datasource",
-          "pluginName": "Altinity plugin for ClickHouse"
-        }
-      ],
-      "__elements": {},
-      "__requires": [
-        {
-          "type": "grafana",
-          "id": "grafana",
-          "name": "Grafana",
-          "version": "9.3.2"
-        },
-        {
-          "type": "panel",
-          "id": "table",
-          "name": "Table",
-          "version": ""
-        },
-        {
-          "type": "datasource",
-          "id": "vertamedia-clickhouse-datasource",
-          "name": "Altinity plugin for ClickHouse",
-          "version": "2.5.3"
-        }
-      ],
       "annotations": {
         "list": [
           {
@@ -72,7 +41,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+            "uid": "{{ .Values.kubviz.datasource.type }}"
           },
           "description": "This panel displays all the resources from the cluster",
           "fieldConfig": {
@@ -125,7 +94,7 @@ data:
             {
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+                "uid": "{{ .Values.kubviz.datasource.type }}"
               },
               "dateTimeType": "DATETIME",
               "extrapolate": true,
@@ -146,7 +115,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+            "uid": "{{ .Values.kubviz.datasource.type }}"
           },
           "description": "This panel displays all the out-off-date images from the cluster",
           "fieldConfig": {
@@ -199,15 +168,15 @@ data:
             {
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+                "uid": "{{ .Values.kubviz.datasource.type }}"
               },
               "dateTimeType": "DATETIME",
               "extrapolate": true,
               "format": "table",
               "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
               "intervalFactor": 1,
-              "query": "select * from default.outdated_images",
-              "rawQuery": "select * from default.outdated_images",
+              "query": "select * from default.outdated_images\nwhere versions_behind > 0\n",
+              "rawQuery": "select * from default.outdated_images\nwhere versions_behind > 0",
               "refId": "A",
               "round": "0s",
               "skip_comments": true
@@ -220,7 +189,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+            "uid": "{{ .Values.kubviz.datasource.type }}"
           },
           "description": "This panel displays all the Deleted APIs from the cluster",
           "fieldConfig": {
@@ -273,7 +242,7 @@ data:
             {
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+                "uid": "{{ .Values.kubviz.datasource.type }}"
               },
               "dateTimeType": "DATETIME",
               "extrapolate": true,
@@ -294,7 +263,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+            "uid": "{{ .Values.kubviz.datasource.type }}"
           },
           "description": "This panel displays all the Deprecated APIs from the cluster",
           "fieldConfig": {
@@ -346,7 +315,7 @@ data:
             {
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+                "uid": "{{ .Values.kubviz.datasource.type }}"
               },
               "dateTimeType": "DATETIME",
               "extrapolate": true,

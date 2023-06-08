@@ -22,7 +22,7 @@ spec:
     slackConfigs:
     - sendResolved: true
       apiURL:
-        name: slack-webhook
+        name: {{ include "grafana-dashboards.fullname" . }}-slack-webhook
         key: webhookURL
       channel: '{{ .Values.slack.channel }}'
       iconURL: https://avatars3.githubusercontent.com/u/3380462
