@@ -9,43 +9,6 @@ metadata:
 data:
   kubedatas.json: |-
     {
-      "__inputs": [
-        {
-          "name": "DS_ALTINITY_PLUGIN FOR CLICKHOUSE",
-          "label": "Altinity plugin for ClickHouse",
-          "description": "",
-          "type": "datasource",
-          "pluginId": "vertamedia-clickhouse-datasource",
-          "pluginName": "Altinity plugin for ClickHouse"
-        }
-      ],
-      "__elements": {},
-      "__requires": [
-        {
-          "type": "grafana",
-          "id": "grafana",
-          "name": "Grafana",
-          "version": "9.3.2"
-        },
-        {
-          "type": "panel",
-          "id": "stat",
-          "name": "Stat",
-          "version": ""
-        },
-        {
-          "type": "panel",
-          "id": "table",
-          "name": "Table",
-          "version": ""
-        },
-        {
-          "type": "datasource",
-          "id": "vertamedia-clickhouse-datasource",
-          "name": "Altinity plugin for ClickHouse",
-          "version": "2.5.3"
-        }
-      ],
       "annotations": {
         "list": [
           {
@@ -78,7 +41,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+            "uid": "vertamedia-clickhouse-datasource"
           },
           "description": "This panel displays the number of pod creation events in the selected namespace.",
           "fieldConfig": {
@@ -135,7 +98,7 @@ data:
               "database": "default",
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+                "uid": "vertamedia-clickhouse-datasource"
               },
               "dateColDataType": "",
               "dateLoading": false,
@@ -160,7 +123,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+            "uid": "vertamedia-clickhouse-datasource"
           },
           "description": "This table panel shows all the Kubernetes data. If it's not displaying the data please check the time range and refresh. It may take some time to load the data so please wait before clicking refresh again",
           "fieldConfig": {
@@ -226,7 +189,7 @@ data:
               "database": "default",
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+                "uid": "vertamedia-clickhouse-datasource"
               },
               "dateColDataType": "",
               "dateLoading": false,
@@ -261,7 +224,7 @@ data:
             "current": {},
             "datasource": {
               "type": "vertamedia-clickhouse-datasource",
-              "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+              "uid": "vertamedia-clickhouse-datasource"
             },
             "definition": "SELECT namespace FROM default.events",
             "hide": 0,
@@ -280,7 +243,7 @@ data:
             "current": {},
             "datasource": {
               "type": "vertamedia-clickhouse-datasource",
-              "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+              "uid": "vertamedia-clickhouse-datasource"
             },
             "definition": "SELECT reason FROM default.events",
             "hide": 0,
@@ -299,7 +262,7 @@ data:
             "current": {},
             "datasource": {
               "type": "vertamedia-clickhouse-datasource",
-              "uid": "${DS_ALTINITY_PLUGIN FOR CLICKHOUSE}"
+              "uid": "vertamedia-clickhouse-datasource"
             },
             "definition": "SELECT kind FROM default.events",
             "hide": 0,

@@ -1,0 +1,52 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ include "grafana-dashboards.fullname" . }}-alert.rules
+  annotations:
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+  labels:
+    release: prometheus
+spec:
+  groups:
+  - name: pod-rules
+    rules:
+    - alert: PodNotRunning
+      expr: kube_pod_status_phase{namespace!="",phase!="Running"} > 0
+      for: 5m
+      labels:
+        severity: warning
+        cluster: AWS-cluster
+      annotations:
+        summary: "{{`Pod not running: {{ $labels.namespace }}/{{ $labels.pod }}`}}"
+        description: "{{`The pod {{ $labels.namespace }}/{{ $labels.pod }} is not running.`}}"
+    - alert: PodRestartCountWarning
+      expr: sum(container_restart_count) by (namespace, pod) > 5 and sum(container_restart_count) by (namespace, pod) <= 10
+      for: 5m
+      labels:
+        severity: warning
+        cluster: AWS-cluster
+      annotations:
+        summary: Pod restart count is high (warning)
+        description: >
+          The pod {{`{{ $labels.namespace }}/{{ $labels.pod }}`}} has restarted containers
+          more than 5 times (restart count: {{`{{ $value }}`}}).
+          Check the pod for any issues.
+    - alert: PodRestartCountCritical
+      expr: sum(container_restart_count) by (namespace, pod) > 10
+      for: 5m
+      labels:
+        severity: critical
+        cluster: AWS-cluster
+      annotations:
+        summary: Pod restart count is very high (critical)
+        description: >
+          The pod {{`{{ $labels.namespace }}/{{ $labels.pod }}`}} has restarted containers
+          more than 10 times (restart count: {{`{{ $value }}`}}).
+          Investigate and resolve the underlying issue.
+
+
+
+
+
+
+       
