@@ -80,8 +80,9 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
-datasource:
-  type: vertamedia-clickhouse-datasource
+kubviz:
+  datasource:
+    type: vertamedia-clickhouse-datasource
 
 nodeSelector: {}
 

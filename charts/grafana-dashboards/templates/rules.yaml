@@ -15,7 +15,6 @@ spec:
       for: 5m
       labels:
         severity: warning
-        cluster: AWS-cluster
       annotations:
         summary: "{{`Pod not running: {{ $labels.namespace }}/{{ $labels.pod }}`}}"
         description: "{{`The pod {{ $labels.namespace }}/{{ $labels.pod }} is not running.`}}"
@@ -24,7 +23,6 @@ spec:
       for: 5m
       labels:
         severity: warning
-        cluster: AWS-cluster
       annotations:
         summary: Pod restart count is high (warning)
         description: >
@@ -36,7 +34,6 @@ spec:
       for: 5m
       labels:
         severity: critical
-        cluster: AWS-cluster
       annotations:
         summary: Pod restart count is very high (critical)
         description: >

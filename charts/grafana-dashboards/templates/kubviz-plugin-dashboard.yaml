@@ -41,7 +41,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "{{ .Values.datasource.type }}"
+            "uid": "{{ .Values.kubviz.datasource.type }}"
           },
           "description": "This panel displays all the resources from the cluster",
           "fieldConfig": {
@@ -94,7 +94,7 @@ data:
             {
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "{{ .Values.datasource.type }}"
+                "uid": "{{ .Values.kubviz.datasource.type }}"
               },
               "dateTimeType": "DATETIME",
               "extrapolate": true,
@@ -115,7 +115,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "{{ .Values.datasource.type }}"
+            "uid": "{{ .Values.kubviz.datasource.type }}"
           },
           "description": "This panel displays all the out-off-date images from the cluster",
           "fieldConfig": {
@@ -168,7 +168,7 @@ data:
             {
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "{{ .Values.datasource.type }}"
+                "uid": "{{ .Values.kubviz.datasource.type }}"
               },
               "dateTimeType": "DATETIME",
               "extrapolate": true,
@@ -189,7 +189,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "{{ .Values.datasource.type }}"
+            "uid": "{{ .Values.kubviz.datasource.type }}"
           },
           "description": "This panel displays all the Deleted APIs from the cluster",
           "fieldConfig": {
@@ -242,7 +242,7 @@ data:
             {
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "{{ .Values.datasource.type }}"
+                "uid": "{{ .Values.kubviz.datasource.type }}"
               },
               "dateTimeType": "DATETIME",
               "extrapolate": true,
@@ -263,7 +263,7 @@ data:
         {
           "datasource": {
             "type": "vertamedia-clickhouse-datasource",
-            "uid": "{{ .Values.datasource.type }}"
+            "uid": "{{ .Values.kubviz.datasource.type }}"
           },
           "description": "This panel displays all the Deprecated APIs from the cluster",
           "fieldConfig": {
@@ -315,7 +315,7 @@ data:
             {
               "datasource": {
                 "type": "vertamedia-clickhouse-datasource",
-                "uid": "{{ .Values.datasource.type }}"
+                "uid": "{{ .Values.kubviz.datasource.type }}"
               },
               "dateTimeType": "DATETIME",
               "extrapolate": true,
