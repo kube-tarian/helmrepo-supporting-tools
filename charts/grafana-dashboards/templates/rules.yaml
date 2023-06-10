@@ -11,7 +11,7 @@ spec:
   - name: pod-rules
     rules:
     - alert: PodNotRunning
-      expr: kube_pod_status_phase{namespace!="",phase!="Running"} > 0
+      expr: kube_pod_status_phase{namespace!="",phase!="Running",phase!="Succeeded"} > 0
       for: 5m
       labels:
         severity: warning
