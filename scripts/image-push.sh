@@ -1,7 +1,7 @@
 # Set your GitHub repository details
 GITHUB_USERNAME="kube-tarian"
 GITHUB_REPOSITORY="helmrepo-supporting-tools"
-GITHUB_TOKEN="<github-token>"
+GITHUB_TOKEN="${{ secrets.GITHUB_TOKEN }}"
 
 # Iterate over the list of images
 while IFS= read -r image; do
