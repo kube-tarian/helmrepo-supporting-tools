@@ -40,7 +40,88 @@ spec:
           The pod {{`{{ $labels.namespace }}/{{ $labels.pod }}`}} has restarted containers
           more than 10 times (restart count: {{`{{ $value }}`}}).
           Investigate and resolve the underlying issue.
-
+    - alert: HighCPUUsage
+      expr: cassandra_cpu_usage_percentage > 80
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: High CPU usage in Cassandra
+        description: The CPU usage in Cassandra is above 80%.
+    - alert: HighMemoryUsage
+      expr: cassandra_memory_usage_percentage > 90
+      for: 10m
+      labels:
+        severity: critical
+      annotations:
+        summary: High memory usage in Cassandra
+        description: The memory usage in Cassandra is above 90%.
+    - alert: SlowQueryRate
+      expr: cassandra_slow_query_rate > 100
+      for: 15m
+      labels:
+        severity: warning
+      annotations:
+        summary: High rate of slow queries in Cassandra
+        description: The rate of slow queries in Cassandra is above 100 per minute.
+    - alert: PendingCompactions
+      expr: cassandra_pending_compactions > 5
+      for: 30m
+      labels:
+        severity: warning
+      annotations:
+        summary: High number of pending compactions in Cassandra
+        description: The number of pending compactions in Cassandra is above 5.
+    - alert: CassandraNodeDown
+      expr: cassandra_node_up == 0
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: Cassandra node is down
+        description: >
+          A Cassandra node is down or not reporting metrics.
+          Check the Cassandra cluster for any issues and perform necessary node recovery.  
+    - alert: CassandraClusterDown
+      expr: count(cassandra_up) by (cluster) < 1
+      for: 5m
+      labels:
+        severity: critical
+      annotations:
+        summary: Cassandra cluster is down
+        description: The Cassandra cluster {{`{{ $labels.cluster }}`}} is down. Investigate and resolve the issue.        
+    - alert: VaultSealStatus
+      expr: vault_seal_status == 0
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: Vault is sealed
+        description: Vault is currently sealed. Unseal it to restore access.
+    - alert: VaultUnsealFailed
+      expr: increase(vault_unseal_failures_total[5m]) > 0
+      for: 10m
+      labels:
+        severity: critical
+      annotations:
+        summary: Vault unseal failed
+        description: Vault unseal operation has failed multiple times. Investigate and take action.
+    - alert: VaultHighLoadAverage
+      expr: vault_load_average_5m / count(vault_health_status) > 0.8
+      for: 5m
+      labels:
+        severity: warning
+      annotations:
+        summary: High load average on Vault
+        description: The load average on Vault is above the threshold. Monitor and investigate for performance issues.
+    - alert: VaultHighMemoryUsage
+      expr: (vault_memory_usage_bytes / vault_memory_limit_bytes) * 100 > 90
+      for: 10m
+      labels:
+        severity: critical
+      annotations:
+        summary: High memory usage on Vault
+        description: The memory usage on Vault is above the threshold. Monitor and investigate for potential issues.   
 
 
 
