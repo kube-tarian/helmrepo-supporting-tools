@@ -168,6 +168,16 @@ entries:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-agent-operator-0.2.3-1/grafana-agent-operator-0.2.3-1.tgz
     version: 0.2.3-1
   grafana-dashboards:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-06-22T17:32:14.507634597Z"
+    description: A Helm chart for Grafana dashboards and datasources
+    digest: 7e15f9574896dae34c04f9bc81e2cdc4fb89b07187887d418770f745658b7ac1
+    name: grafana-dashboards
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-dashboards-0.1.4/grafana-dashboards-0.1.4.tgz
+    version: 0.1.4
   - annotations:
       artifacthub.io/changes: |
         - "✨ update chart to version 0.1.0"
