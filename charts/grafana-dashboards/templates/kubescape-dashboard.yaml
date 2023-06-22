@@ -4,6 +4,7 @@ metadata:
   name: {{ include "grafana-dashboards.fullname" . }}-kubescape
   annotations:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    grafana_folder: "Kubescape"
   labels:
     grafana_dashboard: "1"
 data:

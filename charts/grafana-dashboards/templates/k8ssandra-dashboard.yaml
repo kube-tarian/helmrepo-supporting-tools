@@ -4,6 +4,7 @@ metadata:
   name: {{ include "grafana-dashboards.fullname" . }}-k8ssandra
   annotations:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    grafana_folder: "Cassandra"
   labels:
     grafana_dashboard: "1"
 data:

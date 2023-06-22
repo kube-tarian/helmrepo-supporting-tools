@@ -4,6 +4,7 @@ metadata:
   name: {{ include "grafana-dashboards.fullname" . }}-kyverno
   annotations:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    grafana_folder: "Kyverno"
   labels:
     grafana_dashboard: "1"
 data:
