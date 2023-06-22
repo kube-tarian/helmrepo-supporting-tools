@@ -4,6 +4,7 @@ metadata:
   name: {{ include "grafana-dashboards.fullname" . }}-velero
   annotations:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    grafana_folder: "Velero"
   labels:
     grafana_dashboard: "1"
 data:
