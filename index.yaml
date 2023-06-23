@@ -170,6 +170,16 @@ entries:
   grafana-dashboards:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-06-23T15:25:59.452095641Z"
+    description: A Helm chart for Grafana dashboards and datasources
+    digest: 18b6cd2f574af2cdd496c872b4149510a89e014497c45f1af7f4a7f975ad4181
+    name: grafana-dashboards
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-dashboards-0.1.5/grafana-dashboards-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-06-22T17:32:14.507634597Z"
     description: A Helm chart for Grafana dashboards and datasources
     digest: 7e15f9574896dae34c04f9bc81e2cdc4fb89b07187887d418770f745658b7ac1
