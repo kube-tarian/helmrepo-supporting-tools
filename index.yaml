@@ -129,6 +129,29 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/crossplane-1.0.0/crossplane-1.0.0.tgz
     version: 1.0.0
+  external-secrets:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.8.3"
+    apiVersion: v2
+    appVersion: v0.8.3
+    created: "2023-06-26T20:25:47.003058943Z"
+    description: External secret management for Kubernetes
+    digest: de6c38f07717095a45dc9ee46430457d13b8b30a29ba4c84a372b3d394a2385d
+    home: https://github.com/external-secrets/external-secrets
+    icon: https://raw.githubusercontent.com/external-secrets/external-secrets/main/assets/eso-logo-large.png
+    keywords:
+    - kubernetes-external-secrets
+    - secrets
+    kubeVersion: '>= 1.19.0-0'
+    maintainers:
+    - email: kellinmcavoy@gmail.com
+      name: mcavoyk
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/external-secrets-1.0.0/external-secrets-1.0.0.tgz
+    version: 1.0.0
   grafana-agent-operator:
   - annotations:
       artifacthub.io/changes: |
