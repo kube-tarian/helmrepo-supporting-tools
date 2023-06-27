@@ -29,7 +29,7 @@ jobs:
               docker tag "$image" "$github_image"
 
               # Log in to GitHub Container Registry
-              docker login ghcr.io -u "$GITHUB_USERNAME" -p "$GITHUB_TOKEN"
+              docker login ${{ env.REGISTRY }} -u jebinjeb -p ${{ secrets.GITHUB_TOKEN }}
 
               # Push the image to GitHub Container Registry
               docker push "$github_image"
