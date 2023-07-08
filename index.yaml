@@ -158,6 +158,35 @@ entries:
         - "✨ update chart to version 6.26.14"
     apiVersion: v2
     appVersion: 8.4.6
+    created: "2023-07-08T12:53:50.084771557Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: b9bf9e119659b7221ce3bd1c1f237f5f5bbb6aa8bead22491ebaa82f7092f135
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-1.0.1/grafana-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 6.26.14"
+    apiVersion: v2
+    appVersion: 8.4.6
     created: "2023-07-06T05:01:23.891030635Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 45a22e81739fad8b7e77d525bab64d7462e6c0a63f81059d25e3cfd513893d4d
