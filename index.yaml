@@ -129,6 +129,33 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/crossplane-1.0.0/crossplane-1.0.0.tgz
     version: 1.0.0
+  cstor:
+  - apiVersion: v2
+    appVersion: 3.4.0
+    created: "2023-07-09T16:23:46.123364205Z"
+    dependencies:
+    - condition: openebsNDM.enabled
+      name: openebs-ndm
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 2.1.0
+    description: CStor-Operator helm chart for Kubernetes
+    digest: f4ef24a7b24c1794cb2445a4548e33183243ce7b9e1f633493971f072984a966
+    home: http://www.openebs.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/openebs/icon/color/openebs-icon-color.png
+    keywords:
+    - cloud-native-storage
+    - block-storage
+    - iSCSI
+    - storage
+    - cstor
+    - cstor-operators
+    name: cstor
+    sources:
+    - https://github.com/openebs/cstor-operators
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/cstor-1.0.0/cstor-1.0.0.tgz
+    version: 1.0.0
   external-secrets:
   - annotations:
       artifacthub.io/changes: |
