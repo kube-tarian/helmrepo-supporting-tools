@@ -91,7 +91,7 @@ clickhouse:
   # -- Clickhouse user
   user: admin
   # -- Clickhouse password
-  password: 27ff0399-0d3a-4bd8-919d-17c2181e6fb9
+  password: admin
 
   # -- Clickhouse image
   image:
