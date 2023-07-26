@@ -1,0 +1,30 @@
+annotations:
+  artifacthub.io/changes: |
+    - "✨ update chart to version 2.19.4"
+apiVersion: v2
+appVersion: 2.15.2
+dependencies:
+- condition: monitoring.enabled
+  name: monitoring
+  repository: ""
+  version: 2.7.1
+- condition: ui.enabled
+  name: ui
+  repository: ""
+  version: 2.9.6
+- condition: kyvernoPlugin.enabled
+  name: kyvernoPlugin
+  repository: ""
+  version: 1.5.6
+description: 'Policy Reporter watches for PolicyReport Resources. It creates Prometheus
+  Metrics and can send rule validation events to different targets like Loki, Elasticsearch,
+  Slack or Discord '
+home: https://kyverno.github.io/policy-reporter
+icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+maintainers:
+- name: Frank Jogeleit
+name: policy-reporter
+sources:
+- https://github.com/kyverno/policy-reporter
+type: application
+version: 1.0.0
