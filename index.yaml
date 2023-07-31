@@ -185,6 +185,38 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/external-secrets-1.0.0/external-secrets-1.0.0.tgz
     version: 1.0.0
+  falco:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 3.3.1"
+    apiVersion: v2
+    appVersion: 0.35.1
+    created: "2023-07-31T19:11:32.380190661Z"
+    dependencies:
+    - condition: falcosidekick.enabled
+      name: falcosidekick
+      repository: https://falcosecurity.github.io/charts
+      version: 0.6.1
+    description: Falco
+    digest: 42ee2a3a5a21addf4bf56b379a25ffd2fc2554deb858c3bdba53672f713915fe
+    home: https://falco.org
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/falco/horizontal/color/falco-horizontal-color.svg
+    keywords:
+    - monitoring
+    - security
+    - alerting
+    - metric
+    - troubleshooting
+    - run-time
+    maintainers:
+    - email: cncf-falco-dev@lists.cncf.io
+      name: The Falco Authors
+    name: falco
+    sources:
+    - https://github.com/falcosecurity/falco
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/falco-0.0.1/falco-0.0.1.tgz
+    version: 0.0.1
   grafana:
   - annotations:
       artifacthub.io/changes: |
@@ -456,6 +488,31 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kube-prometheus-stack-1.0.0/kube-prometheus-stack-1.0.0.tgz
     version: 1.0.0
+  kubescape-prometheus-integrator:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.0.13"
+    apiVersion: v2
+    appVersion: v0.0.13
+    created: "2023-07-31T19:11:32.486502162Z"
+    description: Kubescape integration with Prometheus
+    digest: 9ea9eb21e8479a237c0c80e50576fc987a5d261ad03f3f5e46314f1476014768
+    home: https://www.armosec.io/
+    maintainers:
+    - email: ben@armosec.io
+      name: Ben Hirschberg
+      url: https://www.linkedin.com/in/benyamin-ben-hirschberg-66141890
+    - email: dw@armosec.io
+      name: David Wertenteil
+      url: https://www.linkedin.com/in/david-wertenteil-0ba277b9
+    - email: bez@armosec.io
+      name: Bezalel Brandwine
+      url: https://www.linkedin.com/in/bezalel-brandwine
+    name: kubescape-prometheus-integrator
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kubescape-prometheus-integrator-0.0.1/kubescape-prometheus-integrator-0.0.1.tgz
+    version: 0.0.1
   kyverno:
   - annotations:
       artifacthub.io/changes: |
@@ -591,6 +648,56 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/loki-1.0.0/loki-1.0.0.tgz
     version: 1.0.0
+  loki-stack:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 2.9.10"
+    apiVersion: v1
+    appVersion: v2.6.1
+    created: "2023-07-31T19:11:32.665783613Z"
+    dependencies:
+    - condition: loki.enabled
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: ^2.15.2
+    - condition: promtail.enabled
+      name: promtail
+      repository: https://grafana.github.io/helm-charts
+      version: ^6.7.4
+    - condition: fluent-bit.enabled
+      name: fluent-bit
+      repository: https://grafana.github.io/helm-charts
+      version: ^2.3.0
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: ~6.43.0
+    - condition: prometheus.enabled
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: ~15.5.3
+    - condition: filebeat.enabled
+      name: filebeat
+      repository: https://helm.elastic.co
+      version: ~7.17.1
+    - condition: logstash.enabled
+      name: logstash
+      repository: https://helm.elastic.co
+      version: ~7.17.1
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: 14bf342f9f08ddd94c4bf0bece427429231594ced136d67c86b1b5c4d1b84f9c
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    kubeVersion: ^1.10.0-0
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    name: loki-stack
+    sources:
+    - https://github.com/grafana/loki
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/loki-stack-0.0.1/loki-stack-0.0.1.tgz
+    version: 0.0.1
   minio:
   - apiVersion: v1
     appVersion: RELEASE.2022-08-13T21-54-44Z
@@ -863,6 +970,41 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/openebs-ndm-1.0.0/openebs-ndm-1.0.0.tgz
     version: 1.0.0
+  policy-reporter:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 2.19.4"
+    apiVersion: v2
+    appVersion: 2.15.2
+    created: "2023-07-31T19:11:32.80308169Z"
+    dependencies:
+    - condition: monitoring.enabled
+      name: monitoring
+      repository: ""
+      version: 2.7.1
+    - condition: ui.enabled
+      name: ui
+      repository: ""
+      version: 2.9.6
+    - condition: kyvernoPlugin.enabled
+      name: kyvernoPlugin
+      repository: ""
+      version: 1.5.6
+    description: 'Policy Reporter watches for PolicyReport Resources. It creates Prometheus
+      Metrics and can send rule validation events to different targets like Loki,
+      Elasticsearch, Slack or Discord '
+    digest: 68614e44afa11da8dae6334381787f59e2118b876654e6f2d38f38f8c57df3c5
+    home: https://kyverno.github.io/policy-reporter
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    maintainers:
+    - name: Frank Jogeleit
+    name: policy-reporter
+    sources:
+    - https://github.com/kyverno/policy-reporter
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/policy-reporter-0.0.1/policy-reporter-0.0.1.tgz
+    version: 0.0.1
   pre-install:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -923,6 +1065,66 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/redis-ha-1.0.0/redis-ha-1.0.0.tgz
     version: 1.0.0
+  signoz:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.20.0"
+    apiVersion: v2
+    appVersion: 0.24.0
+    created: "2023-07-31T19:11:33.049496959Z"
+    dependencies:
+    - condition: clickhouse.enabled
+      name: clickhouse
+      repository: https://signoz.github.io/charts
+      version: 23.12.2
+    - condition: k8s-infra.enabled
+      name: k8s-infra
+      repository: https://signoz.github.io/charts
+      version: 0.9.2
+    - condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: 1.9.1
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.3.0
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io
+      version: 4.0.9
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.1.5
+    description: SigNoz Observability Platform Helm Chart
+    digest: 68b6382563136467cf878f71df5633ed538f8a66e812e29471108255454f0c1c
+    home: https://signoz.io/
+    icon: https://signoz.io/img/SigNozLogo-orange.svg
+    keywords:
+    - SigNoz
+    - opentelemetry
+    - apm
+    - monitoring
+    - distributed tracing
+    - distributed logging
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    - email: prashant@signoz.io
+      name: prashant-shahi
+      url: https://prashantshahi.dev
+    name: signoz
+    sources:
+    - https://github.com/signoz/charts
+    - https://github.com/signoz/signoz
+    - https://github.com/signoz/alertmanager
+    - https://github.com/signoz/signoz-otel-collector
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/signoz-0.0.1/signoz-0.0.1.tgz
+    version: 0.0.1
   temporal:
   - annotations:
       artifacthub.io/changes: |
@@ -1218,6 +1420,27 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/temporal-0.1.0/temporal-0.1.0.tgz
     version: 0.1.0
+  tracetest:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.2.69"
+    apiVersion: v2
+    appVersion: v0.13.0
+    created: "2023-07-31T19:11:33.215861034Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.6
+    description: A Helm chart for Trace Test
+    digest: 9041ef6e3f02719567d449e4a8ce6dac20c432f67809debb30b45d93b92d4fb5
+    home: https://github.com/kubeshop/helm-charts
+    name: tracetest
+    sources:
+    - https://github.com/kubeshop/helm-charts/tree/main/charts
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/tracetest-0.0.1/tracetest-0.0.1.tgz
+    version: 0.0.1
   traefik:
   - annotations:
       artifacthub.io/changes: |
@@ -1289,6 +1512,36 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/traefik-1.0.0/traefik-1.0.0.tgz
     version: 1.0.0
+  vault:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.25.0"
+      charts.openshift.io/name: HashiCorp Vault
+    apiVersion: v2
+    appVersion: 1.14.0
+    created: "2023-07-31T19:11:33.371638963Z"
+    description: Official HashiCorp Vault Chart
+    digest: 30dd974179f5a3a9baa12e9807be95afc26beabd62961bb35fbc5a040d78a98d
+    home: https://www.vaultproject.io
+    icon: https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png
+    keywords:
+    - vault
+    - security
+    - encryption
+    - secrets
+    - management
+    - automation
+    - infrastructure
+    kubeVersion: '>= 1.20.0-0'
+    name: vault
+    sources:
+    - https://github.com/hashicorp/vault
+    - https://github.com/hashicorp/vault-helm
+    - https://github.com/hashicorp/vault-k8s
+    - https://github.com/hashicorp/vault-csi-provider
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/vault-0.0.1/vault-0.0.1.tgz
+    version: 0.0.1
   vault-post:
   - annotations:
       artifacthub.io/changes: |
@@ -1316,4 +1569,31 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/vault-post-1.0.1/vault-post-1.0.1.tgz
     version: 1.0.1
-generated: "2023-07-29T08:27:29.327471041Z"
+  velero:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 4.1.3"
+    apiVersion: v2
+    appVersion: 1.11.0
+    created: "2023-07-31T19:11:33.516771348Z"
+    description: A Helm chart for velero
+    digest: 4d03a64f11c0238f126eb927aa4cc9c05535d4f7e343473fe35bbf9e1c80f2be
+    home: https://github.com/vmware-tanzu/velero
+    icon: https://cdn-images-1.medium.com/max/1600/1*-9mb3AKnKdcL_QD3CMnthQ.png
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: hsiaoairplane@gmail.com
+      name: jenting
+    - email: jiangd@vmware.com
+      name: reasonerjt
+    - email: mqiu@vmware.com
+      name: qiuming-best
+    - email: yinw@vmware.com
+      name: ywk253100
+    name: velero
+    sources:
+    - https://github.com/vmware-tanzu/velero
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
+    version: 0.0.1
+generated: "2023-07-31T19:11:33.516839648Z"
