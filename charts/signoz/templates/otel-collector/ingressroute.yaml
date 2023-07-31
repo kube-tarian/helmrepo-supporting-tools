@@ -1,0 +1,16 @@
+{{- if .Values.otelCollector.ingressRoute.enabled -}}
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "otelCollector.fullname" . }}
+spec:
+  entryPoints:
+  - web
+  routes:
+  - kind: Rule
+    match: Host(`{{ .Values.otelCollector.ingressRoute.host }}`)
+    services:
+    - name: {{ include "otelCollector.fullname" . }}
+      port: {{ .Values.otelCollector.ingressRoute.service.port }}
+      scheme: h2c
+{{- end }}
