@@ -41,3 +41,13 @@ ghcr.io/banzaicloud/bank-vaults:1.19.0
 prom/statsd-exporter:latest
 velero/velero:v1.11.0
 yandex/clickhouse-server:19.14
+busybox:1.35
+openebs/cstor-pool-manager:3.4.0
+openebs/cstor-pool:3.4.0
+openebs/m-exporter:3.4.0
+openebs/cspc-operator:3.4.0
+openebs/cstor-volume-manager:3.4.0
+openebs/cstor-istgt:3.4.0
+openebs/cvc-operator:3.4.0
+openebs/cstor-csi-driver:3.4.0
+openebs/cstor-webhook:3.4.0		
