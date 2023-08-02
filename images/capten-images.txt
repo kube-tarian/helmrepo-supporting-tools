@@ -49,7 +49,5 @@ openebs/cspc-operator:3.4.0
 openebs/cstor-volume-manager:3.4.0
 openebs/cstor-istgt:3.4.0
 openebs/cvc-operator:3.4.0
-openebs/cstor-csi-driver:3.4.0
-openebs/cstor-webhook:3.4.0		
 temporalio/ui:latest
 cassandra:3.11.3
