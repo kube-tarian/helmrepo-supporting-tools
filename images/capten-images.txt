@@ -54,4 +54,5 @@ alpine:3.18.2
 signoz/alertmanager:0.23.1
 k8ssandra/k8ssandra-tools:latest
 nginx
+k8ssandra/cass-management-api:4.0.1
 
