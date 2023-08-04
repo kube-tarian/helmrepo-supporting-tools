@@ -20,8 +20,8 @@ grafana/loki:2.6.1
 openebs/jiva-csi:3.2.0
 openebs/jiva-csi:3.2.0
 k8ssandra/cass-management-api:4.0.1
-k8ssandra/system-logger:v1.10.0
-kubeshop/tracetest:v0.11.9
+k8ssandra/system-logger: v1.10.0
+kubeshop/tracetest: v0.11.9
 nats:2.7.2-alpine
 natsio/nats-server-config-reloader:0.6.2
 natsio/prometheus-nats-exporter:0.9.1
