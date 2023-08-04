@@ -53,6 +53,5 @@ temporalio/ui:latest
 cassandra:3.11.3
 alpine:3.18.2
 signoz/alertmanager:0.23.1
-k8ssandra/k8ssandra-operator:v1.2.1
 k8ssandra/k8ssandra-tools:latest
 
