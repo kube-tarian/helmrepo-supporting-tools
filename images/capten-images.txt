@@ -53,4 +53,5 @@ temporalio/ui:latest
 cassandra:3.11.3
 alpine:3.18.2
 signoz/alertmanager:0.23.1
-jimmidyson/configmap-reload:0.5.0
+jimmidyson/configmap-reload:v0.5.0
+
