@@ -19,7 +19,6 @@ thelastpickle/cassandra-reaper:3.2.0
 grafana/loki:2.6.1
 openebs/jiva-csi:3.2.0
 openebs/jiva-csi:3.2.0
-k8ssandra/cass-management-api:4.0.1
 k8ssandra/system-logger: v1.10.0
 kubeshop/tracetest: v0.11.9
 nats:2.7.2-alpine
@@ -54,4 +53,5 @@ cassandra:3.11.3
 alpine:3.18.2
 signoz/alertmanager:0.23.1
 k8ssandra/k8ssandra-tools:latest
+nginx
 
