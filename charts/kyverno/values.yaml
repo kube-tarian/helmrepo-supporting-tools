@@ -263,9 +263,9 @@ test:
 
   image:
     # -- (string) Image registry
-    registry: ~
+    registry: ghcr.io
     # -- Image repository
-    repository: busybox
+    repository: kube-tarian/helmrepo-supporting-tools/busybox
     # -- Image tag
     # Defaults to `latest` if omitted
     tag: '1.35'
@@ -304,7 +304,7 @@ webhooksCleanup:
   # -- Create a helm pre-delete hook to cleanup webhooks.
   enabled: true
   # -- `kubectl` image to run commands for deleting webhooks.
-  image: bitnami/kubectl:latest
+  image: ghcr.io/kube-tarian/helmrepo-supporting-tools/kubectl:1.26.4
   # -- Image pull secrets
   imagePullSecrets: []
 
@@ -399,9 +399,9 @@ cleanupJobs:
 
     image:
       # -- (string) Image registry
-      registry: ~
+      registry: ghcr.io
       # -- Image repository
-      repository: bitnami/kubectl
+      repository: kube-tarian/helmrepo-supporting-tools/kubectl
       # -- Image tag
       # Defaults to `latest` if omitted
       tag: '1.26.4'
@@ -455,9 +455,9 @@ cleanupJobs:
 
     image:
       # -- (string) Image registry
-      registry: ~
+      registry: ghcr.io
       # -- Image repository
-      repository: bitnami/kubectl
+      repository: kube-tarian/helmrepo-supporting-tools/kubectl
       # -- Image tag
       # Defaults to `latest` if omitted
       tag: '1.26.4'
@@ -755,13 +755,13 @@ admissionController:
   # -- Array of extra init containers
   extraInitContainers: []
     # - name: init-container
-    #   image: busybox
+    #   image: ghcr.io/kube-tarian/helmrepo-supporting-tools/busybox:1.35
     #   command: ['sh', '-c', 'echo Hello']
 
   # -- Array of extra containers to run alongside kyverno
   extraContainers: []
     # - name: myapp-container
-    #   image: busybox
+    #   image: ghcr.io/kube-tarian/helmrepo-supporting-tools/busybox:1.35
     #   command: ['sh', '-c', 'echo Hello && sleep 3600']
 
   service:
