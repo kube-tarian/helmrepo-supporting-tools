@@ -126,10 +126,10 @@ replicaCount: 1
 # You don't have to change anything bellow this line.
 
 image:
-  repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/tracetest
+  repository: kubeshop/tracetest
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: v0.11.9
+  tag: ""
 
 env:
   tracetestDev: ""
