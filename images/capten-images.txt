@@ -54,5 +54,5 @@ k8ssandra/cass-management-api:4.0.1
 velero/velero-plugin-for-csi:v0.5.0
 velero/velero-plugin-for-aws:v1.7.0
 openebs/velero-plugin:latest
-bats/bats:1.8.2
+
 
