@@ -37,4 +37,5 @@ jobs:
               else
                 echo "retry"
                 docker push "$github_image"
+              fi
           done < images/capten-images.txt
