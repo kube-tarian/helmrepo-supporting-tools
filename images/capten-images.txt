@@ -55,3 +55,4 @@ velero/velero-plugin-for-aws:v1.7.0
 openebs/velero-plugin:latest
 bats/bats:1.8.2
 grafana/loki:2.6.1
+
