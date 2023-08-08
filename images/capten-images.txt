@@ -16,7 +16,6 @@ signoz/query-service:0.18.1
 signoz/signoz-otel-collector:0.66.7
 stargateio/stargate-4_0:v1.0.45
 thelastpickle/cassandra-reaper:3.2.0
-grafana/loki:2.6.1
 k8ssandra/system-logger: v1.10.0
 kubeshop/tracetest: v0.11.9
 nats:2.7.2-alpine
@@ -55,6 +54,3 @@ velero/velero-plugin-for-csi:v0.5.0
 velero/velero-plugin-for-aws:v1.7.0
 openebs/velero-plugin:latest
 bats/bats:1.8.2
-
-
-
