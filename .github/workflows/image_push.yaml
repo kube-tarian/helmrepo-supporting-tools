@@ -20,6 +20,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Docker push
         run: |
+          # Log in to GitHub Container Registry
+          docker login ${{ env.REGISTRY }} -u jebinjeb -p ${{ secrets.GITHUB_TOKEN }}
           while IFS= read -r image; do
             # Check if the image is from docker.io
               docker pull "$image"
@@ -28,9 +30,12 @@ jobs:
               github_image="ghcr.io/$GITHUB_REPOSITORY/$(echo "$image" | awk -F '/' '{print $NF}')"
               docker tag "$image" "$github_image"
 
-              # Log in to GitHub Container Registry
-              docker login ${{ env.REGISTRY }} -u jebinjeb -p ${{ secrets.GITHUB_TOKEN }}
-
               # Push the image to GitHub Container Registry
               docker push "$github_image"
+              if [ $? -eq 0 ]; then
+                echo "Image pushed successfully"
+              else
+                echo "retry"
+                docker push "$github_image"
+              fi
           done < images/capten-images.txt
