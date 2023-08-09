@@ -28,4 +28,4 @@ sources:
 - https://github.com/traefik/traefik
 - https://github.com/traefik/traefik-helm-chart
 type: application
-version: 1.0.0
+version: 2.0.0

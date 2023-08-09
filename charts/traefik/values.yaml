@@ -1,8 +1,8 @@
 # Default values for Traefik
 image:
-  name: traefik
+  name: ghcr.io/kube-tarian/helmrepo-supporting-tools/traefik
   # defaults to appVersion
-  tag: ""
+  tag: v2.9.6
   pullPolicy: IfNotPresent
 
 #
