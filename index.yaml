@@ -530,6 +530,44 @@ entries:
       artifacthub.io/prerelease: "false"
     apiVersion: v2
     appVersion: v1.10.1
+    created: "2023-08-09T15:50:56.708303467Z"
+    description: Kubernetes Native Policy Management
+    digest: 9588e4db1436bd9219c0875ec799da9a08f5bbd38ad48ed5e6dc7efa85974dbb
+    home: https://kyverno.io/
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kubernetes
+    - nirmata
+    - policy agent
+    - validating webhook
+    - admissions controller
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Nirmata
+      url: https://kyverno.io/
+    name: kyverno
+    sources:
+    - https://github.com/kyverno/kyverno
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kyverno-1.0.2/kyverno-1.0.2.tgz
+    version: 1.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 3.0.2"
+        - kind: fixed
+          description: incorrect config map names
+        - kind: added
+          description: define resources for cleanupJobs
+        - kind: changed
+          description: change to enable webhook cleanup hook by default
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://kyverno.io/docs
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: v1.10.1
     created: "2023-07-29T08:27:29.32740714Z"
     description: Kubernetes Native Policy Management
     digest: bb03d1635e63c3d099ba1ec461c79d5317066929d1b8a02c363ef15e1be9abef
@@ -1616,4 +1654,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-08-09T15:38:43.154975687Z"
+generated: "2023-08-09T15:50:56.708388468Z"
