@@ -13,4 +13,4 @@ name: tracetest
 sources:
 - https://github.com/kubeshop/helm-charts/tree/main/charts
 type: application
-version: 0.0.1
+version: 0.0.3
