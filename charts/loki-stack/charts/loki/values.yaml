@@ -1,5 +1,5 @@
 image:
-  repository: grafana/loki
+  repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/loki
   tag: 2.6.1
   pullPolicy: IfNotPresent
 
