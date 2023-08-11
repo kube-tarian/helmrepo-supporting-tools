@@ -52,25 +52,18 @@ dnsPolicy: ClusterFirst
 # Init containers to add to the Velero deployment's pod spec. At least one plugin provider image is required.
 # If the value is a string then it is evaluated as a template.
 initContainers:
-  - name: velero-plugin-for-csi
-    image: ghcr.io/kube-tarian/helmrepo-supporting-tools/velero-plugin-for-csi:v0.5.0
-    imagePullPolicy: IfNotPresent
-    volumeMounts:
-      - mountPath: /target
-        name: plugins
-  - name: velero-plugin-for-aws
-    image: ghcr.io/kube-tarian/helmrepo-supporting-tools/velero-plugin-for-aws:v1.7.0
-    imagePullPolicy: IfNotPresent
-    volumeMounts:
-      - mountPath: /target
-        name: plugins
-  - name: openebs-velero-plugin
-    image: ghcr.io/kube-tarian/helmrepo-supporting-tools/velero-plugin:latest
-    imagePullPolicy: IfNotPresent
-    volumeMounts:
-      - mountPath: /target
-        name: plugins
-
+  # - name: velero-plugin-for-csi
+  #   image: velero/velero-plugin-for-csi:v0.5.0
+  #   imagePullPolicy: IfNotPresent
+  #   volumeMounts:
+  #     - mountPath: /target
+  #       name: plugins
+  # - name: velero-plugin-for-aws
+  #   image: velero/velero-plugin-for-aws:v1.7.0
+  #   imagePullPolicy: IfNotPresent
+  #   volumeMounts:
+  #     - mountPath: /target
+  #       name: plugins
 
 # SecurityContext to use for the Velero deployment. Optional.
 # Set fsGroup for `AWS IAM Roles for Service Accounts`
@@ -95,6 +88,30 @@ priorityClassName: ""
 
 # The number of seconds to allow for graceful termination of the pod. Optional.
 terminationGracePeriodSeconds: 3600
+
+# Liveness probe of the pod
+livenessProbe:
+  httpGet:
+    path: /metrics
+    port: http-monitoring
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 5
+
+# Readiness probe of the pod
+readinessProbe:
+  httpGet:
+    path: /metrics
+    port: http-monitoring
+    scheme: HTTP
+  initialDelaySeconds: 10
+  periodSeconds: 30
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 5
 
 # Tolerations to use for the Velero deployment. Optional.
 tolerations: []
@@ -161,7 +178,7 @@ metrics:
     autodetect: true
     enabled: true
     annotations: {}
-    additionalLabels: 
+    additionalLabels:
       release: prometheus
     # ServiceMonitor namespace. Default to Velero namespace.
     # namespace:
@@ -246,9 +263,8 @@ configuration:
   backupStorageLocation:
     # name is the name of the backup storage location where backups should be stored. If a name is not provided,
     # a backup storage location will be created with the name "default". Optional.
-  - name:
-    # provider is the name for the backup storage location provider. If omitted
-    # `configuration.provider` will be used instead.
+  - name: 
+    # provider is the name for the backup storage location provider.
     provider: aws
     # bucket is the name of the bucket to store backups in. Required.
     bucket: intelops-velero-backup
@@ -258,6 +274,8 @@ configuration:
     prefix:
     # default indicates this location is the default backup storage location. Optional.
     default:
+    # validationFrequency defines how frequently Velero should validate the object storage. Optional.
+    validationFrequency:
     # accessMode determines if velero can write to this backup storage location. Optional.
     # default to ReadWrite, ReadOnly is used during migrations and restores.
     accessMode: ReadWrite
@@ -268,8 +286,8 @@ configuration:
       key:
     # Additional provider-specific configuration. See link above
     # for details of required/optional fields for your provider.
-    config:
-      region: us-west-2
+    config: {}
+    #  region: us-west-2
     #  s3ForcePathStyle:
     #  s3Url:
     #  kmsKeyId:
@@ -289,14 +307,13 @@ configuration:
   # See https://velero.io/docs/v1.6/api-types/volumesnapshotlocation/
   volumeSnapshotLocation:
     # name is the name of the volume snapshot location where snapshots are being taken. Required.
-  - name:
-    # provider is the name for the volume snapshot provider. If omitted
-    # `configuration.provider` will be used instead.
+  - name: 
+    # provider is the name for the volume snapshot provider.
     provider: aws
     # Additional provider-specific configuration. See link above
     # for details of required/optional fields for your provider.
-    config:
-       region: us-west-2
+    config: {}
+  #    region: us-west-2
   #    apiTimeout:
   #    resourceGroup:
   #    The ID of the subscription where volume snapshots should be stored, if different from the cluster’s subscription. If specified, also requires `configuration.volumeSnapshotLocation.config.resourceGroup`to be set. (Azure only)
@@ -351,7 +368,8 @@ configuration:
   # How long to wait on persistent volumes and namespaces to terminate during a restore before timing out. Default: 10m
   terminatingResourceTimeout:
   # Comma separated list of velero feature flags. default: empty
-  features: EnableCSI
+  # features: EnableCSI
+  features:
   # `velero server` default: velero
   namespace:
 
@@ -410,11 +428,11 @@ credentials:
   # [AWS] https://github.com/vmware-tanzu/velero-plugin-for-aws/blob/main/README.md
   # [GCP] https://github.com/vmware-tanzu/velero-plugin-for-gcp/blob/main/README.md
   # [Azure] https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure/blob/main/README.md
-  secretContents: 
-     cloud: |
-       [default]
-       aws_access_key_id=<REDACTED>
-       aws_secret_access_key=<REDACTED>
+  secretContents: {}
+  #  cloud: |
+  #    [default]
+  #    aws_access_key_id=<REDACTED>
+  #    aws_secret_access_key=<REDACTED>
   # additional key/value pairs to be used as environment variables such as "DIGITALOCEAN_TOKEN: <your-key>". Values will be stored in the secret.
   extraEnvVars: {}
   # Name of a pre-existing secret (if any) in the Velero namespace
@@ -515,15 +533,29 @@ schedules: {}
 
 # Velero ConfigMaps.
 # Eg:
-#configMaps:
-#  fs-restore-action-config:
+# configMaps:
+    # See: https://velero.io/docs/v1.11/file-system-backup/
+#   fs-restore-action-config:
 #     labels:
-#      velero.io/plugin-config: ""
-#      velero.io/pod-volume-restore: RestoreItemAction
-#    data:
-#      image: velero/velero-restore-helper:v1.10.2
+#       velero.io/plugin-config: ""
+#       velero.io/pod-volume-restore: RestoreItemAction
+#     data:
+#       image: velero/velero-restore-helper:v1.10.2
+#       cpuRequest: 200m
+#       memRequest: 128Mi
+#       cpuLimit: 200m
+#       memLimit: 128Mi
+#       secCtx: |
+#         capabilities:
+#           drop:
+#           - ALL
+#           add: []
+#         allowPrivilegeEscalation: false
+#         readOnlyRootFilesystem: true
+#         runAsUser: 1001
+#         runAsGroup: 999
 configMaps: {}
+
 ##
 ## End of additional Velero resource settings.
 ##
-
