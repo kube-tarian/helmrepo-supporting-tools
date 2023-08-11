@@ -5,6 +5,8 @@ postgresql:
   enabled: true
   architecture: standalone
   image:
+    registry: ghcr.io
+    repository: kube-tarian/helmrepo-supporting-tools/postgresql
     tag: 14.7.0-debian-11-r29
 
   # credentials for accessing the database
