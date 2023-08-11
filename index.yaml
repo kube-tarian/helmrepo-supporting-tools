@@ -1543,6 +1543,26 @@ entries:
         - "✨ update chart to version 0.2.69"
     apiVersion: v2
     appVersion: v0.13.0
+    created: "2023-08-11T15:14:35.945702855Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.6
+    description: A Helm chart for Trace Test
+    digest: 35210e9b38595e68dbd09c06aa1cd5a1e33541514f20a02ea16bf78bc8dc7a86
+    home: https://github.com/kubeshop/helm-charts
+    name: tracetest
+    sources:
+    - https://github.com/kubeshop/helm-charts/tree/main/charts
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/tracetest-0.0.4/tracetest-0.0.4.tgz
+    version: 0.0.4
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.2.69"
+    apiVersion: v2
+    appVersion: v0.13.0
     created: "2023-08-09T15:38:43.154885487Z"
     dependencies:
     - name: postgresql
@@ -1794,4 +1814,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-08-11T11:08:57.73380534Z"
+generated: "2023-08-11T15:14:35.945856857Z"
