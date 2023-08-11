@@ -1,0 +1,8 @@
+OpenEBS monitoring has been installed.
+Check its status by running:
+$ kubectl get pods -n {{ .Release.Namespace }} -o wide
+
+Use `kubectl get svc -n {{ .Release.Namespace }}` to list all the 
+services in the `{{ .Release.Namespace }}` namespace.
+
+For more information, visit our Slack at https://openebs.io/community 
