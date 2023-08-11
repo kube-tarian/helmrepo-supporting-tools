@@ -1002,6 +1002,36 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/openebs-jiva-1.0.0/openebs-jiva-1.0.0.tgz
     version: 1.0.0
+  openebs-monitoring:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.4.10"
+    apiVersion: v2
+    appVersion: 2.12.0
+    created: "2023-08-11T11:08:57.733661933Z"
+    description: A Helm chart for monitoring OpenEBS
+    digest: 75014d9cf0782c31f04eac60fba51a79bb5af07298f871e21c6a850570e29c44
+    keywords:
+    - openebs
+    - monitoring
+    maintainers:
+    - email: kiran.mova@mayadata.io
+      name: kiranmova
+    - email: vishnu.attur@mayadata.io
+      name: avishnu
+    - email: abhishek.agarwal@mayadata.io
+      name: Ab-hishek
+    - email: sahil.raja@mayadata.io
+      name: rajaSahil
+    - email: sanjay.nathani@mayadata.io
+      name: Sanjay1611
+    name: openebs-monitoring
+    sources:
+    - https://github.com/openebs/monitoring
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/openebs-monitoring-1.0.0/openebs-monitoring-1.0.0.tgz
+    version: 1.0.0
   openebs-ndm:
   - apiVersion: v2
     appVersion: 2.1.0
@@ -1764,4 +1794,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-08-09T16:08:45.67130213Z"
+generated: "2023-08-11T11:08:57.73380534Z"
