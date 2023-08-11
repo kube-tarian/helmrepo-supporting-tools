@@ -1,0 +1,25 @@
+annotations:
+  artifacthub.io/changes: |
+    - "✨ update chart to version 0.4.10"
+apiVersion: v2
+appVersion: 2.12.0
+description: A Helm chart for monitoring OpenEBS
+keywords:
+- openebs
+- monitoring
+maintainers:
+- email: kiran.mova@mayadata.io
+  name: kiranmova
+- email: vishnu.attur@mayadata.io
+  name: avishnu
+- email: abhishek.agarwal@mayadata.io
+  name: Ab-hishek
+- email: sahil.raja@mayadata.io
+  name: rajaSahil
+- email: sanjay.nathani@mayadata.io
+  name: Sanjay1611
+name: openebs-monitoring
+sources:
+- https://github.com/openebs/monitoring
+type: application
+version: 1.0.0
