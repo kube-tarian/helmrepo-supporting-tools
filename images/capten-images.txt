@@ -61,3 +61,4 @@ bitnami/bitnami-shell:11-debian-11-r62
 bitnami/postgres-exporter:0.11.1-debian-11-r39
 openebs/node-disk-manager:2.1.0
 openebs/cstor-webhook:3.4.0
+openebs/node-disk-operator:2.1.0
