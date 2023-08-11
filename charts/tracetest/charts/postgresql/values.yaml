@@ -93,9 +93,9 @@ diagnosticMode:
 ## @param image.debug Specify if debug values should be set
 ##
 image:
-  registry: ghcr.io
-  repository: kube-tarian/helmrepo-supporting-tools/postgresql
-  tag: 14.7.0-debian-11-r29
+  registry: docker.io
+  repository: bitnami/postgresql
+  tag: 15.1.0-debian-11-r12
   digest: ""
   ## Specify a imagePullPolicy
   ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -1128,8 +1128,8 @@ volumePermissions:
   ## @param volumePermissions.image.pullSecrets Init container volume-permissions image pull secrets
   ##
   image:
-    registry: ghcr.io
-    repository: kube-tarian/helmrepo-supporting-tools/bitnami-shell
+    registry: docker.io
+    repository: bitnami/bitnami-shell
     tag: 11-debian-11-r62
     digest: ""
     pullPolicy: IfNotPresent
@@ -1215,8 +1215,8 @@ metrics:
   ## @param metrics.image.pullSecrets Specify image pull secrets
   ##
   image:
-    registry: ghcr.io
-    repository: kube-tarian/helmrepo-supporting-tools/postgres-exporter
+    registry: docker.io
+    repository: bitnami/postgres-exporter
     tag: 0.11.1-debian-11-r39
     digest: ""
     pullPolicy: IfNotPresent
