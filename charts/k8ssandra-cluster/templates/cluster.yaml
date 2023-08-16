@@ -19,12 +19,10 @@ spec:
     config:
       jvmOptions:
         heapSize: 512M
-    networking: 
-      hostNetwork: true
     datacenters:
       - metadata:
           name: temporal
-        size: 3
+        size: 1
     mgmtAPIHeap: 256Mi 
   stargate:
     size: 1
