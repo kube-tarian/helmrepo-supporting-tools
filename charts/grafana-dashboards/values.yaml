@@ -61,6 +61,10 @@ slack:
   webhook: "https://hooks.slack.com/services"
   channel: "#capten-cluster-alert"
 
+teams:
+  enabled: true  
+  url: "http://prometheus-msteams:2000/alert"
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
