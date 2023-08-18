@@ -1197,6 +1197,31 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/pre-install-0.1.0/pre-install-0.1.0.tgz
     version: 0.1.0
+  prometheus-msteams:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 1.3.4"
+    apiVersion: v1
+    appVersion: v1.5.2
+    created: "2023-08-18T08:02:25.628017467Z"
+    description: A Helm chart for Kubernetes
+    digest: cc0d2a8cedbf2d8253931b6c332284ad3dcac69c428fe168490f963edc94c4be
+    home: https://github.com/prometheus-msteams/prometheus-msteams
+    maintainers:
+    - name: bzon
+      url: https://github.com/bzon
+    - name: ckotzbauer
+      url: https://github.com/ckotzbauer
+    - name: kbudde
+      url: https://github.com/kbudde
+    - name: Knappek
+      url: https://github.com/Knappek
+    - name: zhan9san
+      url: https://github.com/zhan9san
+    name: prometheus-msteams
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/prometheus-msteams-1.0.0/prometheus-msteams-1.0.0.tgz
+    version: 1.0.0
   redis-ha:
   - annotations:
       artifacthub.io/changes: |
@@ -1920,4 +1945,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-08-18T06:10:26.912459946Z"
+generated: "2023-08-18T08:02:25.628205969Z"
