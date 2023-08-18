@@ -1,0 +1,22 @@
+{{- if .Values.teams.enabled }}
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  labels:
+    alertmanagerConfig: webhook
+    release: prometheus
+  name: {{ include "monitoring.fullname" . }}-webhook
+spec:
+  receivers:
+  - name: webhook
+    webhookConfigs:
+    - url: '{{ .Values.teams.url }}'
+  route:
+    groupBy:
+    - job
+    groupInterval: 5m
+    groupWait: 30s
+    receiver: webhook
+    repeatInterval: 12h
+{{- end }}
+
