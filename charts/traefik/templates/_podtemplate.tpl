@@ -27,6 +27,21 @@
       {{- with .Values.deployment.dnsPolicy }}
       dnsPolicy: {{ . }}
       {{- end }}
+      {{- with .Values.deployment.dnsConfig }}
+      dnsConfig:
+        {{- if .searches }}
+        searches:
+          {{- toYaml .searches | nindent 10 }}
+        {{- end }}
+        {{- if .nameservers }}
+        nameservers:
+          {{- toYaml .nameservers | nindent 10 }}
+        {{- end }}
+        {{- if .options }}
+        options:
+          {{- toYaml .options | nindent 10 }}
+        {{- end }}
+      {{- end }}
       {{- with .Values.deployment.initContainers }}
       initContainers:
       {{- toYaml . | nindent 6 }}
@@ -42,17 +57,22 @@
           {{- with .Values.resources }}
           {{- toYaml . | nindent 10 }}
           {{- end }}
+        {{- if (and (empty .Values.ports.traefik) (empty .Values.deployment.healthchecksPort)) }}
+          {{- fail "ERROR: When disabling traefik port, you need to specify `deployment.healthchecksPort`" }}
+        {{- end }}
+        {{- $healthchecksPort := (default (.Values.ports.traefik).port .Values.deployment.healthchecksPort) }}
+        {{- $healthchecksScheme := (default "HTTP" .Values.deployment.healthchecksScheme) }}
         readinessProbe:
           httpGet:
             path: /ping
-            port: {{ default .Values.ports.traefik.port .Values.ports.traefik.healthchecksPort }}
-            scheme: {{ default "HTTP" .Values.ports.traefik.healthchecksScheme }}
+            port: {{ $healthchecksPort }}
+            scheme: {{ $healthchecksScheme }}
           {{- toYaml .Values.readinessProbe | nindent 10 }}
         livenessProbe:
           httpGet:
             path: /ping
-            port: {{ default .Values.ports.traefik.port .Values.ports.traefik.healthchecksPort }}
-            scheme: {{ default "HTTP" .Values.ports.traefik.healthchecksScheme }}
+            port: {{ $healthchecksPort }}
+            scheme: {{ $healthchecksScheme }}
           {{- toYaml .Values.livenessProbe | nindent 10 }}
         lifecycle:
           {{- with .Values.deployment.lifecycle }}
@@ -68,7 +88,7 @@
             {{- end }}
           {{- end }}
         - name: {{ $name | quote }}
-          containerPort: {{ $config.port }}
+          containerPort: {{ default $config.port $config.containerPort }}
           {{- if $config.hostPort }}
           hostPort: {{ $config.hostPort }}
           {{- end }}
@@ -76,12 +96,16 @@
           hostIP: {{ $config.hostIP }}
           {{- end }}
           protocol: {{ default "TCP" $config.protocol | quote }}
+        {{- if $config.http3 }}
+        {{- if and $config.http3.enabled $config.hostPort }}
+        {{- $http3Port := default $config.hostPort $config.http3.advertisedPort }}
+        - name: "{{ $name }}-http3"
+          containerPort: {{ $config.port }}
+          hostPort: {{ $http3Port }}
+          protocol: UDP
         {{- end }}
         {{- end }}
-        {{- if .Values.hub.enabled }}
-        - name: "traefikhub-tunl"
-          containerPort: {{ default 9901 .Values.hub.tunnelPort }}
-          protocol: "TCP"
+        {{- end }}
         {{- end }}
         {{- with .Values.securityContext }}
         securityContext:
@@ -118,8 +142,8 @@
           {{- if $config }}
           - "--entrypoints.{{$name}}.address=:{{ $config.port }}/{{ default "tcp" $config.protocol | lower }}"
           {{- with $config.asDefault }}
-          {{- if eq ($.Values.experimental.v3.enabled | toString) "false" }}
-            {{- fail "ERROR: Default entrypoints are only available on Traefik v3. Please set `experimental.v3.enabled` to true and update `image.tag` to `v3.0`." }}
+          {{- if semverCompare "<3.0.0-0" (default $.Chart.AppVersion $.Values.image.tag) }}
+            {{- fail "ERROR: Default entrypoints are only available on Traefik v3. Please set `image.tag` to `v3.x`." }}
           {{- end }}
           - "--entrypoints.{{$name}}.asDefault={{ . }}"
           {{- end }}
@@ -131,57 +155,69 @@
           {{- if .Values.metrics }}
           {{- with .Values.metrics.datadog }}
           - "--metrics.datadog=true"
-          {{- with .address }}
+           {{- with .address }}
           - "--metrics.datadog.address={{ . }}"
-          {{- end }}
-          {{- with .pushInterval }}
+           {{- end }}
+           {{- with .pushInterval }}
           - "--metrics.datadog.pushInterval={{ . }}"
-          {{- end }}
-          {{- with .prefix }}
+           {{- end }}
+           {{- with .prefix }}
           - "--metrics.datadog.prefix={{ . }}"
-          {{- end }}
-          {{- if .addRoutersLabels}}
-          - "--metrics.datadog.addRoutersLabels=true"
-          {{- end }}
-          {{- if eq (.addEntryPointsLabels | toString) "false" }}
-          - "--metrics.datadog.addEntryPointsLabels=false"
-          {{- end }}
-          {{- if eq (.addServicesLabels | toString) "false" }}
-          - "--metrics.datadog.addServicesLabels=false"
-          {{- end }}
+           {{- end }}
+           {{- if ne .addRoutersLabels nil }}
+            {{- with .addRoutersLabels | toString }}
+          - "--metrics.datadog.addRoutersLabels={{ . }}"
+            {{- end }}
+           {{- end }}
+           {{- if ne .addEntryPointsLabels nil }}
+            {{- with .addEntryPointsLabels | toString }}
+          - "--metrics.datadog.addEntryPointsLabels={{ . }}"
+            {{- end }}
+           {{- end }}
+           {{- if ne .addServicesLabels nil }}
+            {{- with .addServicesLabels | toString }}
+          - "--metrics.datadog.addServicesLabels={{ . }}"
+            {{- end }}
+           {{- end }}
           {{- end }}
 
           {{- with .Values.metrics.influxdb }}
           - "--metrics.influxdb=true"
           - "--metrics.influxdb.address={{ .address }}"
           - "--metrics.influxdb.protocol={{ .protocol }}"
-          {{- with .database }}
+           {{- with .database }}
           - "--metrics.influxdb.database={{ . }}"
-          {{- end }}
-          {{- with .retentionPolicy }}
+           {{- end }}
+           {{- with .retentionPolicy }}
           - "--metrics.influxdb.retentionPolicy={{ . }}"
-          {{- end }}
-          {{- with .username }}
+           {{- end }}
+           {{- with .username }}
           - "--metrics.influxdb.username={{ . }}"
-          {{- end }}
-          {{- with .password }}
+           {{- end }}
+           {{- with .password }}
           - "--metrics.influxdb.password={{ . }}"
-          {{- end }}
-          {{- with .pushInterval }}
+           {{- end }}
+           {{- with .pushInterval }}
           - "--metrics.influxdb.pushInterval={{ . }}"
-          {{- end }}
-          {{- range $name, $value := .additionalLabels }}
+           {{- end }}
+           {{- range $name, $value := .additionalLabels }}
           - "--metrics.influxdb.additionalLabels.{{ $name }}={{ $value }}"
-          {{- end }}
-          {{- if .addRoutersLabels}}
-          - "--metrics.influxdb.addRoutersLabels=true"
-          {{- end }}
-          {{- if eq (.addEntryPointsLabels | toString) "false" }}
-          - "--metrics.influxdb.addEntryPointsLabels=false"
-          {{- end }}
-          {{- if eq (.addServicesLabels | toString) "false" }}
-          - "--metrics.influxdb.addServicesLabels=false"
-          {{- end }}
+           {{- end }}
+           {{- if ne .addRoutersLabels nil }}
+            {{- with .addRoutersLabels | toString }}
+          - "--metrics.influxdb.addRoutersLabels={{ . }}"
+            {{- end }}
+           {{- end }}
+           {{- if ne .addEntryPointsLabels nil }}
+            {{- with .addEntryPointsLabels | toString }}
+          - "--metrics.influxdb.addEntryPointsLabels={{ . }}"
+            {{- end }}
+           {{- end }}
+           {{- if ne .addServicesLabels nil }}
+            {{- with .addServicesLabels | toString }}
+          - "--metrics.influxdb.addServicesLabels={{ . }}"
+            {{- end }}
+           {{- end }}
           {{- end }}
 
           {{- with .Values.metrics.influxdb2 }}
@@ -190,34 +226,43 @@
           - "--metrics.influxdb2.token={{ .token }}"
           - "--metrics.influxdb2.org={{ .org }}"
           - "--metrics.influxdb2.bucket={{ .bucket }}"
-          {{- with .pushInterval }}
+           {{- with .pushInterval }}
           - "--metrics.influxdb2.pushInterval={{ . }}"
-          {{- end }}
-          {{- range $name, $value := .additionalLabels }}
+           {{- end }}
+           {{- range $name, $value := .additionalLabels }}
           - "--metrics.influxdb2.additionalLabels.{{ $name }}={{ $value }}"
+           {{- end }}
+           {{- if ne .addRoutersLabels nil }}
+            {{- with .addRoutersLabels | toString }}
+          - "--metrics.influxdb2.addRoutersLabels={{ . }}"
+            {{- end }}
+           {{- end }}
+           {{- if ne .addEntryPointsLabels nil }}
+            {{- with .addEntryPointsLabels | toString }}
+          - "--metrics.influxdb2.addEntryPointsLabels={{ . }}"
+            {{- end }}
+           {{- end }}
+           {{- if ne .addServicesLabels nil }}
+            {{- with .addServicesLabels | toString }}
+          - "--metrics.influxdb2.addServicesLabels={{ . }}"
+            {{- end }}
+           {{- end }}
           {{- end }}
-          {{- if .addRoutersLabels}}
-          - "--metrics.influxdb2.addRoutersLabels=true"
-          {{- end }}
-          {{- if eq (.addEntryPointsLabels | toString) "false" }}
-          - "--metrics.influxdb2.addEntryPointsLabels=false"
-          {{- end }}
-          {{- if eq (.addServicesLabels | toString) "false" }}
-          - "--metrics.influxdb2.addServicesLabels=false"
-          {{- end }}
-          {{- end }}
-          {{- if (or .Values.metrics.prometheus .Values.hub.enabled) }}
+          {{- if (.Values.metrics.prometheus) }}
           - "--metrics.prometheus=true"
           - "--metrics.prometheus.entrypoint={{ .Values.metrics.prometheus.entryPoint }}"
-          {{- if (or (eq (.Values.metrics.prometheus.addRoutersLabels | toString) "true") .Values.hub.enabled) }}
+          {{- if (eq (.Values.metrics.prometheus.addRoutersLabels | toString) "true") }}
           - "--metrics.prometheus.addRoutersLabels=true"
           {{- end }}
-          {{- if eq (.Values.metrics.prometheus.addEntryPointsLabels | toString) "false" }}
-
-          - "--metrics.prometheus.addEntryPointsLabels=false"
+          {{- if ne .Values.metrics.prometheus.addEntryPointsLabels nil }}
+           {{- with .Values.metrics.prometheus.addEntryPointsLabels | toString }}
+          - "--metrics.prometheus.addEntryPointsLabels={{ . }}"
+           {{- end }}
           {{- end }}
-          {{- if eq (.Values.metrics.prometheus.addServicesLabels| toString) "false" }}
-          - "--metrics.prometheus.addServicesLabels=false"
+          {{- if ne .Values.metrics.prometheus.addServicesLabels nil }}
+           {{- with .Values.metrics.prometheus.addServicesLabels| toString }}
+          - "--metrics.prometheus.addServicesLabels={{ . }}"
+           {{- end }}
           {{- end }}
           {{- if .Values.metrics.prometheus.buckets }}
           - "--metrics.prometheus.buckets={{ .Values.metrics.prometheus.buckets }}"
@@ -229,77 +274,122 @@
           {{- with .Values.metrics.statsd }}
           - "--metrics.statsd=true"
           - "--metrics.statsd.address={{ .address }}"
-          {{- with .pushInterval }}
+           {{- with .pushInterval }}
           - "--metrics.statsd.pushInterval={{ . }}"
-          {{- end }}
-          {{- with .prefix }}
+           {{- end }}
+           {{- with .prefix }}
           - "--metrics.statsd.prefix={{ . }}"
-          {{- end }}
-          {{- if .addRoutersLabels}}
+           {{- end }}
+           {{- if .addRoutersLabels}}
           - "--metrics.statsd.addRoutersLabels=true"
-          {{- end }}
-          {{- if eq (.addEntryPointsLabels | toString) "false" }}
-          - "--metrics.statsd.addEntryPointsLabels=false"
-          {{- end }}
-          {{- if eq (.addServicesLabels | toString) "false" }}
-          - "--metrics.statsd.addServicesLabels=false"
-          {{- end }}
+           {{- end }}
+           {{- if ne .addEntryPointsLabels nil }}
+            {{- with .addEntryPointsLabels | toString }}
+          - "--metrics.statsd.addEntryPointsLabels={{ . }}"
+            {{- end }}
+           {{- end }}
+           {{- if ne .addServicesLabels nil }}
+            {{- with .addServicesLabels | toString }}
+          - "--metrics.statsd.addServicesLabels={{ . }}"
+            {{- end }}
+           {{- end }}
           {{- end }}
 
           {{- end }}
 
           {{- with .Values.metrics.openTelemetry }}
-          {{- if eq ($.Values.experimental.v3.enabled | toString) "false" }}
-            {{- fail "ERROR: OpenTelemetry features are only available on Traefik v3. Please set `experimental.v3.enabled` to true and update `image.tag` to `v3.0`." }}
-          {{- end }}
+           {{- if semverCompare "<3.0.0-0" (default $.Chart.AppVersion $.Values.image.tag) }}
+             {{- fail "ERROR: OpenTelemetry features are only available on Traefik v3. Please set `image.tag` to `v3.x`." }}
+           {{- end }}
           - "--metrics.openTelemetry=true"
           - "--metrics.openTelemetry.address={{ .address }}"
-          {{- with .addEntryPointsLabels }}
+           {{- if ne .addEntryPointsLabels nil }}
+            {{- with .addEntryPointsLabels | toString }}
           - "--metrics.openTelemetry.addEntryPointsLabels={{ . }}"
-          {{- end }}
-          {{- with .addRoutersLabels }}
+            {{- end }}
+           {{- end }}
+           {{- if ne .addRoutersLabels nil }}
+            {{- with .addRoutersLabels | toString }}
           - "--metrics.openTelemetry.addRoutersLabels={{ . }}"
-          {{- end }}
-          {{- with .addServicesLabels }}
+            {{- end }}
+           {{- end }}
+           {{- if ne .addServicesLabels nil }}
+            {{- with .addServicesLabels | toString }}
           - "--metrics.openTelemetry.addServicesLabels={{ . }}"
-          {{- end }}
-          {{- with .explicitBoundaries }}
+            {{- end }}
+           {{- end }}
+           {{- with .explicitBoundaries }}
           - "--metrics.openTelemetry.explicitBoundaries={{ join "," . }}"
-          {{- end }}
-          {{- with .headers }}
-          {{- range $name, $value := . }}
+           {{- end }}
+           {{- with .headers }}
+            {{- range $name, $value := . }}
           - "--metrics.openTelemetry.headers.{{ $name }}={{ $value }}"
-          {{- end }}
-          {{- end }}
-          {{- with .insecure }}
+            {{- end }}
+           {{- end }}
+           {{- with .insecure }}
           - "--metrics.openTelemetry.insecure={{ . }}"
-          {{- end }}
-          {{- with .pushInterval }}
+           {{- end }}
+           {{- with .pushInterval }}
           - "--metrics.openTelemetry.pushInterval={{ . }}"
-          {{- end }}
-          {{- with .path }}
+           {{- end }}
+           {{- with .path }}
           - "--metrics.openTelemetry.path={{ . }}"
-          {{- end }}
-          {{- with .tls }}
-          {{- with .ca }}
+           {{- end }}
+           {{- with .tls }}
+            {{- with .ca }}
           - "--metrics.openTelemetry.tls.ca={{ . }}"
-          {{- end }}
-          {{- with .cert }}
+            {{- end }}
+            {{- with .cert }}
           - "--metrics.openTelemetry.tls.cert={{ . }}"
-          {{- end }}
-          {{- with .key }}
+            {{- end }}
+            {{- with .key }}
           - "--metrics.openTelemetry.tls.key={{ . }}"
-          {{- end }}
-          {{- with .insecureSkipVerify }}
+            {{- end }}
+            {{- with .insecureSkipVerify }}
           - "--metrics.openTelemetry.tls.insecureSkipVerify={{ . }}"
-          {{- end }}
-          {{- end }}
-          {{- with .grpc }}
+            {{- end }}
+           {{- end }}
+           {{- with .grpc }}
           - "--metrics.openTelemetry.grpc={{ . }}"
-          {{- end }}
+           {{- end }}
           {{- end }}
 
           {{- if .Values.tracing }}
+
+          {{- if .Values.tracing.openTelemetry }}
+           {{- if semverCompare "<3.0.0-0" (default $.Chart.AppVersion $.Values.image.tag) }}
+             {{- fail "ERROR: OpenTelemetry features are only available on Traefik v3. Please set `image.tag` to `v3.x`." }}
+           {{- end }}
+          - "--tracing.openTelemetry=true"
+          - "--tracing.openTelemetry.address={{ required "ERROR: When enabling openTelemetry on tracing, `tracing.openTelemetry.address` is required." .Values.tracing.openTelemetry.address }}"
+          {{- range $key, $value := .Values.tracing.openTelemetry.headers }}
+          - "--tracing.openTelemetry.headers.{{ $key }}={{ $value }}"
+          {{- end }}
+          {{- if .Values.tracing.openTelemetry.insecure }}
+          - "--tracing.openTelemetry.insecure={{ .Values.tracing.openTelemetry.insecure }}"
+          {{- end }}
+          {{- if .Values.tracing.openTelemetry.path }}
+          - "--tracing.openTelemetry.path={{ .Values.tracing.openTelemetry.path }}"
+          {{- end }}
+          {{- if .Values.tracing.openTelemetry.tls }}
+          {{- if .Values.tracing.openTelemetry.tls.ca }}
+          - "--tracing.openTelemetry.tls.ca={{ .Values.tracing.openTelemetry.tls.ca }}"
+          {{- end }}
+          {{- if .Values.tracing.openTelemetry.tls.cert }}
+          - "--tracing.openTelemetry.tls.cert={{ .Values.tracing.openTelemetry.tls.cert }}"
+          {{- end }}
+          {{- if .Values.tracing.openTelemetry.tls.key }}
+          - "--tracing.openTelemetry.tls.key={{ .Values.tracing.openTelemetry.tls.key }}"
+          {{- end }}
+          {{- if .Values.tracing.openTelemetry.tls.insecureSkipVerify }}
+          - "--tracing.openTelemetry.tls.insecureSkipVerify={{ .Values.tracing.openTelemetry.tls.insecureSkipVerify }}"
+          {{- end }}
+          {{- end }}
+          {{- if .Values.tracing.openTelemetry.grpc }}
+          - "--tracing.openTelemetry.grpc=true"
+          {{- end }}
+          {{- end }}
+
           {{- if .Values.tracing.instana }}
           - "--tracing.instana=true"
           {{- if .Values.tracing.instana.localAgentHost }}
@@ -428,10 +518,10 @@
           {{- if .Values.providers.kubernetesCRD.ingressClass }}
           - "--providers.kubernetescrd.ingressClass={{ .Values.providers.kubernetesCRD.ingressClass }}"
           {{- end }}
-          {{- if (or .Values.providers.kubernetesCRD.allowCrossNamespace .Values.hub.enabled) }}
+          {{- if .Values.providers.kubernetesCRD.allowCrossNamespace }}
           - "--providers.kubernetescrd.allowCrossNamespace=true"
           {{- end }}
-          {{- if (or .Values.providers.kubernetesCRD.allowExternalNameServices .Values.hub.enabled) }}
+          {{- if .Values.providers.kubernetesCRD.allowExternalNameServices }}
           - "--providers.kubernetescrd.allowExternalNameServices=true"
           {{- end }}
           {{- if .Values.providers.kubernetesCRD.allowEmptyServices }}
@@ -471,64 +561,67 @@
           {{- end }}
           {{- end }}
           {{- range $entrypoint, $config := $.Values.ports }}
-          {{- if $config.redirectTo }}
-          {{- $toPort := index $.Values.ports $config.redirectTo }}
+          {{- if $config }}
+            {{- if $config.redirectTo }}
+            {{- $toPort := index $.Values.ports $config.redirectTo }}
           - "--entrypoints.{{ $entrypoint }}.http.redirections.entryPoint.to=:{{ $toPort.exposedPort }}"
           - "--entrypoints.{{ $entrypoint }}.http.redirections.entryPoint.scheme=https"
-          {{- end }}
-          {{- if $config.middlewares }}
+            {{- end }}
+            {{- if $config.middlewares }}
           - "--entrypoints.{{ $entrypoint }}.http.middlewares={{ join "," $config.middlewares }}"
-          {{- end }}
-          {{- if $config.tls }}
-          {{- if $config.tls.enabled }}
+            {{- end }}
+            {{- if $config.tls }}
+              {{- if $config.tls.enabled }}
           - "--entrypoints.{{ $entrypoint }}.http.tls=true"
-          {{- if $config.tls.options }}
+                {{- if $config.tls.options }}
           - "--entrypoints.{{ $entrypoint }}.http.tls.options={{ $config.tls.options }}"
-          {{- end }}
-          {{- if $config.tls.certResolver }}
+                {{- end }}
+                {{- if $config.tls.certResolver }}
           - "--entrypoints.{{ $entrypoint }}.http.tls.certResolver={{ $config.tls.certResolver }}"
-          {{- end }}
-          {{- if $config.tls.domains }}
-          {{- range $index, $domain := $config.tls.domains }}
-          {{- if $domain.main }}
+                {{- end }}
+                {{- if $config.tls.domains }}
+                  {{- range $index, $domain := $config.tls.domains }}
+                    {{- if $domain.main }}
           - "--entrypoints.{{ $entrypoint }}.http.tls.domains[{{ $index }}].main={{ $domain.main }}"
-          {{- end }}
-          {{- if $domain.sans }}
+                    {{- end }}
+                    {{- if $domain.sans }}
           - "--entrypoints.{{ $entrypoint }}.http.tls.domains[{{ $index }}].sans={{ join "," $domain.sans }}"
-          {{- end }}
-          {{- end }}
-          {{- end }}
-          {{- if $config.http3 }}
-          {{- if $config.http3.enabled }}
+                    {{- end }}
+                  {{- end }}
+                {{- end }}
+                {{- if $config.http3 }}
+                  {{- if $config.http3.enabled }}
+                    {{- if semverCompare "<3.0.0-0" (default $.Chart.AppVersion $.Values.image.tag)}}
           - "--experimental.http3=true"
-          {{- if semverCompare ">=2.6.0" (default $.Chart.AppVersion $.Values.image.tag)}}
-          {{- if $config.http3.advertisedPort }}
-          - "--entrypoints.{{ $entrypoint }}.http3.advertisedPort={{ $config.http3.advertisedPort }}"
-          {{- else }}
+                    {{- end }}
+                    {{- if semverCompare ">=2.6.0-0" (default $.Chart.AppVersion $.Values.image.tag)}}
           - "--entrypoints.{{ $entrypoint }}.http3"
-          {{- end }}
-          {{- else }}
+                    {{- else }}
           - "--entrypoints.{{ $entrypoint }}.enableHTTP3=true"
-          {{- end }}
-          {{- end }}
-          {{- end }}
-          {{- end }}
-          {{- end }}
-          {{- if $config.forwardedHeaders }}
-          {{- if $config.forwardedHeaders.trustedIPs }}
+                    {{- end }}
+                    {{- if $config.http3.advertisedPort }}
+          - "--entrypoints.{{ $entrypoint }}.http3.advertisedPort={{ $config.http3.advertisedPort }}"
+                    {{- end }}
+                  {{- end }}
+                {{- end }}
+              {{- end }}
+            {{- end }}
+            {{- if $config.forwardedHeaders }}
+              {{- if $config.forwardedHeaders.trustedIPs }}
           - "--entrypoints.{{ $entrypoint }}.forwardedHeaders.trustedIPs={{ join "," $config.forwardedHeaders.trustedIPs }}"
-          {{- end }}
-          {{- if $config.forwardedHeaders.insecure }}
+              {{- end }}
+              {{- if $config.forwardedHeaders.insecure }}
           - "--entrypoints.{{ $entrypoint }}.forwardedHeaders.insecure"
-          {{- end }}
-          {{- end }}
-          {{- if $config.proxyProtocol }}
-          {{- if $config.proxyProtocol.trustedIPs }}
+              {{- end }}
+            {{- end }}
+            {{- if $config.proxyProtocol }}
+              {{- if $config.proxyProtocol.trustedIPs }}
           - "--entrypoints.{{ $entrypoint }}.proxyProtocol.trustedIPs={{ join "," $config.proxyProtocol.trustedIPs }}"
-          {{- end }}
-          {{- if $config.proxyProtocol.insecure }}
+              {{- end }}
+              {{- if $config.proxyProtocol.insecure }}
           - "--entrypoints.{{ $entrypoint }}.proxyProtocol.insecure"
-          {{- end }}
+              {{- end }}
+            {{- end }}
           {{- end }}
           {{- end }}
           {{- with .Values.logs }}
@@ -578,30 +671,6 @@
           {{- end }}
           {{- else }}
           - "--certificatesresolvers.{{ $resolver }}.acme.{{ $option }}={{ $setting }}"
-          {{- end }}
-          {{- end }}
-          {{- end }}
-          {{- if .Values.hub.enabled }}
-          - "--experimental.hub"
-          - "--hub"
-          {{- if .Values.hub.tunnelPort }}
-          - --entrypoints.traefikhub-tunl.address=:{{.Values.hub.tunnelPort}}
-          {{- end }}
-          {{- with .Values.hub.tls }}
-          {{- if (and .insecure (coalesce .ca .cert .key)) }}
-            {{- fail "ERROR: You cannot specify insecure and certs on TLS for Traefik Hub at the same time" }}
-          {{- end }}
-          {{- if .insecure }}
-          - "--hub.tls.insecure=true"
-          {{- end }}
-          {{- if .ca }}
-          - "--hub.tls.ca={{ .ca }}"
-          {{- end }}
-          {{- if .cert }}
-          - "--hub.tls.cert={{ .cert }}"
-          {{- end }}
-          {{- if .key }}
-          - "--hub.tls.key={{ .key }}"
           {{- end }}
           {{- end }}
           {{- end }}
