@@ -9,6 +9,9 @@
 {{- define "traefik.service-spec" -}}
   {{- $type := default "LoadBalancer" .Values.service.type }}
   type: {{ $type }}
+  {{- with .Values.service.loadBalancerClass }}
+  loadBalancerClass: {{ . }}
+  {{- end}}
   {{- with .Values.service.spec }}
   {{- toYaml . | nindent 2 }}
   {{- end }}
@@ -38,10 +41,13 @@
   {{- if $config.expose }}
   - port: {{ default $config.port $config.exposedPort }}
     name: {{ $name | quote }}
-    targetPort: {{ $name }}
+    targetPort: {{ default $name $config.targetPort }}
     protocol: {{ default "TCP" $config.protocol }}
     {{- if $config.nodePort }}
     nodePort: {{ $config.nodePort }}
+    {{- end }}
+    {{- if $config.appProtocol }}
+    appProtocol: {{ $config.appProtocol }}
     {{- end }}
   {{- end }}
   {{- if $config.http3 }}
@@ -49,10 +55,13 @@
   {{- $http3Port := default $config.exposedPort $config.http3.advertisedPort }}
   - port: {{ $http3Port }}
     name: "{{ $name }}-http3"
-    targetPort: {{ $config.port }}
+    targetPort: {{ default $config.port $config.targetPort }}
     protocol: UDP
     {{- if $config.nodePort }}
     nodePort: {{ $config.nodePort }}
+    {{- end }}
+    {{- if $config.appProtocol }}
+    appProtocol: {{ $config.appProtocol }}
     {{- end }}
   {{- end }}
   {{- end }}
