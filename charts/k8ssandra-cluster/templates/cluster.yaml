@@ -1,11 +1,11 @@
 apiVersion: k8ssandra.io/v1alpha1
 kind: K8ssandraCluster
 metadata:
-  name: temporal
+  name: capten-cass
 spec:
   cassandra:
     serverVersion: "4.0.1"
-    serverImage: k8ssandra/cass-management-api:4.0.1
+    serverImage: {{ .Values.image.serverImage }}
     telemetry:
       prometheus:
         enabled: true
@@ -19,10 +19,12 @@ spec:
     config:
       jvmOptions:
         heapSize: 512M
+    networking: 
+      hostNetwork: {{ .Values.networking.hostNetwork }}
     datacenters:
       - metadata:
-          name: temporal
-        size: 1
+          name: capten-cass
+        size: {{ .Values.datacenters.size }}
     mgmtAPIHeap: 256Mi 
   stargate:
     size: 1

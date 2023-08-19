@@ -1,7 +1,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ include "grafana-dashboards.fullname" . }}-alert.rules
+  name: {{ include "monitoring.fullname" . }}-alert.rules
   annotations:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
   labels:

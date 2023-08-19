@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1alpha1
 kind: AlertmanagerConfig
 metadata:
-  name: {{ include "grafana-dashboards.fullname" . }}-slack-alertmanager
+  name: {{ include "monitoring.fullname" . }}-slack-alertmanager
   labels:
     alertmanagerConfig: slack
 spec:
@@ -22,7 +22,7 @@ spec:
     slackConfigs:
     - sendResolved: true
       apiURL:
-        name: {{ include "grafana-dashboards.fullname" . }}-slack-webhook
+        name: {{ include "monitoring.fullname" . }}-slack-webhook
         key: webhookURL
       channel: '{{ .Values.slack.channel }}'
       iconURL: https://avatars3.githubusercontent.com/u/3380462
