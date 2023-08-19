@@ -61,27 +61,21 @@ slack:
   webhook: "https://hooks.slack.com/services"
   channel: "#capten-cluster-alert"
 
-prometheus-msteams:
+teams:
   enabled: true
+  url: "http://prometheus-msteams:2000/alert"
   container:
     additionalArgs:
     - -debug
     - -teams-request-uri=alert
-
   metrics:
     serviceMonitor:
       additionalLabels:
         release: prometheus
       enabled: true
       scrapeInterval: 30s
-
   connectors:
   - alert: https://webhook.office.com/
-
-teams:
-  enabled: true  
-  url: "http://prometheus-msteams:2000/alert"
-
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
