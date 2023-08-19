@@ -418,6 +418,16 @@ entries:
   k8ssandra-cluster:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-08-19T09:04:12.006419267Z"
+    description: A Helm chart for k8ssandra-cluster
+    digest: e54231e1207f94a29111696bf86f441750d9fd71384cadbebf75fc0c8f86ba6c
+    name: k8ssandra-cluster
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/k8ssandra-cluster-0.1.3/k8ssandra-cluster-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-08-16T11:04:48.211679186Z"
     description: A Helm chart for k8ssandra-cluster
     digest: 17c197301fab24a906a2255423e6b206293b52f81b0c5d561bcc71f1c6df7a8c
@@ -877,6 +887,22 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/minio-1.0.0/minio-1.0.0.tgz
     version: 1.0.0
+  monitoring:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-08-19T09:04:12.1855462Z"
+    dependencies:
+    - condition: teams.enabled
+      name: prometheus-msteams
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: A Helm chart for Monitoring
+    digest: fa571f04125ae7063bb0b50e6ab8bc583ec79a7aca57c66e5056a01cd9cbe865
+    name: monitoring
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/monitoring-0.1.7/monitoring-0.1.7.tgz
+    version: 0.1.7
   openebs-jiva:
   - apiVersion: v2
     appVersion: 3.2.0
@@ -1945,4 +1971,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-08-18T08:02:25.628205969Z"
+generated: "2023-08-19T09:04:12.185621099Z"
