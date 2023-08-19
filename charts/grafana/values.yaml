@@ -2,7 +2,7 @@ rbac:
   create: true
   ## Use an existing ClusterRole/Role (depending on rbac.namespaced false/true)
   # useExistingRole: name-of-some-(cluster)role
-  pspEnabled: true
+  pspEnabled: false
   pspUseAppArmor: true
   namespaced: false
   extraRoleRules: []
@@ -72,8 +72,8 @@ livenessProbe:
 # schedulerName: "default-scheduler"
 
 image:
-  repository: grafana/grafana
-  tag: 8.4.6
+  repository: ghcr.io/intelops/intelops-grafana
+  tag: v1.0.0
   sha: ""
   pullPolicy: IfNotPresent
 
@@ -675,7 +675,7 @@ sidecar:
     resource: both
     # If specified, the sidecar will look for annotation with this name to create folder and put graph here.
     # You can use this parameter together with `provider.foldersFromFilesStructure`to annotate configmaps and create folder structure.
-    folderAnnotation: null
+    folderAnnotation: grafana_folder
     # Absolute path to shell script to execute after a configmap got reloaded
     script: null
     # watchServerTimeout: request to the server, asking it to cleanly close the connection after that.
@@ -703,7 +703,7 @@ sidecar:
       # allow updating provisioned dashboards from the UI
       allowUiUpdates: false
       # allow Grafana to replicate dashboard structure from filesystem
-      foldersFromFilesStructure: false
+      foldersFromFilesStructure: true
     # Additional dashboard sidecar volume mounts
     extraMounts: []
   datasources:
