@@ -27,6 +27,9 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: ""
 
+kubectl:
+  image: ghcr.io/kube-tarian/helmrepo-supporting-tools/kubectl:1.26.4
+
 podAnnotations: {}
 
 podSecurityContext: {}

@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cassdc-status-check
+  annotations:
+    "helm.sh/hook": post-install,post-upgrade
+    "helm.sh/hook-weight": "1"
+    "helm.sh/hook-delete-policy": hook-succeeded
+spec:
+  template:
+    spec:
+      serviceAccountName: {{ include "k8ssandra-cluster.serviceAccountName" . }}
+      containers:
+        - name: cassdc-status-check-container
+          image: {{ .Values.kubectl.image }}
+          command: ["/bin/sh"]
+          args:
+            - "-c"
+            - |
+              end=$((SECONDS+300))  # 300 seconds = 5 minutes
+              while [ $SECONDS -lt $end ]; do
+                status=$(kubectl get cassdc/capten-cass -n capten -o "jsonpath={.status.cassandraOperatorProgress}")
+                echo "CassDC Status: $status"
+                if [[ "$status" == "Ready" ]]; then
+                  echo "CassDC is ready!"
+                  break
+                fi
+                sleep 10
+              done
+      restartPolicy: Never
