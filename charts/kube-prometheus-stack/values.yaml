@@ -845,6 +845,13 @@ grafana:
   enabled: true
   namespaceOverride: ""
 
+  image:
+    repository: ghcr.io/intelops/intelops-grafana
+    # Overrides the Grafana image tag whose default is the chart appVersion
+    tag: "v1.0.0"
+    sha: ""
+    pullPolicy: IfNotPresent
+
   ## ForceDeployDatasources Create datasource configmap even if grafana deployment has been disabled
   ##
   forceDeployDatasources: false
