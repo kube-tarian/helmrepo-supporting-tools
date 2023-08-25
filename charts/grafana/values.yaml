@@ -73,7 +73,7 @@ livenessProbe:
 
 image:
   repository: ghcr.io/intelops/intelops-grafana
-  tag: v1.0.0
+  tag: v1.0.1
   sha: ""
   pullPolicy: IfNotPresent
 
