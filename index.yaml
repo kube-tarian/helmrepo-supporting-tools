@@ -1210,6 +1210,33 @@ entries:
   openebs-ndm:
   - apiVersion: v2
     appVersion: 2.1.0
+    created: "2023-08-25T04:41:20.604306345Z"
+    description: Helm chart for OpenEBS Node Disk Manager - a Kubernetes native storage
+      device management solution. For instructions on how to install, refer to https://openebs.github.io/node-disk-manager/.
+    digest: 4db1f83357c1c9d92a8fca59dccc55b67ad292c025851e43ff247ac18fd92c19
+    home: http://www.openebs.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/openebs/icon/color/openebs-icon-color.png
+    keywords:
+    - cloud-native-storage
+    - block-storage
+    - ndm
+    - disk-inventory
+    - storage
+    maintainers:
+    - email: akhil.mohan@mayadata.io
+      name: akhilerm
+    - email: michaelfornaro@gmail.com
+      name: xUnholy
+    - email: prateek.pandey@mayadata.io
+      name: prateekpandey14
+    name: openebs-ndm
+    sources:
+    - https://github.com/openebs/node-disk-manager
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/openebs-ndm-2.1.1/openebs-ndm-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 2.1.0
     created: "2023-07-09T16:21:43.522424599Z"
     description: Helm chart for OpenEBS Node Disk Manager - a Kubernetes native storage
       device management solution. For instructions on how to install, refer to https://openebs.github.io/node-disk-manager/.
@@ -2076,4 +2103,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-08-24T16:22:28.803223824Z"
+generated: "2023-08-25T04:41:20.604407545Z"
