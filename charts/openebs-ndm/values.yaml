@@ -13,8 +13,8 @@ ndm:
   image:
     # Make sure that registry name end with a '/'.
     # For example : quay.io/ is a correct value here and quay.io is incorrect
-    registry:
-    repository: openebs/node-disk-manager
+    registry: ghcr.io/
+    repository: kube-tarian/helmrepo-supporting-tools/node-disk-manager
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: 2.1.0
@@ -62,8 +62,8 @@ ndmOperator:
   name: operator
   enabled: true
   image:
-    registry:
-    repository: openebs/node-disk-operator
+    registry: ghcr.io/
+    repository: kube-tarian/helmrepo-supporting-tools/node-disk-operator
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: 2.1.0
@@ -87,8 +87,8 @@ ndmOperator:
 ndmExporter:
   enabled: false
   image:
-    registry:
-    repository: openebs/node-disk-exporter
+    registry: ghcr.io/
+    repository: kube-tarian/helmrepo-supporting-tools/node-disk-exporter
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: 2.1.0
@@ -115,8 +115,8 @@ ndmExporter:
 
 helperPod:
   image:
-    registry: ""
-    repository: openebs/linux-utils
+    registry: ghcr.io/
+    repository: kube-tarian/helmrepo-supporting-tools/linux-utils
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: 3.4.0
