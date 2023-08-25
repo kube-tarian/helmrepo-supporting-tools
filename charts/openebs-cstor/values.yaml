@@ -8,6 +8,20 @@ release:
 # If false, openebs NDM sub-chart will not be installed
 openebsNDM:
   enabled: true
+  ndm:
+    image:
+      registry: ghcr.io/
+      repository: kube-tarian/helmrepo-supporting-tools/node-disk-manager
+      pullPolicy: IfNotPresent
+      tag: 2.1.0
+  ndmOperator:
+    name: operator
+    enabled: true
+    image:
+      registry: ghcr.io/
+      repository: kube-tarian/helmrepo-supporting-tools/node-disk-operator
+      pullPolicy: IfNotPresent
+      tag: 2.1.0
 
 rbac:
   # rbac.create: `true` if rbac resources should be created
@@ -22,24 +36,24 @@ cspcOperator:
   componentName: cspc-operator
   poolManager:
     image:
-      registry:
-      repository: openebs/cstor-pool-manager
+      registry: ghcr.io/
+      repository: kube-tarian/helmrepo-supporting-tools/cstor-pool
       tag: 3.4.0
   cstorPool:
     image:
-      registry:
-      repository: openebs/cstor-pool
+      registry: ghcr.io/
+      repository: kube-tarian/helmrepo-supporting-tools/cstor-pool
       tag: 3.4.0
   cstorPoolExporter:
     image:
-      registry:
-      repository: openebs/m-exporter
+      registry: ghcr.io/
+      repository: kube-tarian/helmrepo-supporting-tools/m-exporter:3.4.0
       tag: 3.4.0
   image:
     # Make sure that registry name end with a '/'.
     # For example : quay.io/ is a correct value here and quay.io is incorrect
-    registry:
-    repository: openebs/cspc-operator
+    registry: ghcr.io/
+    repository: kube-tarian/helmrepo-supporting-tools/cspc-operator
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: 3.4.0
@@ -58,24 +72,24 @@ cvcOperator:
   componentName: cvc-operator
   target:
     image:
-      registry:
-      repository: openebs/cstor-istgt
+      registry: ghcr.io/
+      repository: kube-tarian/helmrepo-supporting-tools/cstor-istgt
       tag: 3.4.0
   volumeMgmt:
     image:
-      registry:
-      repository: openebs/cstor-volume-manager
+      registry: ghcr.io/
+      repository: kube-tarian/helmrepo-supporting-tools/cstor-volume-manager
       tag: 3.4.0
   volumeExporter:
     image:
-      registry:
-      repository: openebs/m-exporter
+      registry: ghcr.io/
+      repository: kube-tarian/helmrepo-supporting-tools/m-exporter
       tag: 3.4.0
   image:
     # Make sure that registry name end with a '/'.
     # For example : quay.io/ is a correct value here and quay.io is incorrect
-    registry:
-    repository: openebs/cvc-operator
+    registry: ghcr.io/
+    repository: kube-tarian/helmrepo-supporting-tools/cvc-operator
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: 3.4.0
@@ -160,11 +174,11 @@ cstorCSIPlugin:
   image:
     # Make sure that registry name end with a '/'.
     # For example : quay.io/ is a correct value here and quay.io is incorrect
-    registry:
-    repository: openebs/cstor-csi-driver
+    registry: ghcr.io/
+    repository: kube-tarian/helmrepo-supporting-tools/cstor-csi-driver
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: 3.4.0
+    tag: 3.5.0
   remount: "true"
 
 csiNode:
@@ -213,8 +227,8 @@ admissionServer:
   image:
     # Make sure that registry name end with a '/'.
     # For example : quay.io/ is a correct value here and quay.io is incorrect
-    registry:
-    repository: openebs/cstor-webhook
+    registry: ghcr.io/
+    repository: kube-tarian/helmrepo-supporting-tools/cstor-webhook
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: 3.4.0
@@ -251,6 +265,6 @@ cleanup:
   image:
     # Make sure that registry name end with a '/'.
     # For example : quay.io/ is a correct value here and quay.io is incorrect
-    registry:
-    repository: bitnami/kubectl
-    tag:
+    registry: ghcr.io/
+    repository: kube-tarian/helmrepo-supporting-tools/kubectl:1.26.4
+    tag: 1.26.4

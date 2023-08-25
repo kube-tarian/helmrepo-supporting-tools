@@ -1,0 +1,6 @@
+dependencies:
+- name: openebs-ndm
+  repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+  version: 2.1.1
+digest: sha256:243945432d1ed08dad501a1d7c8928118054099f048d6252ed4c37e18eb989fb
+generated: "2023-08-25T10:53:19.740018185+05:30"
