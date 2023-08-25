@@ -848,7 +848,7 @@ grafana:
   image:
     repository: ghcr.io/intelops/intelops-grafana
     # Overrides the Grafana image tag whose default is the chart appVersion
-    tag: "v1.0.0"
+    tag: "v1.0.1"
     sha: ""
     pullPolicy: IfNotPresent
 
