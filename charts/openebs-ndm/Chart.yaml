@@ -19,4 +19,4 @@ maintainers:
 name: openebs-ndm
 sources:
 - https://github.com/openebs/node-disk-manager
-version: 2.1.0
+version: 2.1.1
