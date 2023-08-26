@@ -1,0 +1,127 @@
+apiVersion: {{ include "global.capabilities.deployment.apiVersion" . }}
+kind: Deployment
+metadata:
+  name: testkube-operator-controller-manager
+  namespace: {{ include "testkube-operator.namespace" . }}
+  labels:
+    control-plane: controller-manager
+    {{- if .Values.global.labels }}
+    {{- include "global.tplvalues.render" ( dict "value" .Values.global.labels "context" $ ) | nindent 4 }}
+    {{- end }}
+  {{- if .Values.global.annotations }}
+  annotations: {{- include "global.tplvalues.render" ( dict "value" .Values.global.annotations "context" $ ) | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      labels:
+        control-plane: controller-manager
+        {{- if .Values.podLabels }}
+        {{- include "global.tplvalues.render" ( dict "value" .Values.podLabels "context" $ ) | nindent 8 }}
+        {{- end }}
+        {{- if .Values.global.labels }}
+        {{- include "global.tplvalues.render" ( dict "value" .Values.global.labels "context" $ ) | nindent 8 }}
+        {{- end }}
+        {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- include "global.images.renderPullSecrets" . | nindent 6 }}
+      {{- if .Values.priorityClassName }}
+      priorityClassName: {{ .Values.priorityClassName }}
+      {{- end }}
+      containers:
+      - name: kube-rbac-proxy
+        args:
+        - --secure-listen-address=0.0.0.0:8443
+        - --upstream=http://127.0.0.1:8080/
+        - --logtostderr=true
+        - --v=10
+        image: {{ include "global.images.image" (dict "imageRoot" .Values.proxy.image "global" .Values.global) }}
+        imagePullPolicy: {{ .Values.proxy.image.pullPolicy }}
+        {{- if .Values.proxy.resources }}
+        resources: {{ toYaml .Values.proxy.resources | nindent 10 }}
+        {{- end }}
+        ports:
+        - containerPort: 9443
+          name: https
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
+      - name: manager
+        args:
+        - --health-probe-bind-address=:{{ .Values.healthcheckPort }}
+        - --metrics-bind-address=127.0.0.1:8080
+        - --leader-elect
+        command:
+        - /manager
+        image: {{ include "testkube-operator.image" . }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: APISERVER_FULLNAME
+          value: "{{ .Values.apiFullname }}"
+        - name: APISERVER_PORT
+          value: "{{ .Values.apiPort }}"
+        - name: APISERVER_TEMPLATE_CRONJOB
+          value: "{{ .Files.Get "cronjob-template.yml" | b64enc }}"
+        {{- if not .Values.webhook.enabled }}
+        - name: ENABLE_WEBHOOKS
+          value: "false"
+        {{- end }}
+        {{- if .Values.extraEnvVars }}
+        {{ include "global.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 8 | trim }}
+        {{- end }}
+        {{- if .Values.global }}
+        - name: APISERVER_REGISTRY
+          value:  {{ .Values.global.imageRegistry }}
+        {{- end }}
+        ports:
+        - containerPort: 9443
+          name: webhook-server
+          protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: {{ .Values.healthcheckPort }}
+          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: {{ .Values.healthcheckPort }}
+          initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+        {{- if .Values.resources }}
+        resources: {{ toYaml .Values.resources | nindent 10 }}
+        {{- end }}
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
+        volumeMounts:
+        - mountPath: /tmp/k8s-webhook-server/serving-certs
+          name: cert
+          readOnly: true
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      serviceAccountName: {{ include "testkube-operator.serviceAccountName" . }}
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      volumes:
+      - name: cert
+        secret:
+          defaultMode: {{ .Values.volumes.secret.defaultMode }}
+          secretName: {{ .Values.webhook.certificate.secretName }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
