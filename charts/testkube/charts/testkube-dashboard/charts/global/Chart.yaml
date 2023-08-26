@@ -1,0 +1,22 @@
+annotations:
+  category: Infrastructure
+apiVersion: v2
+appVersion: 0.1.1
+description: A Library Helm Chart for definitions that can be shared by Helm templates
+  in other charts.
+home: https://github.com/kubeshop/helm-charts/tree/main/charts/global
+keywords:
+- global
+- helper
+- template
+- function
+- testkube
+maintainers:
+- name: Testkube
+  url: https://github.com/kubeshop/testkube
+name: global
+sources:
+- https://github.com/kubeshop/helm-charts
+- https://testkube.io/
+type: library
+version: 0.1.1

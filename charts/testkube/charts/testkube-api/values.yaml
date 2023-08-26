@@ -1,0 +1,412 @@
+# Default values for testkube-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+### @section  Global image parameters
+## Important! Please, note that this will override sub-chart image parameters.
+## Global Docker image registry
+## Global Docker registry secret names as an array
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+  labels: {}
+  annotations: {}
+
+### @section Common parameters
+## Kubernetes version (using Helm capabilities if not set)
+kubeVersion: ""
+
+## create roles and rolebindings
+rbac:
+  create: true
+
+## Number of Testkube API Pod replicas
+replicaCount: 1
+
+## Testkube Pod annotations
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
+
+## Extra labels for Testkube API pods
+## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+podLabels: {}
+
+### @section Specific parameters
+## image.registry Testkube API image registry
+## image.repository Testkube API image name
+## image.tag Testkube API image tag
+## image.digest Testkube API image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
+## image.pullPolicy Testkube API Image pull policy
+image:
+  registry: docker.io
+  repository: kubeshop/testkube-api-server
+  pullPolicy: IfNotPresent
+  ## Overrides the image tag whose default is the chart appVersion.
+  # tag: "1.7.24"
+  digest: ""
+
+## Chart parameters
+## nameOverride Overrides Chart name
+## fullnameOverride Full name that overrides Chart name
+nameOverride: ""
+fullnameOverride: ""
+
+## Custom job-template.yml that will passed to Testkube API
+configValues: ""
+
+## Testkube API Deployment parameters
+## Running Testkube in Agent mode
+cloud:
+  ## URL of the Cloud Saas Control Plane
+  url: "agent.testkube.io:443"
+  ## License Key
+  key: ""
+  ## Organization ID
+  orgId: ""
+  ## Environment ID
+  envId: ""
+  ## true if migration from OSS
+  migrate: ""
+
+## Multinamespace feature. Disabled by default
+multinamespace:
+  enabled: false
+
+## Extra Environment Variables which will be injected into the Testkube API container
+extraEnvVars: {}
+# - name: FOO
+#   value: BAR
+## Additional namespaces for Testkube API to watch
+# Watch namespaces. In this case, a Role and a RoleBinding will be created for each specified namespace.
+additionalNamespaces: []
+## Enable analytics for Testkube
+analyticsEnabled: true
+# -- Testkube timeout for pod start
+podStartTimeout: "30m"
+
+## Integration with Slack.
+##ref: https://kubeshop.github.io/testkube/integrations/slack-integration/
+## Slack token from the testkube authentication endpoint
+slackToken: ""
+
+## Slack secret to store slackToken, the key name should be SLACK_TOKEN
+slackSecret: ""
+
+## Slack config for the events, tests, testsuites and channels
+slackConfig: ""
+
+templates:
+  ## Base64 encoded Job template
+  job: ""
+  ## Base64 encoded Job Container template
+  jobContainer: ""
+  ## Base64 encoded Scraper Container template
+  scraperContainer: ""
+  ## Base64 encoded PVC Container template
+  pvcContainer: ""
+
+jobServiceAccountName: ""
+
+## base64 encoded executors.json alike data
+executors: ""
+
+## target for cdevents emission via http(s)
+cdeventsTarget: ""
+
+## dashboard uri to be used in notification events
+dashboardUri: ""
+
+## cluster name to be used in events
+clusterName: ""
+
+## Testkube API resource requests and limits
+resources:
+  {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+#   memory: 128Mi
+
+## Autoscaling parameters
+## Enable autoscaling for Testkube API deployment
+## Add custom labels to autoscaling
+## Add custom annotations to autoscaling
+## Minimum number of replicas to scale back
+## Maximum number of replicas to scale out
+## Target CPU utilization percentage
+## Target Memory utilization percentage
+autoscaling:
+  enabled: false
+  labels: {}
+  annotations: {}
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+## Node labels for Testkube API pod assignment.
+nodeSelector: {}
+
+## Tolerations for Testkube API  assignment.
+tolerations: []
+
+## Affinity for Testkube API pod assignment.
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+## Note: podAffinityPreset, podAntiAffinityPreset, and nodeAffinityPreset will be ignored when it's set
+affinity: {}
+
+## Specify priorityClassName for Testkube API Deployment
+priorityClassName: ""
+
+## Storage for Testkube API. Now Minio is used:
+storage:
+  endpoint: ""
+  endpoint_port: "9000"
+  accessKeyId: ""
+  accessKey: ""
+  ## k8s Secret name for storage accessKeyId
+  secretNameAccessKeyId: ""
+  ## Key for storage accessKeyId taken from k8s secret
+  secretKeyAccessKeyId: ""
+  ## K8s Secret Name for storage secretAccessKeyId
+  secretNameSecretAccessKey: ""
+  ## Key for storage secretAccessKeyId taken from k8s secret
+  secretKeySecretAccessKey: ""
+  region: ""
+  token: ""
+  bucket: "testkube-artifacts"
+  # expiration period in days
+  expiration: 0
+  SSL: false
+  scrapperEnabled: true
+  compressArtifacts: true
+
+## Logs storage for Testkube API.
+logs:
+  ## where the logs should be stored there are 2 possible valuse : minio|mongo
+  storage: "minio"
+  ## if storage is set to minio then the bucket must be specified, if minio with s3 is used make sure to use a unique name
+  bucket: "testkube-logs"
+
+## Service Account parameters
+serviceAccount:
+  ## Specifies whether a service account should be created
+  create: true
+  ## Annotations to add to the service account
+  annotations: {}
+  ## The name of the service account to use.
+  ## If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+## Security Context
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+podSecurityContext: {}
+
+## Configure Container Security Context for Testkube API
+## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+##
+securityContext: {}
+
+## Service parameters
+service:
+  ## Adapter service type
+  type: ClusterIP
+  ## HTTP Port
+  port: 8088
+  ## Annotations
+  annotations: {}
+  ## Service labels
+  labels: {}
+
+##MongoDB parameters
+mongodb:
+  dsn: "mongodb://testkube-mongodb:27017"
+  ## or use dsn in secrets
+  # secretName: testkube-secrets
+  # secretKey: mongo-dsn
+
+  ## SSL certificate secret reference
+  # sslCertSecret: mongo-ssl-certs
+  # sslCAFileKey: sslCertificateAuthorityFile
+  # sslClientFileKey: sslClientCertificateKeyFile
+  # sslClientFilePassKey: sslClientCertificateKeyFilePassword
+
+  ## k8s Secret Name for SSL Client Certificate Key File Password
+  ## Key for SSL Client Certificate Key File Password k8s Secret
+  ## k8s Secret Name for SSL Client Certificate Key File
+  ## Key for SSL Client Certificate Key File k8s Secret
+  ## k8s Secret Name for SSL CA File Key
+  ## Key for SSL CA File Key k8s Secret
+  ## k8s Secret Name for SSL Cert Secret
+  ## Key for SSL Cert Secret k8s Secret
+  # sslClientFilePassKeySecretName: sslClientFilePassKeySecretName
+  # sslClientFilePassKeySecretKey: sslClientFilePassKeySecretKey
+  # sslClientFileKeySecretName: sslClientFileKeySecretName
+  # sslClientFileKeySecretKey: sslClientFileKeySecretKey
+  # sslCAFileKeySecretName: sslCAFileKeySecretName
+  # sslCAFileKeySecretKey: sslCAFileKeySecretKey
+  # sslCertSecretSecretName: sslCertSecretSecretName
+  # sslCertSecretSecretKey: sslCertSecretSecretKey
+
+  allowDiskUse: true
+  # to use docdb with TLS, set dbType to docdb and allowTLS to true
+  # dbType possible values: docdb|mongo; empty string defaults to mongo
+  # dbType: docdb
+  # allowTLS will be checked for docdb; on true: docdb ca certs will be downloaded and used
+  # allowTLS: true
+
+## NATS parameters
+## ref: https://github.com/nats-io/nats-server
+nats:
+  ## Deploy NATS server to the cluster
+  enabled: true
+  ## load URI from secrets
+  # secretName: XXX
+  # secretKey: XXX
+
+## MINIO parameters
+minio:
+  replicaCount: 1
+  ## Deploy Minio server to the cluster
+  enabled: true
+  ## Minio extra vars
+  extraEnvVars: {}
+  ## PVC Access Modes for Minio. The volume is mounted as read-write by a single node.
+  ## Read more about access modes here: http://kubernetes.io/docs/user-guide/persistent-volumes/#access-modes
+  accessModes:
+    - ReadWriteOnce
+  ## Specify priorityClassName for Minio
+  priorityClassName: ""
+  ## Node labels for pod assignment.
+  nodeSelector: {}
+  ## Tolerations for pod assignment.
+  tolerations: []
+  ## Affinity for pod assignment.
+  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  ## Note: podAffinityPreset, podAntiAffinityPreset, and nodeAffinityPreset will be ignored when it's set
+  affinity: {}
+  ## Minio image from DockerHub
+  image:
+    registry: docker.io
+    repository: minio/minio
+    tag: 2023.2.27
+    pullPolicy: IfNotPresent
+  ## ServiceAccount name to use for Minio
+  serviceAccountName: ""
+  ## Optionally specify extra list of additional volumeMounts for Minio
+  extraVolumeMounts: []
+  ## Optionally specify extra list of additional volumes for Minio
+  extraVolumes: []
+  ## k8s Secret name for Minio root username
+  secretUserName: ""
+  ## Secret key for Minio root username taken from k8s secret
+  secretUserKey: ""
+  ## k8s Secret name for Minio root password
+  secretPasswordName: ""
+  ## Secret key for Minio root username taken from k8s secret
+  secretPasswordKey: ""
+  ## Plain text Minio root username
+  ## Plain text Minio root password
+  minioRootUser: ""
+  minioRootPassword: ""
+  ## PVC Storage Request for MinIO. Should be available in the cluster.
+  storage: 10Gi
+  ## Selector labels to match
+  matchLabels: []
+  ## Resources limits and requests
+  resources: {}
+  ## MinIO Liveness probe configuration
+  livenessProbe:
+    initialDelaySeconds: 3
+    periodSeconds: 10
+  ## MinIO Readiness probe configuration
+  readinessProbe:
+    initialDelaySeconds: 3
+    periodSeconds: 10
+  ## MinIO Pod Security Context
+  podSecurityContext: {}
+  ## MinIO Container Security Context
+  securityContext: {}
+
+## uiIngress parameters
+uiIngress:
+  ## Use uiIngress
+  enabled: false
+  ## Labels to add to the Ingress
+  labels: {}
+  ## Annotations to add to the Ingress
+  annotations: {}
+  ## The Path to Nginx.
+  path: /results/(v\d/executions.*)
+  ## Hostnames must be provided if Ingress is enabled.
+  hosts: []
+  # - testkube.example.com
+  ## Enable TLS configuration for the hostname defined at `uiIngress.hosts` parameter
+  tlsenabled: false
+  ## Placing a host in the TLS config will indicate a certificate should be created
+  tls: []
+  # - hosts:
+  #     - testkube.example.com
+  #   secretName: testkube-cert-secret
+
+## cliIngress parameters
+cliIngress:
+  ## Use cliIngress
+  enabled: false
+  ## Labels to add to the Ingress
+  labels: {}
+  ## Annotations to add to the Ingress
+  annotations: {}
+  ## Parameters to check oauth token (by default github one)
+  oauth:
+    clientID: ""
+    clientSecret: ""
+    provider: "github"
+    scopes: ""
+  ## The Path to Nginx.
+  path: /results/(v\d/.*)
+  ## Hostnames must be provided if Ingress is enabled.
+  hosts: []
+  # - testkube.example.com
+  tlsenabled: false
+  # Placing a host in the TLS config will indicate a certificate should be created
+  tls: []
+  # - hosts:
+  #     - testkube.example.com
+  #   secretName: testkube-cert-secret
+
+## Prometheus monitoring
+prometheus:
+  ## Toggle whether to install ServiceMonitor
+  enabled: false
+  ## Scrape interval
+  interval: 15s
+  ## Additional monitoring labels
+  monitoringLabels: {}
+
+##Test Connection pod
+testConnection:
+  enabled: false
+
+## Testkube API Liveness probe
+livenessProbe:
+  initialDelaySeconds: 30
+
+
+## Testkube API Readiness probe
+readinessProbe:
+  initialDelaySeconds: 45
+
+## Testkube API HTTP body size limit
+## httpBodyLimit: 1073741824
+
+## Testkube API HTTP Read buffer size (in bytes)
+## Might need further increase if observing "431 Request Header Fields Too Large from api server"
+##  See https://github.com/kubeshop/testkube/pull/2871#issuecomment-1341116696
+httpReadBufferSize: 8192
