@@ -1854,6 +1854,43 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/temporal-0.1.0/temporal-0.1.0.tgz
     version: 0.1.0
+  testkube:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 1.14.2"
+    apiVersion: v2
+    created: "2023-08-26T17:31:22.851053327Z"
+    dependencies:
+    - condition: testkube-operator.enabled
+      name: testkube-operator
+      repository: https://kubeshop.github.io/helm-charts
+      version: 1.14.0
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.1.31
+    - condition: testkube-api.nats.enabled
+      name: nats
+      repository: https://nats-io.github.io/k8s/helm/charts/
+      version: 0.19.1
+    - name: testkube-api
+      repository: https://kubeshop.github.io/helm-charts
+      version: 1.14.0
+    - condition: testkube-dashboard.enabled
+      name: testkube-dashboard
+      repository: https://kubeshop.github.io/helm-charts
+      version: 1.14.0
+    - name: global
+      repository: https://kubeshop.github.io/helm-charts
+      version: 0.1.1
+    description: Testkube is an open-source platform that simplifies the deployment
+      and management of automated testing infrastructure.
+    digest: 630322db7a629cfef5240cd38c52eb0d16d7fc5362187cf3a0d0a3912cdd30c5
+    name: testkube
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/testkube-1.0.0/testkube-1.0.0.tgz
+    version: 1.0.0
   tracetest:
   - annotations:
       artifacthub.io/changes: |
@@ -2193,4 +2230,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-08-25T06:56:48.643736781Z"
+generated: "2023-08-26T17:31:22.851285831Z"
