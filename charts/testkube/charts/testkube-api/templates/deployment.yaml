@@ -1,0 +1,323 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "testkube-api.fullname" . }}
+  labels: {{- include "testkube-api.labels" . | nindent 4 }}
+    {{- if .Values.global.labels }}
+    {{- include "global.tplvalues.render" ( dict "value" .Values.global.labels "context" $ ) | nindent 4 }}
+    {{- end }}
+  annotations:
+    checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+    {{- if .Values.global.annotations}}
+    {{- include "global.tplvalues.render" ( dict "value" .Values.global.annotations "context" $ ) | nindent 4 }}
+    {{- end }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "testkube-api.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+        {{- if .Values.podAnnotations }}
+        {{- toYaml .Values.podAnnotations | nindent 8 }}
+        {{- end }}
+      labels:
+        {{- include "testkube-api.selectorLabels" . | nindent 8 }}
+          {{- if .Values.podLabels }}
+          {{- include "global.tplvalues.render" ( dict "value" .Values.podLabels "context" $ ) | nindent 8 }}
+          {{- end }}
+          {{- if .Values.global.labels }}
+          {{- include "global.tplvalues.render" ( dict "value" .Values.global.labels "context" $ ) | nindent 8 }}
+          {{- end }}
+    spec:
+      {{- include "global.images.renderPullSecrets" . | nindent 6 }}
+      serviceAccountName: {{ include "testkube-api.serviceAccountName" . }}
+      {{- if .Values.priorityClassName }}
+      priorityClassName: {{ .Values.priorityClassName }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          env:
+            - name: APISERVER_PORT
+              value: "{{ .Values.service.port }}"
+            - name: API_MONGO_DSN
+              {{- if .Values.mongodb.secretName }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.secretName }}
+                  key: {{ .Values.mongodb.secretKey }}
+              {{- else }}
+              value: "{{ .Values.mongodb.dsn }}"
+              {{- end }}
+            {{- if .Values.mongodb.sslCertSecret }}
+            - name: API_MONGO_SSL_CERT
+              value: {{ .Values.mongodb.sslCertSecret }}
+              {{- else }}
+              {{- if .Values.mongodb.sslCertSecretSecretName }}
+            - name: API_MONGO_SSL_CERT
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.sslCertSecretSecretName }}
+                  key: {{ .Values.mongodb.sslCertSecretSecretKey }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.mongodb.sslCAFileKey }}
+            - name: API_MONGO_SSL_CA_FILE_KEY
+              value: {{ .Values.mongodb.sslCAFileKey }}
+              {{- else }}
+              {{- if .Values.mongodb.sslCAFileKeySecretName }}
+            - name: API_MONGO_SSL_CA_FILE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.sslCAFileKeySecretName }}
+                  key: {{ .Values.mongodb.sslCAFileKeySecretKey }}
+              {{- end }}
+            {{- end }}
+            {{- if .Values.mongodb.sslClientFileKey }}
+            - name: API_MONGO_SSL_CLIENT_FILE_KEY
+              value: {{ .Values.mongodb.sslClientFileKey }}
+              {{- else }}
+            {{- if .Values.mongodb.sslClientFileKeySecretName }}
+            - name: API_MONGO_SSL_CLIENT_FILE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.sslClientFileKeySecretName }}
+                  key: {{ .Values.mongodb.sslClientFileKeySecretKey }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.mongodb.sslClientFilePassKey }}
+            - name: API_MONGO_SSL_CLIENT_FILE_PASS_KEY
+              value: {{ .Values.mongodb.sslClientFilePassKey }}
+              {{- else }}
+            {{- if .Values.mongodb.sslClientFilePassKeySecretName }}
+            - name: API_MONGO_SSL_CLIENT_FILE_PASS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mongodb.sslClientFilePassKeySecretName }}
+                  key: {{ .Values.mongodb.sslClientFilePassKeySecretKey }}
+              {{- end }}
+            {{- end }}
+            {{- if .Values.mongodb.dbType }}
+            - name: API_MONGO_DB_TYPE
+              value: {{ .Values.mongodb.dbType }}
+            {{- end }}
+            {{- if .Values.mongodb.allowTLS }}
+            - name: API_MONGO_ALLOW_TLS
+              value: "{{ .Values.mongodb.allowTLS }}"
+            {{- end }}
+            - name: API_MONGO_ALLOW_DISK_USE
+              value: "{{ .Values.mongodb.allowDiskUse }}"
+            {{- if .Values.nats.enabled }}
+            - name: NATS_URI
+              {{- if .Values.nats.secretName }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.nats.secretName }}
+                  key: {{ .Values.nats.secretKey }}
+              {{- else }}
+              value: "nats://{{ .Release.Name }}-nats"
+              {{- end }}
+            {{- end }}
+            - name: POSTMANEXECUTOR_URI
+              value: "{{ .Values.postmanExecutorURI }}"
+            - name: TESTKUBE_ANALYTICS_ENABLED
+              value: "{{ .Values.analyticsEnabled }}"
+            {{- if .Values.slackSecret }}
+            - name: SLACK_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: "{{ .Values.slackSecret }}"
+                  key: SLACK_TOKEN
+            {{- else }}
+            - name: SLACK_TOKEN
+              value: "{{ .Values.slackToken }}"
+            {{- end }}
+            {{- if .Values.slackConfig }}
+            - name: SLACK_CONFIG
+              value:  "{{ .Values.slackConfig }}"
+            {{- end }}
+            {{- if .Values.slackTemplate }}
+            - name: SLACK_TEMPLATE
+              value:  "{{ .Values.slackTemplate }}"
+            {{- end }}
+            - name: "STORAGE_ENDPOINT"
+              {{- if .Values.storage.endpoint }}
+              value:  "{{ .Values.storage.endpoint }}"
+              {{- else }}
+              value:  "testkube-minio-service-{{ .Release.Namespace }}:{{ .Values.storage.endpoint_port }}"
+              {{- end }}
+            - name: "STORAGE_BUCKET"
+              value:  "{{ .Values.storage.bucket }}"
+            - name: "STORAGE_EXPIRATION"
+              value:  "{{ .Values.storage.expiration }}"
+            - name: "STORAGE_ACCESSKEYID"
+              {{- if .Values.storage.secretNameAccessKeyId }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.storage.secretNameAccessKeyId }}
+                  key: {{ .Values.storage.secretKeyAccessKeyId }}
+              {{- else }}
+              value: "{{ .Values.storage.accessKeyId }}"
+            {{- end }}
+            - name: "STORAGE_SECRETACCESSKEY"
+              {{- if .Values.storage.secretNameSecretAccessKey }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.storage.secretNameSecretAccessKey }}
+                  key: {{ .Values.storage.secretKeySecretAccessKey }}
+              {{- else }}
+              value: "{{ .Values.storage.accessKey }}"
+            {{- end }}
+            - name: "STORAGE_REGION"
+              value: "{{ .Values.storage.region }}"
+            - name: "STORAGE_TOKEN"
+              value: "{{ .Values.storage.token }}"
+            - name: "STORAGE_SSL"
+              value:  "{{ .Values.storage.SSL }}"
+            - name: "SCRAPPERENABLED"
+              value:  "{{ .Values.storage.scrapperEnabled }}"
+            - name: "COMPRESSARTIFACTS"
+              value:  "{{ .Values.storage.compressArtifacts }}"
+            - name: "LOGS_BUCKET"
+              value:  "{{ .Values.logs.bucket }}"
+            - name: "LOGS_STORAGE"
+              {{- if .Values.logs.storage }}
+              value:  "{{ .Values.logs.storage }}"
+              {{- else }}
+              value:  "mongo"
+              {{- end }}
+            {{- if .Values.executors }}
+            - name: TESTKUBE_DEFAULT_EXECUTORS
+              value:  "{{ .Values.executors }}"
+            {{- end }}
+            {{- if .Values.templates.job }}
+            - name: TESTKUBE_TEMPLATE_JOB
+              value: "{{ .Values.templates.job }}"
+            {{- end }}
+            {{- if .Values.templates.jobContainer }}
+            - name: TESTKUBE_CONTAINER_TEMPLATE_JOB
+              value: "{{ .Values.templates.jobContainer }}"
+            {{- end }}
+            {{- if .Values.templates.scraperContainer }}
+            - name: TESTKUBE_CONTAINER_TEMPLATE_SCRAPER
+              value: "{{ .Values.templates.scraperContainer }}"
+            {{- end }}
+            {{- if .Values.templates.pvcContainer }}
+            - name: TESTKUBE_CONTAINER_TEMPLATE_PVC
+              value: "{{ .Values.templates.pvcContainer }}"
+            {{- end }}
+            - name: TESTKUBE_NAMESPACE
+              value: "{{ .Release.Namespace }}"
+            - name: JOB_SERVICE_ACCOUNT_NAME
+              value: "{{ .Values.jobServiceAccountName }}"
+            - name: APISERVER_FULLNAME
+              value: "{{ include "testkube-api.fullname" . }}"
+            - name: APISERVER_CONFIG
+              value: "testkube-api-server-config-{{ .Release.Namespace }}"
+            {{- if .Values.httpBodyLimit }}
+            - name: APISERVER_HTTP_BODY_LIMIT
+              value: {{ .Values.httpBodyLimit | quote }}
+            {{- end}}
+            {{- if .Values.httpReadBufferSize }}
+            - name: APISERVER_HTTP_READBUFFERSIZE
+              value: {{ .Values.httpReadBufferSize | quote }}
+            {{- end}}
+            - name: TESTKUBE_OAUTH_CLIENTID
+              value:  "{{ .Values.cliIngress.oauth.clientID }}"
+            - name: TESTKUBE_OAUTH_CLIENTSECRET
+              value:  "{{ .Values.cliIngress.oauth.clientSecret }}"
+            - name: TESTKUBE_OAUTH_PROVIDER
+              value:  "{{ .Values.cliIngress.oauth.provider }}"
+            - name: TESTKUBE_OAUTH_SCOPES
+              value:  "{{ .Values.cliIngress.oauth.scopes }}"
+            {{- if .Values.cloud.key }}
+            - name: TESTKUBE_CLOUD_API_KEY
+              value:  "{{ .Values.cloud.key }}"
+            {{- end}}
+            {{- if .Values.cloud.url }}
+            - name: TESTKUBE_CLOUD_URL
+              value:  "{{ .Values.cloud.url }}"
+            {{- end}}
+            {{- if .Values.cloud.orgId }}
+            - name: TESTKUBE_CLOUD_ORG_ID
+              value:  "{{ .Values.cloud.orgId }}"
+            {{- end}}
+            {{- if .Values.cloud.envId }}
+            - name: TESTKUBE_CLOUD_ENV_ID
+              value:  "{{ .Values.cloud.envId }}"
+            {{- end}}
+            {{- if .Values.cloud.migrate }}
+            - name: TESTKUBE_CLOUD_MIGRATE
+              value:  "{{ .Values.cloud.migrate }}"
+            {{- end}}
+            - name: TESTKUBE_WATCHER_NAMESPACES
+              value: "{{ include "testkube-api.watcher-namespaces" . | nindent 12 | trim }}"
+            {{- if .Values.extraEnvVars }}
+            {{ include "global.tplvalues.render" (dict "value" .Values.extraEnvVars "context" $) | nindent 12 | trim }}
+            {{- end }}
+            - name: TESTKUBE_CONFIG_DIR
+              value: /app/config
+            {{- if .Values.global }}
+            - name: TESTKUBE_REGISTRY
+              value:  {{ .Values.global.imageRegistry }}
+            {{- end }}
+            - name: TESTKUBE_POD_START_TIMEOUT
+              value:  "{{ .Values.podStartTimeout }}"
+            - name: CDEVENTS_TARGET
+              value: "{{ .Values.cdeventsTarget }}"
+            - name: TESTKUBE_DASHBOARD_URI
+              value: "{{ .Values.dashboardUri }}"
+            - name: TESTKUBE_CLUSTER_NAME
+              value: "{{ .Values.clusterName }}"
+            - name: TESTKUBE_HELMCHART_VERSION
+              valueFrom:
+                configMapKeyRef:
+                  name: testkube-global-config
+                  key: helmchartVersion
+          image: {{ include "testkube-api.image" . }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 8088
+              protocol: TCP
+          livenessProbe:
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+            httpGet:
+              path: /health
+              port: {{ .Values.service.port }}
+              scheme: HTTP
+          readinessProbe:
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
+            httpGet:
+              path: /health
+              port: {{ .Values.service.port }}
+              scheme: HTTP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - mountPath: /app/config
+              name: testkube-config
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: testkube-config
+          configMap:
+            name: {{ include "testkube-api.fullname" . }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

@@ -1,0 +1,6 @@
+dependencies:
+- name: global
+  repository: file://../global
+  version: 0.1.1
+digest: sha256:a0b4bf1063a6e9007c1b62ca4a6126bb978e2950f8859054bbb2724a490fb849
+generated: "2023-08-24T15:05:43.347430308Z"
