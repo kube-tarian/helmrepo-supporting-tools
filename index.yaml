@@ -138,6 +138,32 @@ entries:
   cstor:
   - apiVersion: v2
     appVersion: 3.4.0
+    created: "2023-08-28T10:43:29.210885991Z"
+    dependencies:
+    - condition: openebsNDM.enabled
+      name: openebs-ndm
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 2.1.1
+    description: CStor-Operator helm chart for Kubernetes
+    digest: 5e0186843c34ec1dae92531f0a00511642c3996dfc61e8ae43e095a5d87d4eba
+    home: http://www.openebs.io/
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/openebs/icon/color/openebs-icon-color.png
+    keywords:
+    - cloud-native-storage
+    - block-storage
+    - iSCSI
+    - storage
+    - cstor
+    - cstor-operators
+    name: cstor
+    sources:
+    - https://github.com/openebs/cstor-operators
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/cstor-1.0.1/cstor-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 3.4.0
     created: "2023-07-09T16:23:46.123364205Z"
     dependencies:
     - condition: openebsNDM.enabled
@@ -2230,4 +2256,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-08-26T17:31:22.851285831Z"
+generated: "2023-08-28T10:43:29.21105279Z"
