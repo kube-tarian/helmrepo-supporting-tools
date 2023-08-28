@@ -8,20 +8,6 @@ release:
 # If false, openebs NDM sub-chart will not be installed
 openebsNDM:
   enabled: true
-  ndm:
-    image:
-      registry: ghcr.io/
-      repository: kube-tarian/helmrepo-supporting-tools/node-disk-manager
-      pullPolicy: IfNotPresent
-      tag: 2.1.0
-  ndmOperator:
-    name: operator
-    enabled: true
-    image:
-      registry: ghcr.io/
-      repository: kube-tarian/helmrepo-supporting-tools/node-disk-operator
-      pullPolicy: IfNotPresent
-      tag: 2.1.0
 
 rbac:
   # rbac.create: `true` if rbac resources should be created
