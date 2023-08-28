@@ -21,7 +21,7 @@ sources:
 
 dependencies:
   - name: openebs-ndm
-    version: "2.1.0"
+    version: "2.1.1"
     repository: "https://kube-tarian.github.io/helmrepo-supporting-tools/"
     condition: openebsNDM.enabled
-version: 1.0.0
+version: 1.0.1
