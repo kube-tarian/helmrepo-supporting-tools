@@ -20,7 +20,7 @@ server:
   enabled: true
   sidecarContainers:
   image:
-    repository: temporalio/server
+    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/server
     tag: 1.17.5
     pullPolicy: IfNotPresent
 
@@ -284,7 +284,7 @@ server:
 admintools:
   enabled: true
   image:
-    repository: temporalio/admin-tools
+    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/admin-tools
     tag: 1.17.5
     pullPolicy: IfNotPresent
 
@@ -311,7 +311,7 @@ web:
   replicaCount: 1
 
   image:
-    repository: temporalio/ui
+    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/ui
     tag: latest
     pullPolicy: IfNotPresent
 
@@ -442,7 +442,7 @@ cassandra:
   persistence:
     enabled: false
   image:
-    repo: cassandra
+    repo: ghcr.io/kube-tarian/helmrepo-supporting-tools/cassandra
     tag: 3.11.3
     pullPolicy: IfNotPresent
   config:
