@@ -1,11 +1,11 @@
 # Default values for Traefik
 image:
   # -- Traefik image host registry
-  registry: docker.io
+  registry: ghcr.io
   # -- Traefik image repository
-  repository: traefik
+  repository: kube-tarian/helmrepo-supporting-tools/traefik
   # -- defaults to appVersion
-  tag: ""
+  tag: v2.9.6
   # -- Traefik image pull policy
   pullPolicy: IfNotPresent
 
