@@ -43,8 +43,8 @@ data:
         {
           "collapsed": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "gridPos": {
             "h": 1,
@@ -57,8 +57,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "refId": "A"
             }
@@ -72,8 +72,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -118,8 +118,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "100 - (sum(rate(service_errors[2m]) OR on() vector(0)) / sum(rate(service_requests[2m])) * 100)",
@@ -163,8 +163,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -210,8 +210,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "100 - (sum (rate(persistence_errors[2m]) OR on() vector(0)) /sum (rate(persistence_requests[2m])) * 100)",
@@ -255,8 +255,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -301,8 +301,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "sum by (operation) (rate(service_requests{operation=~\"StartWorkflowExecution|SignalWorkflowExecution|SignalWithStartWorkflowExecution\"}[2m]))",
@@ -346,8 +346,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -392,8 +392,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(service_requests{ operation=\"AddWorkflowTask\"}[2m]))",
               "interval": "",
@@ -402,8 +402,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(service_requests{ operation=\"RecordWorkflowTaskStarted\"}[2m]))",
               "interval": "",
@@ -412,8 +412,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(service_requests{ operation=\"RespondWorkflowTaskCompleted\"}[2m]))",
               "interval": "",
@@ -422,8 +422,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(service_requests{ operation=\"RespondWorkflowTaskFailed\"}[2m]))",
               "interval": "",
@@ -432,8 +432,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(schedule_to_start_timeout{ operation=\"TimerActiveTaskWorkflowTimeout\"}[2m]))",
               "interval": "",
@@ -442,8 +442,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(start_to_close_timeout{ operation=\"TimerActiveTaskWorkflowTimeout\"}[2m]))",
               "interval": "",
@@ -487,8 +487,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -533,8 +533,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(service_requests{operation=\"AddActivityTask\"}[2m]))",
               "interval": "",
@@ -543,8 +543,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(service_requests{operation=\"RecordActivityTaskStarted\"}[2m]))",
               "interval": "",
@@ -553,8 +553,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(service_requests{operation=~\"RespondActivityTaskCompleted|RespondActivityTaskFailed|RespondActivityTaskCanceled\"}[2m]))",
               "interval": "",
@@ -598,8 +598,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -644,8 +644,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "refId": "A"
             }
@@ -686,8 +686,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -732,8 +732,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(membership_changed_count[2m]))",
               "hide": false,
@@ -743,8 +743,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(sharditem_created_count[2m]))",
               "hide": false,
@@ -754,8 +754,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(sharditem_removed_count[2m]))",
               "hide": false,
@@ -765,8 +765,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(shard_closed_count[2m]))",
               "hide": false,
@@ -811,8 +811,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -857,8 +857,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "numshards_gauge",
               "format": "time_series",
@@ -905,8 +905,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -951,8 +951,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum by (temporal_service_type) (restarts)",
               "interval": "",
@@ -996,8 +996,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1042,8 +1042,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "num_goroutines",
               "interval": "",
@@ -1087,8 +1087,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1133,8 +1133,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "memory_allocated",
               "interval": "",
@@ -1178,8 +1178,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1224,8 +1224,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "memory_heap",
               "interval": "",
@@ -1269,8 +1269,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1315,8 +1315,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "memory_stack",
               "interval": "",
@@ -1360,8 +1360,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1406,8 +1406,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum by (kubernetes_pod_name) (rate(memory_num_gc[5m]))",
               "interval": "",
@@ -1451,8 +1451,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1497,8 +1497,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "histogram_quantile(0.95, sum(rate(memory_gc_pause_ms_bucket[5m])) by (kubernetes_pod_name, le))",
               "hide": false,
@@ -1543,8 +1543,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -1589,8 +1589,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "exemplar": true,
               "expr": "sum(rate(state_transition_count_count[1m]))",
@@ -1601,8 +1601,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "exemplar": true,
               "expr": "sum(rate(sharditem_created_count[1m]))",
@@ -1613,8 +1613,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(sharditem_removed_count[2m]))",
               "hide": false,
@@ -1624,8 +1624,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "sum(rate(shard_closed_count[2m]))",
               "hide": false,
@@ -1669,8 +1669,8 @@ data:
         {
           "collapsed": true,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "gridPos": {
             "h": 1,
@@ -1686,8 +1686,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -1725,8 +1725,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(workflow_success{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -1735,8 +1735,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(workflow_failed{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -1745,8 +1745,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(workflow_timeout{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -1755,8 +1755,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(workflow_terminate{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -1765,8 +1765,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(workflow_cancel{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -1810,8 +1810,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -1849,8 +1849,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (temporal_namespace) (rate(workflow_success{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -1894,8 +1894,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -1933,8 +1933,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (temporal_namespace) (rate(workflow_failed{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -1978,8 +1978,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -2017,8 +2017,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (temporal_namespace) (rate(workflow_timeout{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -2062,8 +2062,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -2101,8 +2101,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (temporal_namespace) (rate(workflow_terminate{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -2146,8 +2146,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -2185,8 +2185,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (temporal_namespace) (rate(workflow_cancel{ operation=\"CompletionStats\"}[5m]))",
                   "interval": "",
@@ -2228,8 +2228,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "refId": "A"
             }
@@ -2240,8 +2240,8 @@ data:
         {
           "collapsed": true,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "gridPos": {
             "h": 1,
@@ -2257,8 +2257,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -2296,8 +2296,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum (rate(service_requests[5m]))",
                   "interval": "",
@@ -2306,8 +2306,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum (rate(service_errors[5m]))",
                   "interval": "",
@@ -2351,8 +2351,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -2390,8 +2390,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (operation) (rate(service_requests[5m]))",
                   "interval": "",
@@ -2435,8 +2435,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -2474,8 +2474,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(service_errors_entity_not_found[5m]) OR on() vector(0))",
                   "hide": false,
@@ -2485,8 +2485,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(service_errors_execution_already_started[5m]) OR on() vector(0))",
                   "hide": false,
@@ -2496,8 +2496,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(service_errors_resource_exhausted[5m]) OR on() vector(0))",
                   "hide": false,
@@ -2507,8 +2507,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (__name__) (rate({__name__=~\"service_errors_.*\"}[5m]))",
                   "hide": true,
@@ -2553,8 +2553,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -2592,8 +2592,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (operation) (rate(service_errors[5m]))",
                   "interval": "",
@@ -2637,8 +2637,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -2676,8 +2676,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "histogram_quantile(0.95, sum(rate(service_latency_bucket[5m])) by (operation, le))",
                   "interval": "",
@@ -2719,8 +2719,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "refId": "A"
             }
@@ -2731,8 +2731,8 @@ data:
         {
           "collapsed": true,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "gridPos": {
             "h": 1,
@@ -2748,8 +2748,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2794,8 +2794,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum (rate(persistence_requests[5m]) OR on() vector(0))",
                   "interval": "",
@@ -2804,8 +2804,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum (rate(persistence_errors[5m]) OR on() vector(0))",
                   "interval": "",
@@ -2849,8 +2849,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2895,8 +2895,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": " sum by (operation) (rate(persistence_requests[5m]))",
                   "interval": "",
@@ -2940,8 +2940,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2986,8 +2986,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (operation) (rate(persistence_errors[5m]))",
                   "interval": "",
@@ -3031,8 +3031,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -3077,8 +3077,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "exemplar": true,
                   "expr": "histogram_quantile(0.95, sum(rate(persistence_latency_bucket[1m])) by (operation, le))",
@@ -3121,8 +3121,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "refId": "A"
             }
@@ -3133,8 +3133,8 @@ data:
         {
           "collapsed": true,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "gridPos": {
             "h": 1,
@@ -3150,8 +3150,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3189,8 +3189,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(client_requests[5m]))",
                   "interval": "",
@@ -3199,8 +3199,8 @@ data:
                 },
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum(rate(client_errors[5m]))",
                   "interval": "",
@@ -3244,8 +3244,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3283,8 +3283,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (operation) (rate(client_requests[5m]))",
                   "interval": "",
@@ -3328,8 +3328,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3367,8 +3367,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "sum by (operation) (rate(client_errors[5m]))",
                   "interval": "",
@@ -3412,8 +3412,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3451,8 +3451,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "expr": "histogram_quantile(0.95, sum(rate(client_latency_bucket[5m])) by (operation, le))",
                   "interval": "",
@@ -3494,8 +3494,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "refId": "A"
             }

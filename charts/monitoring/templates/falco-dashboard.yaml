@@ -41,8 +41,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "description": "",
           "fieldConfig": {
@@ -90,8 +90,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "rate(falco_events[5m])",
               "intervalFactor": 1,
@@ -132,8 +132,8 @@ data:
         {
           "columns": [],
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fontSize": "100%",
           "gridPos": {
@@ -231,8 +231,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "expr": "falco_events",
               "format": "table",
