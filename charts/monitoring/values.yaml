@@ -99,6 +99,9 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+datasources:
+  prometheus:
+    url : http://prometheus-kube-prometheus-prometheus:9090
 
 nodeSelector: {}
 

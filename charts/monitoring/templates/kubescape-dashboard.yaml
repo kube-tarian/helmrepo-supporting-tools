@@ -41,8 +41,8 @@ data:
         "panels": [
           {
             "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
+              "type": "Prometheus",
+              "uid": "Prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -115,8 +115,8 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
+                  "type": "Prometheus",
+                  "uid": "Prometheus"
                 },
                 "expr": "kubescape_cluster_riskScore",
                 "refId": "A"
@@ -128,8 +128,8 @@ data:
           },
           {
             "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
+              "type": "Prometheus",
+              "uid": "Prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -204,8 +204,8 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
+                  "type": "Prometheus",
+                  "uid": "Prometheus"
                 },
                 "editorMode": "code",
                 "exemplar": false,
@@ -222,8 +222,8 @@ data:
           },
           {
             "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
+              "type": "Prometheus",
+              "uid": "Prometheus"
             },
             "fieldConfig": {
               "defaults": {
@@ -321,8 +321,8 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
+                  "type": "Prometheus",
+                  "uid": "Prometheus"
                 },
                 "editorMode": "code",
                 "exemplar": false,
@@ -339,8 +339,8 @@ data:
           },
           {
             "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
+              "type": "Prometheus",
+              "uid": "Prometheus"
             },
             "description": "Number of Resources that failed/passed or skipped",
             "fieldConfig": {
@@ -392,8 +392,8 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
+                  "type": "Prometheus",
+                  "uid": "Prometheus"
                 },
                 "editorMode": "code",
                 "expr": "sum(kubescape_control_count_resources_passed)",
@@ -404,8 +404,8 @@ data:
               },
               {
                 "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
+                  "type": "Prometheus",
+                  "uid": "Prometheus"
                 },
                 "editorMode": "code",
                 "exemplar": false,
@@ -418,8 +418,8 @@ data:
               },
               {
                 "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
+                  "type": "Prometheus",
+                  "uid": "Prometheus"
                 },
                 "editorMode": "code",
                 "exemplar": false,
@@ -436,8 +436,8 @@ data:
           },
           {
             "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
+              "type": "Prometheus",
+              "uid": "Prometheus"
             },
             "description": "Number of controls that failed/passed or skipped\n",
             "fieldConfig": {
@@ -489,8 +489,8 @@ data:
             "targets": [
               {
                 "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
+                  "type": "Prometheus",
+                  "uid": "Prometheus"
                 },
                 "editorMode": "code",
                 "exemplar": false,
@@ -503,8 +503,8 @@ data:
               },
               {
                 "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
+                  "type": "Prometheus",
+                  "uid": "Prometheus"
                 },
                 "editorMode": "code",
                 "exemplar": false,
@@ -517,8 +517,8 @@ data:
               },
               {
                 "datasource": {
-                  "type": "prometheus",
-                  "uid": "prometheus"
+                  "type": "Prometheus",
+                  "uid": "Prometheus"
                 },
                 "editorMode": "code",
                 "exemplar": false,

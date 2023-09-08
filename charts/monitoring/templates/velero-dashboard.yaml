@@ -38,8 +38,8 @@ data:
         {
           "collapsed": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "gridPos": {
             "h": 1,
@@ -52,8 +52,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "refId": "A"
             }
@@ -297,7 +297,7 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "Prometheus",
             "uid": "$datasource"
           },
           "fieldConfig": {
@@ -497,8 +497,8 @@ data:
         {
           "collapsed": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "gridPos": {
             "h": 1,
@@ -511,8 +511,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "refId": "A"
             }
@@ -522,7 +522,7 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "Prometheus",
             "uid": "$datasource"
           },
           "fieldConfig": {
@@ -587,8 +587,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -691,8 +691,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(velero_restore_success_total{schedule=~\"$schedule\"}[1h]))",
@@ -702,8 +702,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(velero_restore_failed_total{schedule=~\"$schedule\"}[1h]))",
@@ -714,8 +714,8 @@ data:
             },
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "sum(increase(velero_restore_partial_failure_total{schedule=~\"$schedule\"}[1h]))",
@@ -730,7 +730,7 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
+            "type": "Prometheus",
             "uid": "$datasource"
           },
           "fieldConfig": {
@@ -860,7 +860,7 @@ data:
               ]
             },
             "datasource": {
-              "type": "prometheus",
+              "type": "Prometheus",
               "uid": "$datasource"
             },
             "definition": "label_values(velero_backup_attempt_total, schedule)",
