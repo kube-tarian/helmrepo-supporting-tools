@@ -64,7 +64,7 @@ injector:
 
   # image sets the repo and tag of the vault-k8s image to use for the injector.
   image:
-    repository: "hashicorp/vault-k8s"
+    repository: "ghcr.io/kube-tarian/helmrepo-supporting-tools/vault-k8s"
     tag: "1.2.1"
     pullPolicy: IfNotPresent
 
@@ -72,7 +72,7 @@ injector:
   # containers.  This should be set to the official Vault image.  Vault 1.3.1+ is
   # required.
   agentImage:
-    repository: "hashicorp/vault"
+    repository: "ghcr.io/kube-tarian/helmrepo-supporting-tools/vault"
     tag: "1.14.0"
 
   # The default values for the injected Vault Agent containers.
@@ -373,7 +373,7 @@ server:
   # By default no direct resource request is made.
 
   image:
-    repository: "hashicorp/vault"
+    repository: "ghcr.io/kube-tarian/helmrepo-supporting-tools/vault"
     tag: "1.14.0"
     # Overrides the default Image Pull Policy
     pullPolicy: IfNotPresent
@@ -1000,7 +1000,7 @@ csi:
   enabled: false
 
   image:
-    repository: "hashicorp/vault-csi-provider"
+    repository: "ghcr.io/kube-tarian/helmrepo-supporting-tools/vault-csi-provider"
     tag: "1.4.0"
     pullPolicy: IfNotPresent
 
@@ -1085,7 +1085,7 @@ csi:
     extraArgs: []
 
     image:
-      repository: "hashicorp/vault"
+      repository: "ghcr.io/kube-tarian/helmrepo-supporting-tools/vault"
       tag: "1.14.0"
       pullPolicy: IfNotPresent
 
