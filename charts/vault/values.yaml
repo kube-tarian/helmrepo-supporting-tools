@@ -1085,7 +1085,7 @@ csi:
     extraArgs: []
 
     image:
-      repository: "ghcr.io/kube-tarian/helmrepo-supporting-tools/vault:1.14.0"
+      repository: "ghcr.io/kube-tarian/helmrepo-supporting-tools/vault"
       tag: "1.14.0"
       pullPolicy: IfNotPresent
 
