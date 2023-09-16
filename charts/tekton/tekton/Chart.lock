@@ -1,0 +1,6 @@
+dependencies:
+- name: tekton-pipeline
+  repository: https://cdfoundation.github.io/tekton-helm-chart/
+  version: 1.0.2
+digest: sha256:5198dc06d2b82b0fd1f6db0efd4bb0842bd2002c3afb8b4be0ec9cbf1e98a779
+generated: "2023-09-16T21:56:31.006103+05:30"
