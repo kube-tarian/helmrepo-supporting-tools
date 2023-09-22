@@ -101,3 +101,22 @@ Define a valid pathPrefix
         {{- "/" }}
     {{- end }}
 {{- end }}
+
+{{/*
+Common labels
+*/}}
+{{- define "otelCollector.labels" -}}
+helm.sh/chart: {{ include "tracetest.chart" . }}
+{{ include "otelCollector.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
+Selector labels
+*/}}
+{{- define "otelCollector.selectorLabels" -}}
+app.kubernetes.io/name: {{ default "otel-collector" .Values.otelCollector.name }}
+{{- end -}}

@@ -19,54 +19,26 @@ postgresql:
 # Provisioning allows to define initial settings to be loaded into the database on first run. 
 # These will only be applied when running tracetest against an empty database. If tracetest has already
 # been configured, the provisioning settings are ignored.
-provisioning: |
-  ---
+provisioning:
   # Datastore is where your application stores its traces. You can define several different datastores with
   # different names, however, only one is used by Tracetest.
   # You can see all available datastore configurations at https://kubeshop.github.io/tracetest/supported-backends/
   type: DataStore
   spec:
-    name: Jaeger
-    # Indicates that this datastore is a jaeger instance
-    type: jaeger
-    # Configures how tracetest connects to jaeger.
-    jaeger:
-      endpoint: jaeger-query:16685
-      tls:
-        insecure: true
-  ---
-  type: Config
-  spec:
-    analyticsEnabled: true
-  ---
-  type: PollingProfile
-  spec:
-    name: Custom Profile
-    strategy: periodic
-    default: true
-    periodic:
-      timeout: 30s
-      retryDelay: 500ms
-  ---
-  type: Demo
-  spec:
-    name: pokeshop
-    type: pokeshop
-    enabled: true
-    pokeshop:
-      httpEndpoint: http://demo-pokemon-api.demo
-      grpcEndpoint: demo-pokemon-api.demo:8082
-  ---
-  type: Demo
-  spec:
-    name: otel
-    type: otelstore
-    enabled: true
-    opentelemetryStore:
-      frontendEndpoint: http://otel-frontend.otel-demo:8084
-      productCatalogEndpoint: http://otel-productcatalogservice.otel-demo:3550
-      cartEndpoint: http://otel-cartservice.otel-demo:7070
-      checkoutEndpoint: http://otel-checkoutservice.otel-demo:5050
+    id: current
+    name: Signoz
+    type: signoz
+  
+  # type: DataStore
+  # spec:
+  #   name: Jaeger
+     # Indicates that this datastore is a jaeger instance
+  #   type: jaeger
+     # Configures how tracetest connects to jaeger.
+  #   jaeger:
+  #     endpoint: jaeger-query:16685
+  #     tls:
+  #       insecure: true
 
 
 # This section configures the strategy for pooling traces from the trace backend
@@ -117,7 +89,7 @@ server:
   # Indicates which telemetry components will be used by Tracetest
   telemetry:
     # The exporter that tracetest will use to send telemetry
-    # exporter: collector
+    exporter: collector
     # The exporter that tracetest will send the triggering transaction span. This is optional. If you
     # want to have the trigger transaction span in your trace, you have to configure this field to
     # send the span to the same place your application sends its telemetry.
@@ -131,7 +103,7 @@ image:
   repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/tracetest
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: v0.11.9
+  tag: v0.13.6
 
 env:
   tracetestDev: ""
@@ -205,3 +177,168 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+
+otelCollector:
+  name: "otel-collector"
+  image:
+    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/opentelemetry-collector-contrib
+    tag: 0.70.0
+    pullPolicy: Always
+
+  # -- Image Registry Secret Names for OtelCollector
+  # If set, this has higher precedence than the root level or global value of imagePullSecrets.
+  imagePullSecrets: []
+
+  configMap:
+    # -- Specifies whether a configMap should be created (true by default)
+    create: true
+
+  # OtelCollector service
+  service:
+    # -- Annotations to use by service associated to OtelCollector
+    annotations: {}
+    # -- Service Type: LoadBalancer (allows external access) or NodePort (more secure, no extra cost)
+    type: ClusterIP
+
+  # -- OtelCollector Deployment annotation.
+  annotations: {}
+  # -- OtelCollector pod(s) annotation.
+  podAnnotations: {}
+  # -- OtelCollector pod(s) labels.
+  podLabels: {}
+
+  # -- Additional environments to set for OtelCollector
+  additionalEnvs: {}
+    # env_key: env_value
+
+  # Configuration for ports
+  ports:
+    grpc:
+      # -- Whether to enable service port for OTLP gRPC
+      enabled: true
+      # -- Container port for OTLP gRPC
+      containerPort: 4317
+      # -- Service port for OTLP gRPC
+      servicePort: 4317
+      # -- Node port for OTLP gRPC
+      nodePort: ""
+      # -- Protocol to use for OTLP gRPC
+      protocol: TCP
+    http:
+      # -- Whether to enable service port for OTLP HTTP
+      enabled: true
+      # -- Container port for OTLP HTTP
+      containerPort: 4318
+      # -- Service port for OTLP HTTP
+      servicePort: 4318
+      # -- Node port for OTLP HTTP
+      nodePort: ""
+      # -- Protocol to use for OTLP HTTP
+      protocol: TCP
+
+  ingress:
+    # -- Enable ingress for OtelCollector
+    enabled: false
+    # -- Ingress Class Name to be used to identify ingress controllers
+    className: ""
+    # -- Annotations to OtelCollector Ingress
+    annotations: {}
+      # cert-manager.io/cluster-issuer: letsencrypt-prod
+      # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      # nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    # -- OtelCollector Ingress Host names with their path details
+    hosts:
+      - host: otelcollector.domain.com
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            port: 4317
+    # -- OtelCollector Ingress TLS
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - otelcollector.domain.com
+
+  # -- Configure resource requests and limits. Update according to your own use
+  # case as these values might not be suitable for your workload.
+  # Ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  #
+  # @default -- See `values.yaml` for defaults
+  resources:
+    requests:
+      cpu: 250m
+      memory: 512Mi
+    # limits:
+    #   cpu: "1"
+    #   memory: 2Gi
+
+  # -- OtelCollector priority class name
+  priorityClassName: ""
+  # -- Node selector for settings for OtelCollector pod
+  nodeSelector: {}
+  # -- Toleration labels for OtelCollector pod assignment
+  tolerations: []
+  # -- Affinity settings for OtelCollector pod
+  affinity: {}
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 11
+    targetCPUUtilizationPercentage: 50
+    #targetMemoryUtilizationPercentage: 50
+
+  # -- Configurations for OtelCollector
+  # @default -- See `values.yaml` for defaults
+  config:
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+          http:
+
+    processors:
+      batch:
+        timeout: 100ms
+
+      # Data sources: traces
+      probabilistic_sampler:
+        hash_seed: 22
+        sampling_percentage: 100
+
+    exporters:
+      # Output logger, used to check OTel Collector sanity
+      logging:
+        loglevel: debug
+
+      # OTLP for Tracetest
+      otlp/tracetest:
+        endpoint: tracetest:4317
+        tls:
+          insecure: true
+      # OTLP for Signoz
+      otlp/signoz:
+        endpoint: signoz-otel-collector:4317
+        tls:
+          insecure: true
+
+    service:
+      pipelines:
+        traces:
+          receivers: [otlp]
+          processors: [probabilistic_sampler, batch]
+          exporters: [otlp/signoz, otlp/tracetest, logging]

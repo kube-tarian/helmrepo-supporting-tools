@@ -1635,6 +1635,10 @@ otelCollector:
           initial_interval: 5s
           max_interval: 30s
           max_elapsed_time: 300s
+      otlp/tracetest:
+        endpoint: http://localhost:4317
+        tls:
+          insecure: true
       prometheus:
         endpoint: 0.0.0.0:8889
     service:
@@ -1662,6 +1666,11 @@ otelCollector:
           receivers: [otlp]
           processors: [logstransform/internal, batch]
           exporters: [clickhouselogsexporter]
+        traces/test:
+          receivers: [otlp]
+          processors: [batch]
+          exporters: [otlp/tracetest]
+          
 
 # Default values for OtelCollectorMetrics
 otelCollectorMetrics:
