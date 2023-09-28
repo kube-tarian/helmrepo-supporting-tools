@@ -68,3 +68,16 @@ hashicorp/vault-k8s:1.2.1
 hashicorp/vault:1.14.0
 hashicorp/vault-csi-provider:1.4.0
 kubeshop/tracetest:v0.13.6
+falco-driver-loader:latest
+grafana/agent-operator:v0.25.1
+grafana/enterprise-logs
+grafana/enterprise-logs-provisioner
+grafana/loki-helm-test
+grafana/loki-canary
+nginxinc/nginx-unprivileged:1.19-alpine
+zcube/bitnami-compat-mongodb:5.0.10-debian-11-r19
+kubeshop/testkube-api-server:latest
+minio/minio:latest
+kubeshop/testkube-dashboard
+kubeshop/testkube-operator
+dpejcev/kube-webhook-certgen:1.0.11
