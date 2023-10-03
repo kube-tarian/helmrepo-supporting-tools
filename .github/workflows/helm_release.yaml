@@ -36,7 +36,8 @@ jobs:
           helm repo add policy-reporter https://kyverno.github.io/policy-reporter
           helm repo add kubeshop https://kubeshop.github.io/helm-charts
           helm repo add nats https://nats-io.github.io/k8s/helm/charts/
-
+          helm repo add tekton-pipeline https://cdfoundation.github.io/tekton-helm-chart/
+          
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
         env:
