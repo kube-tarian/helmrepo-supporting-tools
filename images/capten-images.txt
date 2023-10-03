@@ -5,6 +5,8 @@ bitnami/postgresql:14.7.0-debian-11-r29
 bitnami/zookeeper:3.7.0-debian-10-r70
 clickhouse/clickhouse-server:22.8.8-alpine
 coredns/coredns:1.10.0
+falcosecurity/falco-no-driver:0.35.0
+falcosecurity/falcoctl:0.5.0
 pradeepgoru/cosign:2.1.1 
 grafana/promtail:2.7.4
 k8ssandra/cass-operator:v1.13.0
