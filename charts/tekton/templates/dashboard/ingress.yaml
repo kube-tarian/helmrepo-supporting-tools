@@ -26,6 +26,7 @@ spec:
       http:
         paths:
         - path: /tekton(/|$)(.*)
+          pathType: {{ .Values.dashboard.ingress.pathType }}
           backend:
             service:
               name: tekton-dashboard

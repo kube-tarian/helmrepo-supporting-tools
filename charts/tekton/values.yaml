@@ -220,6 +220,7 @@ dashboard:
     enabled: true
     ingressClassName: "default"
     annotations: {}
+    pathType: Prefix
     hosts:
       - tekton.example.com
     tls: []
