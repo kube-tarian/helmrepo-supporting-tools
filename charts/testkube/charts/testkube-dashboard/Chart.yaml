@@ -1,10 +1,10 @@
 apiVersion: v2
-appVersion: 1.14.0
+appVersion: 1.14.2
 dependencies:
 - name: global
   repository: file://../global
-  version: 0.1.1
+  version: 0.1.2
 description: A Helm chart for Kubernetes
 name: testkube-dashboard
 type: application
-version: 1.14.0
+version: 1.14.2
