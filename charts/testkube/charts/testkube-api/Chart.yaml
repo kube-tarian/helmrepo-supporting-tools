@@ -1,5 +1,5 @@
 apiVersion: v2
-appVersion: 1.14.0
+appVersion: 1.15.0
 dependencies:
 - name: global
   repository: file://../global
@@ -7,4 +7,4 @@ dependencies:
 description: A Helm chart for Testkube api
 name: testkube-api
 type: application
-version: 1.14.0
+version: 1.15.0
