@@ -1,7 +1,7 @@
 dependencies:
 - name: testkube-operator
   repository: https://kubeshop.github.io/helm-charts
-  version: 1.15.0
+  version: 1.15.0 
 - name: mongodb
   repository: https://charts.bitnami.com/bitnami
   version: 13.10.1
@@ -17,5 +17,5 @@ dependencies:
 - name: global
   repository: https://kubeshop.github.io/helm-charts
   version: 0.1.2
-digest: sha256:301996372b0058259e452b0bcc61d2745657b2a83f044490e7adc932d6030fb0
-generated: "2023-10-13T13:42:06.501187223Z"
+digest: sha256:d5410e5461a6056eea807a91215526c50935626b707e97b380d6c9504eff887e
+generated: "2023-08-26T22:37:10.912539975+05:30"
