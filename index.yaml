@@ -1455,6 +1455,50 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/policy-reporter-0.0.1/policy-reporter-0.0.1.tgz
     version: 0.0.1
+  postgresql:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 13.1.5"
+      category: Database
+      images: |
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:11-debian-11-r90
+        - name: postgres-exporter
+          image: docker.io/bitnami/postgres-exporter:0.14.0-debian-11-r15
+        - name: postgresql
+          image: docker.io/bitnami/postgresql:16.0.0-debian-11-r13
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 16.0.0
+    created: "2023-10-31T10:40:08.523973421Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: PostgreSQL (Postgres) is an open source object-relational database
+      known for reliability and data integrity. ACID-compliant, it supports foreign
+      keys, joins, views, triggers and stored procedures.
+    digest: e320f3bb40c6b21350dd3587845a3f4cbac47c54e0f055086f9e66a8459bee77
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-220x234.png
+    keywords:
+    - postgresql
+    - postgres
+    - database
+    - sql
+    - replication
+    - cluster
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: postgresql
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/postgresql
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/postgresql-1.0.0/postgresql-1.0.0.tgz
+    version: 1.0.0
   pre-install:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -2551,4 +2595,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-10-14T07:24:15.030248131Z"
+generated: "2023-10-31T10:40:08.52415872Z"
