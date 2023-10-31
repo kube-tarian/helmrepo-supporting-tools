@@ -1,17 +1,39 @@
 server:
   config:
     logLevel: "debug,info"
+
     numHistoryShards: 512
+
     persistence:
       default:
         driver: "cassandra"
+
+#        faultInjection:
+#          targets:
+#            dataStores:
+#              ExecutionStore:
+#                methods:
+#                  GetCurrentExecution:
+#                    errors:
+#                      ResourceExhausted: 0.1
+#                  AppendHistoryNodes:
+#                    errors:
+#                      ResourceExhausted: 0.05
+#                  UpdateWorkflowExecution:
+#                    errors:
+#                      ResourceExhausted: 0.15
+#                  GetWorkflowExecution:
+#                    errors:
+#                      ResourceExhausted: 0.15
+
         cassandra:
-          hosts: ["temporal-temporal-service.k8ssandra-operator.svc.cluster.local"]
+          hosts: ["cassandra.default.svc.cluster.local"]
           port: 9042
           keyspace: temporal
-          user: "temporal-superuser"
-          existingSecret: "temporal-superuser"
-          replicationFactor: 3
+          user: "user"
+          password: "password"
+          existingSecret: ""
+          replicationFactor: 1
           consistency:
             default:
               consistency: "local_quorum"
@@ -21,12 +43,13 @@ server:
         driver: "cassandra"
 
         cassandra:
-          hosts: ["temporal-temporal-service.k8ssandra-operator.svc.cluster.local"]
+          hosts: ["cassandra.default.svc.cluster.local"]
           port: 9042
           keyspace: temporal_visibility
-          user: "temporal-superuser"
-          existingSecret: "temporal-superuser"
-          replicationFactor: 3
+          user: "user"
+          password: "password"
+          existingSecret: ""
+          replicationFactor: 1
           consistency:
             default:
               consistency: "local_quorum"
@@ -41,10 +64,8 @@ mysql:
 postgresql:
   enabled: false
 
-
-## set to true when the chart is set up for the first time, then set to false
 schema:
   setup:
-    enabled: true
+    enabled: false
   update:
-    enabled: true
+    enabled: false
