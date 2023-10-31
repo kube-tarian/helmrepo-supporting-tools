@@ -18,10 +18,10 @@ serviceAccount:
 
 server:
   enabled: true
-  sidecarContainers:
+  sidecarContainers: {}
   image:
-    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/server
-    tag: 1.17.5
+    repository: temporalio/server
+    tag: 1.22.1
     pullPolicy: IfNotPresent
 
   # Global default settings (can be overridden per service)
@@ -31,6 +31,8 @@ server:
     # Use this if you installed Prometheus from a Helm chart.
     annotations:
       enabled: true
+    # Additional tags to be added to Prometheus metrics
+    tags: {}
     # Enable Prometheus ServiceMonitor
     # Use this if you installed the Prometheus Operator (https://github.com/coreos/prometheus-operator).
     serviceMonitor:
@@ -63,98 +65,73 @@ server:
       timerType: histogram
   podAnnotations: {}
   podLabels: {}
-  resources:
-    limits:
-      cpu: 100m
-      memory: 128Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
+  secretLabels: {}
+  secretAnnotations: {}
+  resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
   nodeSelector: {}
   tolerations: []
   affinity: {}
   additionalVolumes: []
   additionalVolumeMounts: []
-  autoscaling:
-    enabled: true
-    minReplicas: 2
-    maxReplicas: 5
-    targetCPUUtilizationPercentage: 50
-    targetMemoryUtilizationPercentage: 50
+  additionalEnv: []
+  securityContext:
+    fsGroup: 1000
+    runAsUser: 1000
 
   config:
     logLevel: "debug,info"
-
-    # IMPORTANT: This value cannot be changed, once it's set.
     numHistoryShards: 512
-
     persistence:
       defaultStore: default
-      additionalStores: {}
-
       default:
-        driver: "cassandra"
-
-        cassandra:
-          hosts: ["temporal-temporal-service"]
-          port: 9042
-          keyspace: "temporal"
-          user: "temporal-superuser"
-          existingSecret: "temporal-superuser"
-          replicationFactor: 3
-          consistency:
-            default:
-              consistency: "local_quorum"
-              serialConsistency: "local_serial"
-          # datacenter: "us-east-1a"
-          # maxQPS: 1000
-          # maxConns: 2
+        driver: "sql"
 
         sql:
-          driver: "mysql"
-          host: "mysql"
-          port: 3306
-          database: "temporal"
-          user: "temporal"
-          password: "temporal"
-          existingSecret: ""
-          secretName: ""
+          driver: "postgres"
+          host: postgres-postgresql
+          port: 5432
+          database: temporal
+          user: temporal
+          existingSecret: postgres-postgresql
+          # password: 
+          # for a production deployment use this instead of `password` and provision the secret beforehand e.g. with a sealed secret
+          # it has a single key called `password`
           maxConns: 20
           maxConnLifetime: "1h"
-          # connectAttributes:
-            # tx_isolation: 'READ-COMMITTED'
+          # tls:
+          #  enabled: true
+          #  enableHostVerification: true
+          #  serverName: _HOST_ # this is strictly required when using serverless CRDB offerings
 
       visibility:
-        driver: "cassandra"
-
-        cassandra:
-          hosts: ["temporal-temporal-service"]
-          port: 9042
-          keyspace: "temporal_visibility"
-          user: "temporal-superuser"
-          existingSecret: "temporal-superuser"
-          # datacenter: "us-east-1a"
-          # maxQPS: 1000
-          # maxConns: 2
-          replicationFactor: 3
-          consistency:
-            default:
-              consistency: "local_quorum"
-              serialConsistency: "local_serial"
+        driver: "sql"
 
         sql:
-          driver: "mysql"
-          host: "mysql"
-          port: 3306
-          database: "temporal_visibility"
-          user: "temporal"
-          password: "temporal"
-          existingSecret: ""
-          secretName: ""
+          driver: "postgres"
+          host: postgres-postgresql
+          port: 5432
+          database: temporal_visibility
+          user: temporal
+          existingSecret: postgres-postgresql
+          # password: 
+          # for a production deployment use this instead of `password` and provision the secret beforehand e.g. with a sealed secret
+          # it has a single key called `password`
           maxConns: 20
           maxConnLifetime: "1h"
-          # connectAttributes:
-          #   tx_isolation: 'READ-COMMITTED'
+          # tls:
+          #  enabled: true
+          #  enableHostVerification: true
+          #  serverName: _HOST_ # this is strictly required when using serverless CRDB offerings
 
   frontend:
     replicaCount: 2
@@ -165,28 +142,20 @@ server:
     metrics:
       annotations:
         enabled: true
-      serviceMonitor:
+      serviceMonitor: 
         enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
     podLabels: {}
-    resources:
-      limits:
-        cpu: 100m
-        memory: 128Mi
-      requests:
-        cpu: 100m
-        memory: 128Mi
+    resources: {}
     nodeSelector: {}
     tolerations: []
     affinity: {}
-    autoscaling:
-      enabled: true
-      minReplicas: 2
-      maxReplicas: 10
-      targetCPUUtilizationPercentage: 50
-      targetMemoryUtilizationPercentage: 50
+    additionalEnv: []
+    containerSecurityContext: {}
+    topologySpreadConstraints: {}
+    podDisruptionBudget: {}
 
   history:
     replicaCount: 2
@@ -196,28 +165,20 @@ server:
     metrics:
       annotations:
         enabled: true
-      serviceMonitor: 
+      serviceMonitor:
         enabled: true
       prometheus: {}
       # timerType: histogram
     podAnnotations: {}
     podLabels: {}
-    resources:
-      limits:
-        cpu: 200m
-        memory: 256Mi
-      requests:
-        cpu: 200m
-        memory: 256Mi
+    resources: {}
     nodeSelector: {}
     tolerations: []
     affinity: {}
-    autoscaling:
-      enabled: true
-      minReplicas: 1
-      maxReplicas: 5
-      targetCPUUtilizationPercentage: 50
-      targetMemoryUtilizationPercentage: 50
+    additionalEnv: []
+    containerSecurityContext: {}
+    topologySpreadConstraints: {}
+    podDisruptionBudget: {}
 
   matching:
     replicaCount: 2
@@ -233,22 +194,14 @@ server:
       # timerType: histogram
     podAnnotations: {}
     podLabels: {}
+    resources: {}
     nodeSelector: {}
-    resources:
-      limits:
-        cpu: 100m
-        memory: 128Mi
-      requests:
-        cpu: 100m
-        memory: 128Mi
     tolerations: []
     affinity: {}
-    autoscaling:
-      enabled: true
-      minReplicas: 2
-      maxReplicas: 5
-      targetCPUUtilizationPercentage: 50
-      targetMemoryUtilizationPercentage: 50
+    additionalEnv: []
+    containerSecurityContext: {}
+    topologySpreadConstraints: {}
+    podDisruptionBudget: {}
 
   worker:
     replicaCount: 3
@@ -264,28 +217,20 @@ server:
       # timerType: histogram
     podAnnotations: {}
     podLabels: {}
-    resources:
-      limits:
-        cpu: 100m
-        memory: 128Mi
-      requests:
-        cpu: 100m
-        memory: 128Mi
+    resources: {}
     nodeSelector: {}
     tolerations: []
     affinity: {}
-    autoscaling:
-      enabled: true
-      minReplicas: 2
-      maxReplicas: 5
-      targetCPUUtilizationPercentage: 50
-      targetMemoryUtilizationPercentage: 50
+    additionalEnv: []
+    containerSecurityContext: {}
+    topologySpreadConstraints: {}
+    podDisruptionBudget: {}
 
 admintools:
   enabled: true
   image:
-    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/admin-tools
-    tag: 1.17.5
+    repository: temporalio/admin-tools
+    tag: 1.22.1
     pullPolicy: IfNotPresent
 
   service:
@@ -293,12 +238,18 @@ admintools:
     port: 22
     annotations: {}
   podLabels: {}
+  podAnnotations: {}
   nodeSelector: {}
   tolerations: []
   affinity: {}
+  additionalEnv: []
+  resources: {}
+  containerSecurityContext: {}
+  securityContext: {}
+  podDisruptionBudget: {}
 
 web:
-  enabled: true
+  enabled: false
   config:
     # server/config.yml file content
     auth:
@@ -307,12 +258,11 @@ web:
       default_to_namespace: # internal use only
       issue_report_link: https://github.com/temporalio/web/issues/new/choose # set this field if you need to direct people to internal support forums
 
-
   replicaCount: 1
 
   image:
-    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/ui
-    tag: latest
+    repository: temporalio/ui
+    tag: 2.16.2
     pullPolicy: IfNotPresent
 
   service:
@@ -325,6 +275,7 @@ web:
 
   ingress:
     enabled: false
+    # className:
     annotations: {}
     # kubernetes.io/ingress.class: traefik
     # ingress.kubernetes.io/ssl-redirect: "false"
@@ -341,16 +292,32 @@ web:
   podAnnotations: {}
   podLabels: {}
 
-  resources:
-    limits:
-      cpu: 100m
-      memory: 128Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
+  resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
   nodeSelector: {}
+
   tolerations: []
+
   affinity: {}
+
+  additionalVolumes: []
+  additionalVolumeMounts: []
+
+  additionalEnv: []
+
+  containerSecurityContext: {}
+  
+  securityContext: {}
 
 schema:
   setup:
@@ -359,13 +326,16 @@ schema:
   update:
     enabled: true
     backoffLimit: 100
+  resources: {}
+  containerSecurityContext: {}
+  securityContext: {}
 
 elasticsearch:
   enabled: false
   replicas: 3
   persistence:
     enabled: false
-  imageTag: 7.16.2
+  imageTag: 7.17.3
   host: elasticsearch-master-headless
   scheme: http
   port: 9200
@@ -393,56 +363,56 @@ grafana:
     dashboardproviders.yaml:
       apiVersion: 1
       providers:
-      - name: 'default'
-        orgId: 1
-        folder: ''
-        type: file
-        disableDeletion: false
-        editable: true
-        options:
-          path: /var/lib/grafana/dashboards/default
+        - name: "default"
+          orgId: 1
+          folder: ""
+          type: file
+          disableDeletion: false
+          editable: true
+          options:
+            path: /var/lib/grafana/dashboards/default
   datasources:
-   datasources.yaml:
-     apiVersion: 1
-     datasources:
-     - name: TemporalMetrics
-       type: prometheus
-       url: http://{{ .Release.Name }}-prometheus-server
-       access: proxy
-       isDefault: true
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: TemporalMetrics
+          type: prometheus
+          url: http://{{ .Release.Name }}-prometheus-server
+          access: proxy
+          isDefault: true
   dashboards:
-     default:
-       server-general-github:
-         url: https://raw.githubusercontent.com/temporalio/dashboards/helm/server/server-general.json
-         datasource: TemporalMetrics
-       sdk-general-github:
-         url: https://raw.githubusercontent.com/temporalio/dashboards/helm/sdk/sdk-general.json
-         datasource: TemporalMetrics
-       misc-advanced-visibility-specific-github:
-         url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/advanced-visibility-specific.json
-         datasource: TemporalMetrics
-       misc-clustermonitoring-kubernetes-github:
-         url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/clustermonitoring-kubernetes.json
-         datasource: TemporalMetrics
-       misc-frontend-service-specific-github:
-         url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/frontend-service-specific.json
-         datasource: TemporalMetrics
-       misc-history-service-specific-github:
-         url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/history-service-specific.json
-         datasource: TemporalMetrics
-       misc-matching-service-specific-github:
-         url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/matching-service-specific.json
-         datasource: TemporalMetrics
-       misc-worker-service-specific-github:
-         url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/worker-service-specific.json
-         datasource: TemporalMetrics
+    default:
+      server-general-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/server/server-general.json
+        datasource: TemporalMetrics
+      sdk-general-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/sdk/sdk-general.json
+        datasource: TemporalMetrics
+      misc-advanced-visibility-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/advanced-visibility-specific.json
+        datasource: TemporalMetrics
+      misc-clustermonitoring-kubernetes-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/clustermonitoring-kubernetes.json
+        datasource: TemporalMetrics
+      misc-frontend-service-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/frontend-service-specific.json
+        datasource: TemporalMetrics
+      misc-history-service-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/history-service-specific.json
+        datasource: TemporalMetrics
+      misc-matching-service-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/matching-service-specific.json
+        datasource: TemporalMetrics
+      misc-worker-service-specific-github:
+        url: https://raw.githubusercontent.com/temporalio/dashboards/helm/misc/worker-service-specific.json
+        datasource: TemporalMetrics
 
 cassandra:
   enabled: false
   persistence:
     enabled: false
   image:
-    repo: ghcr.io/kube-tarian/helmrepo-supporting-tools/cassandra
+    repo: cassandra
     tag: 3.11.3
     pullPolicy: IfNotPresent
   config:
