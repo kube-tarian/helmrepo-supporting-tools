@@ -140,9 +140,9 @@ cerbos:
           passwordHash: ""
         # Use a secret reference if you want to get the username and passwordHash from a secret
           existingSecret: {}
-            secretname: ""
-            usernamekey: ""
-            passwordkey: ""
+            # secretname: ""
+            # usernamekey: ""
+            # passwordkey: ""
     storage:
       driver: "mysql"
 
