@@ -131,6 +131,18 @@ cerbos:
   # Cerbos config file contents.
   # Some server settings like server.httpListenAddr, server.grpcListenAddr, server.tls will be overwritten by the chart based on values provided above.
   config:
+    server:
+      adminAPI:
+        enabled: true
+        adminCredentials:
+        # Use username and passwordHash if you want to provide the username and passwordHash via Helm Values
+          username: ""
+          passwordHash: ""
+        # Use a secret reference if you want to get the username and passwordHash from a secret
+          existingSecret: {}
+            secretname: ""
+            usernamekey: ""
+            passwordkey: ""
     storage:
       driver: "mysql"
 
