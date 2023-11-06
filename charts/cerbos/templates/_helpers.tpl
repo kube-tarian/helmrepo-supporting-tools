@@ -140,6 +140,19 @@ Configuration derived from values provided by the user
 server:
   httpListenAddr: ":{{ .Values.cerbos.httpPort }}"
   grpcListenAddr: ":{{ .Values.cerbos.grpcPort }}"
+  {{- if .Values.cerbos.config.server.adminAPI.enabled }}
+  adminAPI:
+    enabled: {{ .Values.cerbos.config.server.adminAPI.enabled }}
+    {{- if not .Values.cerbos.config.server.adminAPI.adminCredentials.existingSecret }}
+    adminCredentials:
+      username: {{ .Values.cerbos.config.server.adminAPI.adminCredentials.username }}
+      passwordHash: {{ .Values.cerbos.config.server.adminAPI.adminCredentials.passwordHash }}
+    {{- else if .Values.cerbos.config.server.adminAPI.adminCredentials.existingSecret }}
+    adminCredentials:
+      username: ${USERNAME}
+      passwordHash: ${PASSWORD_HASH}
+    {{- end }}
+    {{- end }}
   {{- if not $tlsDisabled }}
   tls:
     cert: /certs/tls.crt
@@ -155,6 +168,5 @@ Merge the configurations to obtain the final configuration file
 {{- define "cerbos.config" -}}
 {{- $defaultConf := (include "cerbos.defaultConfig" .) | fromYaml -}}
 {{- $derivedConf := (include "cerbos.derivedConfig" .) | fromYaml -}}
-{{ mustMergeOverwrite $defaultConf .Values.cerbos.config $derivedConf | toYaml }}
+{{ mustMergeOverwrite $defaultConf $derivedConf | toYaml }}
 {{- end }}
-
