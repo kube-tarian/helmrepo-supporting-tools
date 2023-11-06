@@ -38,6 +38,34 @@ entries:
         - "✨ update chart to version 0.25.0"
     apiVersion: v2
     appVersion: 0.25.0
+    created: "2023-11-06T19:04:10.512219643Z"
+    description: 'A Helm chart to deploy Cerbos. Cerbos is an open core, language
+      agnostic, scalable solution that makes user permissions and authorization simple
+      to implement and manage by writing context-aware access control policies for
+      your application resources. '
+    digest: 3b002dfe3a1258c8256d5a4d3fa472663eb58c84eea4867e494269d4b24e42d8
+    home: https://cerbos.dev
+    icon: https://download.cerbos.dev/helm-charts/cerbie.png
+    keywords:
+    - abac
+    - authorization
+    - developer tools
+    - policies
+    - rbac
+    - security
+    maintainers:
+    - email: help+helm@cerbos.dev
+      name: Cerbos authors
+    name: cerbos
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/cerbos-1.0.1/cerbos-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.25.0"
+    apiVersion: v2
+    appVersion: 0.25.0
     created: "2023-03-13T20:24:42.539172227Z"
     description: 'A Helm chart to deploy Cerbos. Cerbos is an open core, language
       agnostic, scalable solution that makes user permissions and authorization simple
@@ -2696,4 +2724,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-11-01T06:17:34.070656254Z"
+generated: "2023-11-06T19:04:10.512326543Z"
