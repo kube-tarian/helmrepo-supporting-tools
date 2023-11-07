@@ -1,0 +1,17 @@
+annotations:
+  artifacthub.io/changes: |
+    - "✨ update chart to version 0.73.1"
+apiVersion: v2
+appVersion: 0.88.0
+description: OpenTelemetry Collector Helm chart for Kubernetes
+home: https://opentelemetry.io/
+icon: https://opentelemetry.io/img/logos/opentelemetry-logo-nav.png
+maintainers:
+- name: dmitryax
+- name: TylerHelmuth
+name: opentelemetry-collector
+sources:
+- https://github.com/open-telemetry/opentelemetry-collector
+- https://github.com/open-telemetry/opentelemetry-collector-contrib
+type: application
+version: 1.0.0
