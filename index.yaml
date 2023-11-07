@@ -1617,6 +1617,28 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/prometheus-msteams-1.0.0/prometheus-msteams-1.0.0.tgz
     version: 1.0.0
+  promtail:
+  - apiVersion: v2
+    appVersion: 2.9.2
+    created: "2023-11-07T05:43:31.241285378Z"
+    description: Promtail is an agent which ships the contents of local logs to a
+      Loki instance
+    digest: 01b07f56d122404120f8473f84291bbc6b92cfe80636f98357b0af31ae472f81
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    - name: unguiculus
+    name: promtail
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/promtail-1.0.0/promtail-1.0.0.tgz
+    version: 1.0.0
   redis-ha:
   - annotations:
       artifacthub.io/changes: |
@@ -2758,4 +2780,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-11-07T05:42:43.356519723Z"
+generated: "2023-11-07T05:43:31.241579779Z"
