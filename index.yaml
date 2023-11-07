@@ -277,6 +277,40 @@ entries:
         - "✨ update chart to version 6.26.14"
     apiVersion: v2
     appVersion: 8.4.6
+    created: "2023-11-07T05:42:43.356383221Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: f494e1096beea49eb611fad3265e1b59d1269a0506e20f206ffc61903f229c5d
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-1.0.4/grafana-1.0.4.tgz
+    version: 1.0.4
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 6.26.14"
+    apiVersion: v2
+    appVersion: 8.4.6
     created: "2023-08-25T06:56:48.379899922Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: be9cf72428ffac1333709527b9f9bfeea608d402bb4261787582c4a90cf28513
@@ -2724,4 +2758,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-11-06T19:04:10.512326543Z"
+generated: "2023-11-07T05:42:43.356519723Z"
