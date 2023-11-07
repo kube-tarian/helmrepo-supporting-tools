@@ -381,6 +381,11 @@ containers:
       - name: config
         mountPath: "/etc/grafana/grafana.ini"
         subPath: grafana.ini
+      {{- if .Values.postgresql.enabled }}
+      - name: {{ .Values.database.secretMount.name }}
+        mountPath: {{ .Values.database.secretMount.mountPath }}
+        readOnly: {{ .Values.database.secretMount.readOnly }}
+      {{- end }}
       {{- if .Values.ldap.enabled }}
       - name: ldap
         mountPath: "/etc/grafana/ldap.toml"
@@ -604,6 +609,11 @@ volumes:
     configMap:
       name: {{ tpl $name $root }}
     {{- end }}
+  {{- end }}
+  {{- if .Values.postgresql.enabled }}
+  - name: {{ .Values.database.secretMount.name }}
+    secret:
+      secretName: {{ .Values.database.secretMount.secretName }}
   {{- end }}
   {{- if .Values.ldap.enabled }}
   - name: ldap
