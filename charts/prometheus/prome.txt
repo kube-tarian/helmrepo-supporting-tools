@@ -1,0 +1,23 @@
+[?1049h[22;0;0t[>4;2m[?1h=[?2004h[1;36r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[36;1H"/tmp/kubectl-edit-79017141.yaml" 363L, 11861C[1;1H[34m# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#[m
+[36mapiVersion[m[35m:[m v1
+[36mdata[m[35m:[m
+  [36malerting_rules.yml[m[35m:[m |
+    [35m{}[m
+  [36malerts[m[35m:[m |
+    [35m{}[m
+  [36mallow-snippet-annotations[m[35m:[m [31m"false"[m
+  [36mprometheus.yml[m[35m:[m |
+    [36mglobal[m[35m:[m[14;7H[36mevaluation_interval[m[35m:[m 1m[15;7H[36mscrape_interval[m[35m:[m 1m[16;7H[36mscrape_timeout[m[35m:[m 10s
+    [36mrule_files[m[35m:[m
+    [38;5;130m- [m/etc/config/recording_rules.yml
+    [38;5;130m- [m/etc/config/alerting_rules.yml
+    [38;5;130m- [m/etc/config/rules
+    [38;5;130m- [m/etc/config/alerts
+    [36mscrape_configs[m[35m:[m
+    [38;5;130m- [m[36mjob_name[m[35m:[m prometheus[24;7H[36mstatic_configs[m[35m:[m[25;7H[38;5;130m- [m[36mtargets[m[35m:[m[26;9H[38;5;130m- [mlocalhost:9090
+    [38;5;130m- [m[36mbearer_token_file[m[35m:[m /var/run/secrets/kubernetes.io/serviceaccount/token[28;7H[36mjob_name[m[35m:[m kubernetes-apiservers[29;7H[36mkubernetes_sd_configs[m[35m:[m[30;7H[38;5;130m- [m[36mrole[m[35m:[m endpoints[31;7H[36mrelabel_configs[m[35m:[m[32;7H[38;5;130m- [m[36maction[m[35m:[m keep[33;9H[36mregex[m[35m:[m default;kubernetes;https[34;9H[36msource_labels[m[35m:[m[35;9H[38;5;130m- [m__meta_kubernetes_namespace[36;125H1,1[11CTop[1;1H[?25h[?25l[36;1HType  :qa  and press <Enter> to exit Vim[36;41H[K[36;125H1,1[11CTop[1;1H[?25h[?25l[36;125H[K[36;125H1,1[11CTop[1;1H[?25h[?25l[36;125H[K[36;125H1,1[11CTop[1;1H[?25h[36;1H[?2004l[?2004l[?1l>[>4;m[?1049l[23;0;0tVim: Error reading input, exiting...
+Vim: Finished.
+[36;1H[?25h[23;2t[23;1t
