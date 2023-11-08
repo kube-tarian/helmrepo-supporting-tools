@@ -1182,31 +1182,4 @@ extraManifests: []
   #   data:
   #     extra-data: "value"
 
-# Configuration of subcharts defined in Chart.yaml
-
-## alertmanager sub-chart configurable values
-## Please see https://github.com/prometheus-community/helm-charts/tree/main/charts/alertmanager
-##
-#alertmanager:
-  ## If false, alertmanager will not be installed
-  ##
- # enabled: false
-
-  #persistence:
-   # size: 2Gi
-
-  #podSecurityContext:
-   # runAsUser: 65534
-    #runAsNonRoot: true
-    #runAsGroup: 65534
-    #fsGroup: 65534
-
-## kube-state-metrics sub-chart configurable values
-## Please see https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics
-##
-
-
-## promtheus-node-exporter sub-chart configurable values
-## Please see https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-node-exporter
-##
 
