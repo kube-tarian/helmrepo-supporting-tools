@@ -913,3 +913,12 @@ database:
     mountPath: /etc/secrets/postgresql
     secretName: grafana-postgresql
     readOnly: true
+
+Clickhouse:
+  enabled: false
+  username: ""
+  password: ""
+  existingSecret: {}
+    # name: ""
+    # usernamekey: ""
+    # passwordkey: ""
