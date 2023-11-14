@@ -202,7 +202,7 @@ server:
 
   extraFlags:
     - web.enable-lifecycle
-    - web.enable-remote-write-receiver
+    #- web.enable-remote-write-receiver
     ## web.enable-admin-api flag controls access to the administrative HTTP API which includes functionality such as
     ## deleting time series. This is disabled by default.
     # - web.enable-admin-api
@@ -776,10 +776,6 @@ serverFiles:
           - source_labels: [__meta_kubernetes_namespace, __meta_kubernetes_service_name, __meta_kubernetes_endpoint_port_name]
             action: keep
             regex: default;kubernetes;https
-          - action: labelmap
-            regex: .*
-            replacement: local-cluster
-
       - job_name: 'kubernetes-nodes'
 
         # Default to scraping over https. If required, just disable this or change to
