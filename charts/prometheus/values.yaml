@@ -492,13 +492,6 @@ server:
   ##
   podLabels: {}
 
-  ## Prometheus AlertManager configuration
-  ##
-  alertmanagers: []
-
-  ## Specify if a Pod Security Policy for node-exporter must be created
-  ## Ref: https://kubernetes.io/docs/concepts/policy/pod-security-policy/
-  ##
   podSecurityPolicy:
     annotations: {}
       ## Specify pod annotations
@@ -532,25 +525,6 @@ server:
     annotations: {}
     labels: {}
     podManagementPolicy: OrderedReady
-
-    ## Alertmanager headless service to use for the statefulset
-    ##
-    headless:
-      annotations: {}
-      labels: {}
-      servicePort: 80
-      ## Enable gRPC port on service to allow auto discovery with thanos-querier
-      gRPC:
-        enabled: false
-        servicePort: 10901
-        # nodePort: 10901
-
-    ## Statefulset's persistent volume claim retention policy
-    ## pvcDeleteOnStsDelete and pvcDeleteOnStsScale determine whether
-    ## statefulset's PVCs are deleted (true) or retained (false) on scaling down
-    ## and deleting statefulset, respectively. Requires 1.27.0+.
-    ## Ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#persistentvolumeclaim-retention
-    ##
     pvcDeleteOnStsDelete: false
     pvcDeleteOnStsScale: false
 
@@ -1153,13 +1127,6 @@ extraScrapeConfigs: ""
   #     - target_label: __address__
   #       replacement: prometheus-blackbox-exporter:9115
 
-# Adds option to add alert_relabel_configs to avoid duplicate alerts in alertmanager
-# useful in H/A prometheus with different external labels but the same alerts
-alertRelabelConfigs: {}
-  # alert_relabel_configs:
-  # - source_labels: [dc]
-  #   regex: (.+)\d+
-  #   target_label: dc
 
 networkPolicy:
   ## Enable creation of NetworkPolicy resources.
@@ -1180,28 +1147,6 @@ extraManifests: []
   #   data:
   #     extra-data: "value"
 
-# Configuration of subcharts defined in Chart.yaml
-
-## alertmanager sub-chart configurable values
-## Please see https://github.com/prometheus-community/helm-charts/tree/main/charts/alertmanager
-##
-#alertmanager:
-  ## If false, alertmanager will not be installed
-  ##
- # enabled: false
-
-  #persistence:
-   # size: 2Gi
-
-  #podSecurityContext:
-   # runAsUser: 65534
-    #runAsNonRoot: true
-    #runAsGroup: 65534
-    #fsGroup: 65534
-
-## kube-state-metrics sub-chart configurable values
-## Please see https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics
-##
 kube-state-metrics:
   ## If false, kube-state-metrics sub-chart will not be installed
   ##
