@@ -42,7 +42,6 @@ maintainers:
   name: zeritti
 name: prometheus
 sources:
-- https://github.com/prometheus/alertmanager
 - https://github.com/prometheus/prometheus
 - https://github.com/prometheus/pushgateway
 - https://github.com/prometheus/node_exporter
