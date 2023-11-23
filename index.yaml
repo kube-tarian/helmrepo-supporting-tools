@@ -3,6 +3,37 @@ entries:
   argo-cd:
   - annotations:
       artifacthub.io/changes: |
+        - "✨ update chart to version 5.51.4"
+    apiVersion: v2
+    appVersion: v2.9.2
+    created: "2023-11-23T09:21:44.132944905Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 618851baf3ab97f680e453358cea3336ad7de9e6885cb03b9e8bc88262f0bcc0
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/argo-cd-1.0.1/argo-cd-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - "✨ update chart to version 5.17.1"
     apiVersion: v2
     appVersion: v2.5.6
@@ -2875,4 +2906,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-11-15T13:21:02.271590605Z"
+generated: "2023-11-23T09:21:44.133062535Z"
