@@ -8,7 +8,7 @@ annotations:
     - name: Upstream Project
       url: https://github.com/prometheus-operator/kube-prometheus
   artifacthub.io/operator: "true"
-apiVersion: v3
+apiVersion: v2
 appVersion: v0.66.0
 dependencies:
 - condition: kubeStateMetrics.enabled
@@ -54,4 +54,4 @@ sources:
 - https://github.com/prometheus-community/helm-charts
 - https://github.com/prometheus-operator/kube-prometheus
 type: application
-version: 1.0.6
+version: 1.0.7
