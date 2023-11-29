@@ -20,6 +20,20 @@ loki:
   datasource:
     jsonData: "{}"
     uid: ""
+  config:
+    limits_config:
+      enforce_metric_name: false
+      reject_old_samples: true
+      reject_old_samples_max_age: 168h
+      max_entries_limit_per_query: 5000
+      split_queries_by_interval: 15m
+      max_query_parallelism: 32
+    query_scheduler:
+      max_outstanding_requests_per_tenant: 4096
+    frontend:
+      max_outstanding_per_tenant: 4096
+    query_range:
+      parallelise_shardable_queries: true
 
 
 promtail:
