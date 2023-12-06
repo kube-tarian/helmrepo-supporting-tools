@@ -31,7 +31,7 @@ data:
       "fiscalYearStartMonth": 0,
       "gnetId": 12171,
       "graphTooltip": 0,
-      "id": 48,
+      "id": 141,
       "links": [],
       "liveNow": false,
       "panels": [
@@ -94,16 +94,15 @@ data:
                 "uid": "Prometheus"
               },
               "editorMode": "code",
-              "expr": "(openebs_maya_exporter_version{cluster=\"$cluster\"})",
+              "expr": "openebs_maya_exporter_version",
               "format": "table",
               "interval": "",
-              "legendFormat": "{{`{{version}}`}}",
+              "legendFormat": "{{version}}",
               "range": true,
               "refId": "A"
             }
           ],
           "title": "OpenEBS version",
-          "transparent": true,
           "type": "stat"
         },
         {
@@ -149,13 +148,7 @@ data:
           "hideTimeOverride": true,
           "id": 2,
           "interval": "",
-          "links": [
-            {
-              "targetBlank": true,
-              "title": "$cluster Node link",
-              "url": "https://dashboard-$cluster.xyz.com/#!/node?namespace=default"
-            }
-          ],
+          "links": [],
           "maxDataPoints": 100,
           "options": {
             "colorMode": "background",
@@ -179,10 +172,12 @@ data:
                 "uid": "Prometheus"
               },
               "displayType": "Regular",
-              "expr": "avg(avg_over_time((sum without ()(kube_pod_container_status_ready{cluster=\"$cluster\",namespace=\"$namespace\",pod=~\"pvc.*.ctrl.*|pvc.*.rep.*|pvc.*.target.*\"}) / count without ()(kube_pod_container_status_ready{cluster=\"$cluster\",namespace=\"$namespace\",pod=~\"pvc.*.ctrl.*|pvc.*.rep.*|pvc.*.target.*\"}))[$duration:5m]))",
+              "editorMode": "code",
+              "expr": "avg(avg_over_time((sum without ()(kube_pod_container_status_ready{namespace=\"$namespace\",pod=~\"pvc.*.ctrl.*|pvc.*.rep.*|pvc.*.target.*\"}) / count without ()(kube_pod_container_status_ready{namespace=\"$namespace\",pod=~\"pvc.*.ctrl.*|pvc.*.rep.*|pvc.*.target.*\"}))[$duration:5m]))",
               "hide": false,
               "interval": "",
               "legendFormat": "",
+              "range": true,
               "refId": "C",
               "valueHandler": "Number Threshold"
             },
@@ -284,15 +279,14 @@ data:
                 "uid": "Prometheus"
               },
               "editorMode": "code",
-              "expr": "(kube_pod_container_status_ready{cluster=\"$cluster\",namespace=\"openebs-cstor\"})",
+              "expr": "(kube_pod_container_status_ready{namespace=\"openebs-cstor\"})",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{`{{pod}}::{{container}}`}}",
+              "legendFormat": "{{pod}}::{{container}}",
               "refId": "A"
             }
           ],
           "title": "Pod readiness in openebs namespace",
-          "transparent": true,
           "type": "barchart"
         },
         {
@@ -368,10 +362,11 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(kube_pod_spec_volumes_persistentvolumeclaims_readonly{cluster=\"$cluster\",namespace=\"$namespace\"} != 0) ",
+              "editorMode": "code",
+              "expr": "count(kube_pod_spec_volumes_persistentvolumeclaims_readonly{namespace=\"$namespace\"} != 0) ",
               "hide": false,
               "instant": false,
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
               "refId": "A"
             },
             {
@@ -385,7 +380,6 @@ data:
             }
           ],
           "title": "Readonly PVC",
-          "transparent": true,
           "type": "stat"
         },
         {
@@ -460,10 +454,11 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(kube_pod_container_status_waiting{cluster=\"$cluster\",namespace=\"$namespace\"} !=0 ) or vector(0)",
+              "editorMode": "code",
+              "expr": "count(kube_pod_container_status_waiting{namespace=\"$namespace\"} !=0 ) or vector(0)",
               "hide": false,
               "instant": false,
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
               "refId": "A"
             },
             {
@@ -477,7 +472,6 @@ data:
             }
           ],
           "title": "Waiting pods",
-          "transparent": true,
           "type": "stat"
         },
         {
@@ -552,10 +546,11 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(kube_pod_container_status_terminated{cluster=\"$cluster\",namespace=\"$namespace\"} !=0 ) or vector(0)",
+              "editorMode": "code",
+              "expr": "count(kube_pod_container_status_terminated{namespace=\"$namespace\"} !=0 ) or vector(0)",
               "hide": false,
               "instant": false,
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
               "refId": "A"
             },
             {
@@ -569,7 +564,6 @@ data:
             }
           ],
           "title": "Terminated pods",
-          "transparent": true,
           "type": "stat"
         },
         {
@@ -644,7 +638,8 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(kube_pod_container_status_terminated_reason{cluster=\"$cluster\",reason=\"OOMKilled\",namespace=\"$namespace\"} != 0 ) or vector(0)",
+              "editorMode": "code",
+              "expr": "count(kube_pod_container_status_terminated_reason{reason=\"OOMKilled\",namespace=\"$namespace\"} != 0 ) or vector(0)",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -662,7 +657,6 @@ data:
             }
           ],
           "title": "OOMKilled pods",
-          "transparent": true,
           "type": "stat"
         },
         {
@@ -715,7 +709,7 @@ data:
           "maxDataPoints": 100,
           "options": {
             "colorMode": "none",
-            "graphMode": "area",
+            "graphMode": "none",
             "justifyMode": "auto",
             "orientation": "horizontal",
             "reduceOptions": {
@@ -734,11 +728,12 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(kube_pod_container_status_ready{cluster=\"$cluster\",namespace=\"$namespace\"} !=0 ) or vector(0)",
+              "editorMode": "code",
+              "expr": "count(kube_pod_status_ready{namespace=\"$namespace\"} !=0 ) or vector(0)",
               "hide": false,
               "instant": false,
               "interval": "",
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
               "refId": "A"
             },
             {
@@ -752,7 +747,6 @@ data:
             }
           ],
           "title": "Ready pods",
-          "transparent": true,
           "type": "stat"
         },
         {
@@ -824,10 +818,10 @@ data:
                 "uid": "Prometheus"
               },
               "editorMode": "code",
-              "expr": "count(kube_persistentvolumeclaim_info{cluster=\"$cluster\"}) ",
+              "expr": "count(kube_persistentvolumeclaim_info) ",
               "hide": false,
               "instant": false,
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
               "refId": "A"
             },
             {
@@ -841,7 +835,6 @@ data:
             }
           ],
           "title": "PVCs",
-          "transparent": true,
           "type": "stat"
         },
         {
@@ -917,11 +910,12 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(count by (pod)(container_spec_memory_reservation_limit_bytes{cluster=\"$cluster\",id=~\"/kubepods.slice/kubepods-besteffort.slice/kubepods-besteffort-.*\",id!~\".*.scope\",pod!=\"\",namespace=\"$namespace\"}))",
+              "editorMode": "code",
+              "expr": "count(count by (pod)(container_spec_memory_reservation_limit_bytes{id=~\"/kubepods.slice/kubepods-besteffort.slice/kubepods-besteffort-.*\",id!~\".*.scope\",pod!=\"\",namespace=\"$namespace\"}))",
               "hide": false,
               "instant": false,
               "interval": "",
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
               "refId": "A"
             },
             {
@@ -935,7 +929,6 @@ data:
             }
           ],
           "title": "Besteffort  pods",
-          "transparent": true,
           "type": "stat"
         },
         {
@@ -1011,11 +1004,12 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "sum(count by (pod)(container_spec_memory_reservation_limit_bytes{cluster=\"$cluster\",id=~\"/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-.*\",id!~\".*.scope\",pod!=\"\",namespace=\"$namespace\"}))",
+              "editorMode": "code",
+              "expr": "sum(count by (pod)(container_spec_memory_reservation_limit_bytes{id=~\"/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-.*\",id!~\".*.scope\",pod!=\"\",namespace=\"$namespace\"}))",
               "hide": false,
               "instant": false,
               "interval": "",
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
               "refId": "A"
             },
             {
@@ -1029,7 +1023,6 @@ data:
             }
           ],
           "title": "burstable  pods",
-          "transparent": true,
           "type": "stat"
         },
         {
@@ -1081,10 +1074,12 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(container_memory_working_set_bytes{image!=\"\",cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "editorMode": "code",
+              "expr": " (sum(container_memory_working_set_bytes{image!=\"\", namespace=\"$namespace\"}))",
               "hide": false,
               "interval": "",
               "legendFormat": "Memory used",
+              "range": true,
               "refId": "A"
             },
             {
@@ -1092,9 +1087,11 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(kube_pod_container_resource_requests_memory_bytes{cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "editorMode": "code",
+              "expr": " (sum(kube_pod_container_resource_requests_memory_bytes{namespace=\"$namespace\"}))",
               "interval": "",
               "legendFormat": "Memory requests",
+              "range": true,
               "refId": "B"
             },
             {
@@ -1102,10 +1099,12 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(kube_pod_container_resource_limits_memory_bytes{cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "editorMode": "code",
+              "expr": " (sum(kube_pod_container_resource_limits_memory_bytes{cnamespace=\"$namespace\"}))",
               "hide": false,
               "interval": "",
               "legendFormat": "Memory limits",
+              "range": true,
               "refId": "C"
             }
           ],
@@ -1174,10 +1173,12 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "editorMode": "code",
+              "expr": " (sum(kube_pod_container_resource_requests_cpu_cores{namespace=\"$namespace\"}))",
               "hide": true,
               "interval": "",
               "legendFormat": "Memory requests",
+              "range": true,
               "refId": "B"
             },
             {
@@ -1185,10 +1186,12 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(kube_pod_container_resource_limits_cpu_cores{cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "editorMode": "code",
+              "expr": " (sum(kube_pod_container_resource_limits_cpu_cores{namespace=\"$namespace\"}))",
               "hide": false,
               "interval": "",
               "legendFormat": "Memory limits",
+              "range": true,
               "refId": "C"
             }
           ],
@@ -1255,7 +1258,7 @@ data:
               "expr": "kubelet_volume_stats_available_bytes\n  / kubelet_volume_stats_capacity_bytes",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{`{{persistentvolumeclaim}}`}}",
+              "legendFormat": "{{persistentvolumeclaim}}",
               "refId": "B"
             }
           ],
@@ -1281,8 +1284,7 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1368,8 +1370,7 @@ data:
                       "mode": "absolute",
                       "steps": [
                         {
-                          "color": "dark-red",
-                          "value": null
+                          "color": "dark-red"
                         },
                         {
                           "color": "dark-red",
@@ -1527,7 +1528,7 @@ data:
             },
             "overrides": []
           },
-          "fill": 0,
+          "fill": 10,
           "fillGradient": 6,
           "gridPos": {
             "h": 12,
@@ -1571,23 +1572,23 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(container_memory_working_set_bytes{image!=\"\",cluster=\"$cluster\", namespace=\"$namespace\"}) by (pod_name))",
+              "editorMode": "code",
+              "expr": " (sum(container_memory_working_set_bytes{image!=\"\", namespace=\"$namespace\"}) by (pod_name))",
               "instant": false,
               "interval": "",
               "intervalFactor": 1,
-              "legendFormat": "{{`{{pod_name}}`}}",
+              "legendFormat": "{{pod_name}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "Memory usage by Pods in OpenEBS  in $cluster cluster",
+          "title": "Memory usage by Pods in OpenEBS  ",
           "tooltip": {
             "shared": true,
             "sort": 1,
             "value_type": "individual"
           },
-          "transparent": true,
           "type": "graph",
           "xaxis": {
             "mode": "time",
@@ -1596,12 +1597,14 @@ data:
           },
           "yaxes": [
             {
+              "$$hashKey": "object:70",
               "format": "decbytes",
               "label": "GB",
               "logBase": 1,
               "show": true
             },
             {
+              "$$hashKey": "object:71",
               "format": "short",
               "logBase": 1,
               "show": false
@@ -1676,19 +1679,18 @@ data:
               "instant": false,
               "interval": "",
               "intervalFactor": 1,
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "CPU usage by Pods in OpenEBS  in $cluster cluster",
+          "title": "CPU usage by Pods in OpenEBS  ",
           "tooltip": {
             "shared": true,
             "sort": 1,
             "value_type": "individual"
           },
-          "transparent": true,
           "type": "graph",
           "xaxis": {
             "mode": "time",
@@ -1697,12 +1699,14 @@ data:
           },
           "yaxes": [
             {
+              "$$hashKey": "object:239",
               "format": "short",
               "label": "",
               "logBase": 1,
               "show": true
             },
             {
+              "$$hashKey": "object:240",
               "format": "short",
               "logBase": 1,
               "show": false
@@ -1773,19 +1777,18 @@ data:
               },
               "expr": "count by (node)(kube_pod_info{cluster=\"$cluster\",namespace=\"$namespace\"})",
               "hide": false,
-              "legendFormat": "{{`{{node}}`}}",
+              "legendFormat": "{{node}}",
               "refId": "A"
             }
           ],
           "thresholds": [],
           "timeRegions": [],
-          "title": "pod count by nodes of $namespace in $cluster cluster",
+          "title": "pod count by nodes of $namespace ",
           "tooltip": {
             "shared": true,
             "sort": 0,
             "value_type": "individual"
           },
-          "transparent": true,
           "type": "graph",
           "xaxis": {
             "mode": "time",
@@ -1794,12 +1797,14 @@ data:
           },
           "yaxes": [
             {
+              "$$hashKey": "object:387",
               "decimals": 0,
               "format": "none",
               "logBase": 1,
               "show": true
             },
             {
+              "$$hashKey": "object:388",
               "format": "short",
               "logBase": 1,
               "show": false
@@ -1874,10 +1879,12 @@ data:
               "displayAliasType": "Warning / Critical",
               "displayType": "Regular",
               "displayValueWithAlias": "Never",
-              "expr": "increase(kube_pod_container_status_restarts_total{cluster=\"$cluster\",namespace=\"$namespace\"}[2m]) ",
+              "editorMode": "code",
+              "expr": "increase(kube_pod_container_status_restarts_total{namespace=\"$namespace\"}[2m]) ",
               "format": "time_series",
               "interval": "",
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
+              "range": true,
               "refId": "A",
               "units": "none",
               "valueHandler": "Number Threshold"
@@ -1891,7 +1898,6 @@ data:
             "sort": 1,
             "value_type": "individual"
           },
-          "transparent": true,
           "type": "graph",
           "xaxis": {
             "mode": "time",
@@ -1900,11 +1906,13 @@ data:
           },
           "yaxes": [
             {
+              "$$hashKey": "object:437",
               "format": "short",
               "logBase": 1,
               "show": true
             },
             {
+              "$$hashKey": "object:438",
               "format": "short",
               "logBase": 1,
               "show": true
@@ -1973,11 +1981,12 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count by(pod,reason) (kube_pod_container_status_terminated_reason{cluster=\"$cluster\",namespace=\"$namespace\",reason!=\"Completed\"} !=0 )",
+              "editorMode": "code",
+              "expr": "count by(pod,reason) (kube_pod_container_status_terminated_reason{namespace=\"$namespace\",reason!=\"Completed\"} !=0 )",
               "hide": false,
               "instant": false,
               "interval": "",
-              "legendFormat": "{{`TERMINATED::{{reason}}::{{pod}}`}}",
+              "legendFormat": "TERMINATED::{{reason}}::{{pod}}",
               "refId": "A"
             },
             {
@@ -1988,7 +1997,7 @@ data:
               "expr": "count by(pod,reason) (kube_pod_container_status_waiting_reason{cluster=\"$cluster\",namespace=\"$namespace\"} !=0 )",
               "hide": false,
               "interval": "",
-              "legendFormat": "{{`WAITING::{{reason}}::{{pod}}`}}",
+              "legendFormat": "WAITING::{{reason}}::{{pod}}",
               "refId": "B"
             },
             {
@@ -1996,6 +2005,9 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
+              "expr": "",
+              "instant": false,
+              "range": true,
               "refId": "C"
             }
           ],
@@ -2007,7 +2019,6 @@ data:
             "sort": 0,
             "value_type": "individual"
           },
-          "transparent": true,
           "type": "graph",
           "xaxis": {
             "mode": "time",
@@ -2016,11 +2027,13 @@ data:
           },
           "yaxes": [
             {
+              "$$hashKey": "object:489",
               "format": "short",
               "logBase": 1,
               "show": true
             },
             {
+              "$$hashKey": "object:490",
               "format": "short",
               "logBase": 1,
               "show": true
@@ -2061,8 +2074,7 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2135,15 +2147,16 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "kube_persistentvolumeclaim_status_phase{cluster=\"$cluster\"}",
+              "editorMode": "code",
+              "expr": "kube_persistentvolumeclaim_status_phase",
               "format": "table",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{`{{persistentvolumeclaim}}:{{phase}}`}}",
+              "legendFormat": "{{persistentvolumeclaim}}:{{phase}}",
               "refId": "A"
             }
           ],
-          "title": "persistentvolumeclaim in namespace $namespace",
+          "title": "persistentvolumeclaim in namespaces",
           "transformations": [
             {
               "id": "filterFieldsByName",
@@ -2158,7 +2171,6 @@ data:
               }
             }
           ],
-          "transparent": true,
           "type": "table"
         },
         {
@@ -2186,8 +2198,7 @@ data:
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "#d44a3a",
-                    "value": null
+                    "color": "#d44a3a"
                   },
                   {
                     "color": "semi-dark-green",
@@ -2225,6 +2236,10 @@ data:
               "fields": "",
               "values": false
             },
+            "text": {
+              "titleSize": 14,
+              "valueSize": 20
+            },
             "textMode": "auto"
           },
           "pluginVersion": "10.0.3",
@@ -2234,15 +2249,15 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "(openebs_total_replica_count{cluster=\"$cluster\"})",
+              "editorMode": "code",
+              "expr": "(openebs_total_replica_count)",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{`{{pod}}`}}",
+              "legendFormat": "{{pod}}",
               "refId": "B"
             }
           ],
           "title": "$cluster OpenEBS replicas",
-          "transparent": true,
           "type": "stat"
         }
       ],
@@ -2403,6 +2418,6 @@ data:
       "timezone": "",
       "title": "OpenEBS Dashboard",
       "uid": "ZzAis83Wz",
-      "version": 2,
+      "version": 1,
       "weekStart": ""
     }

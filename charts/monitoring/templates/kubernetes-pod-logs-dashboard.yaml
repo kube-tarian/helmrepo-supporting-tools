@@ -1,0 +1,665 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "monitoring.fullname" . }}-kubernetes-pod-logs
+  annotations:
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    grafana_folder: "Cluster"
+  labels:
+    grafana_dashboard: "1"
+data:
+  podlogs.json: |-
+    {
+        "annotations": {
+        "list": [
+            {
+            "builtIn": 1,
+            "datasource": {
+                "type": "grafana",
+                "uid": "-- Grafana --"
+            },
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+            }
+        ]
+        },
+        "editable": true,
+        "fiscalYearStartMonth": 0,
+        "graphTooltip": 0,
+        "id": 139,
+        "links": [],
+        "liveNow": false,
+        "panels": [
+        {
+            "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+            },
+            "fieldConfig": {
+            "defaults": {
+                "mappings": [],
+                "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                    {
+                    "color": "green",
+                    "value": null
+                    },
+                    {
+                    "color": "orange",
+                    "value": 70
+                    },
+                    {
+                    "color": "red",
+                    "value": 85
+                    }
+                ]
+                }
+            },
+            "overrides": []
+            },
+            "gridPos": {
+            "h": 5,
+            "w": 8,
+            "x": 0,
+            "y": 0
+            },
+            "id": 6,
+            "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+                "calcs": [
+                "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+            },
+            "pluginVersion": "10.0.3",
+            "targets": [
+            {
+                "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+                },
+                "editorMode": "code",
+                "expr": "sum(count_over_time({pod=\"$pod\", cluster_name=\"$cluster_name\"} |= `$filter` [$__interval])) by (stream)",
+                "hide": false,
+                "queryType": "range",
+                "refId": "A"
+            }
+            ],
+            "title": "Total count of stderr / stdout ",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+            },
+            "fieldConfig": {
+            "defaults": {
+                "mappings": [],
+                "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                    {
+                    "color": "green",
+                    "value": null
+                    },
+                    {
+                    "color": "orange",
+                    "value": 70
+                    },
+                    {
+                    "color": "red",
+                    "value": 85
+                    }
+                ]
+                }
+            },
+            "overrides": []
+            },
+            "gridPos": {
+            "h": 5,
+            "w": 7,
+            "x": 8,
+            "y": 0
+            },
+            "id": 7,
+            "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+                "calcs": [
+                "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+            },
+            "pluginVersion": "10.0.3",
+            "targets": [
+            {
+                "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+                },
+                "editorMode": "code",
+                "expr": "sum(count_over_time(({ pod=~\"$pod\",cluster_name=\"$cluster_name\", stream=~\"stderr\"} |~ \"(?i)$filter\")[$__interval])) * 100 / sum(count_over_time(({pod=~\"$pod\",cluster_name=\"$cluster_name\", stream=~\"stderr\"})[$__interval]))",
+                "queryType": "range",
+                "refId": "A"
+            }
+            ],
+            "title": "\"$filter\" Percentage for specified time",
+            "type": "gauge"
+        },
+        {
+            "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+            },
+            "fieldConfig": {
+            "defaults": {
+                "color": {
+                "mode": "thresholds"
+                },
+                "mappings": [],
+                "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                    "color": "green",
+                    "value": null
+                    },
+                    {
+                    "color": "red",
+                    "value": 80
+                    }
+                ]
+                }
+            },
+            "overrides": []
+            },
+            "gridPos": {
+            "h": 5,
+            "w": 5,
+            "x": 15,
+            "y": 0
+            },
+            "id": 8,
+            "options": {
+            "colorMode": "background_solid",
+            "graphMode": "none",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+                "calcs": [
+                "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+            },
+            "textMode": "auto"
+            },
+            "pluginVersion": "10.0.3",
+            "targets": [
+            {
+                "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+                },
+                "editorMode": "builder",
+                "expr": "sum(count_over_time({pod=\"$pod\", cluster_name=\"$cluster_name\", stream=\"stderr\"} |= `$filter` | logfmt [$__interval]))",
+                "queryType": "range",
+                "refId": "A"
+            }
+            ],
+            "title": "Total  Count of logs",
+            "type": "stat"
+        },
+        {
+            "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+            },
+            "fieldConfig": {
+            "defaults": {
+                "color": {
+                "mode": "palette-classic"
+                },
+                "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 100,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                    "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                },
+                "thresholdsStyle": {
+                    "mode": "off"
+                }
+                },
+                "mappings": [],
+                "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                    "color": "green",
+                    "value": null
+                    },
+                    {
+                    "color": "red",
+                    "value": 80
+                    }
+                ]
+                },
+                "unit": "short"
+            },
+            "overrides": []
+            },
+            "gridPos": {
+            "h": 8,
+            "w": 11,
+            "x": 0,
+            "y": 5
+            },
+            "id": 4,
+            "options": {
+            "legend": {
+                "calcs": [
+                "lastNotNull"
+                ],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+            },
+            "tooltip": {
+                "mode": "single",
+                "sort": "none"
+            }
+            },
+            "targets": [
+            {
+                "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+                },
+                "editorMode": "code",
+                "expr": "sum(count_over_time({pod=\"$pod\", cluster_name=\"$cluster_name\", stream=\"stderr\"} |~ \"(?i)$filter\"[$__interval])) by (pod)",
+                "queryType": "range",
+                "refId": "A"
+            }
+            ],
+            "title": "Matched word: \"$filter\" historical",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+            },
+            "fieldConfig": {
+            "defaults": {
+                "color": {
+                "mode": "palette-classic"
+                },
+                "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 100,
+                "gradientMode": "opacity",
+                "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                    "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                },
+                "thresholdsStyle": {
+                    "mode": "off"
+                }
+                },
+                "mappings": [],
+                "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                    "color": "green",
+                    "value": null
+                    },
+                    {
+                    "color": "red",
+                    "value": 80
+                    }
+                ]
+                },
+                "unit": "short"
+            },
+            "overrides": []
+            },
+            "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 11,
+            "y": 5
+            },
+            "id": 5,
+            "options": {
+            "legend": {
+                "calcs": [
+                "lastNotNull"
+                ],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+            },
+            "tooltip": {
+                "mode": "single",
+                "sort": "none"
+            }
+            },
+            "targets": [
+            {
+                "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+                },
+                "editorMode": "builder",
+                "expr": "sum(rate(({pod=\"$pod\", cluster_name=\"$cluster_name\", stream=~\"stderr\"} |~ \"(?i)$filter\")[30s])) by (pod)",
+                "queryType": "range",
+                "refId": "A"
+            }
+            ],
+            "title": "\"$filter\" Rate per Pod",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+            },
+            "fieldConfig": {
+            "defaults": {
+                "color": {
+                "mode": "continuous-GrYlRd"
+                },
+                "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 20,
+                "gradientMode": "scheme",
+                "hideFrom": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": false
+                },
+                "lineInterpolation": "smooth",
+                "lineWidth": 3,
+                "pointSize": 5,
+                "scaleDistribution": {
+                    "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                    "group": "A",
+                    "mode": "none"
+                },
+                "thresholdsStyle": {
+                    "mode": "off"
+                }
+                },
+                "mappings": [],
+                "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                    {
+                    "color": "green",
+                    "value": null
+                    },
+                    {
+                    "color": "red",
+                    "value": 80
+                    }
+                ]
+                }
+            },
+            "overrides": []
+            },
+            "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 13
+            },
+            "id": 3,
+            "options": {
+            "legend": {
+                "calcs": [],
+                "displayMode": "list",
+                "placement": "bottom",
+                "showLegend": true
+            },
+            "tooltip": {
+                "mode": "single",
+                "sort": "none"
+            }
+            },
+            "targets": [
+            {
+                "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+                },
+                "editorMode": "code",
+                "expr": "sum(rate({pod=\"$pod\", cluster_name=\"$cluster_name\"} |= `$filter` [$__interval])) by (stream)",
+                "queryType": "range",
+                "refId": "A"
+            }
+            ],
+            "title": "Count of stderr / stdout historical",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+            "type": "loki",
+            "uid": "Loki"
+            },
+            "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 21
+            },
+            "id": 2,
+            "options": {
+            "dedupStrategy": "none",
+            "enableLogDetails": true,
+            "prettifyLogMessage": false,
+            "showCommonLabels": false,
+            "showLabels": false,
+            "showTime": false,
+            "sortOrder": "Descending",
+            "wrapLogMessage": false
+            },
+            "targets": [
+            {
+                "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+                },
+                "editorMode": "builder",
+                "expr": "{pod=\"$pod\", cluster_name=\"$cluster_name\"} |= `$filter` | logfmt",
+                "queryType": "range",
+                "refId": "A"
+            }
+            ],
+            "title": "Raw logs",
+            "type": "logs"
+        }
+        ],
+        "refresh": "",
+        "schemaVersion": 38,
+        "style": "dark",
+        "tags": [],
+        "templating": {
+        "list": [
+            {
+            "current": {
+                "selected": false,
+                "text": "capten-controlplane",
+                "value": "capten-controlplane"
+            },
+            "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+            },
+            "definition": "",
+            "hide": 0,
+            "includeAll": false,
+            "multi": false,
+            "name": "cluster_name",
+            "options": [],
+            "query": {
+                "label": "cluster_name",
+                "refId": "LokiVariableQueryEditor-VariableQuery",
+                "stream": "",
+                "type": 1
+            },
+            "refresh": 2,
+            "regex": "",
+            "skipUrlSync": false,
+            "sort": 0,
+            "type": "query"
+            },
+            {
+            "current": {
+                "selected": false,
+                "text": "tekton",
+                "value": "tekton"
+            },
+            "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+            },
+            "definition": "",
+            "hide": 0,
+            "includeAll": false,
+            "multi": false,
+            "name": "namespace",
+            "options": [],
+            "query": {
+                "label": "namespace",
+                "refId": "LokiVariableQueryEditor-VariableQuery",
+                "stream": "{cluster_name=\"$cluster_name\"}",
+                "type": 1
+            },
+            "refresh": 2,
+            "regex": "",
+            "skipUrlSync": false,
+            "sort": 0,
+            "type": "query"
+            },
+            {
+            "current": {
+                "selected": false,
+                "text": "github-pr-pipeline-run-hwbtj-test-mbvt5-pod-fmghs",
+                "value": "github-pr-pipeline-run-hwbtj-test-mbvt5-pod-fmghs"
+            },
+            "datasource": {
+                "type": "loki",
+                "uid": "Loki"
+            },
+            "definition": "",
+            "hide": 0,
+            "includeAll": false,
+            "multi": false,
+            "name": "pod",
+            "options": [],
+            "query": {
+                "label": "pod",
+                "refId": "LokiVariableQueryEditor-VariableQuery",
+                "stream": "{cluster_name=\"$cluster_name\", namespace=\"$namespace\"}",
+                "type": 1
+            },
+            "refresh": 2,
+            "regex": "",
+            "skipUrlSync": false,
+            "sort": 0,
+            "type": "query"
+            },
+            {
+            "current": {
+                "selected": false,
+                "text": "",
+                "value": ""
+            },
+            "hide": 0,
+            "name": "filter",
+            "options": [
+                {
+                "selected": true,
+                "text": "",
+                "value": ""
+                }
+            ],
+            "query": "",
+            "skipUrlSync": false,
+            "type": "textbox"
+            }
+        ]
+        },
+        "time": {
+        "from": "now-24h",
+        "to": "now"
+        },
+        "timepicker": {},
+        "timezone": "",
+        "title": "Pod logs",
+        "uid": "d3983a93-548c-4fe7-913b-ea361930ee7b",
+        "version": 1,
+        "weekStart": ""
+    }
