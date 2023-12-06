@@ -151,6 +151,36 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/cert-manager-1.0.0/cert-manager-1.0.0.tgz
     version: 1.0.0
+  clickhouse:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 23.12.3"
+    apiVersion: v2
+    appVersion: 22.8.8
+    created: "2023-12-06T16:41:50.646305159Z"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.4.2
+    description: A Helm chart for ClickHouse
+    digest: 8a1f5676d1ff726f3f81b7cb8f1223ff13f4594a7f4e7429d5215cc9396b9422
+    icon: https://raw.githubusercontent.com/ClickHouse/ClickHouse/master/website/images/logo-400x240.png
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    - email: prashant@signoz.io
+      name: prashant-shahi
+      url: https://prashantshahi.dev
+    name: clickhouse
+    sources:
+    - https://github.com/signoz/charts/
+    - https://github.com/ClickHouse/ClickHouse
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/clickhouse-1.0.0/clickhouse-1.0.0.tgz
+    version: 1.0.0
   crossplane:
   - annotations:
       artifacthub.io/changes: |
@@ -3199,4 +3229,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-11-29T15:29:26.68941054Z"
+generated: "2023-12-06T16:41:50.646477401Z"
