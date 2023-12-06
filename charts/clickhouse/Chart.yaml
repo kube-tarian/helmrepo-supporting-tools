@@ -1,0 +1,25 @@
+annotations:
+  artifacthub.io/changes: |
+    - "✨ update chart to version 23.12.3"
+apiVersion: v2
+appVersion: 22.8.8
+dependencies:
+- condition: zookeeper.enabled
+  name: zookeeper
+  repository: https://charts.bitnami.com/bitnami
+  version: 11.4.2
+description: A Helm chart for ClickHouse
+icon: https://raw.githubusercontent.com/ClickHouse/ClickHouse/master/website/images/logo-400x240.png
+maintainers:
+- email: hello@signoz.io
+  name: SigNoz
+  url: https://signoz.io
+- email: prashant@signoz.io
+  name: prashant-shahi
+  url: https://prashantshahi.dev
+name: clickhouse
+sources:
+- https://github.com/signoz/charts/
+- https://github.com/ClickHouse/ClickHouse
+type: application
+version: 1.0.0
