@@ -22,4 +22,9 @@ name: grafana
 sources:
 - https://github.com/grafana/grafana
 type: application
-version: 1.0.3
+version: 1.0.5
+dependencies:
+  - name: postgresql
+    condition: postgresql.enabled
+    version: 1.0.0
+    repository: https://kube-tarian.github.io/helmrepo-supporting-tools/

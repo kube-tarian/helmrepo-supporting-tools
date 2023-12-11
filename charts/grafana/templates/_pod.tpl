@@ -381,6 +381,11 @@ containers:
       - name: config
         mountPath: "/etc/grafana/grafana.ini"
         subPath: grafana.ini
+      {{- if .Values.postgresql.enabled }}
+      - name: {{ .Values.database.secretMount.name }}
+        mountPath: {{ .Values.database.secretMount.mountPath }}
+        readOnly: {{ .Values.database.secretMount.readOnly }}
+      {{- end }}
       {{- if .Values.ldap.enabled }}
       - name: ldap
         mountPath: "/etc/grafana/ldap.toml"
@@ -513,6 +518,26 @@ containers:
             name: {{ .Values.smtp.existingSecret }}
             key: {{ .Values.smtp.passwordKey | default "password" }}
       {{- end }}
+      {{- if .Values.Clickhouse.enabled }}
+      - name: CLICKHOUSE_USERNAME
+        {{- if not .Values.Clickhouse.existingSecret }}
+        value: {{ .Values.Clickhouse.username }}
+        {{- else }}
+        valueFrom:
+          secretKeyRef:
+            name: {{ .Values.Clickhouse.existingSecret.name }}
+            key: {{ .Values.Clickhouse.existingSecret.usernamekey }}
+        {{- end }}
+      - name: CLICKHOUSE_PASSWORD
+        {{- if not .Values.Clickhouse.existingSecret }}
+        value: {{ .Values.Clickhouse.password }}
+        {{- else }}
+        valueFrom:
+          secretKeyRef:
+            name: {{ .Values.Clickhouse.existingSecret.name }}
+            key: {{ .Values.Clickhouse.existingSecret.passwordkey }}
+        {{- end }}
+      {{- end }}
       {{- if .Values.imageRenderer.enabled }}
       - name: GF_RENDERING_SERVER_URL
         value: http://{{ template "grafana.fullname" . }}-image-renderer.{{ template "grafana.namespace" . }}:{{ .Values.imageRenderer.service.port }}/render
@@ -604,6 +629,11 @@ volumes:
     configMap:
       name: {{ tpl $name $root }}
     {{- end }}
+  {{- end }}
+  {{- if .Values.postgresql.enabled }}
+  - name: {{ .Values.database.secretMount.name }}
+    secret:
+      secretName: {{ .Values.database.secretMount.secretName }}
   {{- end }}
   {{- if .Values.ldap.enabled }}
   - name: ldap

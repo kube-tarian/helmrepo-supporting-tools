@@ -46,6 +46,19 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.cerbos.config.server.adminAPI.adminCredentials.existingSecret }}
+          env:
+          - name: USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.cerbos.config.server.adminAPI.adminCredentials.existingSecret.secretname }}
+                key: {{ .Values.cerbos.config.server.adminAPI.adminCredentials.existingSecret.usernamekey }}
+          - name: PASSWORD_HASH
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.cerbos.config.server.adminAPI.adminCredentials.existingSecret.secretname }}
+                key: {{ .Values.cerbos.config.server.adminAPI.adminCredentials.existingSecret.passwordkey }}
+          {{- end }}
           args:
             - "server"
             - "--config=/config/config.yaml"
