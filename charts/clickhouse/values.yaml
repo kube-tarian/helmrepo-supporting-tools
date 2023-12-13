@@ -39,9 +39,9 @@ zookeeper:
   # Zookeeper image
   image:
     # -- Zookeeper image registry to use.
-    registry: *GLOBAL_IMAGE_REGISTRY
+    registry: ghcr.io
     # -- Zookeeper image repository to use.
-    repository: bitnami/zookeeper
+    repository: kube-tarian/helmrepo-supporting-tools/zookeeper
     # -- Zookeeper image tag.
     # Note: SigNoz ClickHouse does not support all versions of Zookeeper.
     # Please override the default only if you know what you are doing.
@@ -155,9 +155,9 @@ shardsCount: 1
 # -- Clickhouse image
 image:
   # -- Clickhouse image registry to use.
-  registry: docker.io
+  registry: ghcr.io
   # -- Clickhouse image repository to use.
-  repository: clickhouse/clickhouse-server
+  repository: kube-tarian/helmrepo-supporting-tools/clickhouse-server
   # -- Clickhouse image tag.
   # Note: SigNoz does not support all versions of ClickHouse.
   # Please override the default only if you know what you are doing.
@@ -436,9 +436,9 @@ clickhouseOperator:
   # -- Clickhouse Operator image
   image:
     # -- Clickhouse Operator image registry to use.
-    registry: docker.io
+    registry: ghcr.io
     # -- Clickhouse Operator image repository to use.
-    repository: altinity/clickhouse-operator
+    repository: kube-tarian/helmrepo-supporting-tools/clickhouse-operator
     # -- Clickhouse Operator image tag.
     tag: 0.21.2
     # -- Clickhouse Operator image pull policy.
@@ -542,9 +542,9 @@ clickhouseOperator:
     # -- Metrics Exporter image
     image:
       # -- Metrics Exporter image registry to use.
-      registry: docker.io
+      registry: ghcr.io
       # -- Metrics Exporter image repository to use.
-      repository: altinity/metrics-exporter
+      repository: kube-tarian/helmrepo-supporting-tools/metrics-exporter
       # -- Metrics Exporter image tag.
       tag: 0.21.2
       # -- Metrics Exporter image pull policy.
