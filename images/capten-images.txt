@@ -2,7 +2,7 @@ bitnami/kubectl:1.26.4
 altinity/clickhouse-operator:0.19.1
 altinity/metrics-exporter:0.19.1
 bitnami/postgresql:14.7.0-debian-11-r29
-bitnami/zookeeper:3.7.0-debian-10-r70
+bitnami/zookeeper:3.7.1
 clickhouse/clickhouse-server:22.8.8-alpine
 coredns/coredns:1.10.0
 falcosecurity/falco-no-driver:0.35.0
