@@ -79,6 +79,7 @@ zcube/bitnami-compat-mongodb:5.0.10-debian-11-r19
 kubeshop/testkube-api-server:latest
 minio/minio:latest
 kubeshop/testkube-dashboard
+clickhouse/clickhouse-server:23.7.3-alpine
 kubeshop/testkube-operator
 dpejcev/kube-webhook-certgen:1.0.11
 pradeepgoru/cosign:2.1.1
