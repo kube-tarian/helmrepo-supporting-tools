@@ -85,3 +85,4 @@ dpejcev/kube-webhook-certgen:1.0.11
 pradeepgoru/cosign:2.1.1
 sherilfio/customimg:latest
 sherilfio/build1:latest
+natsio/nats-boot-config:0.5.4
