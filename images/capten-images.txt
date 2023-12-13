@@ -1,6 +1,6 @@
 bitnami/kubectl:1.26.4
-altinity/clickhouse-operator:0.19.1
-altinity/metrics-exporter:0.19.1
+altinity/clickhouse-operator:0.21.2
+altinity/metrics-exporter:0.21.2
 bitnami/postgresql:14.7.0-debian-11-r29
 bitnami/zookeeper:3.7.1
 clickhouse/clickhouse-server:22.8.8-alpine
