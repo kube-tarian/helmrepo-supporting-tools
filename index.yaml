@@ -1221,6 +1221,30 @@ entries:
         - "✨ update chart to version 0.0.12"
     apiVersion: v2
     appVersion: v0.0.12
+    created: "2023-12-15T16:03:26.861173487Z"
+    description: Kubescape integration with Prometheus
+    digest: b0992b54183143aab247e1a8026e9684143783c6d00e3de073e69f8b1fdb8da6
+    home: https://www.armosec.io/
+    maintainers:
+    - email: ben@armosec.io
+      name: Ben Hirschberg
+      url: https://www.linkedin.com/in/benyamin-ben-hirschberg-66141890
+    - email: dw@armosec.io
+      name: David Wertenteil
+      url: https://www.linkedin.com/in/david-wertenteil-0ba277b9
+    - email: bez@armosec.io
+      name: Bezalel Brandwine
+      url: https://www.linkedin.com/in/bezalel-brandwine
+    name: kubescape-prometheus-integrator
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kubescape-prometheus-integrator-0.0.3/kubescape-prometheus-integrator-0.0.3.tgz
+    version: 0.0.3
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.0.12"
+    apiVersion: v2
+    appVersion: v0.0.12
     created: "2023-08-11T15:55:34.669909638Z"
     description: Kubescape integration with Prometheus
     digest: a6d2e005e7898affac55f52f249abe1b9bc4b90e00ea0937a8a9307a44857a67
@@ -3299,4 +3323,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-12-15T16:02:05.866332111Z"
+generated: "2023-12-15T16:03:27.051323016Z"
