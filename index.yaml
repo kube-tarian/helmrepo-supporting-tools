@@ -1679,6 +1679,33 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/monitoring-0.1.7/monitoring-0.1.7.tgz
     version: 0.1.7
+  nats:
+  - apiVersion: v2
+    appVersion: 2.7.2
+    created: "2023-12-15T16:02:05.866177933Z"
+    description: A Helm chart for the NATS.io High Speed Cloud Native Distributed
+      Communications Technology.
+    digest: 195340830bc4b6516bf42433f93566ce51becfe72be70ff4ea500a0c6dc5cebd
+    home: http://github.com/nats-io/k8s
+    icon: https://nats.io/img/nats-icon-color.png
+    keywords:
+    - nats
+    - messaging
+    - cncf
+    maintainers:
+    - email: wally@nats.io
+      name: Waldemar Quevedo
+      url: https://github.com/wallyqs
+    - email: colin@nats.io
+      name: Colin Sullivan
+      url: https://github.com/ColinSullivan1
+    - email: jaime@nats.io
+      name: Jaime Piña
+      url: https://github.com/variadico
+    name: nats
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/nats-1.0.0/nats-1.0.0.tgz
+    version: 1.0.0
   openebs-jiva:
   - apiVersion: v2
     appVersion: 3.2.0
@@ -3272,4 +3299,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-12-15T16:01:36.974889377Z"
+generated: "2023-12-15T16:02:05.866332111Z"
