@@ -217,7 +217,7 @@ featureFlags:
 
 dashboard:
   ingress:
-    enabled: true
+    enabled: false
     ingressClassName: "default"
     annotations: {}
     pathType: Prefix
