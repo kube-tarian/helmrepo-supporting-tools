@@ -9,7 +9,7 @@ spec:
   defaults:
     templates:
       {{- if and (.Values.persistence.enabled) (not .Values.persistence.existingClaim) }}
-      dataVolumeClaimTemplate: data-volumeclaim-template
+      dataVolumeClaimTemplate: volumeclaim
       # logVolumeClaimTemplate: log-volumeclaim-template
       {{- end }}
       serviceTemplate: service-template
@@ -218,7 +218,7 @@ spec:
               {{- else if .Values.persistence.existingClaim }}
                 - name: existing-volumeclaim
               {{- else }}
-                - name: data-volumeclaim-template
+                - name: volumeclaim
               {{- end }}
                   mountPath: /var/lib/clickhouse
                 - name: shared-binary-volume
@@ -256,7 +256,7 @@ spec:
 
     {{- if and (.Values.persistence.enabled) (not .Values.persistence.existingClaim) }}
     volumeClaimTemplates:
-      - name: data-volumeclaim-template
+      - name: volumeclaim
         reclaimPolicy: Retain
         spec:
           accessModes:
