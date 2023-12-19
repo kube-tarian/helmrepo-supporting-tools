@@ -157,6 +157,35 @@ entries:
         - "✨ update chart to version 23.12.3"
     apiVersion: v2
     appVersion: 22.8.8
+    created: "2023-12-19T06:29:57.239460186Z"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.4.2
+    description: A Helm chart for ClickHouse
+    digest: 983245495e7e1dfb343cf627c9f493e67baf99b1025fadaa584d727a79d2e4a6
+    icon: https://raw.githubusercontent.com/ClickHouse/ClickHouse/master/website/images/logo-400x240.png
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    - email: prashant@signoz.io
+      name: prashant-shahi
+      url: https://prashantshahi.dev
+    name: clickhouse
+    sources:
+    - https://github.com/signoz/charts/
+    - https://github.com/ClickHouse/ClickHouse
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/clickhouse-1.0.2/clickhouse-1.0.2.tgz
+    version: 1.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 23.12.3"
+    apiVersion: v2
+    appVersion: 22.8.8
     created: "2023-12-13T13:17:39.079194723Z"
     dependencies:
     - condition: zookeeper.enabled
@@ -3337,4 +3366,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-12-18T13:23:51.21316944Z"
+generated: "2023-12-19T06:29:57.239587051Z"
