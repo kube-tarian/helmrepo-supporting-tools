@@ -22,14 +22,18 @@ spec:
   {{- end }}
   {{- end }}
   rules:
-    - host:
+  {{- if .Values.dashboard.ingress.hosts  }}
+  {{- range .Values.dashboard.ingress.hosts }}
+    - host: {{ tpl . $}}
+  {{- end }}
+  {{- end }}
       http:
         paths:
         - path: /tekton(/|$)(.*)
           pathType: {{ .Values.dashboard.ingress.pathType }}
           backend:
             service:
-              name: tekton-dashboard
+              name: {{ .Release.Name }}-dashboard
               port:
                 number: 9097
 {{- end }}
