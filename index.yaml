@@ -2407,6 +2407,20 @@ entries:
   tekton:
   - apiVersion: v2
     appVersion: 0.42.0
+    created: "2023-12-19T12:55:33.156009186Z"
+    dependencies:
+    - name: tekton-pipeline
+      repository: https://cdfoundation.github.io/tekton-helm-chart/
+      version: 1.0.2
+    description: A Helm chart for Kubernetes
+    digest: 9d3bea0b38c5b92ba55ca29bd15a72c885c2166ff1dec30597a1915a617e1400
+    name: tekton
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/tekton-0.1.4/tekton-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 0.42.0
     created: "2023-12-18T13:23:51.21299856Z"
     dependencies:
     - name: tekton-pipeline
@@ -3366,4 +3380,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2023-12-19T06:29:57.239587051Z"
+generated: "2023-12-19T12:55:33.156218325Z"
