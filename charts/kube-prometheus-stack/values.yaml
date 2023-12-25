@@ -1060,7 +1060,7 @@ grafana:
       ##
       existingSecret: ""
     metrics:
-      enabled: true
+      enabled: false
 
   database: 
     type: postgres
