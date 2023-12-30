@@ -273,8 +273,8 @@ spec:
         - args:
             - --port=9097
             - --logout-url=
-            - --pipelines-namespace=tekton-pipelines
-            - --triggers-namespace=tekton-pipelines
+            - --pipelines-namespace={{ .Release.Namespace }}
+            - --triggers-namespace={{ .Release.Namespace }}
             - --read-only=true
             - --log-level=info
             - --log-format=json
