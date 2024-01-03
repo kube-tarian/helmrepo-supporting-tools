@@ -13,4 +13,10 @@ spec:
     - name: {{ include "otelCollector.fullname" . }}
       port: {{ .Values.otelCollector.ingressRoute.service.port }}
       scheme: h2c
+  {{- if .Values.otelCollector.ingressRoute.tls }}
+  tls:
+    {{- range .Values.otelCollector.ingressRoute.tls }}
+    secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
 {{- end }}

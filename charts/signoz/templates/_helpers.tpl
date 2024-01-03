@@ -299,7 +299,33 @@ Set query-service url
 {{ include "alertmanager.fullname" . }}:{{ include "alertmanager.port" . }}
 {{- end -}}
 
+{{/*
+Create a default fully qualified app name for schema migrator.
+*/}}
+{{- define "schemaMigrator.fullname" -}}
+{{- printf "%s-%s" (include "signoz.fullname" .) .Values.schemaMigrator.name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 
+{{/*
+Common labels
+*/}}
+{{- define "schemaMigrator.labels" -}}
+helm.sh/chart: {{ include "signoz.chart" . }}
+{{ include "schemaMigrator.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
+Selector labels
+*/}}
+{{- define "schemaMigrator.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "signoz.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+app.kubernetes.io/component: {{ default "schema-migrator" .Values.schemaMigrator.name }}
+{{- end -}}
 
 {{/*
 Create a default fully qualified app name for otelCollector.
@@ -347,6 +373,47 @@ Return the initContainers image name
 {{- $registryName := default .Values.otelCollector.initContainers.init.image.registry .Values.global.imageRegistry -}}
 {{- $repositoryName := .Values.otelCollector.initContainers.init.image.repository -}}
 {{- $tag := .Values.otelCollector.initContainers.init.image.tag | toString -}}
+{{- if $registryName -}}
+    {{- printf "%s/%s:%s" $registryName $repositoryName $tag -}}
+{{- else -}}
+    {{- printf "%s:%s" $repositoryName $tag -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Return the schema migrator's image name
+*/}}
+{{- define "schemaMigrator.image" -}}
+{{- $registryName := default .Values.schemaMigrator.image.registry .Values.global.imageRegistry -}}
+{{- $repositoryName := .Values.schemaMigrator.image.repository -}}
+{{- $tag := .Values.schemaMigrator.image.tag | toString -}}
+{{- if $registryName -}}
+    {{- printf "%s/%s:%s" $registryName $repositoryName $tag -}}
+{{- else -}}
+    {{- printf "%s:%s" $repositoryName $tag -}}
+{{- end -}}
+{{- end -}}
+{{/*
+Return the schema migrator's wait initContainer image name
+*/}}
+{{- define "schemaMigrator.initContainers.wait.image" -}}
+{{- $registryName := default .Values.schemaMigrator.initContainers.wait.image.registry .Values.global.imageRegistry -}}
+{{- $repositoryName := .Values.schemaMigrator.initContainers.wait.image.repository -}}
+{{- $tag := .Values.schemaMigrator.initContainers.wait.image.tag | toString -}}
+{{- if $registryName -}}
+    {{- printf "%s/%s:%s" $registryName $repositoryName $tag -}}
+{{- else -}}
+    {{- printf "%s:%s" $repositoryName $tag -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Return the schema migrator's init initContainer image name
+*/}}
+{{- define "schemaMigrator.initContainers.init.image" -}}
+{{- $registryName := default .Values.schemaMigrator.initContainers.init.image.registry .Values.global.imageRegistry -}}
+{{- $repositoryName := .Values.schemaMigrator.initContainers.init.image.repository -}}
+{{- $tag := .Values.schemaMigrator.initContainers.init.image.tag | toString -}}
 {{- if $registryName -}}
     {{- printf "%s/%s:%s" $registryName $repositoryName $tag -}}
 {{- else -}}
