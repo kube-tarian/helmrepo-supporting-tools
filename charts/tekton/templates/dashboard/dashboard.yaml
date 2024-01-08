@@ -146,7 +146,8 @@ rules:
       - taskruns
       - pipelines
       - pipelineruns
-      - customruns
+      - pipelineresources
+      - runs
     verbs:
       - get
       - list
@@ -155,7 +156,6 @@ rules:
       - triggers.tekton.dev
     resources:
       - eventlisteners
-      - interceptors
       - triggerbindings
       - triggers
       - triggertemplates
@@ -201,7 +201,7 @@ subjects:
 ---
 apiVersion: v1
 data:
-  version: v0.39.0
+  version: v0.30.1
 kind: ConfigMap
 metadata:
   labels:
@@ -219,9 +219,9 @@ metadata:
     app.kubernetes.io/instance: default
     app.kubernetes.io/name: dashboard
     app.kubernetes.io/part-of: tekton-dashboard
-    app.kubernetes.io/version: v0.39.0
-    dashboard.tekton.dev/release: v0.39.0
-    version: v0.39.0
+    app.kubernetes.io/version: v0.30.1
+    dashboard.tekton.dev/release: v0.30.1
+    version: v0.30.1
   name: tekton-dashboard
   namespace: '{{ .Release.Namespace }}'
 spec:
@@ -245,9 +245,9 @@ metadata:
     app.kubernetes.io/instance: default
     app.kubernetes.io/name: dashboard
     app.kubernetes.io/part-of: tekton-dashboard
-    app.kubernetes.io/version: v0.39.0
-    dashboard.tekton.dev/release: v0.39.0
-    version: v0.39.0
+    app.kubernetes.io/version: v0.30.1
+    dashboard.tekton.dev/release: v0.30.1
+    version: v0.30.1
   name: tekton-dashboard
   namespace: '{{ .Release.Namespace }}'
 spec:
@@ -266,20 +266,19 @@ spec:
         app.kubernetes.io/instance: default
         app.kubernetes.io/name: dashboard
         app.kubernetes.io/part-of: tekton-dashboard
-        app.kubernetes.io/version: v0.39.0
+        app.kubernetes.io/version: v0.30.1
       name: tekton-dashboard
     spec:
       containers:
         - args:
             - --port=9097
             - --logout-url=
-            - --pipelines-namespace={{ .Release.Namespace }}
-            - --triggers-namespace={{ .Release.Namespace }}
+            - --pipelines-namespace=
+            - --triggers-namespace=
             - --read-only=true
             - --log-level=info
             - --log-format=json
             - --namespace=
-            - --namespaces=
             - --stream-logs=true
             - --external-logs=
           env:
@@ -287,7 +286,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          image: gcr.io/tekton-releases/github.com/tektoncd/dashboard/cmd/dashboard:v0.39.0@sha256:93dd10e7e49e7d409721b27e19ebbde21fd7ef263ea07e256580621428976eb4
+          image: gcr.io/tekton-releases/github.com/tektoncd/dashboard/cmd/dashboard:v0.30.1@sha256:db5f4bf41169b44fab2b2c4f329377c1adbb81b3e866068d2af37f7663bdeb52
           livenessProbe:
             httpGet:
               path: /health
@@ -333,4 +332,3 @@ subjects:
   - kind: ServiceAccount
     name: tekton-dashboard
     namespace: '{{ .Release.Namespace }}'
-

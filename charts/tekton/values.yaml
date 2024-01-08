@@ -217,8 +217,8 @@ featureFlags:
 
 dashboard:
   ingress:
-    enabled: false
-    ingressClassName: ""
+    enabled: true
+    ingressClassName: "default"
     annotations: {}
     pathType: Prefix
     hosts:
