@@ -29,7 +29,7 @@ spec:
           pathType: {{ .Values.dashboard.ingress.pathType }}
           backend:
             service:
-              name: {{ .Release.Namespace }}-dashboard
+              name: {{ .Release.Name }}-dashboard
               port:
                 number: 9097
 {{- end }}
