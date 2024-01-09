@@ -29,7 +29,7 @@ spec:
           pathType: {{ .Values.dashboard.ingress.pathType }}
           backend:
             service:
-              name: tekton-dashboard
+              name: {{ .Release.Namespace }}-dashboard
               port:
                 number: 9097
 {{- end }}
