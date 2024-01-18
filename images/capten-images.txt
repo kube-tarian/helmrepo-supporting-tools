@@ -87,5 +87,4 @@ sherilfio/customimg:latest
 sherilfio/build1:latest
 natsio/nats-boot-config:0.5.4
 library/bash:5.1.4
-alpine/git:2.26.2 
-argoproj/argocd:2.6.15 
+argoproj/argocd:v2.6.15
