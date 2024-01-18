@@ -86,3 +86,4 @@ pradeepgoru/cosign:2.1.1
 sherilfio/customimg:latest
 sherilfio/build1:latest
 natsio/nats-boot-config:0.5.4
+library/bash:5.1.4
