@@ -1,0 +1,6 @@
+keybased:
+  username: intelops
+  namespace: default
+  key: cosign-key-secret
+  registry: ghcr.io
+

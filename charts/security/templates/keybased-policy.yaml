@@ -1,0 +1,25 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: check-image
+spec:
+  validationFailureAction: Enforce
+  background: false
+  webhookTimeoutSeconds: 30
+  failurePolicy: Fail
+  rules:
+    - name: check-image
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      verifyImages:
+        - imageReferences:
+            - "{{ .Values.keybased.registry }}/{{ .Values.keybased.username }}/*:*"
+          attestors:
+            - count: 1
+              entries:
+                - keys:
+                    publicKeys: "k8s://{{ .Values.keybased.namespace }}/{{ .Values.keybased.key }}"
+                        
