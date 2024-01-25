@@ -1,0 +1,8 @@
+apiVersion: v2
+appVersion: 1.1.0
+description: Performace Analyzer Server
+maintainers:
+- name: connect2karu
+name: ml-server
+type: application
+version: 1.0.6
