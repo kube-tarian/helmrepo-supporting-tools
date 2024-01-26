@@ -1853,6 +1853,19 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/minio-1.0.0/minio-1.0.0.tgz
     version: 1.0.0
+  ml-server:
+  - apiVersion: v2
+    appVersion: 1.1.0
+    created: "2024-01-26T11:42:22.372648161Z"
+    description: Performace Analyzer Server
+    digest: 04ee57f646e43b1379977bf34844eb567cbe3a65ae7c4b12fb728fde8cb7e23a
+    maintainers:
+    - name: connect2karu
+    name: ml-server
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/ml-server-1.0.0/ml-server-1.0.0.tgz
+    version: 1.0.0
   monitoring:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -3604,4 +3617,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-01-25T19:59:38.925805825Z"
+generated: "2024-01-26T11:42:22.372793232Z"
