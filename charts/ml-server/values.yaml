@@ -31,7 +31,8 @@ podAnnotations: {}
 podSecurityContext: {}
 # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -151,6 +152,7 @@ vault:
   address: http://vault:8200
   role: "vault-role-mlserver"
   policyNames: "vault-policy-cluster-admin,vault-policy-cluster-read"
+  authMount: "kubernetes"
 
 aws:
   access_key: ""
