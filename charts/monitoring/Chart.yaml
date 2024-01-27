@@ -3,7 +3,7 @@ appVersion: 1.16.0
 description: A Helm chart for Monitoring
 name: monitoring
 type: application
-version: 0.1.10
+version: 0.1.11
 dependencies:
   - name: prometheus-msteams 
     condition: prometheus-msteams.enabled
