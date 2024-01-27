@@ -1856,6 +1856,18 @@ entries:
   ml-server:
   - apiVersion: v2
     appVersion: 1.1.0
+    created: "2024-01-27T09:52:08.66287507Z"
+    description: Performace Analyzer Server
+    digest: 31eb380e4f920acb4e352bbc8a444cda1060cc9a256b12dd9144cafcebcb5102
+    maintainers:
+    - name: connect2karu
+    name: ml-server
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/ml-server-1.0.1/ml-server-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 1.1.0
     created: "2024-01-26T11:42:22.372648161Z"
     description: Performace Analyzer Server
     digest: 04ee57f646e43b1379977bf34844eb567cbe3a65ae7c4b12fb728fde8cb7e23a
@@ -3617,4 +3629,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-01-26T11:42:22.372793232Z"
+generated: "2024-01-27T09:52:08.663070072Z"
