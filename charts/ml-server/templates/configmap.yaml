@@ -39,6 +39,7 @@ data:
   CERBOS_ENTITY_NAME: {{ .Values.cerbos.entityName }}
   VAULT_ADDR: {{ .Values.vault.address }}
   VAULT_ROLE: {{ .Values.vault.role }}
+  VAULT_AUTH_MOUNT: {{ .Values.vault.authMount }}
   ASTRA_CRED_IDENTIFIER: {{ .Values.asterDB.credidentifier | quote }}
   ASTRA_ENTITY_NAME: {{ .Values.asterDB.entityname | quote }}
   AUTH_ENABLED: {{ .Values.env.auth.enabled | quote }}
