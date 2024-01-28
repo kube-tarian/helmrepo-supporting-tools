@@ -1,0 +1,49 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/arunnintelops/qt-test-application
+  tag: latest 
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: ghcrd-docker
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 10m
+    memory: 64Mi
+
+env:
+  GIN_MODE: debug
+  GIN_ACCESS_LOG: true
+  OTEL_EXPORTER_OTLP_ENDPOINT: "localhost:4317"
+  USER_URL: :8080
+
+service:
+  name: user
+  serviceType: ClusterIP
+  internalPort: 8080
+  externalPort: 8080
+
+ingress:
+  enabled: false
+  className: ""
+  annotations:
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+    # cert-manager.io/cluster-issuer: letsencrypt-prod-cluster
+    # kubernetes.io/force-ssl-redirect: "true"
+    # kubernetes.io/ssl-redirect: "true"
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: user.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  # - secretName: user
+  #   hosts:
+  #     - user.azureagent.optimizor.app

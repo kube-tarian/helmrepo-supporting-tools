@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    wave.pusher.com/update-on-config-change: "true"
+  name: {{ template "name" . }}
+  labels:
+    name: {{ template "name" . }}
+    app: {{ template "name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      name: {{ template "name" . }}
+      app: {{ template "name" . }}
+      app.kubernetes.io/name: {{ template "name" . }}
+      app.kubernetes.io/instance: {{ template "name" . }}
+      chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+
+  template:
+    metadata:
+      labels:
+        name: {{ template "name" . }}
+        app: {{ template "name" . }}
+        app.kubernetes.io/name: {{ template "name" . }}
+        app.kubernetes.io/instance: {{ template "name" . }}
+        chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+      namespace: {{ .Values.namespace }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/support/metrics"
+        prometheus.io/port: {{ .Values.service.internalPort | quote }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: node.kubernetes.io/lifecycle
+                    operator: In
+                    values:
+                      - SpotInstance
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              podAffinityTerm:
+                labelSelector:
+                  matchExpressions:
+                    - key: app
+                      operator: In
+                      values:
+                        - {{ template "name" . }}
+                topologyKey: kubernetes.io/hostname
+      containers:
+        - name: {{ template "name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ template "name" . }}-config
+          env:
+            {{- range $key, $val := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $val | quote }}
+            {{- end }}
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: {{ .Values.service.internalPort }}              
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
