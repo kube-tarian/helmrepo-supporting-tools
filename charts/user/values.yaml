@@ -34,10 +34,10 @@ ingress:
   annotations:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod-cluster
-    kubernetes.io/force-ssl-redirect: "true"
-    kubernetes.io/ssl-redirect: "true"
-    kubernetes.io/tls-acme: "true"
+    # cert-manager.io/cluster-issuer: letsencrypt-prod-cluster
+    # kubernetes.io/force-ssl-redirect: "true"
+    # kubernetes.io/ssl-redirect: "true"
+    # kubernetes.io/tls-acme: "true"
   hosts:
     - host: user.local
       paths:
