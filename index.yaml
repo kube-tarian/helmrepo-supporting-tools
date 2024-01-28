@@ -3450,6 +3450,17 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/traefik-1.0.0/traefik-1.0.0.tgz
     version: 1.0.0
+  user:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-01-28T09:11:05.59630586Z"
+    description: A Helm chart for Kubernetes
+    digest: 44bbcce94fb569c211bb42b9e4b209b4d55ade24440eb34548cc18cd8e3e737e
+    name: user
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/user-0.1.0/user-0.1.0.tgz
+    version: 0.1.0
   vault:
   - annotations:
       artifacthub.io/changes: |
@@ -3644,4 +3655,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-01-27T13:34:13.893509812Z"
+generated: "2024-01-28T09:11:05.596489664Z"
