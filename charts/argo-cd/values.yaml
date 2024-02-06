@@ -172,7 +172,7 @@ configs:
     ## Ref: https://argo-cd.readthedocs.io/en/latest/operator-manual/rbac/#exec-resource
     exec.enabled: false
     
-    resource.exclusions: |
+    resource.exclusions: 
     - apiGroups:
       - "*"
       kinds:
