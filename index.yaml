@@ -3498,6 +3498,35 @@ entries:
       charts.openshift.io/name: HashiCorp Vault
     apiVersion: v2
     appVersion: 1.14.0
+    created: "2024-02-06T06:40:27.374941274Z"
+    description: Official HashiCorp Vault Chart
+    digest: efe895549face0ed5ea3dfce93e5c326caaa0370ee42805f1a729ca93862f868
+    home: https://www.vaultproject.io
+    icon: https://github.com/hashicorp/vault/raw/f22d202cde2018f9455dec755118a9b84586e082/Vault_PrimaryLogo_Black.png
+    keywords:
+    - vault
+    - security
+    - encryption
+    - secrets
+    - management
+    - automation
+    - infrastructure
+    kubeVersion: '>= 1.20.0-0'
+    name: vault
+    sources:
+    - https://github.com/hashicorp/vault
+    - https://github.com/hashicorp/vault-helm
+    - https://github.com/hashicorp/vault-k8s
+    - https://github.com/hashicorp/vault-csi-provider
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/vault-0.0.4/vault-0.0.4.tgz
+    version: 0.0.4
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.25.0"
+      charts.openshift.io/name: HashiCorp Vault
+    apiVersion: v2
+    appVersion: 1.14.0
     created: "2023-10-06T08:39:30.767952634Z"
     description: Official HashiCorp Vault Chart
     digest: 55a61513416a703be9d9b1c2a0e2f61bb7f3039c5f98016e2c516ba87a4c6d63
@@ -3685,4 +3714,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-01-30T06:41:01.477378515Z"
+generated: "2024-02-06T06:40:27.37508869Z"
