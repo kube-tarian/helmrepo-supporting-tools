@@ -171,6 +171,15 @@ configs:
     # -- Enable exec feature in Argo UI
     ## Ref: https://argo-cd.readthedocs.io/en/latest/operator-manual/rbac/#exec-resource
     exec.enabled: false
+    
+    resource.exclusions: |
+    - apiGroups:
+      - "*"
+      kinds:
+      - "PipelineRun"
+      - "TaskRun"
+      clusters:
+      - "*"
 
     # -- Enable local admin user
     ## Ref: https://argo-cd.readthedocs.io/en/latest/faq/#how-to-disable-admin-user
