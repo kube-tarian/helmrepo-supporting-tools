@@ -1,11 +1,11 @@
 apiVersion: v2
 appVersion: 1.16.0
+dependencies:
+- condition: prometheus-msteams.enabled
+  name: prometheus-msteams
+  repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+  version: 1.0.0
 description: A Helm chart for Monitoring
 name: monitoring
 type: application
-version: 0.1.13
-dependencies:
-  - name: prometheus-msteams 
-    condition: prometheus-msteams.enabled
-    version: 1.0.0
-    repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+version: 0.1.14

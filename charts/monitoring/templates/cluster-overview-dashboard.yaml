@@ -559,7 +559,7 @@ data:
               },
               "editorMode": "code",
               "expr": "kube_node_status_condition{cluster_name=\"$cluster_name\",condition=\"Ready\", status!=\"true\"}",
-              "legendFormat": "{{node}}",
+              "legendFormat": "{{`{{node}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -990,7 +990,7 @@ data:
               },
               "editorMode": "code",
               "expr": "(1 - avg(irate(node_cpu_seconds_total{cluster_name=\"$cluster_name\",mode=\"idle\"}[1m])) by (instance)) * 100 / scalar(sum(machine_cpu_cores{cluster_name=\"$cluster_name\"}))\n",
-              "legendFormat": "{{instance}}",
+              "legendFormat": "{{`{{instance}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1173,7 +1173,7 @@ data:
               },
               "editorMode": "code",
               "expr": "100 - (avg by(instance) (rate(node_cpu_seconds_total{cluster_name=\"$cluster_name\",mode=\"idle\"}[2m])) * 100)",
-              "legendFormat": "{{instance}}",
+              "legendFormat": "{{`{{instance}}`}}",
               "range": true,
               "refId": "A"
             }
@@ -2121,7 +2121,7 @@ data:
               },
               "editorMode": "code",
               "expr": "(node_memory_MemTotal_bytes{cluster_name=\"$cluster_name\"}) - (node_memory_MemFree_bytes{cluster_name=\"$cluster_name\"}) - (node_memory_Cached_bytes{cluster_name=\"$cluster_name\"}) - (node_memory_Buffers_bytes{cluster_name=\"$cluster_name\"})",
-              "legendFormat": "{{instance}}",
+              "legendFormat": "{{`{{instance}}`}}",
               "range": true,
               "refId": "A"
             }

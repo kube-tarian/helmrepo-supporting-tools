@@ -122,7 +122,7 @@ data:
               "expr": "kube_pod_info{pod=\"$pod\"}",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{ created_by_kind }}: {{ created_by_name }}",
+              "legendFormat": "{{`{{ created_by_kind }}`}}: {{`{{ created_by_name }}`}}",
               "refId": "A"
             }
           ],
@@ -190,7 +190,7 @@ data:
               "expr": "kube_pod_info{pod=\"$pod\"}",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{ node }}",
+              "legendFormat": "{{`{{ node }}`}}",
               "refId": "A"
             }
           ],
@@ -252,7 +252,7 @@ data:
               "expr": "kube_pod_info{pod=\"$pod\"}",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{ pod_ip }}",
+              "legendFormat": "{{`{{ pod_ip }}`}}",
               "refId": "A"
             }
           ],
@@ -315,7 +315,7 @@ data:
               "format": "time_series",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{ priority_class }}",
+              "legendFormat": "{{`{{ priority_class }}`}}",
               "range": false,
               "refId": "A"
             }
@@ -410,7 +410,7 @@ data:
               "expr": "kube_pod_status_qos_class{pod=\"$pod\"} > 0",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{ qos_class }}",
+              "legendFormat": "{{`{{ qos_class }}`}}",
               "refId": "A"
             }
           ],
@@ -474,7 +474,7 @@ data:
               "expr": "kube_pod_container_status_last_terminated_reason{pod=\"$pod\"}",
               "instant": true,
               "interval": "",
-              "legendFormat": "{{ reason }}",
+              "legendFormat": "{{`{{ reason }}`}}",
               "refId": "A"
             }
           ],
@@ -1284,7 +1284,7 @@ data:
               "exemplar": true,
               "expr": "sum(rate(container_cpu_usage_seconds_total{pod=\"$pod\", image!=\"\"}[$__rate_interval])) by (container) / sum(kube_pod_container_resource_requests{ pod=\"$pod\", resource=\"cpu\"}) by (container)",
               "interval": "$resolution",
-              "legendFormat": "{{ container }}  REQUESTS",
+              "legendFormat": "{{`{{ container }}`}}  REQUESTS",
               "range": true,
               "refId": "A"
             },
@@ -1296,7 +1296,7 @@ data:
               "editorMode": "code",
               "expr": "sum(rate(container_cpu_usage_seconds_total{pod=\"$pod\", image!=\"\"}[$__rate_interval])) by (container) / sum(kube_pod_container_resource_limits{pod=\"$pod\", resource=\"cpu\"}) by (container)",
               "hide": false,
-              "legendFormat": "{{ container }}  LIMITS",
+              "legendFormat": "{{`{{ container }}`}}  LIMITS",
               "range": true,
               "refId": "B"
             }
@@ -1410,7 +1410,7 @@ data:
               "exemplar": true,
               "expr": "sum(container_memory_working_set_bytes{pod=\"$pod\", image!=\"\"}) by (container) / sum(kube_pod_container_resource_requests{pod=\"$pod\", resource=\"memory\"}) by (container)",
               "interval": "",
-              "legendFormat": "{{ container }} REQUESTS",
+              "legendFormat": "{{`{{ container }}`}} REQUESTS",
               "range": true,
               "refId": "A"
             },
@@ -1422,7 +1422,7 @@ data:
               "editorMode": "code",
               "expr": "sum(container_memory_working_set_bytes{pod=\"$pod\", image!=\"\"}) by (container) / sum(kube_pod_container_resource_limits{ pod=\"$pod\", resource=\"memory\"}) by (container)",
               "hide": false,
-              "legendFormat": "{{ container }} LIMITS",
+              "legendFormat": "{{`{{ container }}`}} LIMITS",
               "range": true,
               "refId": "B"
             }
@@ -1542,7 +1542,7 @@ data:
               "exemplar": true,
               "expr": "sum(rate(container_cpu_usage_seconds_total{pod=\"$pod\", image!=\"\", container!=\"\"}[$__rate_interval])) by (container)",
               "interval": "$resolution",
-              "legendFormat": "{{ container }}",
+              "legendFormat": "{{`{{ container }}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1645,7 +1645,7 @@ data:
               "exemplar": true,
               "expr": "sum(container_memory_working_set_bytes{pod=\"$pod\", image!=\"\", container!=\"\"}) by (container)",
               "interval": "",
-              "legendFormat": "{{ container }}",
+              "legendFormat": "{{`{{ container }}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1751,7 +1751,7 @@ data:
               "exemplar": true,
               "expr": "sum(rate(container_cpu_cfs_throttled_seconds_total{pod=\"$pod\", image!=\"\", container!=\"\"}[$__rate_interval])) by (container)",
               "interval": "$resolution",
-              "legendFormat": "{{ container }}",
+              "legendFormat": "{{`{{ container }}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1877,7 +1877,7 @@ data:
               "exemplar": true,
               "expr": "sum(increase(container_oom_events_total{pod=\"${pod}\", container!=\"\"}[$__rate_interval])) by (container)",
               "interval": "",
-              "legendFormat": "{{ container }}",
+              "legendFormat": "{{`{{ container }}`}}",
               "range": true,
               "refId": "A"
             }
@@ -1990,7 +1990,7 @@ data:
               "exemplar": true,
               "expr": "sum(increase(kube_pod_container_status_restarts_total{pod=\"${pod}\", container!=\"\"}[$__rate_interval])) by (container)",
               "interval": "",
-              "legendFormat": "{{ container }}",
+              "legendFormat": "{{`{{ container }}`}}",
               "range": true,
               "refId": "A"
             }
