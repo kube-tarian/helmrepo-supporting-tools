@@ -272,7 +272,7 @@ data:
               "editorMode": "builder",
               "expr": "count_over_time({cluster_name=\"$cluster_name\", node_name=\"$node\"} |= `$filter` [$__range])",
               "key": "Q-a8862167-ca91-49e3-9b89-52a7b6164229-0",
-              "legendFormat": "{{node_name}}",
+              "legendFormat": "{{`{{node_name}}`}}",
               "queryType": "range",
               "refId": "A"
             }
