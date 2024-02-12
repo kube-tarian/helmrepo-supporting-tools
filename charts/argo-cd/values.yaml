@@ -181,14 +181,6 @@ configs:
 
     # -- Timeout to refresh application data as well as target manifests cache
     timeout.hard.reconciliation: 0s
-    resource.exclusions: |
-      - apiGroups:
-        - "*"
-        kinds:
-        - "PipelineRun"
-        - "TaskRun"
-        clusters:
-        - "*"
 
     # Dex configuration
     # dex.config: |
