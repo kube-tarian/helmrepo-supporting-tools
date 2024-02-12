@@ -6,6 +6,37 @@ entries:
         - "✨ update chart to version 5.51.4"
     apiVersion: v2
     appVersion: v2.9.2
+    created: "2024-02-12T07:24:01.112787025Z"
+    dependencies:
+    - condition: redis-ha.enabled
+      name: redis-ha
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: A Helm chart for Argo CD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 4d58e2dcb82ae84b7b9bd1b89003ed0f7ed1329f740b84fce56f3f313b308a96
+    home: https://github.com/argoproj/argo-helm
+    icon: https://argo-cd.readthedocs.io/en/stable/assets/logo.png
+    keywords:
+    - argoproj
+    - argocd
+    - gitops
+    kubeVersion: '>=1.23.0-0'
+    maintainers:
+    - name: argoproj
+      url: https://argoproj.github.io/
+    name: argo-cd
+    sources:
+    - https://github.com/argoproj/argo-helm/tree/main/charts/argo-cd
+    - https://github.com/argoproj/argo-cd
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/argo-cd-1.0.2/argo-cd-1.0.2.tgz
+    version: 1.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 5.51.4"
+    apiVersion: v2
+    appVersion: v2.9.2
     created: "2023-11-23T09:21:44.132944905Z"
     dependencies:
     - condition: redis-ha.enabled
@@ -2673,6 +2704,16 @@ entries:
     version: 0.0.1
   tekton:
   - apiVersion: v2
+    appVersion: 0.56.0
+    created: "2024-02-12T07:24:01.293760619Z"
+    description: A Helm chart for Kubernetes
+    digest: bd97704bf41da6ba5371614d3b6f233106d516c98a97a2c4d6f84b950da8c9ee
+    name: tekton
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/tekton-0.1.8/tekton-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
     appVersion: 0.42.0
     created: "2024-01-09T10:22:58.215017619Z"
     dependencies:
@@ -3729,4 +3770,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-02-08T04:46:11.971127432Z"
+generated: "2024-02-12T07:24:01.293951666Z"
