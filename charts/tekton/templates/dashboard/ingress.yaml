@@ -22,7 +22,9 @@ spec:
   {{- end }}
   {{- end }}
   rules:
-    - host:
+    {{- range .Values.dashboard.ingress.hosts }}
+    - host: {{ . }}
+    {{- end }}
       http:
         paths:
         - path: /
