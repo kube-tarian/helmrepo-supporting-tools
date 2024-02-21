@@ -2702,6 +2702,19 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/signoz-0.0.1/signoz-0.0.1.tgz
     version: 0.0.1
+  sql-statefull-deploy:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+    apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-02-21T18:57:20.477460686Z"
+    description: A Helm chart for Kubernetes
+    digest: a80235b27c0078dbe9c313d4af5cb633dd22488786e4db2c565655965aebac29
+    name: sql-statefull-deploy
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/sql-statefull-deploy-0.1.0/sql-statefull-deploy-0.1.0.tgz
+    version: 0.1.0
   tekton:
   - apiVersion: v2
     appVersion: 0.56.0
@@ -3780,4 +3793,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-02-19T19:44:33.888011788Z"
+generated: "2024-02-21T18:57:20.477949063Z"
