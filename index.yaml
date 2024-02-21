@@ -2707,6 +2707,18 @@ entries:
       catalog.cattle.io/hidden: "true"
     apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-02-21T19:46:49.630753135Z"
+    description: A Helm chart for Kubernetes
+    digest: c70407bfd5ca7105cdae5ff377e11b4d078b40e3a5629b8490168685459e3c93
+    name: sql-statefull-deploy
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/sql-statefull-deploy-0.1.1/sql-statefull-deploy-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+    apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-02-21T18:57:20.477460686Z"
     description: A Helm chart for Kubernetes
     digest: a80235b27c0078dbe9c313d4af5cb633dd22488786e4db2c565655965aebac29
@@ -3793,4 +3805,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-02-21T18:57:20.477949063Z"
+generated: "2024-02-21T19:46:49.63113171Z"
