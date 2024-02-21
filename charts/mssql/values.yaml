@@ -11,15 +11,23 @@ image:
   tag: "2019-latest"
 
 ACCEPT_EULA:
-    value: "y"
+  value: "y"
 MSSQL_PID:
-    value: "Developer"
+  value: "Developer"
 MSSQL_AGENT_ENABLED:
-    value: "false"
+  value: "false"
+
+resources:
+  limits:
+    cpu: 1
+    memory: 1Gi
+  requests:
+    cpu: 1
+    memory: 1Gi
 
 containers:
   ports:
-      containerPort: 1433
+    containerPort: 1433
 
 podAnnotations: {}
 

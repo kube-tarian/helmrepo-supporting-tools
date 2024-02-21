@@ -48,6 +48,8 @@ spec:
              mountPath: "/var/opt/mssql"
            - name: mssql-config-volume
              mountPath: /var/opt/config
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
       volumes:        
       - name: mssql-config-volume
         configMap:
