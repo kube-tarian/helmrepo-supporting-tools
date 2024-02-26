@@ -1,5 +1,6 @@
 # -- Internal settings used with `helm template` to generate install manifest
 # @ignored
+clustername: capten-controlplane
 templating:
   enabled: false
   debug: false

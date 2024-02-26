@@ -4,6 +4,7 @@
 
 # Details of the container image to use in the Velero deployment & daemonset (if
 # enabling node-agent). Required.
+clustername: capten-controlplane
 image:
   repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/velero
   tag: v1.11.0

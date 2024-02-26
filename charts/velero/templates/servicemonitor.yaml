@@ -28,6 +28,12 @@ spec:
       app.kubernetes.io/instance: {{ .Release.Name }}
   endpoints:
   - port: http-monitoring
+    metricRelabelings:
+      - action: replace
+        regex: .*
+        replacement: {{ .Values.clustername }}
+        separator: ;
+        targetLabel: cluster_name
     interval: {{ .Values.metrics.scrapeInterval }}
     scrapeTimeout: {{ .Values.metrics.scrapeTimeout }}
     {{- if .Values.metrics.serviceMonitor.scheme }}
