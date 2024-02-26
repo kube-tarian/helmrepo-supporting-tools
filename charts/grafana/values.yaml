@@ -1,3 +1,4 @@
+clustername: capten-controlplane
 rbac:
   create: true
   ## Use an existing ClusterRole/Role (depending on rbac.namespaced false/true)
@@ -166,7 +167,12 @@ serviceMonitor:
   scheme: http
   tlsConfig: {}
   scrapeTimeout: 30s
-  relabelings: []
+  relabelings: 
+    - action: replace
+      regex: .*
+      replacement: control-plane
+      separator: ;
+      targetLabel: cluster_name
 
 extraExposePorts: []
  # - name: keycloak
