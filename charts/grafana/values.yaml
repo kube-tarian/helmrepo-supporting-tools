@@ -1,4 +1,4 @@
-clustername: capten-controlplane
+
 rbac:
   create: true
   ## Use an existing ClusterRole/Role (depending on rbac.namespaced false/true)
@@ -23,12 +23,12 @@ serviceAccount:
   autoMount: true
 
 replicas: 1
-
 ## Create a headless service for the deployment
 headlessService: false
 
 ## Create HorizontalPodAutoscaler object for deployment type
 #
+
 autoscaling:
   enabled: false
 #   minReplicas: 1
@@ -170,7 +170,7 @@ serviceMonitor:
   relabelings: 
     - action: replace
       regex: .*
-      replacement: control-plane
+      replacement: capten-control-plane
       separator: ;
       targetLabel: cluster_name
 

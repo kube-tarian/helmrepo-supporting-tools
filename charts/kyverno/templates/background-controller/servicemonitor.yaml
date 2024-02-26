@@ -23,12 +23,6 @@ spec:
     - {{ template "kyverno.namespace" . }}
   endpoints:
   - port: metrics-port
-    metricRelabelings:
-      - action: replace
-        regex: .*
-        replacement: {{ .Values.clustername }}
-        separator: ;
-        targetLabel: cluster_name
     interval: {{ .Values.backgroundController.serviceMonitor.interval }}
     scrapeTimeout: {{ .Values.backgroundController.serviceMonitor.scrapeTimeout }}
     {{- if .Values.backgroundController.serviceMonitor.secure }}

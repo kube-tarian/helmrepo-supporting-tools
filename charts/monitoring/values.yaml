@@ -1,7 +1,6 @@
 # Default values for grafana-dashboards.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-clustername: capten-controlplane
 replicaCount: 1
 
 image:
@@ -9,7 +8,7 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
-
+clustername: capten-controlplane
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""

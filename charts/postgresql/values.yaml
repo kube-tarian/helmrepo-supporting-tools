@@ -1572,7 +1572,7 @@ metrics:
     metricRelabelings: 
       - action: replace
         regex: .*
-        replacement: control-plane
+        replacement: capten-control-plane
         separator: ;
         targetLabel: cluster_name
     ## @param metrics.serviceMonitor.honorLabels Specify honorLabels parameter to add the scrape endpoint

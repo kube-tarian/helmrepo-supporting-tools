@@ -1,13 +1,13 @@
 # Default values for KS chart.
-clustername: capten-controlplane
 ksNamespace: kubescape-prometheus
 ksLabel: kubescape
 createKubescapeServiceAccount: true # TODO: move to kubescape
 
 # -- set the image pull secrets for private registry support 
 imagePullSecrets: ""
-
+clustername: capten-controlplane
 # cloud support
+
 cloudProviderMetadata:
 
   # -- cloud provider engine

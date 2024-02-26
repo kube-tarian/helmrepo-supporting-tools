@@ -816,7 +816,12 @@ admissionController:
     # -- RelabelConfigs to apply to samples before scraping
     relabelings: []
     # -- MetricRelabelConfigs to apply to samples before ingestion.
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
 
   tracing:
     # -- Enable tracing
@@ -1036,7 +1041,12 @@ backgroundController:
     # -- RelabelConfigs to apply to samples before scraping
     relabelings: []
     # -- MetricRelabelConfigs to apply to samples before ingestion.
-    metricRelabelings: []
+    metricRelabelings: 
+       - action: replace
+         regex: .*
+         replacement: capten-controlplane
+         separator: ;
+         targetLabel: cluster_name
 
   tracing:
     # -- Enable tracing
@@ -1309,8 +1319,12 @@ cleanupController:
     # -- RelabelConfigs to apply to samples before scraping
     relabelings: []
     # -- MetricRelabelConfigs to apply to samples before ingestion.
-    metricRelabelings: []
-
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
   tracing:
     # -- Enable tracing
     enabled: false
