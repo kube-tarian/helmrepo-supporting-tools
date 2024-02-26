@@ -1,4 +1,5 @@
 ---
+clustername: capten-controlplane
 replicaCount: 1
 
 image:

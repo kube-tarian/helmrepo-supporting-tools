@@ -1,7 +1,7 @@
 # Default values for grafana-dashboards.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
+clustername: capten-controlplane
 replicaCount: 1
 
 image:

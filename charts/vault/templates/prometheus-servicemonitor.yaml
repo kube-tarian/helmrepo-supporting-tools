@@ -34,6 +34,12 @@ spec:
       {{- end }}
   endpoints:
   - port: {{ include "vault.scheme" . }}
+    metricRelabelings:
+      - action: replace
+        regex: .*
+        replacement: {{ .Values.clustername }}
+        separator: ;
+        targetLabel: cluster_name
     interval: {{ .Values.serverTelemetry.serviceMonitor.interval }}
     scrapeTimeout: {{ .Values.serverTelemetry.serviceMonitor.scrapeTimeout }}
     scheme: {{ include "vault.scheme" . | lower }}

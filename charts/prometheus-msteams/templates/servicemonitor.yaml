@@ -18,6 +18,12 @@ spec:
   endpoints:
     - targetPort: {{ .Values.container.port }}
       path: /metrics
+      metricRelabelings:
+      - action: replace
+        regex: .*
+        replacement: {{ .Values.clustername }}
+        separator: ;
+        targetLabel: cluster_name
       interval: {{ .Values.metrics.serviceMonitor.scrapeInterval }}
       {{- if .Values.metrics.serviceMonitor.honorLabels }}
       honorLabels: true
