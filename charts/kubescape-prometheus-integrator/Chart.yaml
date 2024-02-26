@@ -17,4 +17,4 @@ maintainers:
   url: https://www.linkedin.com/in/bezalel-brandwine
 name: kubescape-prometheus-integrator
 type: application
-version: 0.0.3
+version: 0.0.4
