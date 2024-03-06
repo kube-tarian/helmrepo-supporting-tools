@@ -104,6 +104,8 @@ datasources:
     url: http://prometheus-kube-prometheus-prometheus:9090
   prometheusAlertmanager:
     url: http://prometheus-kube-prometheus-alertmanager:9093
+  jsonApi:
+    url: http://proact-scheduler
 nodeSelector: {}
 
 tolerations: []

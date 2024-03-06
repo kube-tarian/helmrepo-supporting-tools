@@ -1,0 +1,913 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "monitoring.fullname" . }}-Proact-Dashboard
+  annotations:
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    grafana_folder: "Proact"
+  labels:
+    grafana_dashboard: "1"
+data:
+  cluster.json: |-
+    {
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": {
+              "type": "grafana",
+              "uid": "-- Grafana --"
+            },
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+          }
+        ]
+      },
+      "editable": true,
+      "fiscalYearStartMonth": 0,
+      "graphTooltip": 0,
+      "id": 120,
+      "links": [],
+      "liveNow": false,
+      "panels": [
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "marcusolsson-json-datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "center",
+                "cellOptions": {
+                  "type": "color-text"
+                },
+                "filterable": true,
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "schedule_status"
+                },
+                "properties": [
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "mode": "basic",
+                      "type": "color-background"
+                    }
+                  },
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "paused": {
+                            "color": "orange",
+                            "index": 0
+                          },
+                          "running": {
+                            "color": "green",
+                            "index": 1
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 24,
+            "x": 0,
+            "y": 0
+          },
+          "id": 1,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "cacheDurationSeconds": 300,
+              "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "marcusolsson-json-datasource"
+              },
+              "fields": [
+                {
+                  "jsonPath": "$.[*].schedule_id"
+                },
+                {
+                  "jsonPath": "$.[*].schedule_name",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.[*].schedule_status",
+                  "language": "jsonpath",
+                  "name": ""
+                }
+              ],
+              "method": "GET",
+              "queryParams": "",
+              "refId": "A",
+              "urlPath": ""
+            }
+          ],
+          "title": "Schedules",
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "marcusolsson-json-datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 2,
+            "w": 9,
+            "x": 0,
+            "y": 6
+          },
+          "id": 9,
+          "options": {
+            "alwaysVisibleFilter": false,
+            "autoScroll": false,
+            "displayMode": "minimize",
+            "emptyValue": false,
+            "favorites": false,
+            "filter": false,
+            "groupSelection": false,
+            "header": false,
+            "padding": 10,
+            "persistent": true,
+            "showName": false,
+            "statusSort": false,
+            "sticky": false,
+            "variable": "Schedule_Id"
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "cacheDurationSeconds": 300,
+              "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "marcusolsson-json-datasource"
+              },
+              "fields": [
+                {
+                  "jsonPath": "$.[*].schedule_id",
+                  "name": "Schedule Id"
+                }
+              ],
+              "hide": false,
+              "method": "GET",
+              "queryParams": "",
+              "refId": "A",
+              "urlPath": ""
+            }
+          ],
+          "transparent": true,
+          "type": "volkovlabs-variable-panel"
+        },
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "marcusolsson-json-datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "center",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "filterable": true,
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "schedule_status"
+                },
+                "properties": [
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "mode": "basic",
+                      "type": "color-background"
+                    }
+                  },
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "paused": {
+                            "color": "orange",
+                            "index": 0
+                          },
+                          "running": {
+                            "color": "green",
+                            "index": 1
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "rebuild_image"
+                },
+                "properties": [
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "type": "color-text"
+                    }
+                  },
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "false": {
+                            "color": "red",
+                            "index": 1
+                          },
+                          "true": {
+                            "color": "semi-dark-green",
+                            "index": 0
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "pyroscope_enabled"
+                },
+                "properties": [
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "type": "color-text"
+                    }
+                  },
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "false": {
+                            "color": "red",
+                            "index": 1
+                          },
+                          "true": {
+                            "color": "semi-dark-green",
+                            "index": 0
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 4,
+            "w": 24,
+            "x": 0,
+            "y": 8
+          },
+          "id": 6,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "cacheDurationSeconds": 300,
+              "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "marcusolsson-json-datasource"
+              },
+              "fields": [
+                {
+                  "jsonPath": "$.schedule_name",
+                  "language": "jsonpath"
+                },
+                {
+                  "jsonPath": "$.cron_schedule",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.[*].docker_image_name",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.[*].pyroscope_enabled",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.[*].pyroscope_url",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.[*].pyroscope_app_name",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.[*].rebuild_image",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.[*].schedule_status",
+                  "language": "jsonpath",
+                  "name": ""
+                }
+              ],
+              "method": "GET",
+              "queryParams": "",
+              "refId": "A",
+              "urlPath": "/${Schedule_Id:schedule_id}"
+            }
+          ],
+          "title": "Execution Details",
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "marcusolsson-json-datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "fillOpacity": 80,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineWidth": 1,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 12
+          },
+          "id": 3,
+          "options": {
+            "barRadius": 0,
+            "barWidth": 0.97,
+            "fullHighlight": false,
+            "groupWidth": 0.7,
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "right",
+              "showLegend": true
+            },
+            "orientation": "auto",
+            "showValue": "never",
+            "stacking": "none",
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            },
+            "xTickLabelRotation": 0,
+            "xTickLabelSpacing": 0
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "cacheDurationSeconds": 300,
+              "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "marcusolsson-json-datasource"
+              },
+              "fields": [
+                {
+                  "jsonPath": "$.schedule_name"
+                },
+                {
+                  "jsonPath": "$.executions[*].vulnerable_packages_count",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.executions[*].vulnerablitites_count",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.executions[*].severity_critical_count",
+                  "language": "jsonpath",
+                  "name": "Critical Severity"
+                },
+                {
+                  "jsonPath": "$.executions[*].severity_high_count",
+                  "language": "jsonpath",
+                  "name": "High Severity"
+                },
+                {
+                  "jsonPath": "$.executions[*].severity_medium_count",
+                  "language": "jsonpath",
+                  "name": "Medium Severity"
+                },
+                {
+                  "jsonPath": "$.executions[*].severity_low_count",
+                  "language": "jsonpath",
+                  "name": "Low Severity"
+                },
+                {
+                  "jsonPath": "$.executions[*].severity_unknown_count",
+                  "language": "jsonpath",
+                  "name": ""
+                }
+              ],
+              "method": "GET",
+              "queryParams": "",
+              "refId": "A",
+              "urlPath": "/${Schedule_Id:schedule_id}/details"
+            }
+          ],
+          "title": "Vulnerability Details",
+          "type": "barchart"
+        },
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "marcusolsson-json-datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "center",
+                "cellOptions": {
+                  "type": "color-text"
+                },
+                "filterable": true,
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Severity"
+                },
+                "properties": [
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "mode": "basic",
+                      "type": "color-background"
+                    }
+                  },
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "HIGH": {
+                            "color": "red",
+                            "index": 1
+                          },
+                          "LOW": {
+                            "color": "green",
+                            "index": 2
+                          },
+                          "MEDIUM": {
+                            "color": "orange",
+                            "index": 0
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 12
+          },
+          "id": 5,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "cacheDurationSeconds": 300,
+              "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "marcusolsson-json-datasource"
+              },
+              "fields": [
+                {
+                  "jsonPath": "$.executions[*].scan_report.sbom_report.Results[*].Vulnerabilities[*].PkgName"
+                },
+                {
+                  "jsonPath": "$.executions[*].scan_report.sbom_report.Results[*].Vulnerabilities[*].VulnerabilityID",
+                  "language": "jsonpath",
+                  "name": ""
+                },
+                {
+                  "jsonPath": "$.executions[*].scan_report.sbom_report.Results[*].Vulnerabilities[*].Severity",
+                  "language": "jsonpath",
+                  "name": ""
+                }
+              ],
+              "method": "GET",
+              "queryParams": "",
+              "refId": "A",
+              "urlPath": "/${Schedule_Id:schedule_id}/details"
+            }
+          ],
+          "title": "Vulnerability Severity with package name",
+          "transformations": [
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {},
+                "indexByName": {
+                  "PkgName": 1,
+                  "Severity": 2,
+                  "VulnerabilityID": 0
+                },
+                "renameByName": {}
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "marcusolsson-json-datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "dark-green",
+                "mode": "fixed"
+              },
+              "custom": {
+                "align": "center",
+                "cellOptions": {
+                  "type": "color-text"
+                },
+                "filterable": true,
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 0,
+            "y": 19
+          },
+          "id": 7,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "cacheDurationSeconds": 300,
+              "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "marcusolsson-json-datasource"
+              },
+              "fields": [
+                {
+                  "jsonPath": "$.executions[*].scan_report.profiler_data.[*]",
+                  "name": "Runtime Packages"
+                }
+              ],
+              "method": "GET",
+              "queryParams": "",
+              "refId": "A",
+              "urlPath": "/${Schedule_Id:schedule_id}/details"
+            }
+          ],
+          "title": "Runtime packages that are being used",
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "marcusolsson-json-datasource",
+            "uid": "marcusolsson-json-datasource"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "fixedColor": "red",
+                "mode": "fixed"
+              },
+              "custom": {
+                "align": "center",
+                "cellOptions": {
+                  "type": "color-text"
+                },
+                "filterable": true,
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green"
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 12,
+            "x": 12,
+            "y": 19
+          },
+          "id": 8,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "cacheDurationSeconds": 300,
+              "datasource": {
+                "type": "marcusolsson-json-datasource",
+                "uid": "marcusolsson-json-datasource"
+              },
+              "fields": [
+                {
+                  "jsonPath": "$.executions[*].scan_report.profiler_found_extra_packages[*]",
+                  "name": "Packages"
+                }
+              ],
+              "method": "GET",
+              "queryParams": "",
+              "refId": "A",
+              "urlPath": "/${Schedule_Id:schedule_id}/details"
+            }
+          ],
+          "title": "Unused extra packages detected by profiler for your runtime container",
+          "type": "table"
+        }
+      ],
+      "refresh": "",
+      "schemaVersion": 38,
+      "style": "dark",
+      "tags": [],
+      "templating": {
+        "list": [
+          {
+            "current": {
+              "selected": false,
+              "text": "2b7b0a27-b150-48d7-b847-8ed424d3ba2d",
+              "value": "2b7b0a27-b150-48d7-b847-8ed424d3ba2d"
+            },
+            "datasource": {
+              "type": "marcusolsson-json-datasource",
+              "uid": "marcusolsson-json-datasource"
+            },
+            "definition": "$.[*].schedule_id",
+            "hide": 2,
+            "includeAll": false,
+            "multi": false,
+            "name": "Schedule_Id",
+            "options": [],
+            "query": {
+              "cacheDurationSeconds": 300,
+              "fields": [
+                {
+                  "jsonPath": "$.[*].schedule_id"
+                }
+              ],
+              "method": "GET",
+              "queryParams": "",
+              "urlPath": ""
+            },
+            "refresh": 2,
+            "regex": "",
+            "skipUrlSync": false,
+            "sort": 0,
+            "type": "query"
+          }
+        ]
+      },
+      "time": {
+        "from": "now-24h",
+        "to": "now"
+      },
+      "timepicker": {},
+      "timezone": "",
+      "title": "ProAct Dashboard",
+      "uid": "d40f0a50-1796-45f7-b3f5-acad118af1c2",
+      "version": 1,
+      "weekStart": ""
+    }
