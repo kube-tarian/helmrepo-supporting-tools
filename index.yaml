@@ -533,6 +533,40 @@ entries:
         - "✨ update chart to version 6.26.14"
     apiVersion: v2
     appVersion: 8.4.6
+    created: "2024-03-06T19:57:40.991301425Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: f88b50a5eef6350a48ab3878b459d045410072d20dd863ea0f94aae657dd9dec
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-1.0.6/grafana-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 6.26.14"
+    apiVersion: v2
+    appVersion: 8.4.6
     created: "2023-11-08T15:02:53.754879449Z"
     dependencies:
     - condition: postgresql.enabled
@@ -893,6 +927,67 @@ entries:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/k8ssandra-cluster-0.1.0/k8ssandra-cluster-0.1.0.tgz
     version: 0.1.0
   kube-prometheus-stack:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 47.0.0"
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+        - name: Upstream Project
+          url: https://github.com/prometheus-operator/kube-prometheus
+      artifacthub.io/operator: "true"
+    apiVersion: v2
+    appVersion: v0.66.0
+    created: "2024-03-06T19:57:41.143632371Z"
+    dependencies:
+    - condition: kubeStateMetrics.enabled
+      name: kube-state-metrics
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 5.7.*
+    - condition: nodeExporter.enabled
+      name: prometheus-node-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 4.17.*
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.*
+    description: kube-prometheus-stack collects Kubernetes manifests, Grafana dashboards,
+      and Prometheus rules combined with documentation and scripts to provide easy
+      to operate end-to-end Kubernetes cluster monitoring with Prometheus using the
+      Prometheus Operator.
+    digest: 43fc28fc9e5fd5f9524b659a8186c045cf43d0fa36e59a700c9f291e85bc6ff4
+    home: https://github.com/prometheus-operator/kube-prometheus
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - operator
+    - prometheus
+    - kube-prometheus
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: andrew@quadcorps.co.uk
+      name: andrewgkew
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    - email: github.gkarthiks@gmail.com
+      name: gkarthiks
+    - email: kube-prometheus-stack@sisti.pt
+      name: GMartinez-Sisti
+    - email: scott@r6by.com
+      name: scottrigby
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: quentin.bisson@gmail.com
+      name: QuentinBisson
+    name: kube-prometheus-stack
+    sources:
+    - https://github.com/prometheus-community/helm-charts
+    - https://github.com/prometheus-operator/kube-prometheus
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kube-prometheus-stack-1.0.9/kube-prometheus-stack-1.0.9.tgz
+    version: 1.0.9
   - annotations:
       artifacthub.io/changes: |
         - "✨ update chart to version 47.0.0"
@@ -1448,6 +1543,30 @@ entries:
         - "✨ update chart to version 0.0.12"
     apiVersion: v2
     appVersion: v0.0.12
+    created: "2024-03-06T19:57:41.245396827Z"
+    description: Kubescape integration with Prometheus
+    digest: a69ef8b15b577b52b64e26866535d986e4104a6bde18447f8eba5c0fa7f6f871
+    home: https://www.armosec.io/
+    maintainers:
+    - email: ben@armosec.io
+      name: Ben Hirschberg
+      url: https://www.linkedin.com/in/benyamin-ben-hirschberg-66141890
+    - email: dw@armosec.io
+      name: David Wertenteil
+      url: https://www.linkedin.com/in/david-wertenteil-0ba277b9
+    - email: bez@armosec.io
+      name: Bezalel Brandwine
+      url: https://www.linkedin.com/in/bezalel-brandwine
+    name: kubescape-prometheus-integrator
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kubescape-prometheus-integrator-0.0.4/kubescape-prometheus-integrator-0.0.4.tgz
+    version: 0.0.4
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.0.12"
+    apiVersion: v2
+    appVersion: v0.0.12
     created: "2023-12-15T16:03:26.861173487Z"
     description: Kubescape integration with Prometheus
     digest: b0992b54183143aab247e1a8026e9684143783c6d00e3de073e69f8b1fdb8da6
@@ -1516,6 +1635,44 @@ entries:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kubescape-prometheus-integrator-0.0.1/kubescape-prometheus-integrator-0.0.1.tgz
     version: 0.0.1
   kyverno:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 3.0.2"
+        - kind: fixed
+          description: incorrect config map names
+        - kind: added
+          description: define resources for cleanupJobs
+        - kind: changed
+          description: change to enable webhook cleanup hook by default
+      artifacthub.io/links: |
+        - name: Documentation
+          url: https://kyverno.io/docs
+      artifacthub.io/operator: "false"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: v1.10.1
+    created: "2024-03-06T19:57:41.362758294Z"
+    description: Kubernetes Native Policy Management
+    digest: b8a1dde00c76ac4dd6cd9708dc1b4cd5304ea5c3446920548e31499612d0eea8
+    home: https://kyverno.io/
+    icon: https://github.com/kyverno/kyverno/raw/main/img/logo.png
+    keywords:
+    - kubernetes
+    - nirmata
+    - policy agent
+    - validating webhook
+    - admissions controller
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - name: Nirmata
+      url: https://kyverno.io/
+    name: kyverno
+    sources:
+    - https://github.com/kyverno/kyverno
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kyverno-1.0.3/kyverno-1.0.3.tgz
+    version: 1.0.3
   - annotations:
       artifacthub.io/changes: |
         - "✨ update chart to version 3.0.2"
@@ -1910,6 +2067,21 @@ entries:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/ml-server-1.0.0/ml-server-1.0.0.tgz
     version: 1.0.0
   monitoring:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2024-03-06T19:57:41.477210672Z"
+    dependencies:
+    - condition: prometheus-msteams.enabled
+      name: prometheus-msteams
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: A Helm chart for Monitoring
+    digest: 5df527186aba9cf5c32e0c203f1d98f3b6cbd22021c6d9da1b59cde81b5bbd8c
+    name: monitoring
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/monitoring-0.1.15/monitoring-0.1.15.tgz
+    version: 0.1.15
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2024-02-08T04:46:11.97091233Z"
@@ -2388,6 +2560,49 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 16.0.0
+    created: "2024-03-06T19:57:41.599538746Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: PostgreSQL (Postgres) is an open source object-relational database
+      known for reliability and data integrity. ACID-compliant, it supports foreign
+      keys, joins, views, triggers and stored procedures.
+    digest: 717240a497a440bf84e9b33e4fadceaf0a060f12d7e1379d8f0944cd8f36439f
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-220x234.png
+    keywords:
+    - postgresql
+    - postgres
+    - database
+    - sql
+    - replication
+    - cluster
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: postgresql
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/postgresql
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/postgresql-1.0.1/postgresql-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 13.1.5"
+      category: Database
+      images: |
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:11-debian-11-r90
+        - name: postgres-exporter
+          image: docker.io/bitnami/postgres-exporter:0.14.0-debian-11-r15
+        - name: postgresql
+          image: docker.io/bitnami/postgresql:16.0.0-debian-11-r13
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 16.0.0
     created: "2023-10-31T10:40:08.523973421Z"
     dependencies:
     - name: common
@@ -2449,6 +2664,30 @@ entries:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/pre-install-0.1.0/pre-install-0.1.0.tgz
     version: 0.1.0
   prometheus-msteams:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 1.3.4"
+    apiVersion: v1
+    appVersion: v1.5.2
+    created: "2024-03-06T19:57:41.703196737Z"
+    description: A Helm chart for Kubernetes
+    digest: 5e19af28d2d3458dd29b28ed622855e8771c0fa0570a524624e430c253b1184e
+    home: https://github.com/prometheus-msteams/prometheus-msteams
+    maintainers:
+    - name: bzon
+      url: https://github.com/bzon
+    - name: ckotzbauer
+      url: https://github.com/ckotzbauer
+    - name: kbudde
+      url: https://github.com/kbudde
+    - name: Knappek
+      url: https://github.com/Knappek
+    - name: zhan9san
+      url: https://github.com/zhan9san
+    name: prometheus-msteams
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/prometheus-msteams-1.0.1/prometheus-msteams-1.0.1.tgz
+    version: 1.0.1
   - annotations:
       artifacthub.io/changes: |
         - "✨ update chart to version 1.3.4"
@@ -3744,6 +3983,32 @@ entries:
         - "✨ update chart to version 4.1.3"
     apiVersion: v2
     appVersion: 1.11.0
+    created: "2024-03-06T19:57:42.040397093Z"
+    description: A Helm chart for velero
+    digest: 424a44ac28c11383db25b9638b1f0589c18fb0966223b41a111d73a532811eb7
+    home: https://github.com/vmware-tanzu/velero
+    icon: https://cdn-images-1.medium.com/max/1600/1*-9mb3AKnKdcL_QD3CMnthQ.png
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: hsiaoairplane@gmail.com
+      name: jenting
+    - email: jiangd@vmware.com
+      name: reasonerjt
+    - email: mqiu@vmware.com
+      name: qiuming-best
+    - email: yinw@vmware.com
+      name: ywk253100
+    name: velero
+    sources:
+    - https://github.com/vmware-tanzu/velero
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.4/velero-0.0.4.tgz
+    version: 0.0.4
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 4.1.3"
+    apiVersion: v2
+    appVersion: 1.11.0
     created: "2023-08-11T16:18:39.320988053Z"
     description: A Helm chart for velero
     digest: 0065bccf5a6a55b7222f53d6ccbb20b70a74795c14cdf9d73e731c3677b6aa01
@@ -3817,4 +4082,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-02-21T20:58:53.641646415Z"
+generated: "2024-03-06T19:57:42.040607465Z"
