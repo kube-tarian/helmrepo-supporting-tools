@@ -1569,7 +1569,12 @@ metrics:
     relabelings: []
     ## @param metrics.serviceMonitor.metricRelabelings MetricRelabelConfigs to apply to samples before ingestion
     ##
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-control-plane
+        separator: ;
+        targetLabel: cluster_name
     ## @param metrics.serviceMonitor.honorLabels Specify honorLabels parameter to add the scrape endpoint
     ##
     honorLabels: false

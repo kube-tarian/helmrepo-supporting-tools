@@ -4,6 +4,7 @@
 
 ## Provide a name in place of kube-prometheus-stack for `app:` labels
 ##
+clustername: capten-controlplane
 nameOverride: ""
 
 ## Override the deployment namespace
@@ -1136,6 +1137,11 @@ kubeApiServer:
     ##
     metricRelabelings:
       # Drop excessively noisy apiserver buckets.
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
       - action: drop
         regex: apiserver_request_duration_seconds_bucket;(0.15|0.2|0.3|0.35|0.4|0.45|0.6|0.7|0.8|0.9|1.25|1.5|1.75|2|3|3.5|4|4.5|6|7|8|9|15|25|40|50)
         sourceLabels:
@@ -1318,7 +1324,12 @@ kubelet:
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
     # - sourceLabels: [__name__, image]
     #   separator: ;
     #   regex: container_([a-z_]+);
@@ -1419,7 +1430,12 @@ kubeControllerManager:
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
@@ -1481,7 +1497,12 @@ coreDns:
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
@@ -1547,7 +1568,12 @@ kubeDns:
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
@@ -1658,7 +1684,12 @@ kubeEtcd:
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
@@ -1747,7 +1778,12 @@ kubeScheduler:
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
@@ -1825,7 +1861,12 @@ kubeProxy:
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]
@@ -1898,7 +1939,12 @@ kube-state-metrics:
       ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
       ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
       ##
-      metricRelabelings: []
+      metricRelabelings: 
+        - action: replace
+          regex: .*
+          replacement: capten-controlplane
+          separator: ;
+          targetLabel: cluster_name
       # - action: keep
       #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
       #   sourceLabels: [__name__]
@@ -1977,7 +2023,12 @@ prometheus-node-exporter:
       ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
       ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
       ##
-      metricRelabelings: []
+      metricRelabelings: 
+        - action: replace
+          regex: .*
+          replacement: capten-controlplane
+          separator: ;
+          targetLabel: cluster_name
       # - sourceLabels: [__name__]
       #   separator: ;
       #   regex: ^node_mountstats_nfs_(event|operations|transport)_.+
@@ -2829,7 +2880,12 @@ prometheus:
 
     ## Metric relabel configs to apply to samples before ingestion.
     ##
-    metricRelabelings: []
+    metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
     # - action: keep
     #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
     #   sourceLabels: [__name__]

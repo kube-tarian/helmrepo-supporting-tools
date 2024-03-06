@@ -16,6 +16,12 @@ spec:
       app: {{ .Values.kubescape.name }}
   endpoints:
     - port: http
+      metricRelabelings:
+      - action: replace
+        regex: .*
+        replacement: {{ .Values.clustername }}
+        separator: ;
+        targetLabel: cluster_name
       path: /v1/metrics
       interval: {{ .Values.kubescape.serviceMonitor.interval }}
       scrapeTimeout: {{ .Values.kubescape.serviceMonitor.scrapeTimeout }}

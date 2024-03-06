@@ -1,11 +1,12 @@
 ---
+
 replicaCount: 1
 
 image:
   repository: quay.io/prometheusmsteams/prometheus-msteams
   tag: v1.5.2
   pullPolicy: Always
-
+clustername: capten-controlplane
 imagePullSecrets: []
 
 extraEnvs: {}

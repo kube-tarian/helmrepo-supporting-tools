@@ -17,4 +17,4 @@ maintainers:
 - name: zhan9san
   url: https://github.com/zhan9san
 name: prometheus-msteams
-version: 1.0.0
+version: 1.0.1

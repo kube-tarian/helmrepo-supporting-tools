@@ -4,6 +4,7 @@
 
 # Details of the container image to use in the Velero deployment & daemonset (if
 # enabling node-agent). Required.
+
 image:
   repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/velero
   tag: v1.11.0
@@ -20,7 +21,7 @@ image:
 # If you are using reloader use the following annotation with your VELERO_SECRET_NAME
 annotations: {}
 # secret.reloader.stakater.com/reload: "<VELERO_SECRET_NAME>"
-
+clustername: capten-controlplane
 # Labels to add to the Velero deployment's. Optional.
 labels: {}
 
