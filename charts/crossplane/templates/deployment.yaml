@@ -1,7 +1,9 @@
+{{- $externalSecretStoresEnabled := include "crossplane.externalSecretStoresEnabled" . | eq "true" -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "crossplane.name" . }}
+  namespace: {{ .Release.Namespace }}
   labels:
     app: {{ template "crossplane.name" . }}
     release: {{ .Release.Name }}
@@ -35,14 +37,17 @@ spec:
         release: {{ .Release.Name }}
         {{- include "crossplane.labels" . | indent 8 }}
     spec:
+      {{- with .Values.podSecurityContextCrossplane }}
       securityContext:
-        {{- toYaml .Values.podSecurityContextCrossplane | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- if .Values.priorityClassName }}
       priorityClassName: {{ .Values.priorityClassName  | quote }}
       {{- end }}
       serviceAccountName: {{ template "crossplane.name" . }}
+      hostNetwork: {{ .Values.hostNetwork }}
       initContainers:
-        - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default (printf "v%s" .Chart.AppVersion) }}"
           args:
           - core
           - init
@@ -58,9 +63,23 @@ spec:
           name: {{ .Chart.Name }}-init
           resources:
             {{- toYaml .Values.resourcesCrossplane | nindent 12 }}
+          {{- with .Values.securityContextCrossplane }}
           securityContext:
-            {{- toYaml .Values.securityContextCrossplane | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           env:
+          - name: GOMAXPROCS
+            valueFrom:
+              resourceFieldRef:
+                containerName: {{ .Chart.Name }}-init
+                resource: limits.cpu
+                divisor: "1"
+          - name: GOMEMLIMIT
+            valueFrom:
+              resourceFieldRef:
+                containerName: {{ .Chart.Name }}-init
+                resource: limits.memory
+                divisor: "1"
           - name: POD_NAMESPACE
             valueFrom:
               fieldRef:
@@ -70,8 +89,6 @@ spec:
               fieldRef:
                 fieldPath: spec.serviceAccountName
           {{- if .Values.webhooks.enabled }}
-          - name: "WEBHOOK_TLS_SECRET_NAME"
-            value: webhook-tls-secret
           - name: "WEBHOOK_SERVICE_NAME"
             value: {{ template "crossplane.name" . }}-webhooks
           - name: "WEBHOOK_SERVICE_NAMESPACE"
@@ -80,9 +97,22 @@ spec:
                 fieldPath: metadata.namespace
           - name: "WEBHOOK_SERVICE_PORT"
             value: "9443"
+          {{- else }}
+          - name: "WEBHOOK_ENABLED"
+            value: "false"
           {{- end }}
+          {{- if $externalSecretStoresEnabled }}
+          - name: "ESS_TLS_SERVER_SECRET_NAME"
+            value: ess-server-certs
+          {{- end }}
+          - name: "TLS_CA_SECRET_NAME"
+            value: crossplane-root-ca
+          - name: "TLS_SERVER_SECRET_NAME"
+            value: crossplane-tls-server
+          - name: "TLS_CLIENT_SECRET_NAME"
+            value: crossplane-tls-client
       containers:
-      - image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default (printf "v%s" .Chart.AppVersion) }}"
         args:
         - core
         - start
@@ -93,9 +123,14 @@ spec:
         name: {{ .Chart.Name }}
         resources:
           {{- toYaml .Values.resourcesCrossplane | nindent 12 }}
-        {{- if or .Values.metrics.enabled (.Values.webhooks.enabled) }}
+        startupProbe:
+          failureThreshold: 30
+          periodSeconds: 2
+          tcpSocket:
+            port: readyz
         ports:
-        {{- end }}
+        - name: readyz
+          containerPort: 8081
         {{- if .Values.metrics.enabled }}
         - name: metrics
           containerPort: 8080
@@ -104,25 +139,49 @@ spec:
         - name: webhooks
           containerPort: 9443
         {{- end }}
+        {{- with .Values.securityContextCrossplane }}
         securityContext:
-          {{- toYaml .Values.securityContextCrossplane | nindent 12 }}
+          {{- toYaml . | nindent 12 }}
+        {{- end }}
         env:
+          - name: GOMAXPROCS
+            valueFrom:
+              resourceFieldRef:
+                containerName: {{ .Chart.Name }}
+                resource: limits.cpu
+                divisor: "1"
+          - name: GOMEMLIMIT
+            valueFrom:
+              resourceFieldRef:
+                containerName: {{ .Chart.Name }}
+                resource: limits.memory
+                divisor: "1"
           - name: POD_NAMESPACE
             valueFrom:
               fieldRef:
                 fieldPath: metadata.namespace
+          - name: POD_SERVICE_ACCOUNT
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.serviceAccountName
           - name: LEADER_ELECTION
             value: "{{ .Values.leaderElection }}"
           {{- if .Values.registryCaBundleConfig.key }}
           - name: CA_BUNDLE_PATH
             value: "/certs/{{ .Values.registryCaBundleConfig.key }}"
           {{- end}}
-          {{- if .Values.webhooks.enabled }}
-          - name: "WEBHOOK_TLS_SECRET_NAME"
-            value: webhook-tls-secret
-          - name: "WEBHOOK_TLS_CERT_DIR"
-            value: /webhook/tls
+          {{- if not .Values.webhooks.enabled }}
+          - name: "WEBHOOK_ENABLED"
+            value: "false"
           {{- end }}
+          - name: "TLS_SERVER_SECRET_NAME"
+            value: crossplane-tls-server
+          - name: "TLS_SERVER_CERTS_DIR"
+            value: /tls/server
+          - name: "TLS_CLIENT_SECRET_NAME"
+            value: crossplane-tls-client
+          - name: "TLS_CLIENT_CERTS_DIR"
+            value: /tls/client
         {{- range $key, $value := .Values.extraEnvVarsCrossplane }}
           - name: {{ $key | replace "." "_" }}
             value: {{ $value | quote }}
@@ -134,15 +193,21 @@ spec:
           - mountPath: /certs
             name: ca-certs
           {{- end }}
-          {{- if .Values.webhooks.enabled }}
-          - mountPath: /webhook/tls
-            name: webhook-tls-secret
+          {{- if .Values.extraVolumeMountsCrossplane }}
+          {{- toYaml .Values.extraVolumeMountsCrossplane | nindent 10 }}
           {{- end }}
+          - mountPath: /tls/server
+            name: tls-server-certs
+          - mountPath: /tls/client
+            name: tls-client-certs
       volumes:
       - name: package-cache
         {{- if .Values.packageCache.pvc }}
         persistentVolumeClaim:
           claimName: {{ .Values.packageCache.pvc }}
+        {{- else if .Values.packageCache.configMap }}
+        configMap:
+          name: {{ .Values.packageCache.configMap }}
         {{- else }}
         emptyDir:
           medium: {{ .Values.packageCache.medium }}
@@ -156,23 +221,20 @@ spec:
             - key: {{ .Values.registryCaBundleConfig.key }}
               path: {{ .Values.registryCaBundleConfig.key }}
       {{- end }}
-      {{- if .Values.webhooks.enabled }}
-      - name: webhook-tls-secret
+      - name: tls-server-certs
         secret:
-          # NOTE(muvaf): The tls.crt is used both by the server (requires it to
-          # be a single cert) and the caBundle fields of webhook configs and CRDs
-          # which can accept a whole bundle of certificates. In order to meet
-          # the requirements of both, we require a single certificate instead of
-          # a bundle.
-          # It's assumed that initializer generates this anyway, so it should be
-          # fine.
-          secretName: webhook-tls-secret
+          secretName: crossplane-tls-server
+      - name: tls-client-certs
+        secret:
+          secretName: crossplane-tls-client
+      {{- if .Values.extraVolumesCrossplane }}
+      {{- toYaml .Values.extraVolumesCrossplane | nindent 6 }}
       {{- end }}
       {{- if .Values.nodeSelector }}
       nodeSelector: {{ toYaml .Values.nodeSelector | nindent 8 }}
       {{- end }}
       {{- if .Values.tolerations }}
-      tolerations: {{ toYaml .Values.tolerations | nindent 8 }}
+      tolerations: {{ toYaml .Values.tolerations | nindent 6 }}
       {{- end }}
       {{- if .Values.affinity }}
       affinity: {{ toYaml .Values.affinity | nindent 8 }}
