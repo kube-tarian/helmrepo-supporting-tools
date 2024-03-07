@@ -310,6 +310,45 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/crossplane-1.15.0/crossplane-1.15.0.tgz
     version: 1.15.0
+  - apiVersion: v1
+    appVersion: 1.15.0
+    created: "2024-03-07T15:49:44.815176586Z"
+    description: Crossplane is an open source Kubernetes add-on that enables platform
+      teams to assemble infrastructure from multiple vendors, and expose higher level
+      self-service APIs for application teams to consume.
+    digest: 7821f1f0877828dd25c1f8a0efc8fb2509f1ec717973c26648adacb6fab67a72
+    home: https://crossplane.io
+    icon: https://docs.crossplane.io/android-chrome-192x192.png
+    keywords:
+    - cloud
+    - infrastructure
+    - services
+    - application
+    - database
+    - cache
+    - bucket
+    - infra
+    - app
+    - ops
+    - gcp
+    - azure
+    - aws
+    - alibaba
+    - cloudsql
+    - rds
+    - s3
+    - azuredatabase
+    - asparadb
+    - gke
+    - aks
+    - eks
+    maintainers:
+    - email: info@crossplane.io
+      name: Crossplane Maintainers
+    name: crossplane
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/crossplane-1.0.3/crossplane-1.0.3.tgz
+    version: 1.0.3
   - annotations:
       artifacthub.io/changes: |
         - "✨ update chart to version 1.14.5"
@@ -4121,4 +4160,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-03-07T03:37:35.250512428Z"
+generated: "2024-03-07T15:49:44.815422062Z"
