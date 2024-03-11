@@ -1,0 +1,21 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: clustername-policy
+spec:
+  rules:
+  - name: mutate-metric-relabelings
+    match:
+      resources:
+        kinds:
+        - ServiceMonitor
+    mutate:
+      patchesJson6902: |-
+        - op: add
+          path: /spec/endpoints/0/metricRelabelings
+          value:
+            - action: 'replace'
+              regex: '.*'
+              replacement: '{{ .Values.clustername }}'
+              separator: ';'
+              targetLabel: 'cluster_name'
