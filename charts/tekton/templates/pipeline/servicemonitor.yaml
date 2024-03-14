@@ -1,0 +1,32 @@
+{{ if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: tekton-pipelines-controller
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/name: controller
+    app.kubernetes.io/part-of: tekton-pipelines
+    release: prometheus
+  name: tekton-pipelines-controller-monitor
+spec:
+  endpoints:
+  - port: http-metrics
+    metricRelabelings:
+      - action: replace
+        regex: .*
+        replacement: {{ .Values.clustername }}
+        separator: ;
+        targetLabel: cluster_name
+  namespaceSelector:
+    matchNames:
+    - {{ .Release.Namespace }}
+  selector:
+    matchLabels:
+      app: tekton-pipelines-controller
+      app.kubernetes.io/component: controller
+      app.kubernetes.io/instance: default
+      app.kubernetes.io/name: controller
+      app.kubernetes.io/part-of: tekton-pipelines
+{{- end }}

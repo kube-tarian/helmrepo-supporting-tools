@@ -32,6 +32,12 @@ controller:
                   - windows
   tolerations: []
   nodeSelector: {}
+
+serviceMonitor: 
+  enabled: true
+
+clustername: capten-controlplane
+
 # Values for tekton-pipelines-webhook
 webhook:
   deployment:
