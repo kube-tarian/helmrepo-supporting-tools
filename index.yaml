@@ -2147,6 +2147,21 @@ entries:
   monitoring:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-03-14T06:26:20.41995506Z"
+    dependencies:
+    - condition: prometheus-msteams.enabled
+      name: prometheus-msteams
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: A Helm chart for Monitoring
+    digest: a1234a2cf10e3090a59699c1ff94801bd789695edd7502b078dacac9430c2df1
+    name: monitoring
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/monitoring-0.1.16/monitoring-0.1.16.tgz
+    version: 0.1.16
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-03-06T19:57:41.477210672Z"
     dependencies:
     - condition: prometheus-msteams.enabled
@@ -3057,6 +3072,16 @@ entries:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/sql-statefull-deploy-0.1.0/sql-statefull-deploy-0.1.0.tgz
     version: 0.1.0
   tekton:
+  - apiVersion: v2
+    appVersion: 0.56.0
+    created: "2024-03-14T06:26:20.534589386Z"
+    description: A Helm chart for Kubernetes
+    digest: 9f14e34da3a39c30b78d9a0b09c9e218039d55290fd6de62f3dbdcee21c137ab
+    name: tekton
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/tekton-0.2.0/tekton-0.2.0.tgz
+    version: 0.2.0
   - apiVersion: v2
     appVersion: 0.56.0
     created: "2024-02-19T19:44:33.887803398Z"
@@ -4160,4 +4185,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-03-07T15:49:44.815422062Z"
+generated: "2024-03-14T06:26:20.534833533Z"
