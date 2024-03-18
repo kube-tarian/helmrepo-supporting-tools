@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "monitoring.fullname" . }}-Proact-Dashboard
+  name: {{ include "monitoring.fullname" . }}-proact
   annotations:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
     grafana_folder: "Proact"
