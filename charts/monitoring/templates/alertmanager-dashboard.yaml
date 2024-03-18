@@ -4,7 +4,7 @@ metadata:
   name: {{ include "monitoring.fullname" . }}-alert-manager
   annotations:
     meta.helm.sh/release-namespace: {{ .Release.Namespace }}
-    grafana_folder: "Alert Manager"
+    grafana_folder: "Alert-Manager"
   labels:
     grafana_dashboard: "1"
 data:
