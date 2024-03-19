@@ -11,6 +11,6 @@ data:
     apiVersion: 1
     datasources:
       - name: Prometheus AlertManager Datasource
-        type: Prometheus AlertManager Datasource
+        type: camptocamp-prometheus-alertmanager-datasource
         access: proxy
         url: {{ .Values.datasources.prometheusAlertmanager.url }}
