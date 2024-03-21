@@ -8,7 +8,7 @@ metadata:
   labels:
     grafana_dashboard: "1"
 data:
-  cluster.json: |-
+  alert.json: |-
     {
       "annotations": {
         "list": [
@@ -232,8 +232,8 @@ data:
         },
         {
           "datasource": {
-            "type": "camptocamp-prometheus-alertmanager-datasource",
-            "uid": "camptocamp-prometheus-alertmanager-datasource"
+            "type": "Prometheus AlertManager Datasource",
+            "uid": "Prometheus AlertManager Datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -363,8 +363,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "camptocamp-prometheus-alertmanager-datasource",
-                "uid": "camptocamp-prometheus-alertmanager-datasource"
+                "type": "Prometheus AlertManager Datasource",
+                "uid": "Prometheus AlertManager Datasource"
               },
               "filters": "cluster_name=\"$cluster_name\"",
               "refId": "A"
@@ -383,8 +383,8 @@ data:
         },
         {
           "datasource": {
-            "type": "camptocamp-prometheus-alertmanager-datasource",
-            "uid": "camptocamp-prometheus-alertmanager-datasource"
+            "type": "Prometheus AlertManager Datasource",
+            "uid": "Prometheus AlertManager Datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -433,8 +433,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "camptocamp-prometheus-alertmanager-datasource",
-                "uid": "camptocamp-prometheus-alertmanager-datasource"
+                "type": "Prometheus AlertManager Datasource",
+                "uid": "Prometheus AlertManager Datasource"
               },
               "filters": "severity=\"warning\", cluster_name=\"$cluster_name\"",
               "refId": "A"
@@ -528,8 +528,8 @@ data:
         },
         {
           "datasource": {
-            "type": "camptocamp-prometheus-alertmanager-datasource",
-            "uid": "camptocamp-prometheus-alertmanager-datasource"
+            "type": "Prometheus AlertManager Datasource",
+            "uid": "Prometheus AlertManager Datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -607,8 +607,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "camptocamp-prometheus-alertmanager-datasource",
-                "uid": "camptocamp-prometheus-alertmanager-datasource"
+                "type": "Prometheus AlertManager Datasource",
+                "uid": "Prometheus AlertManager Datasource"
               },
               "filters": "severity=\"warning\", cluster_name=\"$cluster_name\"",
               "refId": "A"
@@ -662,8 +662,8 @@ data:
         },
         {
           "datasource": {
-            "type": "camptocamp-prometheus-alertmanager-datasource",
-            "uid": "camptocamp-prometheus-alertmanager-datasource"
+            "type": "Prometheus AlertManager Datasource",
+            "uid": "Prometheus AlertManager Datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -712,8 +712,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "camptocamp-prometheus-alertmanager-datasource",
-                "uid": "camptocamp-prometheus-alertmanager-datasource"
+                "type": "Prometheus AlertManager Datasource",
+                "uid": "Prometheus AlertManager Datasource"
               },
               "filters": "severity=\"critical\", cluster_name=\"$cluster_name\"",
               "refId": "A"
@@ -806,8 +806,8 @@ data:
         },
         {
           "datasource": {
-            "type": "camptocamp-prometheus-alertmanager-datasource",
-            "uid": "camptocamp-prometheus-alertmanager-datasource"
+            "type": "Prometheus AlertManager Datasource",
+            "uid": "Prometheus AlertManager Datasource"
           },
           "fieldConfig": {
             "defaults": {
@@ -885,8 +885,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "camptocamp-prometheus-alertmanager-datasource",
-                "uid": "camptocamp-prometheus-alertmanager-datasource"
+                "type": "Prometheus AlertManager Datasource",
+                "uid": "Prometheus AlertManager Datasource"
               },
               "filters": "severity=\"critical\", cluster_name=\"$cluster_name\"",
               "refId": "A"
@@ -963,8 +963,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "camptocamp-prometheus-alertmanager-datasource",
-                "uid": "camptocamp-prometheus-alertmanager-datasource"
+                "type": "Prometheus AlertManager Datasource",
+                "uid": "Prometheus AlertManager Datasource"
               },
               "editorMode": "builder",
               "expr": "{cluster_name=\"$cluster_name\", namespace=\"observability\", pod=\"alertmanager-prometheus-kube-prometheus-alertmanager-0\"} |= `$filter`",

@@ -36,7 +36,7 @@ data:
         {
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": "marcusolsson-json-datasource"
+            "uid": "JSON-API"
           },
           "fieldConfig": {
             "defaults": {
@@ -127,7 +127,7 @@ data:
               "cacheDurationSeconds": 300,
               "datasource": {
                 "type": "marcusolsson-json-datasource",
-                "uid": "marcusolsson-json-datasource"
+                "uid": "JSON-API"
               },
               "fields": [
                 {
@@ -156,7 +156,7 @@ data:
         {
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": "marcusolsson-json-datasource"
+            "uid": "JSON-API"
           },
           "fieldConfig": {
             "defaults": {
@@ -205,7 +205,7 @@ data:
               "cacheDurationSeconds": 300,
               "datasource": {
                 "type": "marcusolsson-json-datasource",
-                "uid": "marcusolsson-json-datasource"
+                "uid": "JSON-API"
               },
               "fields": [
                 {
@@ -226,7 +226,7 @@ data:
         {
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": "marcusolsson-json-datasource"
+            "uid": "JSON-API"
           },
           "fieldConfig": {
             "defaults": {
@@ -381,7 +381,7 @@ data:
               "cacheDurationSeconds": 300,
               "datasource": {
                 "type": "marcusolsson-json-datasource",
-                "uid": "marcusolsson-json-datasource"
+                "uid": "JSON-API"
               },
               "fields": [
                 {
@@ -436,7 +436,7 @@ data:
         {
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": "marcusolsson-json-datasource"
+            "uid": "JSON-API"
           },
           "fieldConfig": {
             "defaults": {
@@ -515,7 +515,7 @@ data:
               "cacheDurationSeconds": 300,
               "datasource": {
                 "type": "marcusolsson-json-datasource",
-                "uid": "marcusolsson-json-datasource"
+                "uid": "JSON-API"
               },
               "fields": [
                 {
@@ -569,7 +569,7 @@ data:
         {
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": "marcusolsson-json-datasource"
+            "uid": "JSON-API"
           },
           "fieldConfig": {
             "defaults": {
@@ -664,7 +664,7 @@ data:
               "cacheDurationSeconds": 300,
               "datasource": {
                 "type": "marcusolsson-json-datasource",
-                "uid": "marcusolsson-json-datasource"
+                "uid": "JSON-API"
               },
               "fields": [
                 {
@@ -707,7 +707,7 @@ data:
         {
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": "marcusolsson-json-datasource"
+            "uid": "JSON-API"
           },
           "fieldConfig": {
             "defaults": {
@@ -764,7 +764,7 @@ data:
               "cacheDurationSeconds": 300,
               "datasource": {
                 "type": "marcusolsson-json-datasource",
-                "uid": "marcusolsson-json-datasource"
+                "uid": "JSON-API"
               },
               "fields": [
                 {
@@ -784,7 +784,7 @@ data:
         {
           "datasource": {
             "type": "marcusolsson-json-datasource",
-            "uid": "marcusolsson-json-datasource"
+            "uid": "JSON-API"
           },
           "fieldConfig": {
             "defaults": {
@@ -841,7 +841,7 @@ data:
               "cacheDurationSeconds": 300,
               "datasource": {
                 "type": "marcusolsson-json-datasource",
-                "uid": "marcusolsson-json-datasource"
+                "uid": "JSON-API"
               },
               "fields": [
                 {
@@ -873,7 +873,7 @@ data:
             },
             "datasource": {
               "type": "marcusolsson-json-datasource",
-              "uid": "marcusolsson-json-datasource"
+              "uid": "JSON-API"
             },
             "definition": "$.[*].schedule_id",
             "hide": 2,
