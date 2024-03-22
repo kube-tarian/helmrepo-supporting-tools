@@ -2918,6 +2918,20 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/promtail-1.0.0/promtail-1.0.0.tgz
     version: 1.0.0
+  pyroscope:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.2.92"
+    apiVersion: v2
+    appVersion: 0.37.2
+    created: "2024-03-22T06:11:24.471078933Z"
+    description: A Helm chart for Pyroscope
+    digest: b34bc887bed4716b2fd59a8d8a6b007b7904e3e8b2f39dff7ca2dfa86a64953e
+    name: pyroscope
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/pyroscope-1.0.0/pyroscope-1.0.0.tgz
+    version: 1.0.0
   redis-ha:
   - annotations:
       artifacthub.io/changes: |
@@ -4276,4 +4290,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-03-21T07:07:01.984013578Z"
+generated: "2024-03-22T06:11:24.471262428Z"
