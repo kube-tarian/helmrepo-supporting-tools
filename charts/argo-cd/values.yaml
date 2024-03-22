@@ -22,6 +22,8 @@ createAggregateRoles: false
 ## Used when you manage applications in the same cluster where Argo CD runs
 createClusterRoles: true
 
+clustername: capten-controlplane
+
 openshift:
   # -- enables using arbitrary uid for argo repo server
   enabled: false
@@ -788,7 +790,7 @@ controller:
   ## Application controller metrics configuration
   metrics:
     # -- Deploy metrics service
-    enabled: false
+    enabled: true
     applicationLabels:
       # -- Enables additional labels in argocd_app_labels metric
       enabled: false
@@ -809,13 +811,18 @@ controller:
       portName: http-metrics
     serviceMonitor:
       # -- Enable a prometheus ServiceMonitor
-      enabled: false
+      enabled: true
       # -- Prometheus ServiceMonitor interval
       interval: 30s
       # -- Prometheus [RelabelConfigs] to apply to samples before scraping
       relabelings: []
       # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
-      metricRelabelings: []
+      metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
       # -- Prometheus ServiceMonitor selector
       selector: {}
         # prometheus: kube-prometheus
@@ -891,7 +898,7 @@ dex:
 
   metrics:
     # -- Deploy metrics service
-    enabled: false
+    enabled: true
     service:
       # -- Metrics service annotations
       annotations: {}
@@ -901,13 +908,18 @@ dex:
       portName: http-metrics
     serviceMonitor:
       # -- Enable a prometheus ServiceMonitor
-      enabled: false
+      enabled: true
       # -- Prometheus ServiceMonitor interval
       interval: 30s
       # -- Prometheus [RelabelConfigs] to apply to samples before scraping
       relabelings: []
       # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
-      metricRelabelings: []
+      metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
       # -- Prometheus ServiceMonitor selector
       selector: {}
         # prometheus: kube-prometheus
@@ -1354,7 +1366,7 @@ redis:
 
   metrics:
     # -- Deploy metrics service
-    enabled: false
+    enabled: true
 
     # Redis metrics service configuration
     service:
@@ -1373,13 +1385,18 @@ redis:
 
     serviceMonitor:
       # -- Enable a prometheus ServiceMonitor
-      enabled: false
+      enabled: true
       # -- Interval at which metrics should be scraped
       interval: 30s
       # -- Prometheus [RelabelConfigs] to apply to samples before scraping
       relabelings: []
       # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
-      metricRelabelings: []
+      metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
       # -- Prometheus ServiceMonitor selector
       selector: {}
         # prometheus: kube-prometheus
@@ -1870,7 +1887,7 @@ server:
   ## Server metrics service configuration
   metrics:
     # -- Deploy metrics service
-    enabled: false
+    enabled: true
     service:
       # -- Metrics service type
       type: ClusterIP
@@ -1886,13 +1903,18 @@ server:
       portName: http-metrics
     serviceMonitor:
       # -- Enable a prometheus ServiceMonitor
-      enabled: false
+      enabled: true
       # -- Prometheus ServiceMonitor interval
       interval: 30s
       # -- Prometheus [RelabelConfigs] to apply to samples before scraping
       relabelings: []
       # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
-      metricRelabelings: []
+      metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
       # -- Prometheus ServiceMonitor selector
       selector: {}
         # prometheus: kube-prometheus
@@ -2353,7 +2375,7 @@ repoServer:
   ## Repo server metrics service configuration
   metrics:
     # -- Deploy metrics service
-    enabled: false
+    enabled: true
     service:
       # -- Metrics service type
       type: ClusterIP
@@ -2369,13 +2391,18 @@ repoServer:
       portName: http-metrics
     serviceMonitor:
       # -- Enable a prometheus ServiceMonitor
-      enabled: false
+      enabled: true
       # -- Prometheus ServiceMonitor interval
       interval: 30s
       # -- Prometheus [RelabelConfigs] to apply to samples before scraping
       relabelings: []
       # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
-      metricRelabelings: []
+      metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
       # -- Prometheus ServiceMonitor selector
       selector: {}
         # prometheus: kube-prometheus
@@ -2510,7 +2537,7 @@ applicationSet:
   ## Metrics service configuration
   metrics:
     # -- Deploy metrics service
-    enabled: false
+    enabled: true
     service:
       # -- Metrics service type
       type: ClusterIP
@@ -2526,13 +2553,18 @@ applicationSet:
       portName: http-metrics
     serviceMonitor:
       # -- Enable a prometheus ServiceMonitor
-      enabled: false
+      enabled: true
       # -- Prometheus ServiceMonitor interval
       interval: 30s
       # -- Prometheus [RelabelConfigs] to apply to samples before scraping
       relabelings: []
       # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
-      metricRelabelings: []
+      metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
       # -- Prometheus ServiceMonitor selector
       selector: {}
         # prometheus: kube-prometheus
@@ -2880,7 +2912,7 @@ notifications:
 
   metrics:
     # -- Enables prometheus metrics server
-    enabled: false
+    enabled: true
     # -- Metrics port
     port: 9001
     service:
@@ -2896,7 +2928,7 @@ notifications:
       portName: http-metrics
     serviceMonitor:
       # -- Enable a prometheus ServiceMonitor
-      enabled: false
+      enabled: true
       # -- Prometheus ServiceMonitor selector
       selector: {}
         # prometheus: kube-prometheus
@@ -2914,7 +2946,12 @@ notifications:
       # -- Prometheus [RelabelConfigs] to apply to samples before scraping
       relabelings: []
       # -- Prometheus [MetricRelabelConfigs] to apply to samples before ingestion
-      metricRelabelings: []
+      metricRelabelings: 
+      - action: replace
+        regex: .*
+        replacement: capten-controlplane
+        separator: ;
+        targetLabel: cluster_name
 
   # -- Configures notification services such as slack, email or custom webhook
   # @default -- See [values.yaml]
