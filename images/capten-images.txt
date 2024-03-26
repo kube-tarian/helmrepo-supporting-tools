@@ -92,3 +92,4 @@ alpine/git:v2.26.2
 prom/mysqld-exporter:v0.11.0
 library/mysql:latest
 sherilfio/curl:latest
+golang:1.21-alpine
