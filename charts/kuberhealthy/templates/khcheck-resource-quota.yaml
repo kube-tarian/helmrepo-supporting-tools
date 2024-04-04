@@ -1,0 +1,35 @@
+{{- if .Values.check.imagePullCheck.enabled }}
+apiVersion: comcast.github.io/v1
+kind: KuberhealthyCheck
+metadata:
+  name: resource-quota
+  namespace: {{ .Values.namespace | default .Release.Namespace }}
+spec:
+  runInterval: {{ .Values.check.resourceQuota.runInterval }}
+  timeout: {{ .Values.check.resourceQuota.timeout }}
+  podSpec:
+    containers:
+    - name: resource-quota
+      image: "{{ .Values.check.resourceQuota.image.repository }}:{{ .Values.check.resourceQuota.image.tag }}"
+      imagePullPolicy: IfNotPresent
+      env:
+{{- range $key, $value := .Values.check.resourceQuota.extraEnvs }}
+        - name: {{ $key }}
+          value: {{ $value | quote }}
+{{- end }}
+      resources:
+        requests:
+          cpu: {{ .Values.check.resourceQuota.resources.requests.cpu }}
+          memory: {{ .Values.check.resourceQuota.resources.requests.memory }}
+        {{- if .Values.check.resourceQuota.resources.limits }}
+        limits:
+          {{- if .Values.check.resourceQuota.resources.limits.cpu }}
+          cpu: {{ .Values.check.resourceQuota.resources.limits.cpu }}
+          {{- end }}
+          {{- if .Values.check.resourceQuota.resources.limits.memory }}
+          memory: {{ .Values.check.resourceQuota.resources.limits.memory }}
+          {{- end }}
+        {{- end }}
+    restartPolicy: Never
+    terminationGracePeriodSeconds: 30
+{{- end }}
