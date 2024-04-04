@@ -1713,6 +1713,41 @@ entries:
         - "✨ update chart to version 104"
     apiVersion: v2
     appVersion: v2.8.0-rc2
+    created: "2024-04-04T08:16:44.668329103Z"
+    description: An operator for synthetic test and monitoring. Works great with Prometheus.
+    digest: 07da67897e83e95fbdbbe46ccb5293c138d854d934600297dd258469d20aefc4
+    home: https://kuberhealthy.github.io/kuberhealthy/
+    icon: https://raw.githubusercontent.com/kuberhealthy/kuberhealthy/master/images/logo-square.png
+    keywords:
+    - kuberhealthy
+    - kubernetes
+    - operator
+    - monitoring
+    - synthetic
+    - testing
+    - comcast
+    - health
+    - prometheus
+    maintainers:
+    - email: ericgreer@gmail.com
+      name: integrii
+    - email: jonathan_phan@comcast.com
+      name: jonnydawg
+    - email: joshulyne_park@comcast.com
+      name: joshulyne
+    name: kuberhealthy
+    sources:
+    - https://github.com/kuberhealthy/kuberhealthy
+    - https://github.com/kuberhealthy/kuberhealthy/tree/master/deploy/helm/kuberhealthy
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kuberhealthy-1.0.1/kuberhealthy-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 104"
+    apiVersion: v2
+    appVersion: v2.8.0-rc2
     created: "2024-04-04T07:07:41.372277632Z"
     description: An operator for synthetic test and monitoring. Works great with Prometheus.
     digest: b6c0914cdc0c150f4ab366484790a3c53f78abf5945b6440c22e588b96a52c99
@@ -4357,4 +4392,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-04-04T07:07:41.37251137Z"
+generated: "2024-04-04T08:16:44.668505604Z"
