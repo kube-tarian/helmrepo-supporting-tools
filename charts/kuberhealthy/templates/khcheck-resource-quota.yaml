@@ -1,4 +1,4 @@
-{{- if .Values.check.imagePullCheck.enabled }}
+{{- if .Values.check.resourceQuota.enabled }}
 apiVersion: comcast.github.io/v1
 kind: KuberhealthyCheck
 metadata:
