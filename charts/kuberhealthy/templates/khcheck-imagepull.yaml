@@ -1,0 +1,33 @@
+{{- if .Values.check.imagePullCheck.enabled }}
+apiVersion: comcast.github.io/v1
+kind: KuberhealthyCheck
+metadata:
+  name: image-pull-check
+  namespace: {{ .Values.namespace | default .Release.Namespace }}
+spec:
+  podSpec:
+    containers:
+    - env:
+{{- range $key, $value := .Values.check.imagePullCheck.extraEnvs }}
+        - name: {{ $key }}
+          value: {{ $value | quote }}
+{{- end }}
+      image: "{{ .Values.check.imagePullCheck.image.repository }}:{{ .Values.check.imagePullCheck.image.tag }}"
+      imagePullPolicy: Always
+      name: main
+      resources:
+        requests:
+          cpu: {{ .Values.check.imagePullCheck.resources.requests.cpu }}
+          memory: {{ .Values.check.imagePullCheck.resources.requests.memory }}
+        {{- if .Values.check.imagePullCheck.resources.limits }}
+        limits:
+          {{- if .Values.check.imagePullCheck.resources.limits.cpu }}
+          cpu: {{ .Values.check.imagePullCheck.resources.limits.cpu }}
+          {{- end }}
+          {{- if .Values.check.imagePullCheck.resources.limits.memory }}
+          memory: {{ .Values.check.imagePullCheck.resources.limits.memory }}
+          {{- end }}
+        {{- end }}
+  runInterval: {{ .Values.check.imagePullCheck.runInterval }}
+  timeout: {{ .Values.check.imagePullCheck.timeout }}
+{{- end }}
