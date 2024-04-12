@@ -47,7 +47,8 @@ cspcOperator:
   resyncInterval: "30"
   podAnnotations: {}
   podLabels: {}
-  nodeSelector: {}
+  nodeSelector: 
+    nodeType: masterscalesetnode
   tolerations: []
   resources: {}
   securityContext: {}
@@ -83,7 +84,8 @@ cvcOperator:
   resyncInterval: "30"
   podAnnotations: {}
   podLabels: {}
-  nodeSelector: {}
+  nodeSelector: 
+    nodeType: masterscalesetnode
   tolerations: []
   resources: {}
   securityContext: {}
@@ -150,7 +152,8 @@ csiController:
   annotations: {}
   podAnnotations: {}
   podLabels: {}
-  nodeSelector: {}
+  nodeSelector: 
+    nodeType: masterscalesetnode
   tolerations: []
   resources: {}
   securityContext: {}
@@ -199,7 +202,8 @@ csiNode:
   # microk8s where kubelet root dir is not (/var/lib/kubelet/). For example microk8s,
   # we need to change the kubelet directory to `/var/snap/microk8s/common/var/lib/kubelet/`
   kubeletDir: "/var/lib/kubelet/"
-  nodeSelector: {}
+  nodeSelector: 
+    nodeType: masterscalesetnode
   tolerations: []
   securityContext: {}
 
@@ -222,7 +226,8 @@ admissionServer:
   annotations: {}
   podAnnotations: {}
   podLabels: {}
-  nodeSelector: {}
+  nodeSelector: 
+    nodeType: masterscalesetnode
   tolerations: []
   resources: {}
   securityContext: {}
