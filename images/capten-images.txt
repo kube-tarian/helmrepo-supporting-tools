@@ -103,3 +103,5 @@ docker.io/kuberhealthy/pod-restarts-check:v2.5.0
 docker.io/kuberhealthy/pod-status-check:v1.3.0
 docker.io/kuberhealthy/test-check:v1.4.0
 docker.io/kuberhealthy/resource-quota-check:v1.3.0
+alpine:3.16
+bitnami/kubectl:1.22.5
