@@ -142,10 +142,16 @@ cluster: cluster
 # database: signoz_metrics
 # -- Clickhouse trace database (SigNoz Traces)
 # traceDatabase: signoz_traces
+
 # -- Clickhouse user
 user: admin
-# -- Clickhouse password
+# -- Clickhouse password.Ignored if existingSecret is set
 password: admin
+
+# -- Name of an existing Kubernetes secret object containing the password and the key pointing to the password in your Kubernetes secret
+existingSecret: {}
+  # name: 
+  # passwordkey: 
 
 # -- Clickhouse cluster replicas
 replicasCount: 1

@@ -16,6 +16,15 @@ spec:
 
   configuration:
     users:
+    {{- if .Values.existingSecret }}
+      {{ .Values.user }}/k8s_secret_password: {{ .Values.existingSecret.name }}/{{ .Values.existingSecret.passwordkey }}
+      {{ .Values.user }}/networks/ip:
+        {{- range $.Values.allowedNetworkIps }}
+        - {{ . | quote }}
+        {{- end }}
+      {{ .Values.user }}/profile: default
+      {{ .Values.user }}/quota: default
+    {{- else }}
       {{ .Values.user }}/password: {{ .Values.password }}
       {{ .Values.user }}/networks/ip:
         {{- range $.Values.allowedNetworkIps }}
@@ -23,6 +32,7 @@ spec:
         {{- end }}
       {{ .Values.user }}/profile: default
       {{ .Values.user }}/quota: default
+    {{- end }}
 
     profiles:
       {{- merge dict .Values.profiles .Values.defaultProfiles | toYaml | nindent 6 }}
