@@ -4190,6 +4190,16 @@ entries:
   user:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-05-03T13:01:53.124256853Z"
+    description: A Helm chart for Kubernetes
+    digest: 5795fc5449a79b49ee075a54c25da26ab1066db2ec076ee1119bc3f79811fc6f
+    name: user
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/user-0.1.1/user-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-01-28T09:11:05.59630586Z"
     description: A Helm chart for Kubernetes
     digest: 44bbcce94fb569c211bb42b9e4b209b4d55ade24440eb34548cc18cd8e3e737e
@@ -4447,4 +4457,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-04-27T06:43:13.173138295Z"
+generated: "2024-05-03T13:01:53.124682315Z"
