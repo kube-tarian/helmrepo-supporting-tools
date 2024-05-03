@@ -21,6 +21,8 @@ env:
   GIN_ACCESS_LOG: true
   OTEL_EXPORTER_OTLP_ENDPOINT: "localhost:4317"
   USER_URL: :8080
+  APPLICATION_NAME: "user"
+  PYROSCOPE_SERVER_ADDRESS: "http://pyroscope"
 
 service:
   name: user
