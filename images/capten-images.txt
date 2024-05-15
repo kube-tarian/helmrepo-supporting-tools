@@ -125,3 +125,15 @@ openebs/node-disk-manager:2.1.0
 openebs/cstor-istgt:3.4.0
 openebs/cstor-volume-manager:3.4.0
 openebs/node-disk-operator:2.1.0
+bitnami/postgresql:16.0.0-debian-11-r13
+temporalio/admin-tools:1.22.1
+bitnami/postgres-exporter:0.14.0-debian-11-r15
+temporalio/server:1.22.1
+grafana/promtail:2.9.2
+bitnami/postgresql:16.0.0-debian-11-r13
+pyroscope/pyroscope:0.37.2 
+signoz/frontend:0.24.0
+otel/opentelemetry-collector-contrib:0.79.0 
+signoz/signoz-otel-collector:0.79.4
+signoz/query-service:0.24.0
+datastax/cass-config-builder:1.0.4-ubi7
