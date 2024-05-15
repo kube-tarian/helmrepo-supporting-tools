@@ -116,7 +116,6 @@ postgresql:16.0.0-debian-11-r13
 pyroscope:0.37.2
 frontend:0.24.0
 opentelemetry-collector-contrib:0.79.0 
-signoz-otel-collector:0.79.4
 signoz/query-service:0.24.0
 otel/opentelemetry-collector-contrib:0.70.0
 traefik:v2.10.4
