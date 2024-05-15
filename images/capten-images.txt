@@ -126,7 +126,6 @@ openebs/cstor-istgt:3.4.0
 openebs/cstor-volume-manager:3.4.0
 openebs/node-disk-operator:2.1.0
 temporalio/admin-tools:1.22.1
-bitnami/postgres-exporter:0.14.0-debian-11-r15
 temporalio/server:1.22.1
 grafana/promtail:2.9.2
 bitnami/postgresql:16.0.0-debian-11-r13
