@@ -108,7 +108,6 @@ bitnami/kubectl:1.22.5
 golang:1.22-alpine
 python:3.10.1-alpine3.15
 library/busybox:1.34.1
-datastax/cass-config-builder:1.0.4-ubi7 
 signoz/query-service:0.24.0
 otel/opentelemetry-collector-contrib:0.70.0
 library/traefik:v2.10.4
