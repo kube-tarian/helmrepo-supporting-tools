@@ -107,13 +107,5 @@ alpine:3.16
 bitnami/kubectl:1.22.5
 golang:1.22-alpine
 python:3.10.1-alpine3.15
-library/busybox:1.34.1
-signoz/query-service:0.24.0
-library/traefik:v2.10.4
-falcosecurity/falco-no-driver:0.35.1
-falcosecurity/falco-driver-loader:0.35.1
-falcosecurity/falcoctl:0.5.1
-temporalio/admin-tools:1.22.1
-temporalio/server:1.22.1
 
 
