@@ -106,6 +106,6 @@ kuberhealthy/resource-quota-check:v1.3.0
 alpine:3.16
 bitnami/kubectl:1.22.5
 golang:1.22-alpine
-python:3.10.1-alpine3.15
+
 
 
