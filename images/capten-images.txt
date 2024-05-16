@@ -32,7 +32,7 @@ temporalio/admin-tools:1.17.5
 temporalio/server:1.17.5
 traefik:v2.9.6
 vault:1.6.2
-ghcr.io/banzaicloud/bank-vaults:1.19.0
+banzaicloud/bank-vaults:1.19.0
 prom/statsd-exporter:latest
 velero/velero:v1.11.0
 yandex/clickhouse-server:19.14
