@@ -103,15 +103,7 @@ kuberhealthy/pod-restarts-check:v2.5.0
 kuberhealthy/pod-status-check:v1.3.0
 kuberhealthy/test-check:v1.4.0
 kuberhealthy/resource-quota-check:v1.3.0
-alpine:3.16
-bitnami/kubectl:1.22.5
-golang:1.22-alpine
-bitnami/postgresql:16.0.0-debian-11-r13
-datastax/cass-config-builder:1.0.4-ubi7
-bitnami/postgres-exporter:0.14.0-debian-11-r15
-pyroscope/pyroscope:0.37.2
-otel/opentelemetry-collector-contrib:0.79.0
-grafana/promtail:2.9.2
+
 
 
 
