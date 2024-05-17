@@ -102,3 +102,4 @@ kuberhealthy/dns-resolution-check:v1.5.0
 kuberhealthy/pod-restarts-check:v2.5.0
 kuberhealthy/pod-status-check:v1.3.0
 kuberhealthy/test-check:v1.4.0
+kuberhealthy/resource-quota-check:v1.3.0
