@@ -89,11 +89,11 @@ initContainer: []
 
 image:
   # -- The Docker registry
-  registry: docker.io
+  registry: ghcr.io
   # -- Docker image repository
-  repository: grafana/promtail
+  repository: kube-tarian/helmrepo-supporting-tools/promtail
   # -- Overrides the image tag whose default is the chart's appVersion
-  tag: null
+  tag: 2.9.2
   # -- Docker image pull policy
   pullPolicy: IfNotPresent
 
@@ -584,9 +584,9 @@ sidecar:
     enabled: false
     image:
       # -- The Docker registry for sidecar config-reloader
-      registry: docker.io
+      registry: ghcr.io
       # -- Docker image repository for sidecar config-reloader
-      repository: jimmidyson/configmap-reload
+      repository: kube-tarian/helmrepo-supporting-tools/configmap-reload
       # -- Docker image tag for sidecar config-reloader
       tag: v0.8.0
       # -- Docker image pull policy for sidecar config-reloader

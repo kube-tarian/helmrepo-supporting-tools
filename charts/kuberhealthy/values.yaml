@@ -73,10 +73,10 @@ imageRegistry: ""
 #imageURL: docker.io/kuberhealthy/kuberhealthy:v1.6.0
 
 image:
-  registry: docker.io
-  repository: kuberhealthy/kuberhealthy
+  registry: ghcr.io
+  repository: kube-tarian/helmrepo-supporting-tools/kuberhealthy
   # Leave empty to use .Chart.AppVersion
-  tag:
+  tag: v2.8.0-rc2
 
 resources:
   requests:
@@ -159,8 +159,8 @@ check:
     runInterval: 15m
     timeout: 12m
     image:
-      registry: docker.io
-      repository: kuberhealthy/daemonset-check
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/daemonset-check
       tag: v3.3.0
     extraEnvs: {}
     nodeSelector: {}
@@ -178,8 +178,8 @@ check:
     runInterval: 10m
     timeout: 15m
     image:
-      registry: docker.io
-      repository: kuberhealthy/deployment-check
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/deployment-check
       tag: v1.9.0
     extraEnvs:
       CHECK_DEPLOYMENT_REPLICAS: "4"
@@ -202,8 +202,8 @@ check:
     runInterval: 2m
     timeout: 15m
     image:
-      registry: docker.io
-      repository: kuberhealthy/dns-resolution-check
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/dns-resolution-check
       tag: v1.5.0
     extraEnvs:
       HOSTNAME: "kubernetes.default"
@@ -222,8 +222,8 @@ check:
     runInterval: 2m
     timeout: 15m
     image:
-      registry: docker.io
-      repository: kuberhealthy/dns-resolution-check
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/dns-resolution-check
       tag: v1.5.0
     extraEnvs:
       HOSTNAME: "google.com"
@@ -242,8 +242,8 @@ check:
     runInterval: 5m
     timeout: 10m
     image:
-      registry: docker.io
-      repository: kuberhealthy/pod-restarts-check
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/pod-restarts-check
       tag: v2.5.0
     allNamespaces: true
     extraEnvs:
@@ -263,8 +263,8 @@ check:
     runInterval: 5m
     timeout: 15m
     image:
-      registry: docker.io
-      repository: kuberhealthy/pod-status-check
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/pod-status-check
       tag: v1.3.0
     allNamespaces: true
     extraEnvs: {}
@@ -289,8 +289,8 @@ check:
     runInterval: 5m
     timeout: 10m
     image:
-      registry: docker.io
-      repository: chrishirsch/kuberhealthy-storage-check
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/kuberhealthy-storage-check
       tag: v0.0.1
     extraEnvs:
       CHECK_STORAGE_IMAGE: bitnami/nginx:1.19
@@ -310,8 +310,8 @@ check:
     runInterval: 30m
     timeout: 10m
     image:
-      registry: docker.io
-      repository: kuberhealthy/network-connection-check
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/network-connection-check
       tag: v0.2.0
     extraEnvs:
       CONNECTION_TARGET: "tcp://github.com:443"
@@ -330,7 +330,7 @@ check:
     runInterval: 60m
     timeout: 1m
     image:
-      repository: kuberhealthy/test-check
+      repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/test-check
       tag: v1.4.0
     extraEnvs:
       REPORT_FAILURE: "false"
@@ -344,7 +344,7 @@ check:
     runInterval: 1h
     timeout: 2m
     image:
-      repository: kuberhealthy/resource-quota-check
+      repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/resource-quota-check
       tag: v1.3.0
     extraEnvs:
       BLACKLIST: "default"

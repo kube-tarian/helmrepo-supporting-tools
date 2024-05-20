@@ -299,15 +299,15 @@ initContainers:
   udf:
     enabled: true
     image:
-      registry: docker.io
-      repository: alpine
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/alpine
       tag: 3.18.2
       pullPolicy: IfNotPresent
   init:
     enabled: false
     image:
-      registry: docker.io
-      repository: busybox
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/busybox
       tag: 1.35
       pullPolicy: IfNotPresent
     command:

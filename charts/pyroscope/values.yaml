@@ -12,7 +12,7 @@ extraLabels: {}
 
 image:
   # -- image to use for deploying
-  repository: pyroscope/pyroscope
+  repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/pyroscope
   # -- Image pull policy
   pullPolicy: IfNotPresent
   # -- Tag for pyroscope image to use
