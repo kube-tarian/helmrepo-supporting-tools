@@ -219,6 +219,35 @@ entries:
         - "✨ update chart to version 23.12.3"
     apiVersion: v2
     appVersion: 22.8.8
+    created: "2024-05-20T05:54:33.132401064Z"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.4.2
+    description: A Helm chart for ClickHouse
+    digest: 7be1e175bcbb051e89d48246bf3832eeb93d826adce6a6d6a29d4e58c2bc3414
+    icon: https://raw.githubusercontent.com/ClickHouse/ClickHouse/master/website/images/logo-400x240.png
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    - email: prashant@signoz.io
+      name: prashant-shahi
+      url: https://prashantshahi.dev
+    name: clickhouse
+    sources:
+    - https://github.com/signoz/charts/
+    - https://github.com/ClickHouse/ClickHouse
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/clickhouse-1.0.4/clickhouse-1.0.4.tgz
+    version: 1.0.4
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 23.12.3"
+    apiVersion: v2
+    appVersion: 22.8.8
     created: "2024-04-27T06:43:13.172900591Z"
     dependencies:
     - condition: zookeeper.enabled
@@ -1768,6 +1797,41 @@ entries:
         - "✨ update chart to version 104"
     apiVersion: v2
     appVersion: v2.8.0-rc2
+    created: "2024-05-20T05:54:33.261017907Z"
+    description: An operator for synthetic test and monitoring. Works great with Prometheus.
+    digest: 4cc113566a691498261950e4a3eb89801182ebd10d96fb883a477dda1217b910
+    home: https://kuberhealthy.github.io/kuberhealthy/
+    icon: https://raw.githubusercontent.com/kuberhealthy/kuberhealthy/master/images/logo-square.png
+    keywords:
+    - kuberhealthy
+    - kubernetes
+    - operator
+    - monitoring
+    - synthetic
+    - testing
+    - comcast
+    - health
+    - prometheus
+    maintainers:
+    - email: ericgreer@gmail.com
+      name: integrii
+    - email: jonathan_phan@comcast.com
+      name: jonnydawg
+    - email: joshulyne_park@comcast.com
+      name: joshulyne
+    name: kuberhealthy
+    sources:
+    - https://github.com/kuberhealthy/kuberhealthy
+    - https://github.com/kuberhealthy/kuberhealthy/tree/master/deploy/helm/kuberhealthy
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/kuberhealthy-1.0.2/kuberhealthy-1.0.2.tgz
+    version: 1.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 104"
+    apiVersion: v2
+    appVersion: v2.8.0-rc2
     created: "2024-04-04T08:16:44.668329103Z"
     description: An operator for synthetic test and monitoring. Works great with Prometheus.
     digest: 07da67897e83e95fbdbbe46ccb5293c138d854d934600297dd258469d20aefc4
@@ -3056,6 +3120,27 @@ entries:
   promtail:
   - apiVersion: v2
     appVersion: 2.9.2
+    created: "2024-05-20T05:54:33.377327561Z"
+    description: Promtail is an agent which ships the contents of local logs to a
+      Loki instance
+    digest: 75727e2daad23d012ebe201e13847083fdfa191602f27bc3c3089dc3cc9c0a25
+    home: https://grafana.com/loki
+    icon: https://raw.githubusercontent.com/grafana/loki/master/docs/sources/logo.png
+    maintainers:
+    - email: lokiproject@googlegroups.com
+      name: Loki Maintainers
+    - name: unguiculus
+    name: promtail
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/promtail-1.0.1/promtail-1.0.1.tgz
+    version: 1.0.1
+  - apiVersion: v2
+    appVersion: 2.9.2
     created: "2023-11-07T05:43:31.241285378Z"
     description: Promtail is an agent which ships the contents of local logs to a
       Loki instance
@@ -3076,6 +3161,19 @@ entries:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/promtail-1.0.0/promtail-1.0.0.tgz
     version: 1.0.0
   pyroscope:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.2.92"
+    apiVersion: v2
+    appVersion: 0.37.2
+    created: "2024-05-20T05:54:33.504129862Z"
+    description: A Helm chart for Pyroscope
+    digest: 9f0fc96c2c77dbb7bde031e7387281982af1e63f2ffe9835a1b52969fabe3055
+    name: pyroscope
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/pyroscope-1.0.1/pyroscope-1.0.1.tgz
+    version: 1.0.1
   - annotations:
       artifacthub.io/changes: |
         - "✨ update chart to version 0.2.92"
@@ -4516,4 +4614,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-20T05:14:40.300836626Z"
+generated: "2024-05-20T05:54:33.504446876Z"
