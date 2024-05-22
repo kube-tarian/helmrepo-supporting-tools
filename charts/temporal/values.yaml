@@ -20,7 +20,7 @@ server:
   enabled: true
   sidecarContainers: {}
   image:
-    repository: temporalio/server
+    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/server
     tag: 1.22.1
     pullPolicy: IfNotPresent
 
@@ -234,7 +234,7 @@ server:
 admintools:
   enabled: true
   image:
-    repository: temporalio/admin-tools
+    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/admin-tools
     tag: 1.22.1
     pullPolicy: IfNotPresent
 

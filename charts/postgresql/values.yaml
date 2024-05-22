@@ -96,8 +96,8 @@ diagnosticMode:
 ## @param image.debug Specify if debug values should be set
 ##
 image:
-  registry: docker.io
-  repository: bitnami/postgresql
+  registry: ghcr.io
+  repository: kube-tarian/helmrepo-supporting-tools/postgresql
   tag: 16.0.0-debian-11-r13
   digest: ""
   ## Specify a imagePullPolicy
@@ -1297,8 +1297,8 @@ volumePermissions:
   ## @param volumePermissions.image.pullSecrets Init container volume-permissions image pull secrets
   ##
   image:
-    registry: docker.io
-    repository: bitnami/os-shell
+    registry: ghcr.io
+    repository: kube-tarian/helmrepo-supporting-tools/os-shell
     tag: 11-debian-11-r90
     digest: ""
     pullPolicy: IfNotPresent
@@ -1398,8 +1398,8 @@ metrics:
   ## @param metrics.image.pullSecrets Specify image pull secrets
   ##
   image:
-    registry: docker.io
-    repository: bitnami/postgres-exporter
+    registry: ghcr.io
+    repository: kube-tarian/helmrepo-supporting-tools/postgres-exporter
     tag: 0.14.0-debian-11-r15
     digest: ""
     pullPolicy: IfNotPresent
@@ -1545,7 +1545,7 @@ metrics:
   serviceMonitor:
     ## @param metrics.serviceMonitor.enabled Create ServiceMonitor Resource for scraping metrics using Prometheus Operator
     ##
-    enabled: true
+    enabled: false
     ## @param metrics.serviceMonitor.namespace Namespace for the ServiceMonitor Resource (defaults to the Release Namespace)
     ##
     namespace: ""

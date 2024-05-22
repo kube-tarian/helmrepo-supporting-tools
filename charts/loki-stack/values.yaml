@@ -6,6 +6,10 @@ test_pod:
 loki:
   enabled: true
   isDefault: true
+  image:
+    #registry: ghcr.io
+    repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/loki
+    tag: 2.6.1
   url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
   readinessProbe:
     httpGet:
@@ -38,6 +42,13 @@ loki:
 
 promtail:
   enabled: true
+  image:
+      # -- The Docker registry for sidecar config-reloader
+      registry: ghcr.io
+      # -- Docker image repository for sidecar config-reloader
+      repository: kube-tarian/helmrepo-supporting-tools/promtail
+      # -- Docker image tag for sidecar config-reloader
+      tag: 2.9.2
   config:
     logLevel: info
     serverPort: 3101
