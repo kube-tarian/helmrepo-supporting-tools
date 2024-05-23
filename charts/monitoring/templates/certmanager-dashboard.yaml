@@ -15,8 +15,8 @@ data:
           {
             "builtIn": 1,
             "datasource": {
-              "type": "grafana",
-              "uid": "-- Grafana --"
+              "type": "Prometheus",
+              "uid": "Prometheus"
             },
             "enable": true,
             "hide": true,
@@ -35,8 +35,8 @@ data:
       "panels": [
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "description": "The number if available certificates",
           "fieldConfig": {
@@ -85,8 +85,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "disableTextWrap": false,
               "editorMode": "code",
@@ -106,8 +106,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "description": "The number of certificates that will expire within the next 14 days",
           "fieldConfig": {
@@ -160,8 +160,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "disableTextWrap": false,
               "editorMode": "code",
@@ -181,8 +181,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "description": "Total number of HTTP requests",
           "fieldConfig": {
@@ -231,8 +231,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "disableTextWrap": false,
               "editorMode": "code",
@@ -252,8 +252,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "description": "Time before the certificates expire",
           "fieldConfig": {
@@ -317,8 +317,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -335,8 +335,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "description": "Time before the certificates are automatically renewed",
           "fieldConfig": {
@@ -388,8 +388,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "exemplar": false,
@@ -406,8 +406,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "${datasource}"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "description": "Time before the certificates expire",
           "fieldConfig": {
@@ -483,8 +483,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "${datasource}"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "(certmanager_certificate_expiration_timestamp_seconds{exported_namespace=~\"$namespace\"} - time())/(24*3600)",
@@ -531,8 +531,8 @@ data:
               "value": "$__all"
             },
             "datasource": {
-              "type": "prometheus",
-              "uid": "${datasource}"
+              "type": "Prometheus",
+              "uid": "Prometheus"
             },
             "definition": "label_values(exported_namespace)",
             "hide": 0,

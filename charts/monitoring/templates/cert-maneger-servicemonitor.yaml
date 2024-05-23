@@ -1,0 +1,31 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "monitoring.fullname" . }}-cert-manager
+  labels:
+    app.kubernetes.io/name: cert-manager
+    app.kubernetes.io/instance: cert-manager
+    app.kubernetes.io/component: "controller"
+    release: prometheus
+spec:
+  jobLabel: cert-manager
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cert-manager
+      app.kubernetes.io/instance: cert-manager
+      app.kubernetes.io/component: "controller"
+  endpoints:
+  - targetPort: 9402
+    path: /metrics
+    interval: 60s
+    scrapeTimeout: 30s
+    honorLabels: false
+    metricRelabelings:
+      - action: replace
+        regex: .*
+        replacement: {{ .Values.clustername }}
+        separator: ;
+        targetLabel: cluster_name
+  namespaceSelector:
+    matchNames:
+    - cert-manager
