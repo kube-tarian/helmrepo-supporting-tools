@@ -177,7 +177,7 @@ driver:
   # Always set it to false when using Falco with plugins.
   enabled: true
   # -- Tell Falco which driver to use. Available options: module (kernel driver), ebpf (eBPF probe), modern-bpf (modern eBPF probe).
-  kind: modern-bpf
+  kind: module
   # -- Configuration section for ebpf driver.
   ebpf: 
     # -- Path where the eBPF probe is located. It comes handy when the probe have been installed in the nodes using tools other than the init
