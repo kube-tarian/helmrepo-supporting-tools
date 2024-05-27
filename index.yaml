@@ -694,6 +694,37 @@ entries:
         - "✨ update chart to version 3.3.1"
     apiVersion: v2
     appVersion: 0.35.1
+    created: "2024-05-27T04:00:39.32270208Z"
+    dependencies:
+    - condition: falcosidekick.enabled
+      name: falcosidekick
+      repository: https://falcosecurity.github.io/charts
+      version: 0.6.1
+    description: Falco
+    digest: 7a0143382b9a2c574f4c213c8af5379bd33fae4dc0f4002ad9d1723e70395957
+    home: https://falco.org
+    icon: https://raw.githubusercontent.com/cncf/artwork/master/projects/falco/horizontal/color/falco-horizontal-color.svg
+    keywords:
+    - monitoring
+    - security
+    - alerting
+    - metric
+    - troubleshooting
+    - run-time
+    maintainers:
+    - email: cncf-falco-dev@lists.cncf.io
+      name: The Falco Authors
+    name: falco
+    sources:
+    - https://github.com/falcosecurity/falco
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/falco-0.0.2/falco-0.0.2.tgz
+    version: 0.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 3.3.1"
+    apiVersion: v2
+    appVersion: 0.35.1
     created: "2023-07-31T19:11:32.380190661Z"
     dependencies:
     - condition: falcosidekick.enabled
@@ -3314,6 +3345,65 @@ entries:
         - "✨ update chart to version 0.20.0"
     apiVersion: v2
     appVersion: 0.24.0
+    created: "2024-05-27T04:00:39.544834647Z"
+    dependencies:
+    - condition: clickhouse.enabled
+      name: clickhouse
+      repository: https://signoz.github.io/charts
+      version: 23.12.2
+    - condition: k8s-infra.enabled
+      name: k8s-infra
+      repository: https://signoz.github.io/charts
+      version: 0.9.2
+    - condition: cert-manager.enabled
+      name: cert-manager
+      repository: https://charts.jetstack.io
+      version: 1.9.1
+    - condition: ingress-nginx.enabled
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.3.0
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io
+      version: 4.0.9
+    - condition: keycloak.enabled
+      name: keycloak
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.1.5
+    description: SigNoz Observability Platform Helm Chart
+    digest: a62caa549dbb2db7c3ae99d589e835cee3d907bdbffb23402f1ba7980331d81b
+    home: https://signoz.io/
+    icon: https://signoz.io/img/SigNozLogo-orange.svg
+    keywords:
+    - SigNoz
+    - opentelemetry
+    - apm
+    - monitoring
+    - distributed tracing
+    - distributed logging
+    maintainers:
+    - email: hello@signoz.io
+      name: SigNoz
+      url: https://signoz.io
+    - email: prashant@signoz.io
+      name: prashant-shahi
+      url: https://prashantshahi.dev
+    name: signoz
+    sources:
+    - https://github.com/signoz/charts
+    - https://github.com/signoz/signoz
+    - https://github.com/signoz/alertmanager
+    - https://github.com/signoz/signoz-otel-collector
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/signoz-0.0.5/signoz-0.0.5.tgz
+    version: 0.0.5
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.20.0"
+    apiVersion: v2
+    appVersion: 0.24.0
     created: "2024-05-20T05:14:40.300632414Z"
     dependencies:
     - condition: clickhouse.enabled
@@ -4378,6 +4468,42 @@ entries:
         - "✨ add support for OpenTelemetry and Traefik v3"
     apiVersion: v2
     appVersion: v2.10.4
+    created: "2024-05-27T04:00:39.675388935Z"
+    description: A Traefik based Kubernetes ingress controller
+    digest: 015c051219b927281b9d8b9811b7a7e4b5f446a8ebcde33e1a69ce525ff3ae0b
+    home: https://traefik.io/
+    icon: https://raw.githubusercontent.com/traefik/traefik/v2.3/docs/content/assets/img/traefik.logo.png
+    keywords:
+    - traefik
+    - ingress
+    - networking
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: emile@vauge.com
+      name: emilevauge
+    - email: daniel.tomcej@gmail.com
+      name: dtomcej
+    - email: ldez@traefik.io
+      name: ldez
+    - email: michel.loiseleur@traefik.io
+      name: mloiseleur
+    - email: charlie.haley@traefik.io
+      name: charlie-haley
+    name: traefik
+    sources:
+    - https://github.com/traefik/traefik
+    - https://github.com/traefik/traefik-helm-chart
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/traefik-1.0.3/traefik-1.0.3.tgz
+    version: 1.0.3
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 24.0.0"
+        - "✨ add support for default entrypoints"
+        - "✨ add support for OpenTelemetry and Traefik v3"
+    apiVersion: v2
+    appVersion: v2.10.4
     created: "2023-09-07T09:49:04.312296032Z"
     description: A Traefik based Kubernetes ingress controller
     digest: 85af0688712ea32f6288fe7df7f28eb7e409d0e1848d1c7fcd179aadcfbb7279
@@ -4748,4 +4874,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-23T05:29:05.173557382Z"
+generated: "2024-05-27T04:00:39.675605219Z"
