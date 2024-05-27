@@ -8,11 +8,11 @@ image:
   # -- The image pull policy.
   pullPolicy: IfNotPresent
   # -- The image registry to pull from.
-  registry: docker.io
+  registry: ghcr.io
   # -- The image repository to pull from
-  repository: falcosecurity/falco-no-driver
+  repository: kube-tarian/helmrepo-supporting-tools/falco-no-driver
   # -- The image tag to pull. Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "0.35.1"
 
 # -- Secrets containing credentials when pulling from private/secure registries.
 imagePullSecrets: []
@@ -179,7 +179,7 @@ driver:
   # -- Tell Falco which driver to use. Available options: module (kernel driver), ebpf (eBPF probe), modern-bpf (modern eBPF probe).
   kind: module
   # -- Configuration section for ebpf driver.
-  ebpf:
+  ebpf: 
     # -- Path where the eBPF probe is located. It comes handy when the probe have been installed in the nodes using tools other than the init
     # container deployed with the chart.
     path:
@@ -209,11 +209,11 @@ driver:
         # -- The image pull policy.
         pullPolicy: IfNotPresent
         # -- The image registry to pull from.
-        registry: docker.io
+        registry: ghcr.io
         # -- The image repository to pull from.
-        repository: falcosecurity/falco-driver-loader
+        repository: kube-tarian/helmrepo-supporting-tools/falco-driver-loader
         #  -- Overrides the image tag whose default is the chart appVersion.
-        tag: ""
+        tag: "0.35.1"
       # -- Extra environment variables that will be pass onto Falco driver loader init container.
       env: []
       # -- Arguments to pass to the Falco driver loader init container.
@@ -345,9 +345,9 @@ falcoctl:
     # -- The image pull policy.
     pullPolicy: IfNotPresent
     # -- The image registry to pull from.
-    registry: docker.io
+    registry: ghcr.io
     # -- The image repository to pull from.
-    repository: falcosecurity/falcoctl
+    repository: kube-tarian/helmrepo-supporting-tools/falcoctl
     # -- The image tag to pull.
     tag: "0.5.1"
   artifact:
