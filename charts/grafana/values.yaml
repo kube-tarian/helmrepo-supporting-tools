@@ -908,6 +908,7 @@ postgresql:
     enabled: false 
 
 database: 
+  enabled: false
   type: postgres
   host: grafana-postgresql:5432
   name: postgres
