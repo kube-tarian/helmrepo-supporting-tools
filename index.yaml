@@ -757,6 +757,40 @@ entries:
         - "✨ update chart to version 6.26.14"
     apiVersion: v2
     appVersion: 8.4.6
+    created: "2024-05-27T04:05:25.771134428Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 38bf7a9c151f37cf5c1f09c14a482cf713c6894bbb7c71f4036688e9cb57b37e
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/grafana-1.0.7/grafana-1.0.7.tgz
+    version: 1.0.7
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 6.26.14"
+    apiVersion: v2
+    appVersion: 8.4.6
     created: "2024-03-06T19:57:40.991301425Z"
     dependencies:
     - condition: postgresql.enabled
@@ -3045,6 +3079,49 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 16.0.0
+    created: "2024-05-27T04:05:25.910054029Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: PostgreSQL (Postgres) is an open source object-relational database
+      known for reliability and data integrity. ACID-compliant, it supports foreign
+      keys, joins, views, triggers and stored procedures.
+    digest: c7a17877c6a23e288194184c8357ab101645cc945e85b7347de53a7e6aa2811a
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/postgresql/img/postgresql-stack-220x234.png
+    keywords:
+    - postgresql
+    - postgres
+    - database
+    - sql
+    - replication
+    - cluster
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: postgresql
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/postgresql
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/postgresql-1.0.3/postgresql-1.0.3.tgz
+    version: 1.0.3
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 13.1.5"
+      category: Database
+      images: |
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:11-debian-11-r90
+        - name: postgres-exporter
+          image: docker.io/bitnami/postgres-exporter:0.14.0-debian-11-r15
+        - name: postgresql
+          image: docker.io/bitnami/postgresql:16.0.0-debian-11-r13
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 16.0.0
     created: "2024-05-23T05:29:05.028703745Z"
     dependencies:
     - name: common
@@ -4874,4 +4951,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-27T04:00:39.675605219Z"
+generated: "2024-05-27T04:05:25.910356405Z"
