@@ -5,7 +5,7 @@ image:
   # -- Traefik image repository
   repository: kube-tarian/helmrepo-supporting-tools/traefik
   # -- defaults to appVersion
-  tag: v2.9.6
+  tag: v2.10.4
   # -- Traefik image pull policy
   pullPolicy: IfNotPresent
 
