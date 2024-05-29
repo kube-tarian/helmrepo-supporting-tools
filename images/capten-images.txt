@@ -126,5 +126,5 @@ temporalio/admin-tools:1.22.1
 temporalio/server:1.22.1
 chrishirsch/kuberhealthy-storage-check:v0.0.1
 kuberhealthy/network-connection-check:v0.2.0
-
+bhgedigital/envsubst
 
