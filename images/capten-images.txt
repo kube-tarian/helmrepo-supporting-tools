@@ -1,4 +1,5 @@
 bitnami/kubectl:1.26.4
+bhgedigital/envsubst
 signoz/signoz-otel-collector:0.79.4
 falcosecurity/falco-driver-loader:0.35.1
 falcosecurity/falcoctl:0.5.1
@@ -126,5 +127,4 @@ temporalio/admin-tools:1.22.1
 temporalio/server:1.22.1
 chrishirsch/kuberhealthy-storage-check:v0.0.1
 kuberhealthy/network-connection-check:v0.2.0
-bhgedigital/envsubst
 
