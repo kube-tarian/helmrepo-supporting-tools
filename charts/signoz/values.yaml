@@ -61,9 +61,9 @@ clickhouse:
     # Zookeeper image
     image:
       # -- Zookeeper image registry to use.
-      registry: *GLOBAL_IMAGE_REGISTRY
+      registry: ghcr.io
       # -- Zookeeper image repository to use.
-      repository: bitnami/zookeeper
+      repository: kube-tarian/helmrepo-supporting-tools/zookeeper
       # -- Zookeeper image tag.
       # Note: SigNoz ClickHouse does not support all versions of Zookeeper.
       # Please override the default only if you know what you are doing.
@@ -96,9 +96,9 @@ clickhouse:
   # -- Clickhouse image
   image:
     # -- Clickhouse image registry to use.
-    registry: docker.io
+    registry: ghcr.io
     # -- Clickhouse image repository to use.
-    repository: clickhouse/clickhouse-server
+    repository: kube-tarian/helmrepo-supporting-tools/clickhouse-server
     # -- Clickhouse image tag to use (example: `21.8`).
     # SigNoz is not always tested with latest version of ClickHouse.
     # Only if you know what you are doing, proceed with overriding.
@@ -232,15 +232,15 @@ clickhouse:
     udf:
       enabled: true
       image:
-        registry: docker.io
-        repository: alpine
+        registry: ghcr.io
+        repository: kube-tarian/helmrepo-supporting-tools/alpine
         tag: 3.18.2
         pullPolicy: IfNotPresent
     init:
       enabled: false
       image:
-        registry: docker.io
-        repository: busybox
+        registry: ghcr.io
+        repository: kube-tarian/helmrepo-supporting-tools/busybox
         tag: 1.35
         pullPolicy: IfNotPresent
       command:
@@ -371,9 +371,9 @@ clickhouse:
     # -- Clickhouse Operator image
     image:
       # -- Clickhouse Operator image registry to use.
-      registry: docker.io
+      registry: ghcr.io
       # -- Clickhouse Operator image repository to use.
-      repository: altinity/clickhouse-operator
+      repository: kube-tarian/helmrepo-supporting-tools/clickhouse-operator
       # -- Clickhouse Operator image tag.
       tag: 0.21.2
       # -- Clickhouse Operator image pull policy.
@@ -450,9 +450,9 @@ clickhouse:
       # -- Metrics Exporter image
       image:
         # -- Metrics Exporter image registry to use.
-        registry: docker.io
+        registry: ghcr.io
         # -- Metrics Exporter image repository to use.
-        repository: altinity/metrics-exporter
+        repository: kube-tarian/helmrepo-supporting-tools/metrics-exporter
         # -- Metrics Exporter image tag.
         tag: 0.21.2
         # -- Metrics Exporter image pull policy.
@@ -493,8 +493,8 @@ queryService:
   name: "query-service"
   replicaCount: 1
   image:
-    registry: docker.io
-    repository: signoz/query-service
+    registry: ghcr.io
+    repository: kube-tarian/helmrepo-supporting-tools/query-service
     tag: 0.24.0
     pullPolicy: IfNotPresent
 
@@ -537,8 +537,8 @@ queryService:
     init:
       enabled: true
       image:
-        registry: docker.io
-        repository: busybox
+        registry: ghcr.io
+        repository: kube-tarian/helmrepo-supporting-tools/busybox
         tag: 1.35
         pullPolicy: IfNotPresent
       command:
@@ -556,8 +556,8 @@ queryService:
     migration:
       enabled: false
       image:
-        registry: docker.io
-        repository: busybox
+        registry: ghcr.io
+        repository: kube-tarian/helmrepo-supporting-tools/busybox
         tag: 1.35
         pullPolicy: IfNotPresent
       command:
@@ -671,8 +671,8 @@ frontend:
   replicaCount: 1
 
   image:
-    registry: docker.io
-    repository: signoz/frontend
+    registry: ghcr.io
+    repository: kube-tarian/helmrepo-supporting-tools/frontend
     tag: 0.24.0
     pullPolicy: IfNotPresent
 
@@ -703,8 +703,8 @@ frontend:
     init:
       enabled: true
       image:
-        registry: docker.io
-        repository: busybox
+        registry: ghcr.io
+        repository: kube-tarian/helmrepo-supporting-tools/busybox
         tag: 1.35
         pullPolicy: IfNotPresent
       command:
@@ -828,8 +828,8 @@ alertmanager:
   replicaCount: 1
 
   image:
-    registry: docker.io
-    repository: signoz/alertmanager
+    registry: ghcr.io
+    repository: kube-tarian/helmrepo-supporting-tools/alertmanager
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: 0.23.1
@@ -870,8 +870,8 @@ alertmanager:
     init:
       enabled: true
       image:
-        registry: docker.io
-        repository: busybox
+        registry: ghcr.io
+        repository: kube-tarian/helmrepo-supporting-tools/busybox
         tag: 1.35
         pullPolicy: IfNotPresent
       command:
@@ -1069,7 +1069,7 @@ alertmanager:
     ## configmap-reload container image
     ##
     image:
-      repository: jimmidyson/configmap-reload
+      repository: ghcr.io/kube-tarian/helmrepo-supporting-tools/configmap-reload
       tag: v0.5.0
       pullPolicy: IfNotPresent
 
@@ -1091,8 +1091,8 @@ alertmanager:
 otelCollector:
   name: "otel-collector"
   image:
-    registry: docker.io
-    repository: signoz/signoz-otel-collector
+    registry: ghcr.io
+    repository: kube-tarian/helmrepo-supporting-tools/signoz-otel-collector
     tag: 0.79.4
     pullPolicy: Always
 
@@ -1158,8 +1158,8 @@ otelCollector:
     init:
       enabled: true
       image:
-        registry: docker.io
-        repository: busybox
+        registry: ghcr.io
+        repository: kube-tarian/helmrepo-supporting-tools/busybox
         tag: 1.35
         pullPolicy: IfNotPresent
       command:
@@ -1667,8 +1667,8 @@ otelCollector:
 otelCollectorMetrics:
   name: "otel-collector-metrics"
   image:
-    registry: docker.io
-    repository: signoz/signoz-otel-collector
+    registry: ghcr.io
+    repository: kube-tarian/helmrepo-supporting-tools/signoz-otel-collector
     tag: 0.79.4
     pullPolicy: Always
 
@@ -1735,8 +1735,8 @@ otelCollectorMetrics:
     init:
       enabled: true
       image:
-        registry: docker.io
-        repository: busybox
+        registry: ghcr.io
+        repository: kube-tarian/helmrepo-supporting-tools/busybox
         tag: 1.35
         pullPolicy: IfNotPresent
       command:
@@ -2376,8 +2376,8 @@ k8s-infra:
   otelAgent:
     name: "otel-agent"
     image:
-      registry: docker.io
-      repository: otel/opentelemetry-collector-contrib
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/opentelemetry-collector-contrib
       tag: 0.79.0
       pullPolicy: IfNotPresent
 
@@ -2484,8 +2484,8 @@ k8s-infra:
   otelDeployment:
     name: "otel-deployment"
     image:
-      registry: docker.io
-      repository: otel/opentelemetry-collector-contrib
+      registry: ghcr.io
+      repository: kube-tarian/helmrepo-supporting-tools/opentelemetry-collector-contrib
       tag: 0.79.0
       pullPolicy: IfNotPresent
 

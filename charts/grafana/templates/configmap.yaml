@@ -14,9 +14,9 @@ data:
   plugins: {{ join "," .Values.plugins }}
 {{- end }}
   grafana.ini: |
-{{- if .Values.postgresql.enabled }}
+{{- if .Values.database.enabled }}
     [database]
-    enabled = {{ .Values.postgresql.enabled }}
+    enabled = {{ .Values.database.enabled }}
     type = {{ .Values.database.type }}
     host = {{ .Values.database.host }}
     name = {{ .Values.database.name }}

@@ -33,7 +33,7 @@ cspcOperator:
   cstorPoolExporter:
     image:
       registry: ghcr.io/
-      repository: kube-tarian/helmrepo-supporting-tools/m-exporter:3.4.0
+      repository: kube-tarian/helmrepo-supporting-tools/m-exporter
       tag: 3.4.0
   image:
     # Make sure that registry name end with a '/'.
@@ -257,5 +257,5 @@ cleanup:
     # Make sure that registry name end with a '/'.
     # For example : quay.io/ is a correct value here and quay.io is incorrect
     registry: ghcr.io/
-    repository: kube-tarian/helmrepo-supporting-tools/kubectl:1.26.4
+    repository: kube-tarian/helmrepo-supporting-tools/kubectl
     tag: 1.26.4

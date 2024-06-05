@@ -7,35 +7,103 @@ on:
     branches: [ main ]
 
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
+  GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Docker push
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to GitHub Container Registry
+        run: echo "$GHCR_TOKEN" | base64 --decode | docker login "${{ env.REGISTRY }}" -u "${{ github.actor }}" --password-stdin
+
+      - name: Ensure jq is installed
         run: |
-          # Log in to GitHub Container Registry
-          docker login ${{ env.REGISTRY }} -u jebinjeb -p ${{ secrets.GITHUB_TOKEN }}
+          if ! command -v jq &> /dev/null; then
+              sudo apt-get update
+              sudo apt-get install -y jq
+          fi
+
+      - name: Process and push Docker images
+        run: |
+          # Read images from capten-images.txt and process them
           while IFS= read -r image; do
-            # Check if the image is from docker.io
-              docker pull "$image"
+              # Extract image name and tag
+              imagename=$(echo "$image" | awk -F '/' '{print $NF}')
+              image_name=$(echo "$image" | awk -F '/' '{print $NF}' | awk -F ':' '{print $1}')
+              image_tag=$(echo "$image" | awk -F ':' '{print $2}')
 
-              # Tag the image with the GitHub repository URL
-              github_image="ghcr.io/$GITHUB_REPOSITORY/$(echo "$image" | awk -F '/' '{print $NF}')"
-              docker tag "$image" "$github_image"
+              # Handle cases where image_tag might be empty
+              if [ -z "$image_tag" ]; then
+                  image_tag="latest"
+              fi
+              
+              github_image="${{ env.REGISTRY }}/${{ github.repository }}/$image_name"
 
-              # Push the image to GitHub Container Registry
-              docker push "$github_image"
-              if [ $? -eq 0 ]; then
-                echo "Image pushed successfully"
+              # Check if the image exists in GHCR
+              response=$(curl -s -H "Authorization: Bearer $GHCR_TOKEN" https://ghcr.io/v2/${{ github.repository }}/$image_name/tags/list)
+              
+              # If response is empty, skip to the next image
+              if [ -z "$response" ]; then
+                  continue
+              fi
+
+              # Check for errors in the response
+              if echo "$response" | jq -e '.errors' > /dev/null; then
+                  error_code=$(echo "$response" | jq -r '.errors[0].code')
+                  error_message=$(echo "$response" | jq -r '.errors[0].message')
+                  if [ "$error_code" = "NAME_UNKNOWN" ]; then
+                      existing_tags=""
+                  else
+                      continue
+                  fi
               else
-                echo "retry"
-                docker push "$github_image"
+                  # Parse the response using jq to extract the tags
+                  existing_tags=$(echo "$response" | jq -r '.tags[]? // empty')
+
+                  # If existing_tags is null or empty, handle it
+                  if [ -z "$existing_tags" ]; then
+                      continue
+                  fi
+
+                  echo "Existing tags for $image_name: $existing_tags"
+              fi
+
+              # Check if the image tag exists in the list of existing tags
+              tag_exists=false
+              for tag in $existing_tags; do
+                  if [[ "$tag" == "$image_tag" ]]; then
+                      tag_exists=true
+                      break
+                  fi
+              done
+
+              if [ "$tag_exists" = true ]; then
+                  echo "Image $github_image already exists in GHCR with tag $image_tag. Skipping push."
+              else
+                  echo "Image $github_image not found in GHCR with tag $image_tag. Proceeding with push."
+
+                  # Pull the image from the original registry
+                  docker pull "$image"
+
+                  # Tag the image with the GitHub repository URL and specific tag
+                  docker tag "$image" "$github_image:$image_tag"
+
+                  # Push the image to GitHub Container Registry
+                  docker push "$github_image:$image_tag"
+                  if [ $? -eq 0 ]; then
+                      echo "Image pushed successfully"
+                  else
+                      echo "Retrying push"
+                      docker push "$github_image:$image_tag"
+                  fi
               fi
           done < images/capten-images.txt
