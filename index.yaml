@@ -2630,6 +2630,21 @@ entries:
   monitoring:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-06-05T05:43:46.134726012Z"
+    dependencies:
+    - condition: prometheus-msteams.enabled
+      name: prometheus-msteams
+      repository: https://kube-tarian.github.io/helmrepo-supporting-tools/
+      version: 1.0.0
+    description: A Helm chart for Monitoring
+    digest: 04832fb78d015ce0614d9d834927440f7c4d59f53ee8f55ad9118e120b687358
+    name: monitoring
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/monitoring-0.1.19/monitoring-0.1.19.tgz
+    version: 0.1.19
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-03-21T04:03:51.192721716Z"
     dependencies:
     - condition: prometheus-msteams.enabled
@@ -5038,4 +5053,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-05-31T11:07:00.203527659Z"
+generated: "2024-06-05T05:43:46.134959559Z"
