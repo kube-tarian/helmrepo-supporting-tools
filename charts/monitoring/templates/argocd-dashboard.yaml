@@ -94,8 +94,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -148,8 +148,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "time() - max(process_start_time_seconds{job=\"argo-cd-argocd-server-metrics\",cluster_name=\"$cluster\"})",
@@ -164,8 +164,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -218,8 +218,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "count(count by (server) (argocd_cluster_info))",
@@ -234,8 +234,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -289,8 +289,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "sum(argocd_app_info{cluster_name=~\"$cluster\",health_status=~\"$health_status\",sync_status=~\"$sync_status\"})",
@@ -305,8 +305,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -359,8 +359,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "count(count by (repo) (argocd_app_info{cluster_name=\"$cluster\"}))",
@@ -375,8 +375,8 @@ data:
         },
         {
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -437,8 +437,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "sum(argocd_app_info{cluster_name=~\"$cluster\"})",
@@ -458,8 +458,8 @@ data:
           "dashLength": 10,
           "dashes": false,
           "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
+            "type": "Prometheus",
+            "uid": "Prometheus"
           },
           "fieldConfig": {
             "defaults": {
@@ -512,8 +512,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "editorMode": "code",
               "expr": "sum(argocd_app_info{cluster_name=~\"$cluster\",health_status=~\"$health_status\",sync_status=~\"$sync_status\"}) by (namespace)",
@@ -581,8 +581,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -636,8 +636,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(argocd_app_info{cluster_name=~\"$cluster\",health_status=~\"$health_status\",sync_status=~\"$sync_status\",health_status!=\"\"}) by (health_status)",
@@ -693,8 +693,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -748,8 +748,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(argocd_app_info{cluster_name=~\"$cluster\",health_status=~\"$health_status\",sync_status=~\"$sync_status\",health_status!=\"\"}) by (sync_status)",
@@ -821,8 +821,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -876,8 +876,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(round(increase(argocd_app_sync_total{cluster_name=~\"$cluster\"}[$interval]))) by (grouping)",
@@ -929,8 +929,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -983,8 +983,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(round(increase(argocd_app_sync_total{phase=~\"Error|Failed\",cluster=~\"$cluster\"}[$interval]))) by (grouping, phase)",
@@ -1060,8 +1060,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -1112,8 +1112,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(argocd_app_reconcile_count{cluster_name=~\"$cluster\"}[$interval])) by (grouping)",
@@ -1165,8 +1165,8 @@ data:
               },
               "dataFormat": "tsbuckets",
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -1241,8 +1241,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(argocd_app_reconcile_bucket{cluster_name=~\"$cluster\"}[$interval])) by (le)",
@@ -1276,8 +1276,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -1330,8 +1330,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(argocd_app_k8s_request_total{cluster_name=~\"$cluster\"}[$interval])) by (verb, resource_kind)",
@@ -1378,8 +1378,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -1428,8 +1428,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(workqueue_depth{cluster_name=\"$cluster\",name=~\"app_.*\"}) by (name)",
@@ -1478,8 +1478,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -1527,8 +1527,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(argocd_kubectl_exec_pending{cluster_name=\"$cluster\"}) by (command)",
@@ -1606,8 +1606,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -1658,8 +1658,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "go_memstats_heap_alloc_bytes{job=\"argo-cd-argocd-server-metrics\",cluster_name=\"$cluster\"}",
@@ -1706,8 +1706,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -1760,8 +1760,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "irate(process_cpu_seconds_total{job=\"argo-cd-argocd-server-metrics\",cluster_name=\"$cluster\"}[1m])",
@@ -1809,8 +1809,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -1863,8 +1863,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "go_goroutines{job=\"argo-cd-argocd-server-metrics\",cluster_name=\"$cluster\"}",
@@ -1936,8 +1936,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -1987,8 +1987,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(argocd_cluster_api_resource_objects{cluster_name=~\"$cluster\"}) by (server)",
@@ -2035,8 +2035,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2087,8 +2087,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "  sum(argocd_cluster_api_resources{cluster_name=~\"$cluster\"}) by (server)",
@@ -2135,8 +2135,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2186,8 +2186,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(argocd_cluster_events_total{cluster_name=~\"$cluster\"}[$interval])) by (server)",
@@ -2259,8 +2259,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2306,8 +2306,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(argocd_git_request_total{request_type=\"ls-remote\", cluster_name=\"$cluster\"}[10m])) by (namespace)",
@@ -2354,8 +2354,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2401,8 +2401,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(argocd_git_request_total{request_type=\"fetch\", cluster_name=\"$cluster\"}[10m])) by (namespace)",
@@ -2455,8 +2455,8 @@ data:
               },
               "dataFormat": "tsbuckets",
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2528,8 +2528,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(argocd_git_request_duration_seconds_bucket{request_type=\"fetch\", cluster_name=\"$cluster\"}[$interval])) by (le)",
@@ -2567,8 +2567,8 @@ data:
               },
               "dataFormat": "tsbuckets",
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2640,8 +2640,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(argocd_git_request_duration_seconds_bucket{request_type=\"ls-remote\", cluster_name=\"$cluster\"}[$interval])) by (le)",
@@ -2674,8 +2674,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2722,8 +2722,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "go_memstats_heap_alloc_bytes{job=\"argo-cd-argocd-repo-server-metrics\",cluster_name=\"$cluster\"}",
@@ -2770,8 +2770,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -2818,8 +2818,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "go_goroutines{job=\"argo-cd-argocd-repo-server-metrics\",cluster_name=\"$cluster\"}",
@@ -2891,8 +2891,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -2933,8 +2933,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "go_memstats_heap_alloc_bytes{job=\"argo-cd-argocd-server-metrics\",cluster_name=\"$cluster\"}",
@@ -2982,8 +2982,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3024,8 +3024,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "go_goroutines{job=\"argo-cd-argocd-server-metrics\",cluster_name=\"$cluster\"}",
@@ -3072,8 +3072,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3114,8 +3114,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "go_gc_duration_seconds{job=\"argo-cd-argocd-server-metrics\", quantile=\"1\", cluster_name=\"$cluster\"}",
@@ -3184,8 +3184,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3232,8 +3232,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(grpc_server_handled_total{job=\"argo-cd-argocd-server-metrics\",grpc_service=\"application.ApplicationService\",cluster_name=\"$cluster\"}[$interval])) by (grpc_code, grpc_method)",
@@ -3280,8 +3280,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3326,8 +3326,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(grpc_server_handled_total{job=\"argo-cd-argocd-server-metrics\",grpc_service=\"cluster.ClusterService\",cluster_name=\"$cluster\"}[$interval])) by (grpc_code, grpc_method)",
@@ -3374,8 +3374,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3420,8 +3420,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(grpc_server_handled_total{job=\"argo-cd-argocd-server-metrics\",grpc_service=\"project.ProjectService\",cluster_name=\"$cluster\"}[$interval])) by (grpc_code, grpc_method)",
@@ -3468,8 +3468,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3513,8 +3513,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(grpc_server_handled_total{job=\"argo-cd-argocd-server-metrics\",grpc_service=\"repository.RepositoryService\",cluster_name=\"$cluster\"}[$interval])) by (grpc_code, grpc_method)",
@@ -3569,8 +3569,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3614,8 +3614,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(grpc_server_handled_total{job=\"argo-cd-argocd-server-metrics\",grpc_service=\"session.SessionService\",cluster_name=\"$cluster\"}[$interval])) by (grpc_code, grpc_method)",
@@ -3662,8 +3662,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3707,8 +3707,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(grpc_server_handled_total{job=\"argo-cd-argocd-server-metrics\",grpc_service=\"version.VersionService\",cluster_name=\"$cluster\"}[$interval])) by (grpc_code, grpc_method)",
@@ -3755,8 +3755,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3800,8 +3800,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(grpc_server_handled_total{job=\"argo-cd-argocd-server-metrics\",grpc_service=\"account.AccountService\",cluster_name=\"$cluster\"}[$interval])) by (grpc_code, grpc_method)",
@@ -3848,8 +3848,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fill": 1,
               "fillGradient": 0,
@@ -3893,8 +3893,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(grpc_server_handled_total{job=\"argo-cd-argocd-server-metrics\",grpc_service=\"cluster.SettingsService\",cluster_name=\"$cluster\"}[$interval])) by (grpc_code, grpc_method)",
@@ -3967,8 +3967,8 @@ data:
               "dashLength": 10,
               "dashes": false,
               "datasource": {
-                "type": "prometheus",
-                "uid": "prometheus"
+                "type": "Prometheus",
+                "uid": "Prometheus"
               },
               "fieldConfig": {
                 "defaults": {
@@ -4013,8 +4013,8 @@ data:
               "targets": [
                 {
                   "datasource": {
-                    "type": "prometheus",
-                    "uid": "prometheus"
+                    "type": "Prometheus",
+                    "uid": "Prometheus"
                   },
                   "editorMode": "code",
                   "expr": "sum(increase(argocd_redis_request_total{cluster_name=\"$cluster\"}[$interval])) by (failed)",
@@ -4143,8 +4143,8 @@ data:
               "value": "capten-controlplane"
             },
             "datasource": {
-              "type": "prometheus",
-              "uid": "prometheus"
+              "type": "Prometheus",
+              "uid": "Prometheus"
             },
             "definition": "label_values(cluster_name)",
             "hide": 0,
