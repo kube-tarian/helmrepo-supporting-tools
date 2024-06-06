@@ -127,4 +127,8 @@ temporalio/admin-tools:1.22.1
 temporalio/server:1.22.1
 chrishirsch/kuberhealthy-storage-check:v0.0.1
 kuberhealthy/network-connection-check:v0.2.0
-
+kuberhealthy/pod-restarts-check:v2.5.0
+kuberhealthy/pod-status-check:v1.3.0
+kuberhealthy/test-check:v1.4.0
+kuberhealthy/resource-quota-check:v1.3.0
+bitnami/postgresql:16.0.0-debian-11-r13
