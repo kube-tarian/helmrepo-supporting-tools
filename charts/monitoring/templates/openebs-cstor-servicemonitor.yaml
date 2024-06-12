@@ -1,3 +1,4 @@
+{{- if .Values.dashboards.openebs }}
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
@@ -40,3 +41,4 @@ spec:
   selector:
     matchLabels:
       openebs.io/cas-type: cstor
+{{- end }}
