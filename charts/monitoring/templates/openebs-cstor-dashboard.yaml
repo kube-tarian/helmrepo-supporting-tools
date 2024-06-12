@@ -1,3 +1,4 @@
+{{- if .Values.dashboards.openebs }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -2696,3 +2697,4 @@ data:
       "version": 11,
       "weekStart": ""
     }
+{{- end }}

@@ -98,6 +98,9 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+dashboards:
+  openebs: true
+
 datasources:
   prometheus:
     url: http://prometheus-kube-prometheus-prometheus:9090
@@ -105,6 +108,7 @@ datasources:
     url: http://prometheus-kube-prometheus-alertmanager:9093
   jsonApi:
     url: http://proact-scheduler.capten.svc.cluster.local:5000/api/v1/schedule/
+
 nodeSelector: {}
 
 tolerations: []
