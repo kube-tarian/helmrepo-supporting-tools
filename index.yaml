@@ -777,6 +777,32 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/falco-0.0.1/falco-0.0.1.tgz
     version: 0.0.1
+  falco-exporter:
+  - annotations:
+      artifacthub.io/changes: |
+        - "✨ update chart to version 0.11.0"
+    apiVersion: v2
+    appVersion: 0.8.3
+    created: "2024-06-17T05:48:55.386161545Z"
+    description: Prometheus Metrics Exporter for Falco output events
+    digest: 2500f41bfcd6832bd7a887a5e6558ef6e6ccdab8755bf1780a2494a932c9f29b
+    keywords:
+    - monitoring
+    - security
+    - alerting
+    - metric
+    - troubleshooting
+    - run-time
+    maintainers:
+    - email: me@leonardograsso.com
+      name: leogr
+    name: falco-exporter
+    sources:
+    - https://github.com/falcosecurity/falco-exporter
+    type: application
+    urls:
+    - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/falco-exporter-1.0.0/falco-exporter-1.0.0.tgz
+    version: 1.0.0
   grafana:
   - annotations:
       artifacthub.io/changes: |
@@ -5259,4 +5285,4 @@ entries:
     urls:
     - https://github.com/kube-tarian/helmrepo-supporting-tools/releases/download/velero-0.0.1/velero-0.0.1.tgz
     version: 0.0.1
-generated: "2024-06-17T04:52:21.82265376Z"
+generated: "2024-06-17T05:48:55.386469752Z"
