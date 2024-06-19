@@ -538,17 +538,17 @@ containers:
             key: {{ .Values.Clickhouse.existingSecret.passwordkey }}
         {{- end }}
       {{- end }}
-      {{- if .Values.postgresql.enabled }}
+      {{- if .Values.postgresDatasource.enabled }}
       - name: POSTGRESQL_USERNAME
-        value: {{ .Values.postgresql.username }}
+        value: {{ .Values.postgresDatasource.username }}
       - name: POSTGRESQL_PASSWORD
-        {{- if not .Values.postgresql.existingSecret }}
-        value: {{ .Values.postgresql.password }}
+        {{- if not .Values.postgresDatasource.existingSecret }}
+        value: {{ .Values.postgresDatasource.password }}
         {{- else }}
         valueFrom:
           secretKeyRef:
-            name: {{ .Values.postgresql.existingSecret.name }}
-            key: {{ .Values.postgresql.existingSecret.passwordkey }}
+            name: {{ .Values.postgresDatasource.existingSecret.name }}
+            key: {{ .Values.postgresDatasource.existingSecret.passwordkey }}
         {{- end }}
       {{- end }}
       {{- if .Values.imageRenderer.enabled }}

@@ -930,7 +930,7 @@ Clickhouse:
     # usernamekey: ""
     # passwordkey: ""
 
-postgresql:
+postgresDatasource:
   enabled: false
   username: ""
   password: ""
