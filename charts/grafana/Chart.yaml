@@ -22,7 +22,7 @@ name: grafana
 sources:
 - https://github.com/grafana/grafana
 type: application
-version: 1.0.7
+version: 1.0.9
 dependencies:
   - name: postgresql
     condition: postgresql.enabled
