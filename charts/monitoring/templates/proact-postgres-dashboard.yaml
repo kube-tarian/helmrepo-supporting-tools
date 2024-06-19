@@ -35,8 +35,8 @@ data:
       "panels": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "postgres"
+            "type": "Proact",
+            "uid": "Proact"
           },
           "fieldConfig": {
             "defaults": {
@@ -124,8 +124,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "postgres",
-                "uid": "postgres"
+                "type": "Proact",
+                "uid": "Proact"
               },
               "editorMode": "builder",
               "format": "table",
@@ -191,8 +191,8 @@ data:
         },
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "postgres"
+            "type": "Proact",
+            "uid": "Proact"
           },
           "fieldConfig": {
             "defaults": {
@@ -244,8 +244,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "postgres",
-                "uid": "postgres"
+                "type": "Proact",
+                "uid": "Proact"
               },
               "editorMode": "code",
               "format": "table",
@@ -296,8 +296,8 @@ data:
         },
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "postgres"
+            "type": "Proact",
+            "uid": "Proact"
           },
           "fieldConfig": {
             "defaults": {
@@ -374,8 +374,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "postgres",
-                "uid": "postgres"
+                "type": "Proact",
+                "uid": "Proact"
               },
               "editorMode": "code",
               "format": "table",
@@ -429,8 +429,8 @@ data:
         },
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "postgres"
+            "type": "Proact",
+            "uid": "Proact"
           },
           "fieldConfig": {
             "defaults": {
@@ -485,8 +485,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "postgres",
-                "uid": "postgres"
+                "type": "Proact",
+                "uid": "Proact"
               },
               "editorMode": "builder",
               "format": "table",
@@ -540,8 +540,8 @@ data:
         },
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "postgres"
+            "type": "Proact",
+            "uid": "Proact"
           },
           "fieldConfig": {
             "defaults": {
@@ -596,8 +596,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "postgres",
-                "uid": "postgres"
+                "type": "Proact",
+                "uid": "Proact"
               },
               "editorMode": "builder",
               "format": "table",
@@ -657,8 +657,8 @@ data:
               "value": "12d25f91-a3c3-4f56-bf63-32538996aea0"
             },
             "datasource": {
-              "type": "postgres",
-              "uid": "postgres"
+              "type": "Proact",
+              "uid": "Proact"
             },
             "definition": "SELECT schedule_id FROM schedules ",
             "hide": 2,

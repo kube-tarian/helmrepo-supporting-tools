@@ -9,7 +9,6 @@ metadata:
     grafana_dashboard: "1"
 data:
   capten.json: |-
-
     {
       "annotations": {
         "list": [
@@ -36,8 +35,8 @@ data:
       "panels": [
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "postgres"
+            "type": "Capten",
+            "uid": "Capten"
           },
           "fieldConfig": {
             "defaults": {
@@ -87,8 +86,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "postgres",
-                "uid": "postgres"
+                "type": "Capten",
+                "uid": "Capten"
               },
               "editorMode": "code",
               "format": "table",
@@ -119,8 +118,8 @@ data:
         },
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "postgres"
+            "type": "Capten",
+            "uid": "Capten"
           },
           "fieldConfig": {
             "defaults": {
@@ -171,8 +170,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "postgres",
-                "uid": "postgres"
+                "type": "Capten",
+                "uid": "Capten"
               },
               "editorMode": "code",
               "format": "table",
@@ -203,8 +202,8 @@ data:
         },
         {
           "datasource": {
-            "type": "postgres",
-            "uid": "postgres"
+            "type": "Capten",
+            "uid": "Capten"
           },
           "fieldConfig": {
             "defaults": {
@@ -293,8 +292,8 @@ data:
           "targets": [
             {
               "datasource": {
-                "type": "postgres",
-                "uid": "postgres"
+                "type": "Capten",
+                "uid": "Capten"
               },
               "editorMode": "builder",
               "format": "table",
