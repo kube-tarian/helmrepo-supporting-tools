@@ -1064,6 +1064,7 @@ grafana:
       enabled: false
 
   database: 
+    enabled: false
     type: postgres
     host: prometheus-postgresql:5432
     name: postgres
@@ -1083,6 +1084,14 @@ grafana:
     existingSecret: {}
       # name: ""
       # usernamekey: ""
+      # passwordkey: ""
+
+  postgresDatasource:
+    enabled: false
+    username: ""
+    password: ""
+    existingSecret: {}
+      # name: ""
       # passwordkey: ""
 
 ## Flag to disable all the kubernetes component scrapers
