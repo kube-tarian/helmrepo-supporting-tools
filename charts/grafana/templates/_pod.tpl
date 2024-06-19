@@ -538,6 +538,19 @@ containers:
             key: {{ .Values.Clickhouse.existingSecret.passwordkey }}
         {{- end }}
       {{- end }}
+      {{- if .Values.postgresql.enabled }}
+      - name: POSTGRESQL_USERNAME
+        value: {{ .Values.postgresql.username }}
+      - name: POSTGRESQL_PASSWORD
+        {{- if not .Values.postgresql.existingSecret }}
+        value: {{ .Values.postgresql.password }}
+        {{- else }}
+        valueFrom:
+          secretKeyRef:
+            name: {{ .Values.postgresql.existingSecret.name }}
+            key: {{ .Values.postgresql.existingSecret.passwordkey }}
+        {{- end }}
+      {{- end }}
       {{- if .Values.imageRenderer.enabled }}
       - name: GF_RENDERING_SERVER_URL
         value: http://{{ template "grafana.fullname" . }}-image-renderer.{{ template "grafana.namespace" . }}:{{ .Values.imageRenderer.service.port }}/render
