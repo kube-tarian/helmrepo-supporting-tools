@@ -929,3 +929,11 @@ Clickhouse:
     # name: ""
     # usernamekey: ""
     # passwordkey: ""
+
+postgresql:
+  enabled: false
+  username: ""
+  password: ""
+  existingSecret: {}
+    # name: ""
+    # passwordkey: ""
