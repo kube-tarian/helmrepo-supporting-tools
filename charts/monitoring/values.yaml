@@ -108,6 +108,8 @@ datasources:
     url: http://prometheus-kube-prometheus-alertmanager:9093
   jsonApi:
     url: http://proact-scheduler.capten.svc.cluster.local:5000/api/v1/schedule/
+  postgreSQL:
+    url: http://postgresql.platform.svc.cluster.local:5432  
 
 nodeSelector: {}
 

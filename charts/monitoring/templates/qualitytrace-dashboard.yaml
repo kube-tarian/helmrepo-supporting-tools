@@ -1,0 +1,626 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "monitoring.fullname" . }}-qualitytrace
+  annotations:
+    meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    grafana_folder: "QualityTrace"
+  labels:
+    grafana_dashboard: "1"
+data:
+  qualitytrace.json: |-
+    {
+      "annotations": {
+        "list": [
+          {
+            "builtIn": 1,
+            "datasource": {
+              "type": "grafana",
+              "uid": "-- Grafana --"
+            },
+            "enable": true,
+            "hide": true,
+            "iconColor": "rgba(0, 211, 255, 1)",
+            "name": "Annotations & Alerts",
+            "type": "dashboard"
+          }
+        ]
+      },
+      "editable": true,
+      "fiscalYearStartMonth": 0,
+      "graphTooltip": 0,
+      "id": 75,
+      "links": [],
+      "liveNow": false,
+      "panels": [
+        {
+          "datasource": {
+            "type": "QualityTrace",
+            "uid": "QualityTrace"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "mappings": [],
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "orange",
+                    "value": 70
+                  },
+                  {
+                    "color": "red",
+                    "value": 85
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 6,
+            "x": 0,
+            "y": 0
+          },
+          "id": 4,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "QualityTrace",
+                "uid": "QualityTrace"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT count(*) FROM test_runs \nWHERE state IN ( 'FINISHED' )",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "Count of Trigger Finished ",
+          "type": "gauge"
+        },
+        {
+          "datasource": {
+            "type": "QualityTrace",
+            "uid": "QualityTrace"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "mappings": [],
+              "thresholds": {
+                "mode": "percentage",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "orange",
+                    "value": 70
+                  },
+                  {
+                    "color": "red",
+                    "value": 85
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 5,
+            "w": 6,
+            "x": 6,
+            "y": 0
+          },
+          "id": 5,
+          "options": {
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showThresholdLabels": false,
+            "showThresholdMarkers": true
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "QualityTrace",
+                "uid": "QualityTrace"
+              },
+              "editorMode": "code",
+              "format": "table",
+              "rawQuery": true,
+              "rawSql": "SELECT count(*) FROM test_runs \nWHERE state IN ( 'TRIGGER_FAILED' )",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              }
+            }
+          ],
+          "title": "Count Trigger Failed",
+          "type": "gauge"
+        },
+        {
+          "datasource": {
+            "type": "QualityTrace",
+            "uid": "QualityTrace"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "fail"
+                },
+                "properties": [
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "type": "color-text"
+                    }
+                  },
+                  {
+                    "id": "thresholds",
+                    "value": {
+                      "mode": "absolute",
+                      "steps": [
+                        {
+                          "color": "green",
+                          "value": null
+                        },
+                        {
+                          "color": "red",
+                          "value": 1
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "created_at"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 207
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "trace_id"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 331
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "span_id"
+                },
+                "properties": [
+                  {
+                    "id": "custom.width",
+                    "value": 284
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 7,
+            "w": 24,
+            "x": 0,
+            "y": 5
+          },
+          "id": 6,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true,
+            "sortBy": []
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "QualityTrace",
+                "uid": "QualityTrace"
+              },
+              "editorMode": "builder",
+              "format": "table",
+              "rawSql": "SELECT * FROM test_runs LIMIT 50 ",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [
+                      {
+                        "name": "*",
+                        "type": "functionParameter"
+                      }
+                    ],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              },
+              "table": "test_runs"
+            }
+          ],
+          "title": "Count of assertion pass and fail",
+          "transformations": [
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "completed_at": true,
+                  "created_at": false,
+                  "id": true,
+                  "last_error": true,
+                  "linter": true,
+                  "metadata": true,
+                  "obtained_trace_at": true,
+                  "outputs": true,
+                  "required_gates_result": true,
+                  "resolved_trigger": true,
+                  "service_trigger_completed_at": true,
+                  "service_triggered_at": true,
+                  "skip_trace_collection": true,
+                  "state": true,
+                  "tenant_id": true,
+                  "test_id": true,
+                  "test_results": true,
+                  "test_version": true,
+                  "trace": true,
+                  "trigger_results": true,
+                  "variable_set": true
+                },
+                "indexByName": {},
+                "renameByName": {}
+              }
+            }
+          ],
+          "type": "table"
+        },
+        {
+          "datasource": {
+            "type": "QualityTrace",
+            "uid": "QualityTrace"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "custom": {
+                "align": "auto",
+                "cellOptions": {
+                  "type": "auto"
+                },
+                "inspect": false
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "state"
+                },
+                "properties": [
+                  {
+                    "id": "custom.cellOptions",
+                    "value": {
+                      "type": "color-background"
+                    }
+                  },
+                  {
+                    "id": "mappings",
+                    "value": [
+                      {
+                        "options": {
+                          "FINISHED": {
+                            "color": "green",
+                            "index": 0
+                          },
+                          "TRIGGER_FAILED": {
+                            "color": "red",
+                            "index": 1
+                          }
+                        },
+                        "type": "value"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 12
+          },
+          "id": 3,
+          "options": {
+            "cellHeight": "sm",
+            "footer": {
+              "countRows": false,
+              "fields": "",
+              "reducer": [
+                "sum"
+              ],
+              "show": false
+            },
+            "showHeader": true
+          },
+          "pluginVersion": "10.0.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "QualityTrace",
+                "uid": "QualityTrace"
+              },
+              "editorMode": "builder",
+              "format": "table",
+              "rawSql": "SELECT * FROM test_runs ",
+              "refId": "A",
+              "sql": {
+                "columns": [
+                  {
+                    "parameters": [
+                      {
+                        "name": "*",
+                        "type": "functionParameter"
+                      }
+                    ],
+                    "type": "function"
+                  }
+                ],
+                "groupBy": [
+                  {
+                    "property": {
+                      "type": "string"
+                    },
+                    "type": "groupBy"
+                  }
+                ],
+                "limit": 50
+              },
+              "table": "test_runs"
+            }
+          ],
+          "title": "QT Test Application API",
+          "transformations": [
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "completed_at": true,
+                  "fail": true,
+                  "id": true,
+                  "last_error": true,
+                  "linter": true,
+                  "metadata": true,
+                  "obtained_trace_at": true,
+                  "outputs": true,
+                  "pass": true,
+                  "required_gates_result": true,
+                  "resolved_trigger": false,
+                  "service_trigger_completed_at": true,
+                  "service_triggered_at": true,
+                  "skip_trace_collection": true,
+                  "tenant_id": true,
+                  "test_id": true,
+                  "test_results": true,
+                  "test_version": true,
+                  "trace": true,
+                  "trigger_results": true,
+                  "variable_set": true
+                },
+                "indexByName": {
+                  "completed_at": 7,
+                  "created_at": 2,
+                  "fail": 17,
+                  "id": 0,
+                  "last_error": 14,
+                  "linter": 20,
+                  "metadata": 15,
+                  "obtained_trace_at": 6,
+                  "outputs": 18,
+                  "pass": 16,
+                  "required_gates_result": 21,
+                  "resolved_trigger": 23,
+                  "service_trigger_completed_at": 5,
+                  "service_triggered_at": 4,
+                  "skip_trace_collection": 24,
+                  "span_id": 10,
+                  "state": 8,
+                  "tenant_id": 22,
+                  "test_id": 1,
+                  "test_results": 12,
+                  "test_version": 3,
+                  "trace": 13,
+                  "trace_id": 9,
+                  "trigger_results": 11,
+                  "variable_set": 19
+                },
+                "renameByName": {}
+              }
+            },
+            {
+              "id": "extractFields",
+              "options": {
+                "source": "resolved_trigger"
+              }
+            },
+            {
+              "id": "extractFields",
+              "options": {
+                "source": "httpRequest"
+              }
+            },
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {
+                  "headers": true,
+                  "httpRequest": true,
+                  "resolved_trigger": true
+                },
+                "indexByName": {
+                  "created_at": 0,
+                  "headers": 9,
+                  "httpRequest": 7,
+                  "method": 8,
+                  "resolved_trigger": 5,
+                  "span_id": 3,
+                  "state": 4,
+                  "trace_id": 2,
+                  "type": 6,
+                  "url": 1
+                },
+                "renameByName": {}
+              }
+            }
+          ],
+          "type": "table"
+        }
+      ],
+      "refresh": "",
+      "schemaVersion": 38,
+      "style": "dark",
+      "tags": [],
+      "templating": {
+        "list": []
+      },
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      },
+      "timepicker": {},
+      "timezone": "",
+      "title": "QualityTrace Dashboard",
+      "uid": "adfcfa4d-238c-41a1-9e87-4dc5507a26de",
+      "version": 9,
+      "weekStart": ""
+    }
