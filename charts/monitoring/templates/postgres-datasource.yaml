@@ -10,32 +10,32 @@ data:
   datasource.yaml: |-
     apiVersion: 1
     datasources:
-    - name: Capten
+      - name: Capten
         type: postgres
         url: {{ .Values.datasources.postgreSQL.url }}
         user: postgres
-        secureJsonData:
-        password: "$POSTGRESQL_PASSWORD"
-        jsonData:
         database: capten
-        sslmode: 'disable' # disable/require/verify-ca/verify-full
+        secureJsonData:
+          password: "$POSTGRESQL_PASSWORD"
+        jsonData:
+          sslmode: 'disable' # disable/require/verify-ca/verify-full
 
-    - name: Proact
+      - name: Proact
         type: postgres
         url: {{ .Values.datasources.postgreSQL.url }}
         user: postgres
-        secureJsonData:
-        password: "$POSTGRESQL_PASSWORD"
-        jsonData:
         database: scsctl
-        sslmode: 'disable' # disable/require/verify-ca/verify-full    
+        secureJsonData:
+          password: "$POSTGRESQL_PASSWORD"
+        jsonData:
+          sslmode: 'disable' # disable/require/verify-ca/verify-full    
 
-    - name: QualityTrace
+      - name: QualityTrace
         type: postgres
         url: {{ .Values.datasources.postgreSQL.url }}
+        database: qualitytrace
         user: postgres
         secureJsonData:
-        password: "$POSTGRESQL_PASSWORD"
+          password: "$POSTGRESQL_PASSWORD"
         jsonData:
-        database: qualitytrace
-        sslmode: 'disable' # disable/require/verify-ca/verify-full    
+          sslmode: 'disable' # disable/require/verify-ca/verify-full    
