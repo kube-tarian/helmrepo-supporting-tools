@@ -29,7 +29,7 @@ data:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 75,
+      "id": 63,
       "links": [],
       "liveNow": false,
       "panels": [
@@ -90,7 +90,7 @@ data:
               "editorMode": "code",
               "format": "table",
               "rawQuery": true,
-              "rawSql": "SELECT count(*) FROM test_runs \nWHERE state IN ( 'FINISHED' )",
+              "rawSql": "SELECT count(*) FROM test_runs \nWHERE state IN ( 'FINISHED' ) AND $__timeFilter(created_at) ",
               "refId": "A",
               "sql": {
                 "columns": [
@@ -171,7 +171,7 @@ data:
               "editorMode": "code",
               "format": "table",
               "rawQuery": true,
-              "rawSql": "SELECT count(*) FROM test_runs \nWHERE state IN ( 'TRIGGER_FAILED' )",
+              "rawSql": "SELECT count(*) FROM test_runs \nWHERE state IN ( 'TRIGGER_FAILED' ) AND $__timeFilter(created_at) ",
               "refId": "A",
               "sql": {
                 "columns": [
@@ -323,9 +323,10 @@ data:
                 "type": "QualityTrace",
                 "uid": "QualityTrace"
               },
-              "editorMode": "builder",
+              "editorMode": "code",
               "format": "table",
-              "rawSql": "SELECT * FROM test_runs LIMIT 50 ",
+              "rawQuery": true,
+              "rawSql": "SELECT * FROM test_runs \nWHERE $__timeFilter(created_at)\nORDER BY created_at DESC",
               "refId": "A",
               "sql": {
                 "columns": [
@@ -480,9 +481,10 @@ data:
                 "type": "QualityTrace",
                 "uid": "QualityTrace"
               },
-              "editorMode": "builder",
+              "editorMode": "code",
               "format": "table",
-              "rawSql": "SELECT * FROM test_runs ",
+              "rawQuery": true,
+              "rawSql": "SELECT * FROM test_runs \nWHERE $__timeFilter(created_at) \nORDER BY created_at DESC",
               "refId": "A",
               "sql": {
                 "columns": [
@@ -614,13 +616,13 @@ data:
         "list": []
       },
       "time": {
-        "from": "now-6h",
+        "from": "now-24h",
         "to": "now"
       },
       "timepicker": {},
       "timezone": "",
       "title": "QualityTrace Dashboard",
       "uid": "adfcfa4d-238c-41a1-9e87-4dc5507a26de",
-      "version": 9,
+      "version": 2,
       "weekStart": ""
     }
