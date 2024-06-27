@@ -95,7 +95,7 @@ data:
                 "uid": "Prometheus"
               },
               "editorMode": "code",
-              "expr": "(openebs_maya_exporter_version{cluster=\"$cluster\"})",
+              "expr": "(openebs_maya_exporter_version{cluster_name=\"$cluster\"})",
               "format": "table",
               "interval": "",
               "legendFormat": "{{`{{version}}`}}",
@@ -173,7 +173,7 @@ data:
                 "uid": "Prometheus"
               },
               "displayType": "Regular",
-              "expr": "avg(avg_over_time((sum without ()(kube_pod_container_status_ready{cluster=\"$cluster\",namespace=\"$namespace\",pod=~\"pvc.*.ctrl.*|pvc.*.rep.*|pvc.*.target.*\"}) / count without ()(kube_pod_container_status_ready{cluster=\"$cluster\",namespace=\"$namespace\",pod=~\"pvc.*.ctrl.*|pvc.*.rep.*|pvc.*.target.*\"}))[$duration:5m]))",
+              "expr": "avg(avg_over_time((sum without ()(kube_pod_container_status_ready{cluster_name=\"$cluster\",namespace=\"$namespace\",pod=~\"pvc.*.ctrl.*|pvc.*.rep.*|pvc.*.target.*\"}) / count without ()(kube_pod_container_status_ready{cluster_name=\"$cluster\",namespace=\"$namespace\",pod=~\"pvc.*.ctrl.*|pvc.*.rep.*|pvc.*.target.*\"}))[$duration:5m]))",
               "hide": false,
               "interval": "",
               "legendFormat": "",
@@ -278,7 +278,7 @@ data:
                 "uid": "Prometheus"
               },
               "editorMode": "code",
-              "expr": "(kube_pod_container_status_ready{cluster=\"$cluster\",namespace=\"openebs-cstor\"})",
+              "expr": "(kube_pod_container_status_ready{cluster_name=\"$cluster\",namespace=\"openebs-cstor\"})",
               "instant": true,
               "interval": "",
               "legendFormat": "{{`{{pod}}`}}::{{`{{container}}`}}",
@@ -361,7 +361,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(kube_pod_spec_volumes_persistentvolumeclaims_readonly{cluster=\"$cluster\",namespace=\"$namespace\"} != 0) ",
+              "expr": "count(kube_pod_spec_volumes_persistentvolumeclaims_readonly{cluster_name=\"$cluster\",namespace=\"$namespace\"} != 0) ",
               "hide": false,
               "instant": false,
               "legendFormat": "{{`{{pod}}`}}",
@@ -452,7 +452,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(kube_pod_container_status_waiting{cluster=\"$cluster\",namespace=\"$namespace\"} !=0 ) or vector(0)",
+              "expr": "count(kube_pod_container_status_waiting{cluster_name=\"$cluster\",namespace=\"$namespace\"} !=0 ) or vector(0)",
               "hide": false,
               "instant": false,
               "legendFormat": "{{`{{pod}}`}}",
@@ -540,7 +540,7 @@ data:
                 "uid": "Prometheus"
               },
               "editorMode": "code",
-              "expr": "count(kube_persistentvolumeclaim_info{cluster=\"$cluster\"}) ",
+              "expr": "count(kube_persistentvolumeclaim_info{cluster_name=\"$cluster\"}) ",
               "hide": false,
               "instant": false,
               "legendFormat": "{{`{{pod}}`}}",
@@ -631,7 +631,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(kube_pod_container_status_terminated_reason{cluster=\"$cluster\",reason=\"OOMKilled\",namespace=\"$namespace\"} != 0 ) or vector(0)",
+              "expr": "count(kube_pod_container_status_terminated_reason{cluster_name=\"$cluster\",reason=\"OOMKilled\",namespace=\"$namespace\"} != 0 ) or vector(0)",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -721,7 +721,7 @@ data:
                 "uid": "Prometheus"
               },
               "editorMode": "code",
-              "expr": "count(kube_pod_container_status_ready{cluster=\"$cluster\",namespace=\"$namespace\"} !=0 ) or vector(0)",
+              "expr": "count(kube_pod_container_status_ready{cluster_name=\"$cluster\",namespace=\"$namespace\"} !=0 ) or vector(0)",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -814,7 +814,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "sum(count by (pod)(container_spec_memory_reservation_limit_bytes{cluster=\"$cluster\",id=~\"/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-.*\",id!~\".*.scope\",pod!=\"\",namespace=\"$namespace\"}))",
+              "expr": "sum(count by (pod)(container_spec_memory_reservation_limit_bytes{cluster_name=\"$cluster\",id=~\"/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-.*\",id!~\".*.scope\",pod!=\"\",namespace=\"$namespace\"}))",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -907,7 +907,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(count by (pod)(container_spec_memory_reservation_limit_bytes{cluster=\"$cluster\",id=~\"/kubepods.slice/kubepods-besteffort.slice/kubepods-besteffort-.*\",id!~\".*.scope\",pod!=\"\",namespace=\"$namespace\"}))",
+              "expr": "count(count by (pod)(container_spec_memory_reservation_limit_bytes{cluster_name=\"$cluster\",id=~\"/kubepods.slice/kubepods-besteffort.slice/kubepods-besteffort-.*\",id!~\".*.scope\",pod!=\"\",namespace=\"$namespace\"}))",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -1066,7 +1066,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count(kube_pod_container_status_terminated{cluster=\"$cluster\",namespace=\"$namespace\"} !=0 ) or vector(0)",
+              "expr": "count(kube_pod_container_status_terminated{cluster_name=\"$cluster\",namespace=\"$namespace\"} !=0 ) or vector(0)",
               "hide": false,
               "instant": false,
               "legendFormat": "{{`{{pod}}`}}",
@@ -1134,7 +1134,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(container_memory_working_set_bytes{image!=\"\",cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "expr": " (sum(container_memory_working_set_bytes{image!=\"\",cluster_name=\"$cluster\", namespace=\"$namespace\"}))",
               "hide": false,
               "interval": "",
               "legendFormat": "Memory used",
@@ -1145,7 +1145,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(kube_pod_container_resource_requests_memory_bytes{cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "expr": " (sum(kube_pod_container_resource_requests_memory_bytes{cluster_name=\"$cluster\", namespace=\"$namespace\"}))",
               "interval": "",
               "legendFormat": "Memory requests",
               "refId": "B"
@@ -1155,7 +1155,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(kube_pod_container_resource_limits_memory_bytes{cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "expr": " (sum(kube_pod_container_resource_limits_memory_bytes{cluster_name=\"$cluster\", namespace=\"$namespace\"}))",
               "hide": false,
               "interval": "",
               "legendFormat": "Memory limits",
@@ -1227,7 +1227,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(kube_pod_container_resource_requests_cpu_cores{cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "expr": " (sum(kube_pod_container_resource_requests_cpu_cores{cluster_name=\"$cluster\", namespace=\"$namespace\"}))",
               "hide": true,
               "interval": "",
               "legendFormat": "Memory requests",
@@ -1238,7 +1238,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(kube_pod_container_resource_limits_cpu_cores{cluster=\"$cluster\", namespace=\"$namespace\"}))",
+              "expr": " (sum(kube_pod_container_resource_limits_cpu_cores{cluster_name=\"$cluster\", namespace=\"$namespace\"}))",
               "hide": false,
               "interval": "",
               "legendFormat": "Memory limits",
@@ -1622,7 +1622,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": " (sum(container_memory_working_set_bytes{image!=\"\",cluster=\"$cluster\", namespace=\"$namespace\"}) by (pod_name))",
+              "expr": " (sum(container_memory_working_set_bytes{image!=\"\",cluster_name=\"$cluster\", namespace=\"$namespace\"}) by (pod_name))",
               "instant": false,
               "interval": "",
               "intervalFactor": 1,
@@ -1820,7 +1820,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count by (node)(kube_pod_info{cluster=\"$cluster\",namespace=\"$namespace\"})",
+              "expr": "count by (node)(kube_pod_info{cluster_name=\"$cluster\",namespace=\"$namespace\"})",
               "hide": false,
               "legendFormat": "{{`{{node}}`}}",
               "refId": "A"
@@ -1922,7 +1922,7 @@ data:
               "displayAliasType": "Warning / Critical",
               "displayType": "Regular",
               "displayValueWithAlias": "Never",
-              "expr": "increase(kube_pod_container_status_restarts_total{cluster=\"$cluster\",namespace=\"$namespace\"}[2m]) ",
+              "expr": "increase(kube_pod_container_status_restarts_total{cluster_name=\"$cluster\",namespace=\"$namespace\"}[2m]) ",
               "format": "time_series",
               "interval": "",
               "legendFormat": "{{`{{pod}}`}}",
@@ -2020,7 +2020,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count by(pod,reason) (kube_pod_container_status_terminated_reason{cluster=\"$cluster\",namespace=\"$namespace\",reason!=\"Completed\"} !=0 )",
+              "expr": "count by(pod,reason) (kube_pod_container_status_terminated_reason{cluster_name=\"$cluster\",namespace=\"$namespace\",reason!=\"Completed\"} !=0 )",
               "hide": false,
               "instant": false,
               "interval": "",
@@ -2032,7 +2032,7 @@ data:
                 "type": "Prometheus",
                 "uid": "Prometheus"
               },
-              "expr": "count by(pod,reason) (kube_pod_container_status_waiting_reason{cluster=\"$cluster\",namespace=\"$namespace\"} !=0 )",
+              "expr": "count by(pod,reason) (kube_pod_container_status_waiting_reason{cluster_name=\"$cluster\",namespace=\"$namespace\"} !=0 )",
               "hide": false,
               "interval": "",
               "legendFormat": "WAITING::{{`{{reason}}`}}::{{`{{pod}}`}}",
@@ -2526,7 +2526,7 @@ data:
                 "uid": "Prometheus"
               },
               "editorMode": "code",
-              "expr": "(openebs_total_replica_count{cluster=\"$cluster\"})",
+              "expr": "(openebs_total_replica_count{cluster_name=\"$cluster\"})",
               "instant": true,
               "interval": "",
               "legendFormat": "{{`{{pod}}`}}",

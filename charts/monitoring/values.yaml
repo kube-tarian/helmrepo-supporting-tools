@@ -109,7 +109,7 @@ datasources:
   jsonApi:
     url: http://proact-scheduler.capten.svc.cluster.local:5000/api/v1/schedule/
   postgreSQL:
-    url: http://postgresql.platform.svc.cluster.local:5432  
+    url: postgresql.platform.svc.cluster.local:5432  
 
 nodeSelector: {}
 
