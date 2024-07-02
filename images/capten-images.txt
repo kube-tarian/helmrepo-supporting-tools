@@ -1,4 +1,5 @@
 bitnami/kubectl:1.26.4
+aquasec/trivy:latest
 falcosecurity/falco-exporter:0.8.3
 bhgedigital/envsubst
 signoz/signoz-otel-collector:0.79.4
